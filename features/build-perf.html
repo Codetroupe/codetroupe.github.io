@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Performance — ADB Pro</title>
+    <meta name="description" content="Build profiling, Gradle configuration health checks, optimization recommendations, and build scan integration.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            Pro Feature
+        </div>
+        <h1>Build Performance</h1>
+        <p>Profile your Gradle builds, run configuration health checks, get actionable optimization recommendations, and integrate with Gradle Build Scans.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Overview</h2>
+    <p>Slow builds are one of the biggest productivity drains in Android development. Build Performance gives you the tools to understand exactly where your build time goes, whether your Gradle configuration is optimal, and what changes will have the biggest impact. It combines task-level profiling, configuration health checks, and optimization recommendations into a single panel — turning opaque Gradle internals into actionable insights.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Key Capabilities</h2>
+
+    <h3>Build Time Profiling (Task-Level Breakdown)</h3>
+    <p>Run any Gradle build with profiling enabled and get a detailed breakdown of how long each task took. The profiler captures execution times for every task in the build lifecycle — from <code>:app:preBuild</code> through <code>:app:assembleRelease</code> — and displays them in a sortable table with percentage-of-total indicators. Tasks are color-coded by duration: green for fast, yellow for moderate, and red for slow. Sort by duration to instantly identify bottlenecks like annotation processing, resource merging, or Dex merging.</p>
+
+    <h3>Gradle Configuration Health Checks</h3>
+    <p>Build Performance inspects your Gradle setup and reports on configuration options that significantly impact build speed. Each check produces a clear status with a recommendation:</p>
+    <ul>
+        <li><strong>Gradle Daemon</strong> — Is the daemon running? A cold daemon adds 10-30 seconds to the first build.</li>
+        <li><strong>Parallel Builds</strong> — Is <code>org.gradle.parallel=true</code> set in <code>gradle.properties</code>? Parallel execution runs independent module tasks concurrently.</li>
+        <li><strong>Build Cache</strong> — Is <code>org.gradle.caching=true</code> enabled? The build cache reuses outputs from previous builds, including across machines with a remote cache.</li>
+        <li><strong>Configuration Cache</strong> — Is <code>org.gradle.configuration-cache=true</code> enabled? The configuration cache skips the configuration phase on subsequent builds, saving several seconds.</li>
+        <li><strong>JVM Memory</strong> — Is <code>org.gradle.jvmargs</code> configured with adequate heap size? Under-provisioned JVM causes GC pauses during compilation.</li>
+        <li><strong>Kotlin Incremental Compilation</strong> — Is Kotlin incremental compilation enabled? This dramatically speeds up Kotlin-only changes.</li>
+    </ul>
+
+    <h3>Optimization Recommendations</h3>
+    <p>Based on the profiling results and health checks, Build Performance generates a prioritized list of recommendations. Each recommendation includes an estimated time savings, the effort required to implement it, and a link to relevant documentation. Recommendations are ranked by impact-to-effort ratio so you can pick the quick wins first. Common recommendations include enabling parallel builds, configuring the build cache, splitting large modules, and disabling unused annotation processors.</p>
+
+    <h3>Incremental Build Analysis</h3>
+    <p>Run the same build task twice and Build Performance compares the two runs. The analysis shows which tasks were <code>UP-TO-DATE</code>, <code>FROM-CACHE</code>, or re-executed — and for re-executed tasks, it explains why (input changed, output removed, dependency changed). This is critical for understanding why your "incremental" build is doing more work than expected and how to structure your project for better caching behavior.</p>
+
+    <h3>Build Scan Integration</h3>
+    <p>For deeper analysis, Build Performance can trigger a Gradle Build Scan by appending <code>--scan</code> to your build command. When the scan completes, ADB Pro extracts the scan URL and displays it in the panel with a direct link to the Gradle Enterprise dashboard. Build Scans provide timeline views, network activity, plugin performance, and dependency resolution details that complement the local profiling data.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Build Profile Example</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Build Performance — task profiling results</span>
+        </div>
+        <span class="keyword">Build:</span> assembleRelease &nbsp;|&nbsp; <span class="keyword">Total:</span> 2m 34s<br>
+        <span class="keyword">Tasks:</span> 147 executed, 23 up-to-date, 12 from-cache<br><br>
+        <span class="comment">Top 10 slowest tasks:</span><br>
+        &nbsp;<span style="color:#f87171;">1.</span> :app:compileReleaseKotlin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;42.3s &nbsp;(27.5%)<br>
+        &nbsp;<span style="color:#f87171;">2.</span> :app:mergeReleaseResources &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;28.1s &nbsp;(18.2%)<br>
+        &nbsp;<span style="color:#fbbf24;">3.</span> :app:kaptReleaseKotlin &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;19.7s &nbsp;(12.8%)<br>
+        &nbsp;<span style="color:#fbbf24;">4.</span> :app:mergeDexRelease &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;15.2s &nbsp;&nbsp;(9.9%)<br>
+        &nbsp;<span style="color:#fbbf24;">5.</span> :app:lintVitalAnalyzeRelease &nbsp;&nbsp;&nbsp;12.8s &nbsp;&nbsp;(8.3%)<br>
+        &nbsp;<span style="color:#4ade80;">6.</span> :app:processReleaseManifest &nbsp;&nbsp;&nbsp;&nbsp;6.4s &nbsp;&nbsp;(4.2%)<br>
+        &nbsp;<span style="color:#4ade80;">7.</span> :app:compileReleaseJava &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.9s &nbsp;&nbsp;(3.8%)<br>
+        &nbsp;<span style="color:#4ade80;">8.</span> :app:packageRelease &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4.2s &nbsp;&nbsp;(2.7%)<br>
+        &nbsp;<span style="color:#4ade80;">9.</span> :app:stripReleaseDebugSymbols &nbsp;&nbsp;3.8s &nbsp;&nbsp;(2.5%)<br>
+        <span style="color:#4ade80;">10.</span> :app:shrinkReleaseRes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1s &nbsp;&nbsp;(2.0%)
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Configuration Health Report</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Check</th>
+                    <th>Status</th>
+                    <th>Impact</th>
+                    <th>Recommendation</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Gradle Daemon</td>
+                    <td>Running</td>
+                    <td>High</td>
+                    <td>No action needed</td>
+                </tr>
+                <tr>
+                    <td>Parallel Builds</td>
+                    <td>Disabled</td>
+                    <td>High</td>
+                    <td>Add <code>org.gradle.parallel=true</code> to gradle.properties</td>
+                </tr>
+                <tr>
+                    <td>Build Cache</td>
+                    <td>Enabled</td>
+                    <td>High</td>
+                    <td>No action needed</td>
+                </tr>
+                <tr>
+                    <td>Configuration Cache</td>
+                    <td>Disabled</td>
+                    <td>Medium</td>
+                    <td>Enable with <code>org.gradle.configuration-cache=true</code></td>
+                </tr>
+                <tr>
+                    <td>JVM Heap</td>
+                    <td>2 GB</td>
+                    <td>Medium</td>
+                    <td>Consider increasing to 4 GB for large projects</td>
+                </tr>
+                <tr>
+                    <td>Kotlin Incremental</td>
+                    <td>Enabled</td>
+                    <td>High</td>
+                    <td>No action needed</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Usage</h2>
+    <p>Build Performance is accessible from multiple entry points:</p>
+    <ul>
+        <li><strong>Tools &gt; ADB Pro &gt; Profile Build</strong> — runs the selected build task with profiling enabled</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Run Health Check</strong> — inspects Gradle configuration without building</li>
+        <li><strong>ADB Pro side panel</strong> — click the "Build Performance" tab for profiling results and recommendations</li>
+        <li><strong>Build Scan</strong> — click "Run with Build Scan" in the panel toolbar to trigger a Gradle Enterprise scan</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Settings</h2>
+    <p>Build Performance settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Build Performance</strong>. You can configure:</p>
+    <ul>
+        <li>Default build task for profiling (e.g., <code>assembleDebug</code>)</li>
+        <li>Slow task threshold (duration at which tasks are highlighted in red)</li>
+        <li>Automatic health check on project open</li>
+        <li>Build Scan auto-upload (require confirmation or upload automatically)</li>
+        <li>Profile history retention (default: 20 profiling sessions)</li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Speed Up Your Builds</h2>
+    <p>Install ADB Pro and turn build optimization from guesswork into a science.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

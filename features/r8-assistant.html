@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R8 Assistant — ADB Pro</title>
+    <meta name="description" content="Intelligent ProGuard/R8 rule recommendation with 20+ library templates, reflection scanning, mapping analysis, and obfuscation dictionaries.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            New in v1.2.0
+        </div>
+        <h1>R8 Assistant</h1>
+        <p>Intelligent code obfuscation made easy. Auto-detect your dependencies, generate correct keep rules, and harden your app with custom obfuscation dictionaries.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Overview</h2>
+    <p>The R8 Assistant takes the guesswork out of ProGuard/R8 configuration. It scans your project's dependencies, identifies libraries that need special keep rules, and generates an optimized <code>proguard-rules.pro</code> file. It also includes reflection risk scanning, mapping file analysis, stack trace deobfuscation, and a library of 11 preset obfuscation dictionaries.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Sub-Features</h2>
+
+    <h3>Rule Recommendation</h3>
+    <p>Scans your <code>build.gradle</code> dependencies and recommends ProGuard/R8 rules from a database of 20+ popular libraries including Retrofit, Gson, Moshi, Room, Hilt, Kotlin Coroutines, and more. Each recommendation includes comments explaining why the rule is needed.</p>
+
+    <h3>Reflection Risk Scanner</h3>
+    <p>Scans your source code for reflection-based patterns that can break after obfuscation. Detects usages of <code>Class.forName()</code>, <code>getMethod()</code>, <code>getDeclaredField()</code>, and JSON serialization libraries that rely on field name matching.</p>
+
+    <h3>Mapping File Analysis</h3>
+    <p>Load and analyze <code>mapping.txt</code> files from R8/ProGuard builds. View class and method renaming statistics, identify heavily obfuscated packages, and search for specific class mappings.</p>
+
+    <h3>Stack Trace Deobfuscation</h3>
+    <p>Paste a stack trace from a production crash and deobfuscate it using your mapping file. Supports both R8 and ProGuard mapping formats. Integrates with remote mapping file storage.</p>
+
+    <h3>Rule Tester</h3>
+    <p>Validate your ProGuard rules before running a full release build. The rule tester checks for common syntax errors, conflicting rules, and overly broad keep patterns that could inflate your APK size.</p>
+
+    <h3>Obfuscation Dictionaries</h3>
+    <p>Download and apply preset obfuscation dictionaries that use Unicode confusable characters for maximum code protection. 11 preset dictionaries are available — from visual lookalikes (Greek, Cyrillic) to cross-encoding confusion (characters that display differently in GBK, Big5, Shift-JIS).</p>
+    <p><a href="../dictionaries/index.html">Browse all 11 dictionaries &rarr;</a></p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Example Output</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Generated proguard-rules.pro</span>
+        </div>
+        <span class="comment"># ── ADB Pro R8 Assistant ── Generated Rules ──────────</span><br>
+        <span class="comment"># Detected: Retrofit 2.9.0, Gson 2.10.1, Room 2.6.0</span><br><br>
+        <span class="comment"># Retrofit</span><br>
+        <span class="keyword">-keepattributes</span> Signature, *Annotation*<br>
+        <span class="keyword">-keep class</span> retrofit2.** { *; }<br>
+        <span class="keyword">-keepclasseswithmembers class</span> * {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;@retrofit2.http.* &lt;methods&gt;;<br>
+        }<br><br>
+        <span class="comment"># Gson</span><br>
+        <span class="keyword">-keep class</span> com.google.gson.** { *; }<br>
+        <span class="keyword">-keepclassmembers class</span> * {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;@com.google.gson.annotations.SerializedName &lt;fields&gt;;<br>
+        }<br><br>
+        <span class="comment"># Obfuscation Dictionary</span><br>
+        <span class="keyword">-obfuscationdictionary</span> <span class="string">proguard-dic-encoding-chaos.txt</span>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Reflection Risk Report</h2>
+    <p>The reflection scanner produces a categorized report:</p>
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Risk Level</th>
+                <th>Pattern</th>
+                <th>Action Needed</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><span class="badge badge-amber">High</span></td>
+                <td><code>Class.forName("com.example.MyClass")</code></td>
+                <td>Add <code>-keep</code> rule for target class</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-amber">High</span></td>
+                <td><code>getDeclaredMethod("processData")</code></td>
+                <td>Add <code>-keepclassmembers</code> for method</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-blue">Medium</span></td>
+                <td>Gson <code>fromJson()</code> on data class</td>
+                <td>Add <code>-keepclassmembers</code> for fields</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-gray">Low</span></td>
+                <td><code>getResourceAsStream()</code></td>
+                <td>Verify resource path after obfuscation</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Harden Your Code with R8 Assistant</h2>
+    <p>Stop guessing which keep rules you need. Let ADB Pro analyze your project and generate correct rules automatically.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

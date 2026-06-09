@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started — ADB Pro</title>
+    <meta name="description" content="Get up and running with ADB Pro in minutes. Installation guide, first project setup, and feature walkthrough.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features/index.html">Features</a>
+            <a href="getting-started.html" class="active">Getting Started</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="features/index.html">Features</a>
+    <a href="getting-started.html" class="active">Getting Started</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">Setup in under 5 minutes</div>
+        <h1>Get Started with <span>ADB Pro</span></h1>
+        <p class="hero-sub">From installation to your first AAB install, this guide walks you through everything you need to know to start using ADB Pro.</p>
+    </div>
+</section>
+
+<!-- ═══ Steps ═══ -->
+<section class="section">
+    <div class="section-header">
+        <h2>Up and Running in 5 Steps</h2>
+        <p>Follow these steps to install, configure, and start using ADB Pro with your Android projects.</p>
+    </div>
+    <div class="steps" style="max-width: 720px; margin: 0 auto;">
+        <div class="step">
+            <div class="step-number"></div>
+            <div class="step-content">
+                <h3>Installation</h3>
+                <p>Open your JetBrains IDE and go to <strong>Settings &gt; Plugins &gt; Marketplace</strong>. Search for <strong>"ADB Pro"</strong> and click <strong>Install</strong>. Restart your IDE when prompted. ADB Pro is also available directly from <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">plugins.jetbrains.com</a>.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number"></div>
+            <div class="step-content">
+                <h3>Activate Your License</h3>
+                <p>A <strong>30-day free trial</strong> starts automatically on first launch — no credit card required. For paid licenses, go to <strong>Settings &gt; Tools &gt; ADB Pro &gt; License</strong>. JetBrains handles all license validation through their marketplace infrastructure.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number"></div>
+            <div class="step-content">
+                <h3>Open an Android Project</h3>
+                <p>Open any Android project in IntelliJ IDEA or Android Studio. ADB Pro <strong>auto-detects</strong> your Gradle configuration, signing configs, and build variants. The <strong>"ADB Pro"</strong> tool window appears in the right sidebar of your IDE.</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number"></div>
+            <div class="step-content">
+                <h3>Your First AAB Install</h3>
+                <p>Run <code>./gradlew bundleRelease</code> in the terminal. Open the <strong>AAB Tools</strong> tab in the ADB Pro tool window. Click <strong>"Quick Install AAB"</strong> or select the detected <code>.aab</code> file. Choose a connected device from the dropdown. Done — your app bundle is installed!</p>
+            </div>
+        </div>
+        <div class="step">
+            <div class="step-number"></div>
+            <div class="step-content">
+                <h3>Explore Features</h3>
+                <p>Each tab in the ADB Pro tool window is a self-contained tool. Use the <strong>R8 Assistant</strong> for intelligent obfuscation rules, <strong>Release Readiness</strong> for pre-release checks, <strong>Bundle Inspector</strong> for size analysis, <strong>Lint Tools</strong> for code quality, and more. Every feature is designed to work independently — use what you need, when you need it.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ Recommended Workflow ═══ -->
+<section class="section" style="background: var(--bg-elevated); max-width: 100%; padding-left: 0; padding-right: 0;">
+    <div style="max-width: 800px; margin: 0 auto; padding: 0 24px;">
+        <div class="section-header">
+            <h2>Recommended Release Workflow</h2>
+            <p>Follow this workflow for a smooth, confidence-inspiring release cycle.</p>
+        </div>
+        <div class="code-block">
+            <div class="code-header">
+                <div class="code-dot" style="background:#ff5f57"></div>
+                <div class="code-dot" style="background:#febc2e"></div>
+                <div class="code-dot" style="background:#28c840"></div>
+                <span style="margin-left:12px; font-size:12px; color:#64748b;">release-workflow.sh</span>
+            </div>
+            <span class="comment"># 1. Build the release bundle</span><br>
+            <span class="keyword">./gradlew</span> bundleRelease<br><br>
+            <span class="comment"># 2. Inspect bundle size and contents</span><br>
+            <span class="comment">#    Open Bundle Inspector tab → load the .aab</span><br>
+            <span class="comment">#    Review size breakdown, resource audit, redundancy scan</span><br><br>
+            <span class="comment"># 3. Run lint checks</span><br>
+            <span class="comment">#    Open Lint Tools tab → Run Analysis</span><br>
+            <span class="comment">#    Review severity breakdowns and fix suggestions</span><br><br>
+            <span class="comment"># 4. Generate and review R8/ProGuard rules</span><br>
+            <span class="comment">#    Open R8 Assistant tab → Scan Dependencies</span><br>
+            <span class="comment">#    Apply recommended rules, select obfuscation dictionary</span><br><br>
+            <span class="comment"># 5. Run the release checklist</span><br>
+            <span class="comment">#    Open Release Readiness tab → Run All Checks</span><br>
+            <span class="comment">#    Ensure all 13 checkpoints pass (debug flags, API keys, signing, etc.)</span><br><br>
+            <span class="comment"># 6. Install and test on device</span><br>
+            <span class="comment">#    Open AAB Tools tab → Quick Install AAB</span><br>
+            <span class="comment">#    Select device → Install → Smoke test</span><br><br>
+            <span class="comment"># 7. Ship it!</span><br>
+            <span class="comment">#    Upload to Google Play Console with confidence</span>
+        </div>
+    </div>
+</section>
+
+<!-- ═══ FAQ ═══ -->
+<section class="section">
+    <div class="section-header">
+        <h2>Frequently Asked Questions</h2>
+        <p>Common questions about getting started with ADB Pro.</p>
+    </div>
+    <div class="feature-section" style="max-width: 720px; margin: 0 auto; padding: 0;">
+        <h3>Which IDEs are supported?</h3>
+        <p>ADB Pro supports <strong>IntelliJ IDEA 2022.3+</strong> and <strong>Android Studio Giraffe+</strong>. Both Community and Ultimate editions of IntelliJ IDEA are supported.</p>
+
+        <h3>Does it work with Kotlin DSL (build.gradle.kts)?</h3>
+        <p>Yes, both <strong>Groovy</strong> (<code>build.gradle</code>) and <strong>Kotlin DSL</strong> (<code>build.gradle.kts</code>) are fully supported. ADB Pro automatically detects and parses both formats.</p>
+
+        <h3>Do I need to install bundletool separately?</h3>
+        <p>No. ADB Pro <strong>downloads and manages bundletool automatically</strong>. You don't need to install any external tools — everything is handled within the plugin.</p>
+
+        <h3>Where are my settings stored?</h3>
+        <p>All settings are stored locally via <strong>IntelliJ's persistence framework</strong>. Sensitive data such as passwords and signing keys are stored using the <strong>OS credential store</strong> (Keychain on macOS, Credential Manager on Windows, Secret Service on Linux).</p>
+
+        <h3>Is my source code sent anywhere?</h3>
+        <p><strong>No.</strong> ADB Pro operates entirely on your machine. There is no telemetry, no data collection, and no external network calls. Your source code, build artifacts, and project configuration never leave your local environment.</p>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Ready to Level Up Your Android Workflow?</h2>
+    <p>Start your free 30-day trial. No credit card required. Full access to all features.</p>
+    <div class="hero-actions">
+        <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro Free</a>
+        <a href="pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
+    </div>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="features/index.html">Features</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>

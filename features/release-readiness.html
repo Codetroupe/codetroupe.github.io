@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Release Readiness — ADB Pro</title>
+    <meta name="description" content="13-point pre-release checklist covering debuggable flags, minifyEnabled, API key exposure, SDK compliance, signing config, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            Pro Feature
+        </div>
+        <h1>Release Readiness</h1>
+        <p>A comprehensive 13-point pre-release checklist that catches misconfigurations, security issues, and policy violations before your app reaches the Play Store.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Overview</h2>
+    <p>Releasing an Android app involves more than just building a release APK. Release Readiness automates the pre-flight checks that experienced developers run through manually — and that inexperienced developers often skip entirely. Each of the 13 checklist items inspects your project configuration, manifest, build outputs, and dependencies to produce a clear pass/fail result with actionable details. Run it before every release to catch issues early and build confidence in your shipping build.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Key Capabilities</h2>
+
+    <h3>Debuggable Flag Check</h3>
+    <p>Verifies that the <code>android:debuggable</code> attribute is set to <code>false</code> in the release build. A debuggable release build exposes your app to security risks and is automatically rejected by the Play Store. This check also scans for <code>BuildConfig.DEBUG</code> usage that may inadvertently enable debug behavior in production.</p>
+
+    <h3>MinifyEnabled Verification</h3>
+    <p>Confirms that code shrinking (R8/ProGuard) is enabled for the release build type via <code>minifyEnabled true</code>. Unminified release builds are larger, slower to install, and expose your source code to reverse engineering. The check includes resource shrinking (<code>shrinkResources true</code>) status as well.</p>
+
+    <h3>API Key Exposure Scan</h3>
+    <p>Scans your source code and resource files for hardcoded API keys, secrets, and tokens using pattern matching. Detects common patterns for Google Maps keys, Firebase config values, AWS credentials, and third-party SDK tokens. Hardcoded secrets in release builds are a critical security vulnerability.</p>
+
+    <h3>SDK Version Compliance</h3>
+    <p>Validates that your <code>targetSdkVersion</code> meets the current Google Play requirements. Google periodically raises the minimum target SDK for new app submissions and updates. This check also verifies that <code>compileSdkVersion</code> is sufficient for the libraries in use and flags any deprecated API usage.</p>
+
+    <h3>Signing Configuration</h3>
+    <p>Ensures the release build is signed with a proper release keystore — not the debug keystore. Checks that the signing config uses v2 or v3 APK Signature Scheme (required for Play App Signing) and that the keystore certificate validity period extends beyond the app's expected lifespan.</p>
+
+    <h3>ProGuard Rules Review</h3>
+    <p>Verifies that ProGuard/R8 rules files exist and are properly referenced in the build configuration. Flags common issues like missing <code>-keep</code> rules for reflection-heavy libraries, overly broad wildcard rules, and rules that may strip required code paths.</p>
+
+    <h3>Version Code and Name</h3>
+    <p>Checks that <code>versionCode</code> is incremented compared to the last known release and that <code>versionName</code> follows semantic versioning conventions. A stale version code will cause Play Store upload failures, and inconsistent version names confuse users and QA teams.</p>
+
+    <h3>Target SDK Version</h3>
+    <p>Goes beyond basic SDK compliance by checking runtime permission behavior changes, background execution limits, and other platform-level requirements introduced in recent Android versions. Ensures your app handles the behavioral changes required by its target API level.</p>
+
+    <h3>Permissions Review</h3>
+    <p>Lists all permissions declared in the manifest and highlights potentially sensitive ones (location, camera, microphone, contacts, phone state). Flags permissions that lack corresponding runtime permission request code, which would cause crashes on Android 6.0+. Also detects unused permissions that should be removed to reduce the app's attack surface.</p>
+
+    <h3>Test Coverage</h3>
+    <p>Checks for the presence of test source sets and optionally runs unit tests to verify they pass before release. While ADB Pro does not enforce a specific coverage threshold, it reports whether tests exist, whether they pass, and the last execution timestamp.</p>
+
+    <h3>Resource Optimization</h3>
+    <p>Verifies that resource shrinking is enabled, checks for unused resources detected by Android Lint, and flags large image assets that could benefit from WebP conversion or vector drawable replacement. Unoptimized resources bloat your APK and increase install abandonment.</p>
+
+    <h3>Manifest Checks</h3>
+    <p>Validates critical manifest attributes: <code>android:allowBackup</code> (should be false or configured with rules), <code>android:usesCleartextTraffic</code> (should be false in production), <code>android:exported</code> on all components (required on Android 12+), and <code>android:networkSecurityConfig</code> presence.</p>
+
+    <h3>Dependency Audit</h3>
+    <p>Scans your dependency tree for known vulnerabilities using public CVE databases. Flags outdated dependencies with available security patches, snapshot versions that should not appear in release builds, and conflicting transitive dependencies that may cause runtime issues.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Checklist Results Example</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Release Readiness — scan results</span>
+        </div>
+        <span class="keyword">Release Readiness Report</span> — app-release v2.4.1<br>
+        <span class="keyword">Score:</span> 11 / 13 passed<br><br>
+        <span style="color:#4ade80;">[PASS]</span> Debuggable flag is false<br>
+        <span style="color:#4ade80;">[PASS]</span> minifyEnabled is true<br>
+        <span style="color:#4ade80;">[PASS]</span> No hardcoded API keys detected<br>
+        <span style="color:#4ade80;">[PASS]</span> targetSdkVersion 35 meets Play requirement<br>
+        <span style="color:#4ade80;">[PASS]</span> Signed with release keystore (v2 + v3)<br>
+        <span style="color:#4ade80;">[PASS]</span> ProGuard rules present and referenced<br>
+        <span style="color:#4ade80;">[PASS]</span> versionCode incremented (24100 &gt; 24000)<br>
+        <span style="color:#4ade80;">[PASS]</span> Target SDK behavioral changes handled<br>
+        <span style="color:#f87171;">[FAIL]</span> <span style="color:#f87171;">3 permissions lack runtime request code</span><br>
+        <span style="color:#4ade80;">[PASS]</span> Unit tests present and passing (342 tests)<br>
+        <span style="color:#4ade80;">[PASS]</span> Resource shrinking enabled<br>
+        <span style="color:#f87171;">[FAIL]</span> <span style="color:#f87171;">android:exported missing on 2 activities (Android 12+)</span><br>
+        <span style="color:#4ade80;">[PASS]</span> No known CVEs in dependency tree
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Usage</h2>
+    <p>Release Readiness can be triggered from multiple entry points:</p>
+    <ul>
+        <li><strong>Tools &gt; ADB Pro &gt; Run Release Readiness Check</strong> — runs the full 13-point checklist</li>
+        <li><strong>ADB Pro side panel</strong> — click the "Release Readiness" tab and press "Run Check"</li>
+        <li><strong>Post-build hook</strong> — optionally configure the check to run automatically after every release build</li>
+    </ul>
+    <p>Each failed item includes a description of the issue, the affected file or configuration, and a suggested fix. Click on any failed item to navigate directly to the source location in your editor.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Settings</h2>
+    <p>Release Readiness settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Release Readiness</strong>. You can configure:</p>
+    <ul>
+        <li>Enable or disable individual checklist items (e.g., skip test coverage for internal builds)</li>
+        <li>Custom API key patterns for the exposure scan</li>
+        <li>Minimum required targetSdkVersion (overrides automatic detection)</li>
+        <li>Auto-run on release build completion</li>
+        <li>Severity threshold for blocking release (require all pass, or allow warnings)</li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Ship with Confidence</h2>
+    <p>Install ADB Pro and catch release-blocking issues before they reach the Play Store.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

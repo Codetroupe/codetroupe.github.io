@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AAB Tools — ADB Pro</title>
+    <meta name="description" content="Convert, sign, and install Android App Bundles with one click. Remote repo scanning, signing config management, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            Core Module
+        </div>
+        <h1>AAB Tools</h1>
+        <p>The most comprehensive Android App Bundle toolkit inside your IDE. Convert, sign, install, and manage bundles — all from one panel.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Overview</h2>
+    <p>AAB Tools is the flagship module of ADB Pro, designed to eliminate the friction between building your Android app and getting it onto a device. It wraps Google's <code>bundletool</code> with an intuitive UI and adds powerful features like remote repository scanning, secure keystore management, and automated signing workflows.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Key Capabilities</h2>
+
+    <h3>AAB to APKS Conversion</h3>
+    <p>Automatically detects <code>.aab</code> files produced by your Gradle builds and converts them to <code>.apks</code> archives using bundletool. The bundletool binary is downloaded and managed automatically — no manual setup required.</p>
+
+    <h3>One-Click Install</h3>
+    <p>Install converted APKS directly to any connected device or emulator. ADB Pro handles device detection, ADB path discovery, and installation status reporting.</p>
+
+    <h3>Signing Configuration</h3>
+    <p>Parse signing configurations from your <code>build.gradle</code> or <code>build.gradle.kts</code> files. Manage keystores and key aliases with favorites. Passwords are stored securely via IntelliJ's PasswordSafe API — never in plain text.</p>
+
+    <h3>Remote Repository Scanning</h3>
+    <p>Configure GitHub or GitLab repositories to scan for AAB files in release assets. Download remote bundles, convert, and install — useful for QA teams testing release candidates.</p>
+
+    <h3>File Scanning</h3>
+    <p>Automatically scans your project's build output directories for AAB files. No need to browse file dialogs — the latest build artifacts appear instantly.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Workflow</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Typical AAB Tools workflow</span>
+        </div>
+        <span class="comment"># 1. Build your app</span><br>
+        <span class="keyword">./gradlew</span> bundleRelease<br><br>
+        <span class="comment"># 2. ADB Pro auto-detects the .aab output</span><br>
+        <span class="comment"># 3. Click "Convert" — bundletool generates .apks</span><br>
+        <span class="comment"># 4. Select target device</span><br>
+        <span class="comment"># 5. Click "Install" — done!</span>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Settings</h2>
+    <p>AAB Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; AAB Tools</strong>. You can configure:</p>
+    <ul>
+        <li>Custom bundletool path (override auto-managed version)</li>
+        <li>Default signing configuration</li>
+        <li>Remote repository credentials and scan patterns</li>
+        <li>Favorite signing configs for quick access</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Menu Actions</h2>
+    <p>AAB Tools also provides quick-access actions under the <strong>Tools &gt; ADB Pro</strong> menu:</p>
+    <ul>
+        <li><strong>Quick Install AAB</strong> — Convert and install the most recent build</li>
+        <li><strong>Select and Install AAB...</strong> — Choose from all detected AAB files</li>
+        <li><strong>Convert AAB to APKS</strong> — Convert without installing</li>
+        <li><strong>Install APKS File...</strong> — Install a pre-existing APKS file</li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Try AAB Tools Today</h2>
+    <p>Install ADB Pro and streamline your Android release workflow.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

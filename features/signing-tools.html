@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signing Tools — ADB Pro</title>
+    <meta name="description" content="APK signing with v1/v2/v3 schemes, signature verification, zipalign optimization, and secure keystore management.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Core Module
+        </div>
+        <h1>Signing Tools</h1>
+        <p>Complete APK signing toolkit with v1, v2, and v3 scheme support. Verify signatures, optimize with zipalign, and manage keystores securely — all inside your IDE.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Overview</h2>
+    <p>Signing Tools provides a full-featured APK signing workflow directly within your JetBrains IDE. It supports all three Android signing schemes — v1 (JarSigner), v2 (APK Signature Scheme), and v3 (APK Signature Scheme v3) — and wraps them in a streamlined UI with secure credential management powered by IntelliJ's PasswordSafe API.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Key Capabilities</h2>
+
+    <h3>APK Signing (v1, v2, v3)</h3>
+    <p>Sign APKs using any combination of signing schemes. The v1 JarSigner scheme provides backward compatibility for older devices, while v2 and v3 APK Signature Schemes offer stronger integrity protection and faster verification on modern Android versions. ADB Pro uses Google's <code>apksigner</code> under the hood for v2/v3 signing, ensuring compatibility with the latest Android platform requirements.</p>
+
+    <h3>Signature Verification</h3>
+    <p>Verify the signature of any APK with a single click. The verification report shows which signing schemes are present, certificate chain details (issuer, subject, validity period, serial number), and whether the signature covers the entire APK contents. Catch signature issues before they reach the Play Store.</p>
+
+    <h3>Zipalign Optimization</h3>
+    <p>Run zipalign on unsigned or signed APKs to ensure all uncompressed data starts at a 4-byte boundary. Proper alignment reduces RAM usage on device and is a Play Store requirement. ADB Pro automatically detects misaligned APKs and offers one-click alignment.</p>
+
+    <h3>Keystore Management via PasswordSafe</h3>
+    <p>Store keystore paths, aliases, and passwords securely using IntelliJ's PasswordSafe API. Credentials are encrypted by the IDE and never written to plain-text config files. Switch between multiple keystores (debug, release, enterprise) from a favorites dropdown without re-entering passwords.</p>
+
+    <h3>Favorite Signing Configs</h3>
+    <p>Save frequently used signing configurations as favorites for instant access. Each favorite stores the keystore path, key alias, signing scheme preferences, and zipalign flag. Perfect for teams managing multiple app variants or signing identities.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Signing Schemes Comparison</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Scheme</th>
+                    <th>Name</th>
+                    <th>Min Android</th>
+                    <th>Tool</th>
+                    <th>Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>v1</strong></td>
+                    <td>JarSigner</td>
+                    <td>All versions</td>
+                    <td>jarsigner / apksigner</td>
+                    <td>Legacy scheme; required for pre-7.0 devices</td>
+                </tr>
+                <tr>
+                    <td><strong>v2</strong></td>
+                    <td>APK Signature Scheme v2</td>
+                    <td>Android 7.0+</td>
+                    <td>apksigner</td>
+                    <td>Whole-file signing; faster install verification</td>
+                </tr>
+                <tr>
+                    <td><strong>v3</strong></td>
+                    <td>APK Signature Scheme v3</td>
+                    <td>Android 9.0+</td>
+                    <td>apksigner</td>
+                    <td>Supports key rotation; proof-of-rotation struct</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Typical Signing Workflow</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Signing an APK with ADB Pro</span>
+        </div>
+        <span class="comment"># 1. Build your unsigned APK</span><br>
+        <span class="keyword">./gradlew</span> assembleRelease<br><br>
+        <span class="comment"># 2. Open Signing Tools panel in ADB Pro</span><br>
+        <span class="comment"># 3. Select the APK from build outputs</span><br>
+        <span class="comment"># 4. Choose a signing config (or create a new one)</span><br>
+        <span class="comment">#    - Select keystore file</span><br>
+        <span class="comment">#    - Enter key alias</span><br>
+        <span class="comment">#    - Choose signing schemes (v1 + v2 recommended)</span><br>
+        <span class="comment"># 5. Click "Sign" — ADB Pro handles zipalign + apksigner</span><br>
+        <span class="comment"># 6. Verify the signed APK with one click</span>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Settings</h2>
+    <p>Signing Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Signing Tools</strong>. You can configure:</p>
+    <ul>
+        <li>Default signing scheme selection (v1 only, v2 only, v1+v2, all schemes)</li>
+        <li>Custom <code>apksigner</code> and <code>zipalign</code> binary paths (auto-detected from Android SDK by default)</li>
+        <li>Automatic zipalign before signing (enabled by default)</li>
+        <li>Favorite signing configurations (add, edit, remove)</li>
+        <li>PasswordSafe credential storage preferences</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Menu Actions</h2>
+    <p>Signing Tools provides quick-access actions under the <strong>Tools &gt; ADB Pro</strong> menu:</p>
+    <ul>
+        <li><strong>Sign APK...</strong> — Open the signing dialog for any APK file</li>
+        <li><strong>Verify APK Signature</strong> — Check the signature of the selected APK</li>
+        <li><strong>Zipalign APK</strong> — Align the selected APK for optimal performance</li>
+        <li><strong>Manage Keystores...</strong> — Open the keystore and favorites manager</li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Secure Your Signing Workflow</h2>
+    <p>Install ADB Pro and manage APK signing without leaving your IDE.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

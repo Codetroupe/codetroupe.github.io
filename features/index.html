@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Features — ADB Pro</title>
+    <meta name="description" content="Explore all 11 feature modules of ADB Pro: AAB Tools, R8 Assistant, Build Tools, Bundle Inspector, Release Readiness, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <h1>All Features</h1>
+        <p>11 powerful modules covering every stage of the Android app release lifecycle.</p>
+    </div>
+</section>
+
+<!-- ═══ Features ═══ -->
+<section class="section">
+    <div class="features-grid">
+        <!-- AAB Tools -->
+        <a href="aab-tools.html" class="feature-card">
+            <div class="feature-card-icon icon-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            </div>
+            <h3>AAB Tools</h3>
+            <p>Convert AAB to APKS, sign with your keystore, install to devices. Scan remote repositories for bundles. Manage signing configurations securely.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- R8 Assistant -->
+        <a href="r8-assistant.html" class="feature-card">
+            <div class="feature-card-icon icon-purple">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <h3>R8 Assistant</h3>
+            <p>ProGuard/R8 rule recommendation with 20+ library templates. Reflection risk scanning, mapping file analysis, stack trace deobfuscation, and obfuscation dictionaries.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Signing Tools -->
+        <a href="signing-tools.html" class="feature-card">
+            <div class="feature-card-icon icon-amber">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3>Signing Tools</h3>
+            <p>APK signing with v1/v2/v3 signature schemes. Signature verification, zipalign optimization, and secure keystore management via IntelliJ PasswordSafe.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Build Tools -->
+        <a href="build-tools.html" class="feature-card">
+            <div class="feature-card-icon icon-green">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3>Build Tools</h3>
+            <p>Gradle build automation with variant management. Run debug, release, or custom build variants. Batch builds across flavors and build type combinations.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Bundle Inspector -->
+        <a href="bundle-inspector.html" class="feature-card">
+            <div class="feature-card-icon icon-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </div>
+            <h3>Bundle Inspector</h3>
+            <p>Deep analysis of your AAB files. Size tracking with version diff comparison, resource redundancy scanning, WebP conversion suggestions, and Git commit association.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Release Readiness -->
+        <a href="release-readiness.html" class="feature-card">
+            <div class="feature-card-icon icon-green">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3>Release Readiness</h3>
+            <p>Comprehensive 13-point pre-release checklist. Checks debug flags, API key exposure, minifyEnabled status, SDK version compliance, signing config, and more.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Lint Tools -->
+        <a href="lint-tools.html" class="feature-card">
+            <div class="feature-card-icon icon-amber">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <h3>Lint Tools</h3>
+            <p>Execute Android Lint checks and view parsed results with severity breakdowns. Filter by error, warning, or informational issues with actionable fix suggestions.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Dependency Health -->
+        <a href="dependency-health.html" class="feature-card">
+            <div class="feature-card-icon icon-purple">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+            </div>
+            <h3>Dependency Health</h3>
+            <p>Full dependency tree analysis with conflict detection, duplicate identification, and deprecation warnings. Version catalog management for Gradle version catalogs.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- CI/CD Tools -->
+        <a href="cicd-tools.html" class="feature-card">
+            <div class="feature-card-icon icon-green">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+            </div>
+            <h3>CI/CD Tools</h3>
+            <p>Generate ready-to-use CI/CD configuration files for GitHub Actions, GitLab CI, and Jenkins. Tailored to your project's Gradle setup and build variants.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Build Performance -->
+        <a href="build-perf.html" class="feature-card">
+            <div class="feature-card-icon icon-amber">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3>Build Performance</h3>
+            <p>Profile your Gradle build times, identify slow tasks, and get optimization recommendations. Includes Gradle configuration health checks for common performance issues.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Device Manager -->
+        <a href="device-manager.html" class="feature-card">
+            <div class="feature-card-icon icon-blue">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+            </div>
+            <h3>Device Manager</h3>
+            <p>ADB device management with TTL caching. Auto-discovery of ADB path, device listing, connection monitoring, and quick device selection for install operations.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+    </div>
+</section>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Start Building Better Android Apps</h2>
+    <p>30-day free trial with full access to every feature. No credit card required.</p>
+    <div class="hero-actions">
+        <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+        <a href="../getting-started.html" class="btn btn-secondary btn-lg">Getting Started Guide</a>
+    </div>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

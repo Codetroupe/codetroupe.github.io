@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Build Tools — ADB Pro</title>
+    <meta name="description" content="Gradle build automation with variant management, batch builds across flavors, build history tracking, and artifact location.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+            Core Module
+        </div>
+        <h1>Build Tools</h1>
+        <p>Streamline Gradle build automation with variant selection, batch builds across flavors, build history tracking, and instant artifact location.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Overview</h2>
+    <p>Build Tools wraps Gradle's command-line interface into a visual panel that understands your Android project structure. Instead of memorizing task names and flavor combinations, pick variants from a dropdown, trigger builds with a click, and find your output artifacts instantly. Build history is tracked locally so you can review past build results without scrolling through terminal output.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Key Capabilities</h2>
+
+    <h3>Gradle Task Execution</h3>
+    <p>Run any Gradle task from the Build Tools panel. Common tasks like <code>assembleDebug</code>, <code>assembleRelease</code>, <code>bundleRelease</code>, and <code>clean</code> are available as one-click buttons. Custom tasks can be entered manually and are saved for reuse. Build output streams to the panel in real time so you can monitor progress without switching to the terminal.</p>
+
+    <h3>Variant Selection (Debug / Release / Custom)</h3>
+    <p>ADB Pro parses your <code>build.gradle</code> or <code>build.gradle.kts</code> to detect all available build variants, including product flavors and build types. Select the exact variant you need from a dropdown — no more typing <code>assembleFreeRelease</code> by hand. The selected variant persists across sessions, so your last-used configuration is always ready.</p>
+
+    <h3>Batch Builds Across Flavors</h3>
+    <p>Need to build all flavor combinations at once? Batch mode queues multiple variant builds and runs them sequentially. This is ideal for release managers who need to produce APKs for free/paid variants, multiple ABIs, or white-label builds. Each build result is logged independently with success or failure status.</p>
+
+    <h3>Build History Tracking</h3>
+    <p>Every build is recorded with its timestamp, variant, duration, exit code, and output artifact path. Review past builds in a sortable table to find which variant was built last, how long it took, or whether it succeeded. History is stored locally in the IDE project settings and never leaves your machine.</p>
+
+    <h3>Artifact Location</h3>
+    <p>After a successful build, ADB Pro automatically locates the output APK or AAB file and shows its path. Click to reveal the file in your system file manager, copy the path to clipboard, or pass it directly to Signing Tools or AAB Tools for the next step in your release pipeline.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Build Variants at a Glance</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Example: Detected build variants</span>
+        </div>
+        <span class="comment"># ADB Pro auto-detects variants from your build config:</span><br><br>
+        <span class="keyword">Build Types:</span>   debug, release<br>
+        <span class="keyword">Flavors:</span>      free, paid  (dimension: "tier")<br>
+        <span class="keyword">ABIs:</span>         arm64-v8a, x86_64  (via splits)<br><br>
+        <span class="comment"># Available variants in the dropdown:</span><br>
+        &nbsp;&nbsp;freeDebug &nbsp;&nbsp;&nbsp;| &nbsp;freeRelease<br>
+        &nbsp;&nbsp;paidDebug &nbsp;&nbsp;&nbsp;| &nbsp;paidRelease<br><br>
+        <span class="comment"># Batch mode: select all 4 variants and click "Build All"</span>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Build History</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>Variant</th>
+                    <th>Task</th>
+                    <th>Duration</th>
+                    <th>Status</th>
+                    <th>Artifact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2026-06-09 14:32</td>
+                    <td>freeRelease</td>
+                    <td>assembleFreeRelease</td>
+                    <td>1m 42s</td>
+                    <td>Success</td>
+                    <td>app-free-release.apk</td>
+                </tr>
+                <tr>
+                    <td>2026-06-09 14:28</td>
+                    <td>paidDebug</td>
+                    <td>assemblePaidDebug</td>
+                    <td>0m 58s</td>
+                    <td>Success</td>
+                    <td>app-paid-debug.apk</td>
+                </tr>
+                <tr>
+                    <td>2026-06-09 13:10</td>
+                    <td>freeRelease</td>
+                    <td>bundleFreeRelease</td>
+                    <td>2m 15s</td>
+                    <td>Failed</td>
+                    <td>--</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Settings</h2>
+    <p>Build Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Build Tools</strong>. You can configure:</p>
+    <ul>
+        <li>Custom Gradle executable path (default: project Gradle wrapper)</li>
+        <li>Additional Gradle arguments (e.g., <code>--stacktrace</code>, <code>--parallel</code>, <code>-Pci=true</code>)</li>
+        <li>Default build variant on project open</li>
+        <li>Build history retention limit (default: 50 entries)</li>
+        <li>Post-build actions (auto-reveal artifact, notification sound)</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Menu Actions</h2>
+    <p>Build Tools provides quick-access actions under the <strong>Tools &gt; ADB Pro</strong> menu:</p>
+    <ul>
+        <li><strong>Build Current Variant</strong> — Run assemble for the selected variant</li>
+        <li><strong>Build All Variants</strong> — Trigger a batch build of all detected variants</li>
+        <li><strong>Locate Last Artifact</strong> — Show the most recent build output in the file manager</li>
+        <li><strong>View Build History</strong> — Open the build history table</li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Take Control of Your Builds</h2>
+    <p>Install ADB Pro and manage Gradle builds without leaving your IDE.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

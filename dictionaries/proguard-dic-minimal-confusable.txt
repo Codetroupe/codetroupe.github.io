@@ -1,0 +1,67 @@
+# Minimal set - one best visual replacement per ASCII letter (a-z, A-Z)
+# Generated for ProGuard/R8 obfuscation dictionary
+# Characters: 52
+# Combinations (2-char names): 2,704
+# Combinations (3-char names): 140,608
+#
+# Usage in proguard-rules.pro:
+#   -obfuscationdictionary          proguard-dic-minimal-confusable.txt
+#   -classobfuscationdictionary     proguard-dic-minimal-confusable.txt
+#   -packageobfuscationdictionary   proguard-dic-minimal-confusable.txt
+#
+# Strategy: Exactly one confusable per ASCII letter
+# Best for: Smallest dictionary with maximum per-character confusion
+# Note: Each character is the best visual match for its ASCII counterpart
+#
+ɑ
+ƅ
+ϲ
+ԁ
+е
+ẝ
+ɡ
+һ
+і
+ј
+κ
+ʟ
+ｍ
+ｎ
+о
+р
+ԛ
+ʀ
+ѕ
+ᴛ
+ᴜ
+ᴠ
+ᴡ
+х
+у
+ᴢ
+Α
+Β
+С
+ᴰ
+Ε
+ᖴ
+Ԍ
+Η
+Ι
+Ј
+Κ
+Ⅼ
+Μ
+Ν
+Ο
+Ρ
+Ꮐ
+Ꭱ
+Ѕ
+Τ
+Ꮜ
+ᐁ
+Ꮃ
+Χ
+Υ
+Ζ

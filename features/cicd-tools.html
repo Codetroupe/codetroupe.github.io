@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CI/CD Tools — ADB Pro</title>
+    <meta name="description" content="Generate CI/CD configurations for GitHub Actions, GitLab CI, and Jenkins with auto-detected build variants and signing configs.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            Pro Feature
+        </div>
+        <h1>CI/CD Tools</h1>
+        <p>Generate production-ready CI/CD configurations for GitHub Actions, GitLab CI, and Jenkins — tailored to your project's build variants and signing setup.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Overview</h2>
+    <p>Setting up continuous integration for an Android project involves boilerplate that most developers copy from blog posts and then customize through trial and error. CI/CD Tools eliminates this by analyzing your project's Gradle configuration — detecting build variants, signing configs, SDK versions, and Java/Kotlin toolchain requirements — and generating a complete pipeline configuration file. The output is not a generic template; it is a config tailored to your specific project that you can commit directly to your repository.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Key Capabilities</h2>
+
+    <h3>GitHub Actions Workflow Generation</h3>
+    <p>Generate a <code>.github/workflows/android-build.yml</code> file that builds, tests, and optionally signs your Android app. The workflow is configured with the correct JDK version (detected from your <code>build.gradle</code>), Android SDK platform, and build tools version. Jobs include Gradle caching via <code>actions/cache</code>, artifact upload for APK/AAB outputs, and optional signing with keystore secrets. The trigger events (push, pull request, tag) are configurable in the generation dialog.</p>
+
+    <h3>GitLab CI Pipeline Generation</h3>
+    <p>Generate a <code>.gitlab-ci.yml</code> file with stages for build, test, lint, and deploy. The pipeline uses the correct Docker image for your Android SDK version, configures Gradle caching with the GitLab CI cache mechanism, and includes stages for running unit tests and generating build artifacts. For projects with multiple flavors, each flavor can get its own build job running in parallel.</p>
+
+    <h3>Jenkins Jenkinsfile Generation</h3>
+    <p>Generate a declarative <code>Jenkinsfile</code> with stages for checkout, environment setup, build, test, and archive. The pipeline includes proper Android SDK tool installation via the Jenkins Android Emulator plugin, Gradle wrapper invocation, and artifact archiving. Credentials for signing keystores are referenced via Jenkins credential bindings rather than hardcoded.</p>
+
+    <h3>Auto-Detection of Build Variants and Signing Configs</h3>
+    <p>CI/CD Tools parses your Gradle files to detect all available build variants and signing configurations. The generation dialog pre-populates pipeline jobs based on what it finds — if you have <code>freeDebug</code>, <code>freeRelease</code>, <code>paidDebug</code>, and <code>paidRelease</code> variants, the generated config includes jobs for each (or lets you select which to include). Signing configs detected in <code>build.gradle</code> are mapped to CI environment variables so secrets stay out of the config file.</p>
+
+    <h3>Customizable Templates</h3>
+    <p>The generation dialog provides a live preview of the configuration file with editable fields. Adjust JDK distribution (Temurin, Zulu, Corretto), add custom environment variables, insert pre-build or post-build scripts, change the Gradle version, or add Firebase App Distribution steps. The preview updates in real time as you modify options, so you can review the final output before generating.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Generated GitHub Actions Example</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">.github/workflows/android-build.yml</span>
+        </div>
+        <span class="keyword">name:</span> Android Build<br>
+        <span class="keyword">on:</span><br>
+        &nbsp;&nbsp;push:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;branches: [ main, develop ]<br>
+        &nbsp;&nbsp;pull_request:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;branches: [ main ]<br><br>
+        <span class="keyword">jobs:</span><br>
+        &nbsp;&nbsp;<span class="keyword">build:</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;runs-on: ubuntu-latest<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;steps:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- uses: actions/checkout@v4<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Set up JDK 17<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uses: actions/setup-java@v4<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;distribution: temurin<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;java-version: 17<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Cache Gradle<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uses: actions/cache@v4<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path: ~/.gradle/caches<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key: gradle-${{ hashFiles('**/*.gradle*') }}<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Build Release<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;run: ./gradlew assembleRelease<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- name: Upload APK<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;uses: actions/upload-artifact@v4<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with:<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name: app-release<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path: app/build/outputs/apk/release/*.apk
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Supported Platforms</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Platform</th>
+                    <th>Config File</th>
+                    <th>Caching</th>
+                    <th>Signing Support</th>
+                    <th>Artifact Upload</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>GitHub Actions</strong></td>
+                    <td>.github/workflows/*.yml</td>
+                    <td>actions/cache</td>
+                    <td>Repository secrets</td>
+                    <td>upload-artifact</td>
+                </tr>
+                <tr>
+                    <td><strong>GitLab CI</strong></td>
+                    <td>.gitlab-ci.yml</td>
+                    <td>CI cache</td>
+                    <td>CI/CD variables</td>
+                    <td>artifacts:paths</td>
+                </tr>
+                <tr>
+                    <td><strong>Jenkins</strong></td>
+                    <td>Jenkinsfile</td>
+                    <td>Workspace cache</td>
+                    <td>Credential bindings</td>
+                    <td>archiveArtifacts</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Usage</h2>
+    <p>CI/CD Tools can be triggered from:</p>
+    <ul>
+        <li><strong>Tools &gt; ADB Pro &gt; Generate CI/CD Config...</strong> — opens the generation dialog</li>
+        <li><strong>ADB Pro side panel</strong> — click the "CI/CD Tools" tab</li>
+        <li><strong>Right-click your project root</strong> and select "Generate CI/CD Pipeline"</li>
+    </ul>
+    <p>The generated file is written directly to the correct location in your project (e.g., <code>.github/workflows/</code> for GitHub Actions). You can review it, adjust any parameters, and commit it to version control.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Settings</h2>
+    <p>CI/CD Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; CI/CD Tools</strong>. You can configure:</p>
+    <ul>
+        <li>Default JDK distribution and version (auto-detected from project by default)</li>
+        <li>Default trigger events for new workflows</li>
+        <li>Whether to include test and lint stages by default</li>
+        <li>Custom pre-build and post-build script snippets</li>
+        <li>Firebase App Distribution integration (optional deploy stage)</li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Automate Your Android Builds</h2>
+    <p>Install ADB Pro and generate CI/CD pipelines in seconds, not hours.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

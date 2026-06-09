@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProGuard Obfuscation Dictionaries — ADB Pro</title>
+    <meta name="description" content="Free preset ProGuard obfuscation dictionaries using Unicode confusable characters. 11 dictionaries for maximum code protection.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="../features/index.html">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="index.html" class="active">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="../features/index.html">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="index.html" class="active">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <h1>ProGuard Obfuscation Dictionaries</h1>
+        <p>Free preset dictionaries for <code>-obfuscationdictionary</code>, <code>-classobfuscationdictionary</code>, and <code>-packageobfuscationdictionary</code>. All characters validated as valid Java identifiers.</p>
+    </div>
+</section>
+
+<!-- ═══ Dictionary Table ═══ -->
+<div class="feature-section" style="max-width: 960px;">
+
+    <table class="comparison-table">
+        <thead>
+            <tr>
+                <th>Dictionary</th>
+                <th>Category</th>
+                <th>Chars</th>
+                <th>3-char Combos</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <strong>Homoglyph</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">Cross-script visual confusables</span>
+                </td>
+                <td><span class="badge badge-blue">Visual</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">255</td>
+                <td style="font-size:13px;color:var(--text-muted)">16,581,375</td>
+                <td><a href="proguard-dic-homoglyph.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Greek</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">Greek alphabet letters &amp; extended forms</span>
+                </td>
+                <td><span class="badge badge-green">Script</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">122</td>
+                <td style="font-size:13px;color:var(--text-muted)">1,815,848</td>
+                <td><a href="proguard-dic-greek.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Cyrillic</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">Cyrillic basic &amp; extended letters</span>
+                </td>
+                <td><span class="badge badge-green">Script</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">296</td>
+                <td style="font-size:13px;color:var(--text-muted)">25,934,336</td>
+                <td><a href="proguard-dic-cyrillic.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Latin Extended</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">Diacritical marks, IPA, Latin Extended</span>
+                </td>
+                <td><span class="badge badge-green">Script</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">494</td>
+                <td style="font-size:13px;color:var(--text-muted)">120,553,784</td>
+                <td><a href="proguard-dic-latin-extended.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Hebrew + Arabic</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">Hebrew &amp; Arabic with presentation forms</span>
+                </td>
+                <td><span class="badge badge-green">Script</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">423</td>
+                <td style="font-size:13px;color:var(--text-muted)">75,686,967</td>
+                <td><a href="proguard-dic-hebrew-arabic.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>East Asian</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">CJK radicals, Katakana, Hiragana, halfwidth</span>
+                </td>
+                <td><span class="badge badge-green">Script</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">246</td>
+                <td style="font-size:13px;color:var(--text-muted)">14,886,936</td>
+                <td><a href="proguard-dic-east-asian.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Modifier &amp; Tone</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">Modifier letters, tone marks, super/subscripts</span>
+                </td>
+                <td><span class="badge badge-blue">Visual</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">244</td>
+                <td style="font-size:13px;color:var(--text-muted)">14,526,784</td>
+                <td><a href="proguard-dic-modifier-tone.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Indigenous Scripts</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">Cherokee, Georgian, Armenian, Thai, Lao, etc.</span>
+                </td>
+                <td><span class="badge badge-green">Script</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">1,146</td>
+                <td style="font-size:13px;color:var(--text-muted)">1,505,060,136</td>
+                <td><a href="proguard-dic-indigenous.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Encoding Chaos</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">Different display in GBK/Big5/Shift-JIS/EUC-KR</span>
+                </td>
+                <td><span class="badge badge-amber">Encoding</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">575</td>
+                <td style="font-size:13px;color:var(--text-muted)">190,109,375</td>
+                <td><a href="proguard-dic-encoding-chaos.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Minimal Confusable</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">One best replacement per ASCII letter</span>
+                </td>
+                <td><span class="badge badge-gray">Minimal</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">52</td>
+                <td style="font-size:13px;color:var(--text-muted)">140,608</td>
+                <td><a href="proguard-dic-minimal-confusable.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+            <tr>
+                <td>
+                    <strong>Ultimate</strong>
+                    <br><span style="font-size:13px;color:var(--text-muted)">All scripts merged — maximum character set</span>
+                </td>
+                <td><span class="badge badge-purple">Combined</span></td>
+                <td style="font-family:var(--font-mono);font-size:13px">3,056</td>
+                <td style="font-size:13px;color:var(--text-muted)">28,540,399,616</td>
+                <td><a href="proguard-dic-ultimate.txt" class="btn btn-outline btn-sm">Download</a></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr class="feature-divider" style="margin: 48px 0;">
+
+    <h2>How to Use</h2>
+    <p>Download a dictionary file and place it in your Android project (e.g., next to <code>proguard-rules.pro</code>), then add the directive to your ProGuard configuration:</p>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">proguard-rules.pro</span>
+        </div>
+        <span class="comment"># Apply an obfuscation dictionary</span><br>
+        <span class="keyword">-obfuscationdictionary</span> <span class="string">proguard-dic-homoglyph.txt</span><br>
+        <span class="keyword">-classobfuscationdictionary</span> <span class="string">proguard-dic-homoglyph.txt</span><br>
+        <span class="keyword">-packageobfuscationdictionary</span> <span class="string">proguard-dic-homoglyph.txt</span><br><br>
+        <span class="comment"># Or use the Encoding Chaos dictionary for cross-encoding confusion</span><br>
+        <span class="keyword">-obfuscationdictionary</span> <span class="string">proguard-dic-encoding-chaos.txt</span>
+    </div>
+
+    <p style="margin-top:20px">Or use the <strong>ADB Pro</strong> plugin's <em>R8 Assistant &rarr; Dictionary</em> tab to download and apply dictionaries directly from your IDE.</p>
+
+    <hr class="feature-divider" style="margin: 48px 0;">
+
+    <h2>About These Dictionaries</h2>
+    <p>Each dictionary contains Unicode characters that are valid Java identifier starts (passing <code>Character.isJavaIdentifierStart()</code>). They exploit visual similarities between characters from different writing systems (homoglyphs) or characters that display differently depending on the system encoding.</p>
+
+    <p>For example, the <strong>Homoglyph</strong> dictionary includes Greek and Cyrillic letters that look identical to Latin letters (e.g., Greek alpha <code>&#x03B1;</code> vs Latin <code>a</code>). The <strong>Encoding Chaos</strong> dictionary uses characters whose UTF-8 bytes decode to completely different characters when interpreted in GBK, Big5, or Shift-JIS.</p>
+
+    <p>All 11 dictionaries are open and free to use, even without the ADB Pro plugin.</p>
+
+    <h3>Recommendations</h3>
+    <ul>
+        <li><strong>For maximum confusion:</strong> Use the <em>Ultimate</em> dictionary (all 3,056 characters merged)</li>
+        <li><strong>For a balanced approach:</strong> Use <em>Homoglyph</em> + <em>Encoding Chaos</em> together</li>
+        <li><strong>For lightweight obfuscation:</strong> Use <em>Minimal Confusable</em> (52 characters, one per ASCII letter)</li>
+        <li><strong>For encoding-specific confusion:</strong> Use <em>Encoding Chaos</em> (characters display differently in CJK environments)</li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Automate Dictionary Management</h2>
+    <p>The ADB Pro plugin can download, apply, and manage obfuscation dictionaries directly from your IDE.</p>
+    <div class="hero-actions">
+        <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+        <a href="../features/r8-assistant.html" class="btn btn-secondary btn-lg">Learn about R8 Assistant</a>
+    </div>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="../features/index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

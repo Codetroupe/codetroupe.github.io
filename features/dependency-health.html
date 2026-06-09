@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dependency Health — ADB Pro</title>
+    <meta name="description" content="Dependency tree analysis, version conflict detection, duplicate identification, deprecation warnings, and Gradle version catalog management.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            New in v1.2.0
+        </div>
+        <h1>Dependency Health</h1>
+        <p>Analyze your dependency tree, detect version conflicts, identify duplicates, surface deprecation warnings, and manage your Gradle version catalog — all from one panel.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Overview</h2>
+    <p>Modern Android projects accumulate hundreds of transitive dependencies, and keeping them healthy is a constant challenge. Dependency Health runs <code>./gradlew dependencies</code> under the hood, parses the full resolution tree, and surfaces problems that Gradle silently resolves — version conflicts, duplicate artifacts, deprecated libraries, and outdated catalog entries. It gives you a single dashboard to understand what your app actually depends on and what needs attention.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Key Capabilities</h2>
+
+    <h3>Full Dependency Tree Display</h3>
+    <p>View the complete dependency tree for any configuration — <code>implementation</code>, <code>debugImplementation</code>, <code>releaseImplementation</code>, <code>androidTestImplementation</code>, and their transitive closures. The tree is displayed in a collapsible panel with color-coded nodes: direct dependencies in bold, transitive dependencies indented, and resolved conflicts highlighted. Search and filter to find any artifact in the tree instantly.</p>
+
+    <h3>Version Conflict Detection with Resolution Suggestions</h3>
+    <p>Gradle resolves version conflicts by picking the highest version, but that does not always mean the right version. Dependency Health shows every conflict — where two paths in the tree request different versions of the same artifact — along with which version Gradle selected and which was rejected. For each conflict, ADB Pro suggests whether to add an explicit constraint, align versions, or investigate compatibility. This is especially valuable when a transitive dependency bumps unexpectedly after a library upgrade.</p>
+
+    <h3>Duplicate Dependency Identification</h3>
+    <p>The same library appearing under different group IDs or as both a direct and transitive dependency wastes APK size and can cause classpath issues. Dependency Health identifies duplicate artifacts (same functionality pulled via different coordinates) and suggests exclusions to keep your classpath clean. This is common when migrating between library ecosystems, such as moving from the old Support Library to AndroidX.</p>
+
+    <h3>Deprecation Warnings</h3>
+    <p>Dependency Health cross-references your dependencies against known deprecation notices. Libraries like the legacy Support Library, deprecated Kotlin extensions (<code>kotlin-android-extensions</code>), and sunset Google Play Services modules are flagged with a recommendation for their modern replacement. The deprecation database is updated with each ADB Pro release.</p>
+
+    <h3>Gradle Version Catalog Management</h3>
+    <p>If your project uses a Gradle version catalog (<code>libs.versions.toml</code>), Dependency Health provides a visual editor for it. View all declared versions, libraries, bundles, and plugins in a table. Sort by version age to find the most outdated entries. ADB Pro checks for newer stable versions and shows an update indicator next to each entry. Click to update the version in place — the TOML file is edited directly with proper formatting preserved.</p>
+
+    <h3>Dependency Diff Between Builds</h3>
+    <p>Compare the dependency tree of your current build against a previously analyzed build. The diff view shows newly added dependencies, removed dependencies, and version changes. This is invaluable during code review — when a PR changes dependencies, you can see exactly what was added, removed, or upgraded and assess the impact on APK size and compatibility.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Dependency Conflict Example</h2>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Dependency Health — conflict report</span>
+        </div>
+        <span class="keyword">Dependency Conflicts Detected:</span> 3<br><br>
+        <span style="color:#fbbf24;">1. com.google.code.gson:gson</span><br>
+        &nbsp;&nbsp;Requested: 2.10.1 (by retrofit2:converter-gson:2.9.0)<br>
+        &nbsp;&nbsp;Requested: 2.8.9 &nbsp;(by com.google.firebase:firebase-common:20.3.0)<br>
+        &nbsp;&nbsp;<span class="keyword">Resolved:</span> 2.10.1 (highest version wins)<br>
+        &nbsp;&nbsp;<span class="comment">Suggestion: Add explicit constraint to libs.versions.toml</span><br><br>
+        <span style="color:#fbbf24;">2. org.jetbrains.kotlin:kotlin-stdlib</span><br>
+        &nbsp;&nbsp;Requested: 2.0.21 (by project)<br>
+        &nbsp;&nbsp;Requested: 1.9.22 (by com.squareup.moshi:moshi-kotlin:1.15.0)<br>
+        &nbsp;&nbsp;<span class="keyword">Resolved:</span> 2.0.21 (highest version wins)<br>
+        &nbsp;&nbsp;<span class="comment">Suggestion: Safe — Kotlin stdlib is backward compatible</span><br><br>
+        <span style="color:#fbbf24;">3. androidx.annotation:annotation</span><br>
+        &nbsp;&nbsp;Requested: 1.8.0 &nbsp;(by androidx.core:core-ktx:1.13.1)<br>
+        &nbsp;&nbsp;Requested: 1.7.1 &nbsp;(by com.google.android.material:material:1.11.0)<br>
+        &nbsp;&nbsp;<span class="keyword">Resolved:</span> 1.8.0 (highest version wins)<br>
+        &nbsp;&nbsp;<span class="comment">Suggestion: No action needed</span>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Version Catalog Editor</h2>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Alias</th>
+                    <th>Group:Artifact</th>
+                    <th>Current Version</th>
+                    <th>Latest Stable</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>androidx-core-ktx</code></td>
+                    <td>androidx.core:core-ktx</td>
+                    <td>1.13.1</td>
+                    <td>1.15.0</td>
+                    <td>Update available</td>
+                </tr>
+                <tr>
+                    <td><code>retrofit</code></td>
+                    <td>com.squareup.retrofit2:retrofit</td>
+                    <td>2.11.0</td>
+                    <td>2.11.0</td>
+                    <td>Up to date</td>
+                </tr>
+                <tr>
+                    <td><code>kotlin-stdlib</code></td>
+                    <td>org.jetbrains.kotlin:kotlin-stdlib</td>
+                    <td>2.0.21</td>
+                    <td>2.1.0</td>
+                    <td>Update available</td>
+                </tr>
+                <tr>
+                    <td><code>material</code></td>
+                    <td>com.google.android.material:material</td>
+                    <td>1.12.0</td>
+                    <td>1.12.0</td>
+                    <td>Up to date</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Usage</h2>
+    <p>Dependency Health is accessible from multiple entry points:</p>
+    <ul>
+        <li><strong>Tools &gt; ADB Pro &gt; Analyze Dependencies</strong> — runs a full dependency tree analysis</li>
+        <li><strong>ADB Pro side panel</strong> — click the "Dependency Health" tab</li>
+        <li><strong>Version catalog</strong> — open <code>libs.versions.toml</code> and click the "Catalog Editor" gutter icon</li>
+        <li><strong>Dependency diff</strong> — from the panel toolbar, select "Compare with previous analysis"</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Settings</h2>
+    <p>Dependency Health settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Dependency Health</strong>. You can configure:</p>
+    <ul>
+        <li>Configurations to analyze (default: <code>releaseRuntimeClasspath</code>)</li>
+        <li>Artifact exclusion patterns (ignore known transitive conflicts)</li>
+        <li>Deprecation check frequency (on-demand or automatic on project sync)</li>
+        <li>Version catalog file path (auto-detected by default)</li>
+        <li>Update check scope (stable only, or include release candidates)</li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Keep Your Dependencies in Check</h2>
+    <p>Install ADB Pro and gain full visibility into what your app depends on.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>
