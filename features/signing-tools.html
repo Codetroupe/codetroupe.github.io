@@ -61,71 +61,54 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Signing Tools provides a full-featured APK signing workflow directly within your JetBrains IDE. It supports all three Android signing schemes — v1 (JarSigner), v2 (APK Signature Scheme), and v3 (APK Signature Scheme v3) — and wraps them in a streamlined UI with secure credential management powered by IntelliJ's PasswordSafe API.</p>
+    <h2>Introduction</h2>
+    <p>Signing Tools provides a complete APK signing toolkit integrated directly into your JetBrains IDE. It supports all three Android signing schemes &mdash; v1 (JarSigner), v2 (APK Signature Scheme), and v3 (APK Signature Scheme v3) &mdash; and wraps Google's <code>apksigner</code> utility with a streamlined UI that handles scheme selection, zipalign optimization, and signature verification in one place.</p>
+    <p>APK signing is a mandatory step before any Android app can be installed on a device or submitted to the Play Store. The signing process involves selecting the correct scheme for your target Android versions, ensuring the APK is properly zipaligned, and applying the signature with a valid keystore. Signing Tools manages this entire pipeline, from raw unsigned APK to fully signed and verified output.</p>
+    <p>Credential security is a key part of the module. All keystore paths, aliases, and passwords are stored through IntelliJ's PasswordSafe API, which encrypts credentials using the IDE's built-in security layer. No passwords are ever written to plain-text files or exposed in command history.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
+    <h2>Why Use Signing Tools?</h2>
+    <p>Manual APK signing with command-line tools is fragile and easy to get wrong:</p>
+    <ul>
+        <li><strong>Error-prone <code>apksigner</code> usage</strong> &mdash; The command-line interface requires precise argument ordering (<code>--ks</code>, <code>--ks-key-alias</code>, <code>--ks-pass</code>, <code>--key-pass</code>, <code>--v1-signing-enabled</code>, etc.). A single typo produces a corrupted or unsigned APK with little useful error feedback.</li>
+        <li><strong>Confusion between v1, v2, and v3 schemes</strong> &mdash; Each scheme has different minimum Android version requirements and behavior. Developers often sign with v1 only (for legacy compatibility) but forget v2, which is required for faster install verification on Android 7.0+ and mandated by the Play Store.</li>
+        <li><strong>Keystore passwords in plain text</strong> &mdash; Shell scripts and CI configs frequently embed keystore passwords as environment variables or inline arguments, creating a security risk if logs or scripts are accidentally committed or shared.</li>
+        <li><strong>Forgotten zipalign step</strong> &mdash; The Play Store requires zipaligned APKs for optimal device performance. Developers sometimes skip this step when signing manually, leading to store rejections or increased RAM usage on devices.</li>
+        <li><strong>No quick verification</strong> &mdash; After signing, confirming that the correct certificate and schemes were applied requires running <code>apksigner verify --verbose --print-certs</code> separately and parsing dense output manually.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Features</h2>
 
     <h3>APK Signing (v1, v2, v3)</h3>
-    <p>Sign APKs using any combination of signing schemes. The v1 JarSigner scheme provides backward compatibility for older devices, while v2 and v3 APK Signature Schemes offer stronger integrity protection and faster verification on modern Android versions. ADB Pro uses Google's <code>apksigner</code> under the hood for v2/v3 signing, ensuring compatibility with the latest Android platform requirements.</p>
+    <p>Sign APKs using any combination of signing schemes. The v1 JarSigner scheme provides backward compatibility for devices running Android versions prior to 7.0, while v2 and v3 APK Signature Schemes offer stronger whole-file integrity protection and faster verification on modern Android. ADB Pro uses Google's <code>apksigner</code> under the hood, ensuring full compatibility with the latest Android platform requirements. Select individual schemes or enable all three with a single checkbox.</p>
 
     <h3>Signature Verification</h3>
-    <p>Verify the signature of any APK with a single click. The verification report shows which signing schemes are present, certificate chain details (issuer, subject, validity period, serial number), and whether the signature covers the entire APK contents. Catch signature issues before they reach the Play Store.</p>
+    <p>Verify the signature of any APK with a single click. The verification report shows which signing schemes are present (v1, v2, v3), certificate chain details including issuer, subject, validity period, and serial number, and whether the signature covers the entire APK contents. This makes it easy to catch signature mismatches or missing schemes before uploading to the Play Store or distributing to testers.</p>
 
     <h3>Zipalign Optimization</h3>
-    <p>Run zipalign on unsigned or signed APKs to ensure all uncompressed data starts at a 4-byte boundary. Proper alignment reduces RAM usage on device and is a Play Store requirement. ADB Pro automatically detects misaligned APKs and offers one-click alignment.</p>
+    <p>Run zipalign on unsigned or signed APKs to ensure all uncompressed data starts at a 4-byte boundary. Proper alignment reduces RAM usage on the target device and is a mandatory requirement for Play Store submission. ADB Pro automatically detects misaligned APKs and offers one-click alignment, or you can configure automatic zipalign as a pre-signing step in settings.</p>
 
-    <h3>Keystore Management via PasswordSafe</h3>
-    <p>Store keystore paths, aliases, and passwords securely using IntelliJ's PasswordSafe API. Credentials are encrypted by the IDE and never written to plain-text config files. Switch between multiple keystores (debug, release, enterprise) from a favorites dropdown without re-entering passwords.</p>
+    <h3>Keystore Management</h3>
+    <p>Store keystore paths, key aliases, and passwords securely using IntelliJ's PasswordSafe API. Credentials are encrypted by the IDE and never written to plain-text config files. Switch between multiple keystores &mdash; debug, release, enterprise &mdash; from a dropdown without re-entering passwords each session. Keystore entries are validated on load to confirm the file still exists and the alias is accessible.</p>
 
     <h3>Favorite Signing Configs</h3>
-    <p>Save frequently used signing configurations as favorites for instant access. Each favorite stores the keystore path, key alias, signing scheme preferences, and zipalign flag. Perfect for teams managing multiple app variants or signing identities.</p>
+    <p>Save frequently used signing configurations as named favorites for instant access. Each favorite stores the keystore path, key alias, preferred signing schemes, and zipalign flag. This is especially useful for teams managing multiple app variants, white-label builds, or separate debug and release signing identities. Favorites sync with the IDE project settings for consistent access across team members.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Signing Schemes Comparison</h2>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Scheme</th>
-                    <th>Name</th>
-                    <th>Min Android</th>
-                    <th>Tool</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>v1</strong></td>
-                    <td>JarSigner</td>
-                    <td>All versions</td>
-                    <td>jarsigner / apksigner</td>
-                    <td>Legacy scheme; required for pre-7.0 devices</td>
-                </tr>
-                <tr>
-                    <td><strong>v2</strong></td>
-                    <td>APK Signature Scheme v2</td>
-                    <td>Android 7.0+</td>
-                    <td>apksigner</td>
-                    <td>Whole-file signing; faster install verification</td>
-                </tr>
-                <tr>
-                    <td><strong>v3</strong></td>
-                    <td>APK Signature Scheme v3</td>
-                    <td>Android 9.0+</td>
-                    <td>apksigner</td>
-                    <td>Supports key rotation; proof-of-rotation struct</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <h2>Getting Started</h2>
+    <p>Signing Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Signing Tools</strong>. From there you can configure:</p>
+    <ul>
+        <li>Default signing scheme selection (v1 only, v2 only, v1+v2, all schemes)</li>
+        <li>Custom <code>apksigner</code> and <code>zipalign</code> binary paths (auto-detected from Android SDK by default)</li>
+        <li>Automatic zipalign before signing (enabled by default)</li>
+        <li>Favorite signing configurations and PasswordSafe credential storage</li>
+    </ul>
+    <p>Quick-access actions are available under the <strong>Tools &gt; ADB Pro</strong> menu: Sign APK, Verify APK Signature, Zipalign APK, and Manage Keystores.</p>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Typical Signing Workflow</h2>
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -135,37 +118,35 @@
         </div>
         <span class="comment"># 1. Build your unsigned APK</span><br>
         <span class="keyword">./gradlew</span> assembleRelease<br><br>
-        <span class="comment"># 2. Open Signing Tools panel in ADB Pro</span><br>
+        <span class="comment"># 2. Open the Signing Tools panel in ADB Pro</span><br>
         <span class="comment"># 3. Select the APK from build outputs</span><br>
-        <span class="comment"># 4. Choose a signing config (or create a new one)</span><br>
+        <span class="comment"># 4. Choose a signing config (or create a new one):</span><br>
         <span class="comment">#    - Select keystore file</span><br>
         <span class="comment">#    - Enter key alias</span><br>
         <span class="comment">#    - Choose signing schemes (v1 + v2 recommended)</span><br>
-        <span class="comment"># 5. Click "Sign" — ADB Pro handles zipalign + apksigner</span><br>
-        <span class="comment"># 6. Verify the signed APK with one click</span>
+        <span class="comment"># 5. Click "Sign" - ADB Pro handles zipalign + apksigner</span><br>
+        <span class="comment"># 6. Click "Verify" to confirm the signed APK</span>
     </div>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Settings</h2>
-    <p>Signing Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Signing Tools</strong>. You can configure:</p>
+    <h2>Verification</h2>
+    <p>After signing an APK, confirm that everything was applied correctly:</p>
     <ul>
-        <li>Default signing scheme selection (v1 only, v2 only, v1+v2, all schemes)</li>
-        <li>Custom <code>apksigner</code> and <code>zipalign</code> binary paths (auto-detected from Android SDK by default)</li>
-        <li>Automatic zipalign before signing (enabled by default)</li>
-        <li>Favorite signing configurations (add, edit, remove)</li>
-        <li>PasswordSafe credential storage preferences</li>
+        <li>Run <code>apksigner verify --verbose --print-certs app.apk</code> and confirm that the output shows the correct signer certificate (CN, OU, O fields match your keystore).</li>
+        <li>Verify that all expected signing schemes are listed in the output (e.g., "v1 scheme" and "v2 scheme" both show <code>true</code>).</li>
+        <li>Run <code>zipalign -c -v 4 app.apk</code> to confirm the APK passes the alignment check. The exit code should be 0 with "Verification successful" in the output.</li>
+        <li>Install the signed APK on a device with <code>adb install app.apk</code> and confirm the app launches without signature-related errors.</li>
+        <li>Compare the APK's certificate fingerprint (SHA-256) against your keystore's known fingerprint to ensure the correct key was used.</li>
     </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Menu Actions</h2>
-    <p>Signing Tools provides quick-access actions under the <strong>Tools &gt; ADB Pro</strong> menu:</p>
+    <h2>References</h2>
     <ul>
-        <li><strong>Sign APK...</strong> — Open the signing dialog for any APK file</li>
-        <li><strong>Verify APK Signature</strong> — Check the signature of the selected APK</li>
-        <li><strong>Zipalign APK</strong> — Align the selected APK for optimal performance</li>
-        <li><strong>Manage Keystores...</strong> — Open the keystore and favorites manager</li>
+        <li><a href="https://developer.android.com/studio/publish/app-signing" target="_blank">App Signing Documentation</a> &mdash; Google's comprehensive guide to APK signing, keystore generation, and Play App Signing.</li>
+        <li><a href="https://developer.android.com/tools/apksigner" target="_blank">apksigner CLI Reference</a> &mdash; Complete documentation for all apksigner commands including <code>sign</code>, <code>verify</code>, and <code>rotate</code>.</li>
+        <li><a href="https://source.android.com/docs/security/features/apksigning" target="_blank">APK Signature Scheme (AOSP)</a> &mdash; Low-level specification of the v2 and v3 signing schemes, including the signed-data block format and key rotation structures.</li>
     </ul>
 </div>
 

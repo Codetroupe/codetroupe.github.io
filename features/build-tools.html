@@ -61,31 +61,55 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Build Tools wraps Gradle's command-line interface into a visual panel that understands your Android project structure. Instead of memorizing task names and flavor combinations, pick variants from a dropdown, trigger builds with a click, and find your output artifacts instantly. Build history is tracked locally so you can review past build results without scrolling through terminal output.</p>
+    <h2>Introduction</h2>
+    <p>Build Tools brings Gradle build automation into your JetBrains IDE with a visual panel that understands your Android project structure. Instead of memorizing Gradle task names and flavor combinations, you pick variants from a dropdown, trigger builds with a click, and monitor output in real time &mdash; all without opening a terminal.</p>
+    <p>The module parses your <code>build.gradle</code> or <code>build.gradle.kts</code> files to detect available build types, product flavors, and their combinations. It then presents them as selectable variants, automatically constructing the correct Gradle task names (e.g., <code>assembleFreeRelease</code>, <code>bundlePaidDebug</code>). Build results, including timestamps, durations, exit codes, and artifact paths, are recorded locally in a history table for future reference.</p>
+    <p>For release managers and teams working with multiple app variants, Build Tools supports batch builds across all flavor combinations and provides instant artifact location so you can hand off the output APK or AAB to Signing Tools or AAB Tools without leaving the panel.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
+    <h2>Why Use Build Tools?</h2>
+    <p>Standard Android builds involve repetitive terminal work and poor visibility into what was produced:</p>
+    <ul>
+        <li><strong>Terminal context-switching</strong> &mdash; Every build requires opening a terminal, typing <code>./gradlew assembleFreeRelease</code>, waiting, then switching back to the IDE. The constant window-switching breaks focus and slows iteration cycles.</li>
+        <li><strong>Variant name memorization</strong> &mdash; Projects with multiple flavors and build types produce dozens of variant combinations. Remembering whether it is <code>assembleFreeArmv7Release</code> or <code>assembleFreeArmv7aRelease</code> wastes time and leads to typos.</li>
+        <li><strong>No build history</strong> &mdash; Once terminal output scrolls away, there is no easy way to check when a build ran, how long it took, or whether it succeeded. This makes it hard to audit build activity or compare iteration times.</li>
+        <li><strong>Finding output artifacts</strong> &mdash; After a successful build, locating the correct APK or AAB in <code>build/outputs/</code> requires navigating a deep directory tree. Multi-module projects make this even harder with several output directories to check.</li>
+        <li><strong>No batch build support</strong> &mdash; Producing builds for all flavor combinations requires writing shell scripts or running the same Gradle command repeatedly with different arguments, one at a time.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Features</h2>
 
     <h3>Gradle Task Execution</h3>
-    <p>Run any Gradle task from the Build Tools panel. Common tasks like <code>assembleDebug</code>, <code>assembleRelease</code>, <code>bundleRelease</code>, and <code>clean</code> are available as one-click buttons. Custom tasks can be entered manually and are saved for reuse. Build output streams to the panel in real time so you can monitor progress without switching to the terminal.</p>
+    <p>Run any Gradle task directly from the Build Tools panel. Common tasks like <code>assembleDebug</code>, <code>assembleRelease</code>, <code>bundleRelease</code>, and <code>clean</code> are available as one-click buttons. Custom tasks can be entered manually and are saved for reuse across sessions. Build output streams to the panel in real time, with syntax highlighting for errors and warnings, so you can monitor progress without switching to a terminal window.</p>
 
-    <h3>Variant Selection (Debug / Release / Custom)</h3>
-    <p>ADB Pro parses your <code>build.gradle</code> or <code>build.gradle.kts</code> to detect all available build variants, including product flavors and build types. Select the exact variant you need from a dropdown — no more typing <code>assembleFreeRelease</code> by hand. The selected variant persists across sessions, so your last-used configuration is always ready.</p>
+    <h3>Variant Management</h3>
+    <p>ADB Pro parses your build configuration to detect all available build variants, including product flavors, build types, and ABI splits. Select the exact variant you need from a dropdown &mdash; no more typing <code>assembleFreeRelease</code> by hand. The selected variant persists across IDE sessions, so your last-used configuration is always ready when you reopen the project. Variant detection updates automatically when you modify your Gradle files.</p>
 
-    <h3>Batch Builds Across Flavors</h3>
-    <p>Need to build all flavor combinations at once? Batch mode queues multiple variant builds and runs them sequentially. This is ideal for release managers who need to produce APKs for free/paid variants, multiple ABIs, or white-label builds. Each build result is logged independently with success or failure status.</p>
+    <h3>Batch Builds</h3>
+    <p>Need to build all flavor combinations at once? Batch mode queues multiple variant builds and runs them sequentially through the Gradle daemon. This is ideal for release managers who need to produce APKs for free/paid variants, multiple ABIs, or white-label builds. Each build result is logged independently with success or failure status, so you can see at a glance which variants built correctly and which need attention.</p>
 
-    <h3>Build History Tracking</h3>
-    <p>Every build is recorded with its timestamp, variant, duration, exit code, and output artifact path. Review past builds in a sortable table to find which variant was built last, how long it took, or whether it succeeded. History is stored locally in the IDE project settings and never leaves your machine.</p>
+    <h3>Build History</h3>
+    <p>Every build is recorded with its timestamp, variant name, Gradle task, duration, exit code, and output artifact path. Review past builds in a sortable table to find which variant was built last, how long it took, or whether it succeeded. History is stored locally in the IDE project settings and never leaves your machine. Use it to track build time trends or confirm what was produced before a release.</p>
 
     <h3>Artifact Location</h3>
-    <p>After a successful build, ADB Pro automatically locates the output APK or AAB file and shows its path. Click to reveal the file in your system file manager, copy the path to clipboard, or pass it directly to Signing Tools or AAB Tools for the next step in your release pipeline.</p>
+    <p>After a successful build, ADB Pro automatically locates the output APK or AAB file and shows its full path in the panel. Click to reveal the file in your system file manager, copy the path to clipboard, or pass it directly to Signing Tools or AAB Tools for the next step in your release pipeline. No more navigating <code>build/outputs/apk/</code> directories manually.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Build Variants at a Glance</h2>
+    <h2>Getting Started</h2>
+    <p>Build Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Build Tools</strong>. From there you can configure:</p>
+    <ul>
+        <li>Custom Gradle executable path (default: project Gradle wrapper)</li>
+        <li>Additional Gradle arguments (e.g., <code>--stacktrace</code>, <code>--parallel</code>, <code>-Pci=true</code>)</li>
+        <li>Default build variant on project open</li>
+        <li>Build history retention limit (default: 50 entries)</li>
+        <li>Post-build actions (auto-reveal artifact, notification sound)</li>
+    </ul>
+    <p>Quick-access actions are available under the <strong>Tools &gt; ADB Pro</strong> menu: Build Current Variant, Build All Variants, Locate Last Artifact, and View Build History.</p>
+
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -100,74 +124,29 @@
         <span class="comment"># Available variants in the dropdown:</span><br>
         &nbsp;&nbsp;freeDebug &nbsp;&nbsp;&nbsp;| &nbsp;freeRelease<br>
         &nbsp;&nbsp;paidDebug &nbsp;&nbsp;&nbsp;| &nbsp;paidRelease<br><br>
-        <span class="comment"># Batch mode: select all 4 variants and click "Build All"</span>
+        <span class="comment"># Select a variant and click "Build"</span><br>
+        <span class="comment"># Or use batch mode: select all 4 and click "Build All"</span>
     </div>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Build History</h2>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Timestamp</th>
-                    <th>Variant</th>
-                    <th>Task</th>
-                    <th>Duration</th>
-                    <th>Status</th>
-                    <th>Artifact</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>2026-06-09 14:32</td>
-                    <td>freeRelease</td>
-                    <td>assembleFreeRelease</td>
-                    <td>1m 42s</td>
-                    <td>Success</td>
-                    <td>app-free-release.apk</td>
-                </tr>
-                <tr>
-                    <td>2026-06-09 14:28</td>
-                    <td>paidDebug</td>
-                    <td>assemblePaidDebug</td>
-                    <td>0m 58s</td>
-                    <td>Success</td>
-                    <td>app-paid-debug.apk</td>
-                </tr>
-                <tr>
-                    <td>2026-06-09 13:10</td>
-                    <td>freeRelease</td>
-                    <td>bundleFreeRelease</td>
-                    <td>2m 15s</td>
-                    <td>Failed</td>
-                    <td>--</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Settings</h2>
-    <p>Build Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Build Tools</strong>. You can configure:</p>
+    <h2>Verification</h2>
+    <p>After running a build through Build Tools, confirm that everything worked as expected:</p>
     <ul>
-        <li>Custom Gradle executable path (default: project Gradle wrapper)</li>
-        <li>Additional Gradle arguments (e.g., <code>--stacktrace</code>, <code>--parallel</code>, <code>-Pci=true</code>)</li>
-        <li>Default build variant on project open</li>
-        <li>Build history retention limit (default: 50 entries)</li>
-        <li>Post-build actions (auto-reveal artifact, notification sound)</li>
+        <li>Check that the build output appears in the Build Tools log panel with a green success indicator and the correct task name.</li>
+        <li>Navigate to <code>build/outputs/apk/</code> or <code>build/outputs/bundle/</code> and confirm the expected APK or AAB file exists with a recent modification timestamp.</li>
+        <li>Open the Build History table and verify a new entry was recorded with the correct variant, timestamp, duration, and artifact path.</li>
+        <li>Use the "Locate Last Artifact" action to confirm the file manager opens at the correct output directory.</li>
+        <li>If using batch mode, check that all selected variants show individual success or failure statuses in the build log.</li>
     </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Menu Actions</h2>
-    <p>Build Tools provides quick-access actions under the <strong>Tools &gt; ADB Pro</strong> menu:</p>
+    <h2>References</h2>
     <ul>
-        <li><strong>Build Current Variant</strong> — Run assemble for the selected variant</li>
-        <li><strong>Build All Variants</strong> — Trigger a batch build of all detected variants</li>
-        <li><strong>Locate Last Artifact</strong> — Show the most recent build output in the file manager</li>
-        <li><strong>View Build History</strong> — Open the build history table</li>
+        <li><a href="https://developer.android.com/build" target="_blank">Android Build System Guide</a> &mdash; Official documentation on the Android Gradle Plugin, build lifecycle, and output artifacts.</li>
+        <li><a href="https://docs.gradle.org/current/userguide/userguide.html" target="_blank">Gradle User Guide</a> &mdash; Complete reference for Gradle task execution, daemon configuration, and command-line options.</li>
+        <li><a href="https://developer.android.com/build/build-variants" target="_blank">Build Variants Documentation</a> &mdash; How to configure product flavors, build types, and variant-specific settings in your Android project.</li>
     </ul>
 </div>
 

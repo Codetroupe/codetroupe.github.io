@@ -61,45 +61,55 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Slow builds are one of the biggest productivity drains in Android development. Build Performance gives you the tools to understand exactly where your build time goes, whether your Gradle configuration is optimal, and what changes will have the biggest impact. It combines task-level profiling, configuration health checks, and optimization recommendations into a single panel — turning opaque Gradle internals into actionable insights.</p>
+    <h2>Introduction</h2>
+    <p>Build Performance provides build profiling and Gradle configuration health checks to help you identify slow tasks and optimize your Android build pipeline. It turns opaque Gradle internals into actionable data &mdash; showing exactly which tasks consume the most time, whether your configuration is optimal, and what changes will yield the biggest speed improvements.</p>
+    <p>Rather than guessing why builds are slow or blindly copying optimization tips from blog posts, you get precise, project-specific measurements. Build Performance combines task-level timing breakdowns, configuration health checks, and prioritized optimization recommendations into a single view so you can make informed decisions about where to invest your effort.</p>
+    <p>For teams that want even deeper analysis, Build Performance integrates with Gradle Build Scans to provide timeline views, network activity, plugin performance, and dependency resolution details directly from the Gradle Enterprise dashboard.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
+    <h2>Why Use Build Performance?</h2>
+    <p>Slow builds are one of the biggest productivity drains in Android development, and the problem often goes unnoticed until it becomes severe:</p>
+    <ul>
+        <li><strong>Build times creep up silently</strong> &mdash; Each new dependency, module, or annotation processor adds a few seconds. Over months, a build that once took 30 seconds grows to 5 minutes without anyone noticing when the tipping point occurred.</li>
+        <li><strong>Suboptimal Gradle configuration</strong> &mdash; Many developers never enable the Gradle daemon, parallel builds, or build cache. These features are not always on by default, and the performance difference between a well-configured and poorly-configured <code>gradle.properties</code> can be dramatic.</li>
+        <li><strong>No visibility into task-level timing</strong> &mdash; Running <code>./gradlew assembleDebug</code> tells you the total wall-clock time, but not which tasks are the bottleneck. Without a breakdown, you cannot tell if compilation, resource merging, or dex conversion is the culprit.</li>
+        <li><strong>Incremental builds that are not incremental</strong> &mdash; Tasks that should be up-to-date or served from cache sometimes re-execute due to unexpected input changes. Without analysis, you have no way to know your "incremental" build is doing a full rebuild.</li>
+    </ul>
 
-    <h3>Build Time Profiling (Task-Level Breakdown)</h3>
-    <p>Run any Gradle build with profiling enabled and get a detailed breakdown of how long each task took. The profiler captures execution times for every task in the build lifecycle — from <code>:app:preBuild</code> through <code>:app:assembleRelease</code> — and displays them in a sortable table with percentage-of-total indicators. Tasks are color-coded by duration: green for fast, yellow for moderate, and red for slow. Sort by duration to instantly identify bottlenecks like annotation processing, resource merging, or Dex merging.</p>
+    <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h3>Gradle Configuration Health Checks</h3>
+    <h2>Features</h2>
+
+    <h3>Task-Level Profiling</h3>
+    <p>Run any Gradle build with profiling enabled and get a detailed breakdown of how long each task took. The profiler captures execution times for every task in the build lifecycle &mdash; from <code>:app:preBuild</code> through <code>:app:assembleRelease</code> &mdash; and displays them in a sortable table with percentage-of-total indicators. Tasks are color-coded by duration: green for fast, yellow for moderate, and red for slow. Sort by duration to instantly identify bottlenecks like annotation processing, resource merging, or Dex merging.</p>
+
+    <h3>Configuration Health Checks</h3>
     <p>Build Performance inspects your Gradle setup and reports on configuration options that significantly impact build speed. Each check produces a clear status with a recommendation:</p>
     <ul>
-        <li><strong>Gradle Daemon</strong> — Is the daemon running? A cold daemon adds 10-30 seconds to the first build.</li>
-        <li><strong>Parallel Builds</strong> — Is <code>org.gradle.parallel=true</code> set in <code>gradle.properties</code>? Parallel execution runs independent module tasks concurrently.</li>
-        <li><strong>Build Cache</strong> — Is <code>org.gradle.caching=true</code> enabled? The build cache reuses outputs from previous builds, including across machines with a remote cache.</li>
-        <li><strong>Configuration Cache</strong> — Is <code>org.gradle.configuration-cache=true</code> enabled? The configuration cache skips the configuration phase on subsequent builds, saving several seconds.</li>
-        <li><strong>JVM Memory</strong> — Is <code>org.gradle.jvmargs</code> configured with adequate heap size? Under-provisioned JVM causes GC pauses during compilation.</li>
-        <li><strong>Kotlin Incremental Compilation</strong> — Is Kotlin incremental compilation enabled? This dramatically speeds up Kotlin-only changes.</li>
+        <li><strong>Gradle Daemon</strong> &mdash; Is the daemon running? A cold daemon adds 10-30 seconds to the first build.</li>
+        <li><strong>Parallel Builds</strong> &mdash; Is <code>org.gradle.parallel=true</code> set in <code>gradle.properties</code>? Parallel execution runs independent module tasks concurrently.</li>
+        <li><strong>Build Cache</strong> &mdash; Is <code>org.gradle.caching=true</code> enabled? The build cache reuses outputs from previous builds, including across machines with a remote cache.</li>
+        <li><strong>JVM Memory</strong> &mdash; Is <code>org.gradle.jvmargs</code> configured with adequate heap size? An under-provisioned JVM causes GC pauses during compilation.</li>
+        <li><strong>Kotlin Incremental Compilation</strong> &mdash; Is Kotlin incremental compilation enabled? This dramatically speeds up Kotlin-only changes.</li>
     </ul>
 
     <h3>Optimization Recommendations</h3>
-    <p>Based on the profiling results and health checks, Build Performance generates a prioritized list of recommendations. Each recommendation includes an estimated time savings, the effort required to implement it, and a link to relevant documentation. Recommendations are ranked by impact-to-effort ratio so you can pick the quick wins first. Common recommendations include enabling parallel builds, configuring the build cache, splitting large modules, and disabling unused annotation processors.</p>
+    <p>Based on profiling results and health checks, Build Performance generates a prioritized list of recommendations. Each recommendation includes an estimated time savings, the effort required to implement it, and a link to relevant documentation. Recommendations are ranked by impact-to-effort ratio so you can pick the quick wins first. Common recommendations include enabling parallel builds, configuring the build cache, splitting large modules, and disabling unused annotation processors.</p>
 
     <h3>Incremental Build Analysis</h3>
-    <p>Run the same build task twice and Build Performance compares the two runs. The analysis shows which tasks were <code>UP-TO-DATE</code>, <code>FROM-CACHE</code>, or re-executed — and for re-executed tasks, it explains why (input changed, output removed, dependency changed). This is critical for understanding why your "incremental" build is doing more work than expected and how to structure your project for better caching behavior.</p>
+    <p>Run the same build task twice and Build Performance compares the two runs. The analysis shows which tasks were <code>UP-TO-DATE</code>, <code>FROM-CACHE</code>, or re-executed &mdash; and for re-executed tasks, it explains why (input changed, output removed, dependency changed). This is critical for understanding why your "incremental" build is doing more work than expected and how to structure your project for better caching behavior.</p>
 
     <h3>Build Scan Integration</h3>
-    <p>For deeper analysis, Build Performance can trigger a Gradle Build Scan by appending <code>--scan</code> to your build command. When the scan completes, ADB Pro extracts the scan URL and displays it in the panel with a direct link to the Gradle Enterprise dashboard. Build Scans provide timeline views, network activity, plugin performance, and dependency resolution details that complement the local profiling data.</p>
+    <p>For deeper analysis, Build Performance can trigger a Gradle Build Scan by appending <code>--scan</code> to your build command. When the scan completes, ADB Pro extracts the scan URL and displays it in the panel with a direct link to the Gradle Enterprise dashboard.</p>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Build Profile Example</h2>
+    <h3>Profiling Output Example</h3>
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
             <div class="code-dot" style="background:#febc2e"></div>
             <div class="code-dot" style="background:#28c840"></div>
-            <span style="margin-left:12px; font-size:12px; color:#64748b;">Build Performance — task profiling results</span>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Build Performance &mdash; task profiling results</span>
         </div>
         <span class="keyword">Build:</span> assembleRelease &nbsp;|&nbsp; <span class="keyword">Total:</span> 2m 34s<br>
         <span class="keyword">Tasks:</span> 147 executed, 23 up-to-date, 12 from-cache<br><br>
@@ -116,9 +126,7 @@
         <span style="color:#4ade80;">10.</span> :app:shrinkReleaseRes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3.1s &nbsp;&nbsp;(2.0%)
     </div>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Configuration Health Report</h2>
+    <h3>Configuration Health Report</h3>
     <div class="table-wrapper">
         <table>
             <thead>
@@ -172,25 +180,44 @@
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Usage</h2>
+    <h2>Getting Started</h2>
     <p>Build Performance is accessible from multiple entry points:</p>
     <ul>
-        <li><strong>Tools &gt; ADB Pro &gt; Profile Build</strong> — runs the selected build task with profiling enabled</li>
-        <li><strong>Tools &gt; ADB Pro &gt; Run Health Check</strong> — inspects Gradle configuration without building</li>
-        <li><strong>ADB Pro side panel</strong> — click the "Build Performance" tab for profiling results and recommendations</li>
-        <li><strong>Build Scan</strong> — click "Run with Build Scan" in the panel toolbar to trigger a Gradle Enterprise scan</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Profile Build</strong> &mdash; runs the selected build task with profiling enabled</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Run Health Check</strong> &mdash; inspects Gradle configuration without running a build</li>
+        <li><strong>ADB Pro side panel</strong> &mdash; click the "Build Performance" tab for profiling results and recommendations</li>
+        <li><strong>Build Scan</strong> &mdash; click "Run with Build Scan" in the panel toolbar to trigger a Gradle Enterprise scan</li>
+    </ul>
+    <p>To profile a build:</p>
+    <ol>
+        <li>Select <strong>Tools &gt; ADB Pro &gt; Profile Build</strong>.</li>
+        <li>Choose the build task to profile (e.g., <code>assembleDebug</code>, <code>assembleRelease</code>).</li>
+        <li>ADB Pro runs the build with timing instrumentation and displays the results in the Build Performance panel.</li>
+        <li>Review the task-level breakdown. Sort by duration to find the slowest tasks.</li>
+        <li>Run a health check from <strong>Tools &gt; ADB Pro &gt; Run Health Check</strong> to see configuration flags that may be contributing to slow builds.</li>
+        <li>Address the recommendations one by one, starting with the highest-impact, lowest-effort items.</li>
+    </ol>
+    <p>To configure defaults, go to <strong>Settings &gt; Tools &gt; ADB Pro &gt; Build Performance</strong>. Here you can set the default build task for profiling, the slow task threshold (duration at which tasks are highlighted in red), automatic health check on project open, Build Scan auto-upload behavior, and profile history retention (default: 20 sessions).</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Verification</h2>
+    <p>After running profiling and health checks, confirm the results are actionable:</p>
+    <ul>
+        <li>The profile output shows a task-level timing breakdown with execution times and percentage-of-total for every task in the build.</li>
+        <li>The health check report lists each configuration flag (daemon, parallel, cache, JVM, Kotlin incremental) with a clear pass/fail status.</li>
+        <li>Address each flagged health check item one by one (e.g., add <code>org.gradle.parallel=true</code> to <code>gradle.properties</code>).</li>
+        <li>After applying optimizations, run another profiled build and compare the total build time to the baseline.</li>
+        <li>Subsequent builds show measurable time improvement &mdash; the total wall-clock time decreases and more tasks are served from cache or reported as up-to-date.</li>
     </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Settings</h2>
-    <p>Build Performance settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Build Performance</strong>. You can configure:</p>
+    <h2>References</h2>
     <ul>
-        <li>Default build task for profiling (e.g., <code>assembleDebug</code>)</li>
-        <li>Slow task threshold (duration at which tasks are highlighted in red)</li>
-        <li>Automatic health check on project open</li>
-        <li>Build Scan auto-upload (require confirmation or upload automatically)</li>
-        <li>Profile history retention (default: 20 profiling sessions)</li>
+        <li><a href="https://docs.gradle.org/current/userguide/performance.html" target="_blank">Gradle Performance Guide</a></li>
+        <li><a href="https://developer.android.com/build/optimize-your-build" target="_blank">Optimize Your Android Build</a></li>
+        <li><a href="https://docs.gradle.org/current/userguide/build_cache.html" target="_blank">Gradle Build Cache</a></li>
     </ul>
 </div>
 

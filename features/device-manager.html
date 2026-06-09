@@ -61,34 +61,28 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Device Manager is the foundation that other ADB Pro modules build on. It handles the critical task of finding and managing connected Android devices — both physical hardware and emulators. Instead of manually configuring ADB paths or running <code>adb devices</code> in a terminal, Device Manager automatically discovers the ADB binary, polls for connected devices with intelligent TTL caching, and provides a clean device list that other modules (AAB Tools, Build Tools, Signing Tools) consume when they need to install an APK or target a specific device.</p>
+    <h2>Introduction</h2>
+    <p>Device Manager is the foundation of ADB Pro. It handles ADB device discovery, connection monitoring, and device selection so that every other module &mdash; AAB Tools, Build Tools, Signing Tools &mdash; can install APKs and target devices without manual configuration. Instead of hunting for the ADB binary or running <code>adb devices</code> in a terminal, Device Manager automatically locates ADB, polls for connected devices with intelligent TTL caching, and provides a clean, always-current device list.</p>
+    <p>Both physical hardware and emulators are supported. Device Manager distinguishes between the two, displays detailed device metadata (model, Android version, API level, connection state), and remembers your device preferences across sessions. When a device disconnects mid-operation, Device Manager handles the event gracefully rather than surfacing cryptic ADB errors.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
-
-    <h3>Automatic ADB Path Discovery</h3>
-    <p>Device Manager locates the ADB binary without manual configuration. It checks multiple sources in order: the <code>ANDROID_HOME</code> and <code>ANDROID_SDK_ROOT</code> environment variables, the Android SDK path configured in your IDE (<strong>Settings &gt; Languages &amp; Frameworks &gt; Android SDK</strong>), common SDK installation paths (e.g., <code>~/Library/Android/sdk</code> on macOS, <code>%LOCALAPPDATA%\Android\Sdk</code> on Windows), and the system <code>PATH</code>. The first valid ADB binary found is used automatically. If multiple ADB versions are detected, the most recent one is preferred.</p>
-
-    <h3>Device Listing with Connection Status</h3>
-    <p>The device list shows every connected device with its serial number, model name, Android version, API level, and connection state (<code>device</code>, <code>unauthorized</code>, <code>offline</code>, <code>no permissions</code>). Devices in the <code>unauthorized</code> state are flagged with a prompt to accept the USB debugging authorization on the device itself. Offline and disconnected devices are grayed out but remain visible so you can track when they come back online.</p>
-
-    <h3>TTL Caching (5-Second Default)</h3>
-    <p>Polling <code>adb devices</code> on every UI interaction would be wasteful and slow. Device Manager caches the device list with a configurable time-to-live (TTL), defaulting to 5 seconds. Within the TTL window, device queries return instantly from cache. Once the TTL expires, the next query triggers a background refresh. This approach keeps the UI responsive while ensuring the device list is never more than a few seconds stale. The TTL is adjustable from 1 to 30 seconds in settings.</p>
-
-    <h3>Device Selection for Install Operations</h3>
-    <p>When AAB Tools or Build Tools need to install an APK, they query Device Manager for the target device. If a single device is connected, it is selected automatically. If multiple devices are connected, Device Manager presents a chooser dialog with device details so you can pick the right target. The last-selected device is remembered for the session, so repeated installs go to the same device without prompting.</p>
-
-    <h3>Emulator Detection</h3>
-    <p>Device Manager distinguishes between physical devices and emulators by parsing the device serial number format (<code>emulator-5554</code> for emulators, USB serial numbers for physical devices). Emulators are displayed with a distinct icon and show additional details like the AVD name and snapshot status. This distinction matters for install operations — some teams prefer to test on emulators during development and only deploy to physical devices for release testing.</p>
-
-    <h3>Connection Monitoring</h3>
-    <p>Device Manager runs a background listener that detects when devices are connected or disconnected. When a new device appears, the device list refreshes automatically and a notification appears in the IDE status bar. When a device disconnects mid-operation (e.g., during an APK install), the operation is paused gracefully and resumes when the device reconnects or a new device is selected. This prevents cryptic ADB error messages from surfacing to the user.</p>
+    <h2>Why Use Device Manager?</h2>
+    <p>Managing ADB and connected devices manually introduces friction that compounds over time:</p>
+    <ul>
+        <li><strong>Inconsistent ADB paths</strong> &mdash; Every developer machine configures the Android SDK differently. <code>ANDROID_HOME</code>, <code>ANDROID_SDK_ROOT</code>, IDE settings, and system <code>PATH</code> all vary. Without automatic discovery, each team member must manually configure the ADB path.</li>
+        <li><strong>Stale device lists</strong> &mdash; Running <code>adb devices</code> gives you a snapshot in time, but the list becomes stale the moment a device connects or disconnects. There is no built-in mechanism for live updates.</li>
+        <li><strong>No visual feedback on disconnects</strong> &mdash; When a device disconnects during an operation (e.g., an APK install), the result is a cryptic ADB error. There is no visual indication that the device is gone until the operation fails.</li>
+        <li><strong>Hard to select the right device</strong> &mdash; When multiple devices are connected (a mix of physical devices and emulators), targeting the right one requires memorizing serial numbers or running additional terminal commands.</li>
+    </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>ADB Discovery Order</h2>
+    <h2>Features</h2>
+
+    <h3>ADB Path Auto-Discovery</h3>
+    <p>Device Manager locates the ADB binary without any manual configuration. It checks multiple sources in a defined resolution order and uses the first valid binary found. If multiple ADB versions are detected, the most recent one is preferred. The 7-step resolution order is:</p>
+
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -108,9 +102,22 @@
         <span class="comment"># Override with a custom path in settings if needed.</span>
     </div>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
+    <h3>Device Listing with Status</h3>
+    <p>The device list shows every connected device with its serial number, model name, Android version, API level, and connection state (<code>device</code>, <code>unauthorized</code>, <code>offline</code>, <code>no permissions</code>). Devices in the <code>unauthorized</code> state are flagged with a prompt to accept the USB debugging authorization on the device itself. Offline and disconnected devices are grayed out but remain visible so you can track when they come back online.</p>
 
-    <h2>Connected Devices</h2>
+    <h3>TTL Caching</h3>
+    <p>Polling <code>adb devices</code> on every UI interaction would be wasteful and slow. Device Manager caches the device list with a configurable time-to-live (TTL), defaulting to 5 seconds. Within the TTL window, device queries return instantly from cache. Once the TTL expires, the next query triggers a background refresh. The TTL is adjustable from 1 to 30 seconds in settings.</p>
+
+    <h3>Device Selection for Install</h3>
+    <p>When AAB Tools or Build Tools need to install an APK, they query Device Manager for the target device. If a single device is connected, it is selected automatically. If multiple devices are connected, Device Manager presents a chooser dialog with device details so you can pick the right target. The last-selected device is remembered for the session, so repeated installs go to the same device without prompting.</p>
+
+    <h3>Emulator Detection</h3>
+    <p>Device Manager distinguishes between physical devices and emulators by parsing the device serial number format (<code>emulator-5554</code> for emulators, USB serial numbers for physical devices). Emulators are displayed with a distinct icon and show additional details like the AVD name and snapshot status. This distinction matters for install operations &mdash; some teams prefer to test on emulators during development and only deploy to physical devices for release testing.</p>
+
+    <h3>Connection Monitoring</h3>
+    <p>Device Manager runs a background listener that detects when devices are connected or disconnected. When a new device appears, the device list refreshes automatically and a notification appears in the IDE status bar. When a device disconnects mid-operation (e.g., during an APK install), the operation is paused gracefully and resumes when the device reconnects or a new device is selected.</p>
+
+    <h3>Device Status Table</h3>
     <div class="table-wrapper">
         <table>
             <thead>
@@ -162,26 +169,43 @@
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Usage</h2>
+    <h2>Getting Started</h2>
     <p>Device Manager operates automatically in the background, but you can interact with it directly:</p>
     <ul>
-        <li><strong>ADB Pro side panel</strong> — the "Devices" tab shows the current device list with status indicators</li>
-        <li><strong>Tools &gt; ADB Pro &gt; Refresh Devices</strong> — force an immediate device list refresh, bypassing the TTL cache</li>
-        <li><strong>Tools &gt; ADB Pro &gt; Select Device...</strong> — open the device chooser dialog manually</li>
-        <li><strong>Device context actions</strong> — right-click a device for actions like "Open Shell", "Reboot", or "Disconnect"</li>
+        <li><strong>ADB Pro side panel</strong> &mdash; the "Devices" tab shows the current device list with status indicators</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Refresh Devices</strong> &mdash; force an immediate device list refresh, bypassing the TTL cache</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Select Device...</strong> &mdash; open the device chooser dialog manually</li>
+        <li><strong>Device context actions</strong> &mdash; right-click a device for actions like "Open Shell", "Reboot", or "Disconnect"</li>
+    </ul>
+    <p>To view and select devices for install operations:</p>
+    <ol>
+        <li>Open the ADB Pro side panel and click the "Devices" tab.</li>
+        <li>Connected devices appear automatically (within the TTL window). Each device shows its model, Android version, API level, and connection state.</li>
+        <li>If a device shows <code>Unauthorized</code>, unlock the device and accept the USB debugging prompt.</li>
+        <li>To select a device for install operations, either let Device Manager auto-select (when one device is connected) or click <strong>Tools &gt; ADB Pro &gt; Select Device...</strong> to open the chooser.</li>
+        <li>The selected device is remembered for the session. Other ADB Pro modules (AAB Tools, Build Tools) will use this device automatically.</li>
+    </ol>
+    <p>To configure Device Manager, go to <strong>Settings &gt; Tools &gt; ADB Pro &gt; Device Manager</strong>. Here you can set a custom ADB binary path (overriding automatic discovery), the device list TTL in seconds (default: 5, range: 1-30), connection monitoring toggle, default device preference (physical vs. emulator), auto-select behavior when only one device is connected, and the status bar device indicator.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Verification</h2>
+    <p>After setup, confirm Device Manager is working correctly:</p>
+    <ul>
+        <li>Connected devices appear in the Devices tab with correct model name, Android version, API level, and connection status.</li>
+        <li>Disconnecting a device updates the list within the TTL period (default 5 seconds). The device is grayed out or removed.</li>
+        <li>Reconnecting a device (or starting an emulator) adds it to the list automatically without requiring a manual refresh.</li>
+        <li>ADB commands execute successfully from the IDE &mdash; for example, opening a shell or installing an APK targets the correct device.</li>
+        <li>When multiple devices are connected, the device chooser dialog presents all of them with enough detail to select the right one.</li>
     </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Settings</h2>
-    <p>Device Manager settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Device Manager</strong>. You can configure:</p>
+    <h2>References</h2>
     <ul>
-        <li>Custom ADB binary path (override automatic discovery)</li>
-        <li>Device list TTL in seconds (default: 5, range: 1-30)</li>
-        <li>Connection monitoring toggle (background listener for device events)</li>
-        <li>Default device preference (prefer physical devices over emulators, or vice versa)</li>
-        <li>Auto-select when only one device is connected (enabled by default)</li>
-        <li>Status bar device indicator (show current device in the IDE status bar)</li>
+        <li><a href="https://developer.android.com/tools/adb" target="_blank">Android Debug Bridge (ADB) Documentation</a></li>
+        <li><a href="https://developer.android.com/studio/run/device" target="_blank">Run Apps on a Hardware Device</a></li>
+        <li><a href="https://developer.android.com/studio/run/emulator" target="_blank">Run Apps on the Android Emulator</a></li>
     </ul>
 </div>
 

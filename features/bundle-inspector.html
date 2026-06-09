@@ -61,117 +61,92 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Bundle Inspector opens up any <code>.aab</code> file and gives you a complete view of its contents — modules, resource configurations, native libraries, and asset files. It goes beyond simple file listing by providing version-to-version size diffs, resource redundancy scanning, WebP conversion suggestions, and Git commit association so you can trace size regressions to specific changes. All build size history is stored locally on your machine.</p>
+    <h2>Introduction</h2>
+    <p>Bundle Inspector provides deep analysis of your Android App Bundle (<code>.aab</code>) files, giving you a complete view of their internal structure, resource composition, and size distribution across modules. It opens any AAB and breaks it down into modules, resource configurations, native libraries, and asset files &mdash; showing exactly what will ship to users when Google Play generates device-specific APKs.</p>
+    <p>Beyond static analysis, Bundle Inspector tracks bundle size across versions, records version-to-version diffs, and maintains a chronological history with trend indicators. Each inspection is associated with the Git commit that produced the build, so you can trace size regressions back to specific code changes without cross-referencing logs manually.</p>
+    <p>The module also includes a resource audit engine that scans for duplicate files, unused translations, oversized assets, and PNG images that would benefit from WebP conversion. All analysis results and size history are stored locally on your machine &mdash; no data leaves the IDE.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
-
-    <h3>AAB File Analysis</h3>
-    <p>Open any AAB file and inspect its internal structure. Bundle Inspector shows all included modules (base, dynamic features, asset packs), their individual sizes, and the configuration splits (ABI, screen density, language) that Google Play will use to generate device-specific APKs. Drill down into each module to see its file tree with sizes for every entry.</p>
-
-    <h3>Size Tracking with Version Diffs</h3>
-    <p>Every inspected bundle is recorded with its total size, module breakdown, and version code. Compare any two versions side-by-side to see exactly what grew or shrank. The diff view highlights which modules, resources, or native libraries contributed to size changes, making it easy to catch unexpected bloat before release.</p>
-
-    <h3>Resource Redundancy Scanning</h3>
-    <p>Bundle Inspector scans your bundle for duplicate or near-duplicate resources — identical images in different drawable folders, unused string translations, or redundant layout files. Redundant resources are grouped by type and sorted by potential size savings so you can prioritize what to clean up first.</p>
-
-    <h3>WebP Conversion Suggestions</h3>
-    <p>PNG and JPEG images that would benefit from WebP conversion are flagged with estimated size savings. Bundle Inspector calculates the difference between the current format and a WebP equivalent at comparable quality, giving you a clear picture of how much space you can reclaim. Suggestions include the file path and estimated savings in kilobytes.</p>
-
-    <h3>Git Commit Association</h3>
-    <p>When your project is under Git version control, Bundle Inspector associates each build with the current commit hash. The size history view shows commit messages alongside size data, so you can answer questions like "which commit caused the 2 MB jump in native libraries?" without manually cross-referencing logs.</p>
-
-    <h3>Build Size History</h3>
-    <p>All inspected builds are stored locally in a lightweight database. The history view shows a chronological list with version code, total size, and module breakdown. Trend indicators highlight builds where the size changed significantly compared to the previous entry, helping you spot regressions at a glance.</p>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Size Breakdown Example</h2>
-    <div class="code-block">
-        <div class="code-header">
-            <div class="code-dot" style="background:#ff5f57"></div>
-            <div class="code-dot" style="background:#febc2e"></div>
-            <div class="code-dot" style="background:#28c840"></div>
-            <span style="margin-left:12px; font-size:12px; color:#64748b;">Bundle Inspector — size analysis output</span>
-        </div>
-        <span class="keyword">Bundle:</span> app-release.aab  (v2.4.1, build 24100)<br>
-        <span class="keyword">Total size:</span> 18.7 MB<br><br>
-        <span class="comment">Module breakdown:</span><br>
-        &nbsp;&nbsp;base &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;14.2 MB &nbsp;(75.9%)<br>
-        &nbsp;&nbsp;feature_chat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2.8 MB &nbsp;(15.0%)<br>
-        &nbsp;&nbsp;feature_analytics &nbsp;1.1 MB &nbsp;(5.9%)<br>
-        &nbsp;&nbsp;asset_pack_ml &nbsp;&nbsp;&nbsp;&nbsp;0.6 MB &nbsp;(3.2%)<br><br>
-        <span class="comment">Diff vs v2.4.0 (build 24000):</span><br>
-        &nbsp;&nbsp;base &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+320 KB  <span style="color:#f87171;">(+2.3%)</span><br>
-        &nbsp;&nbsp;feature_chat &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-45 KB &nbsp;<span style="color:#4ade80;">(-1.6%)</span><br>
-        &nbsp;&nbsp;<span class="keyword">Total</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;+275 KB  <span style="color:#f87171;">(+1.5%)</span>
-    </div>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Resource Audit Summary</h2>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Category</th>
-                    <th>Issues Found</th>
-                    <th>Potential Savings</th>
-                    <th>Priority</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>PNG to WebP conversion</td>
-                    <td>47 images</td>
-                    <td>1.8 MB</td>
-                    <td>High</td>
-                </tr>
-                <tr>
-                    <td>Duplicate resources</td>
-                    <td>12 files</td>
-                    <td>340 KB</td>
-                    <td>Medium</td>
-                </tr>
-                <tr>
-                    <td>Unused string translations</td>
-                    <td>8 locales (partial)</td>
-                    <td>95 KB</td>
-                    <td>Low</td>
-                </tr>
-                <tr>
-                    <td>Oversized assets (&gt; 500 KB)</td>
-                    <td>3 files</td>
-                    <td>620 KB</td>
-                    <td>High</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Usage</h2>
-    <p>Bundle Inspector is accessible from <strong>Tools &gt; ADB Pro &gt; Inspect Bundle...</strong> or from the ADB Pro side panel. To use it:</p>
+    <h2>Why Use Bundle Inspector?</h2>
+    <p>App size problems tend to accumulate silently over the course of development:</p>
     <ul>
-        <li>Select an <code>.aab</code> file from your build output or browse to any bundle on disk</li>
-        <li>The analysis panel opens automatically with the full module and resource breakdown</li>
-        <li>Click "Compare with..." to diff against a previously inspected version</li>
-        <li>Click "Run Audit" to scan for redundancy, WebP opportunities, and oversized assets</li>
-        <li>Size history is viewable from the "History" tab in the inspector panel</li>
+        <li><strong>Size grows unnoticed</strong> &mdash; Each release adds a few hundred kilobytes of new resources or native libraries. Without per-version tracking, the bundle balloons over months before anyone notices it has crossed a size threshold.</li>
+        <li><strong>No visibility into resource consumption</strong> &mdash; It is difficult to know which drawable folders, native ABIs, or asset packs consume the most space just by looking at the project structure. The AAB format hides internal sizes behind module splits and configuration APKs.</li>
+        <li><strong>Hard to track size regressions</strong> &mdash; When a bundle suddenly grows by 2 MB, finding the responsible commit requires building and measuring at each commit point &mdash; a tedious and error-prone process without automated size-per-commit tracking.</li>
+        <li><strong>Duplicate and unused resources go undetected</strong> &mdash; Identical images copied across drawable folders, partially translated string files, and oversized assets accumulate over time. Manual auditing is time-consuming and easy to skip.</li>
+        <li><strong>WebP conversion opportunities are missed</strong> &mdash; PNG and JPEG images that could be replaced with smaller WebP equivalents remain in the bundle, inflating download sizes and wasting user bandwidth.</li>
     </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Settings</h2>
-    <p>Bundle Inspector settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Bundle Inspector</strong>. You can configure:</p>
+    <h2>Features</h2>
+
+    <h3>AAB Analysis</h3>
+    <p>Open any AAB file and inspect its full internal structure. Bundle Inspector shows all included modules (base, dynamic features, asset packs), their individual sizes, and the configuration splits (ABI, screen density, language) that Google Play uses to generate device-specific APKs. Drill down into each module to see its complete file tree with sizes for every entry, from compiled resources to native libraries to raw assets.</p>
+
+    <h3>Size Tracking</h3>
+    <p>Every inspected bundle is recorded with its total size, module breakdown, and version code. Compare any two versions side-by-side to see exactly what grew or shrank. The diff view highlights which modules, resources, or native libraries contributed to size changes, making it easy to catch unexpected bloat before a release ships to production.</p>
+
+    <h3>Resource Auditing</h3>
+    <p>Bundle Inspector scans your bundle for duplicate or near-duplicate resources &mdash; identical images in different drawable folders, unused string translations, or redundant layout files. Redundant resources are grouped by type and sorted by potential size savings so you can prioritize what to clean up first. The audit report includes file paths, byte counts, and deduplication recommendations.</p>
+
+    <h3>WebP Suggestions</h3>
+    <p>PNG and JPEG images that would benefit from WebP conversion are flagged with estimated size savings. Bundle Inspector calculates the difference between the current format and a WebP equivalent at a comparable quality level, giving you a clear picture of how much space you can reclaim. Each suggestion includes the file path and estimated savings in kilobytes, sorted from largest to smallest opportunity.</p>
+
+    <h3>Git Association</h3>
+    <p>When your project is under Git version control, Bundle Inspector associates each build with the current commit hash. The size history view shows commit messages alongside size data, so you can answer questions like "which commit caused the 2 MB jump in native libraries?" without manually cross-referencing <code>git log</code>. This turns size tracking into a first-class part of your code review process.</p>
+
+    <h3>Size History</h3>
+    <p>All inspected builds are stored locally in a lightweight database. The history view shows a chronological list with version code, total size, and module breakdown. Trend indicators highlight builds where the size changed significantly compared to the previous entry, helping you spot regressions at a glance. The trend chart visualizes version-over-version size progression so you can identify inflection points where the bundle started growing faster than expected.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Getting Started</h2>
+    <p>Bundle Inspector is accessible from <strong>Tools &gt; ADB Pro &gt; Inspect Bundle...</strong> or from the ADB Pro side panel. Settings are at <strong>Settings &gt; Tools &gt; ADB Pro &gt; Bundle Inspector</strong>, where you can configure:</p>
     <ul>
         <li>Size history retention period (default: keep all entries)</li>
         <li>WebP quality threshold for conversion suggestions (default: 80%)</li>
         <li>Minimum file size for oversized asset warnings (default: 500 KB)</li>
         <li>Git integration toggle (auto-detect commit hash)</li>
+    </ul>
+
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Bundle Inspector workflow</span>
+        </div>
+        <span class="comment"># 1. Build your app bundle</span><br>
+        <span class="keyword">./gradlew</span> bundleRelease<br><br>
+        <span class="comment"># 2. Open Bundle Inspector from Tools > ADB Pro</span><br>
+        <span class="comment"># 3. Select the .aab from build outputs or browse to any file</span><br>
+        <span class="comment"># 4. View the full module and resource breakdown</span><br>
+        <span class="comment"># 5. Click "Run Audit" to scan for redundancy and WebP opportunities</span><br>
+        <span class="comment"># 6. Click "Compare with..." to diff against a previous version</span><br>
+        <span class="comment"># 7. Check the History tab for version-over-version trends</span>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Verification</h2>
+    <p>After running a Bundle Inspector analysis, confirm the results are accurate:</p>
+    <ul>
+        <li>The size breakdown table should show all modules (base, dynamic features, asset packs) with sizes that sum to the total AAB file size on disk.</li>
+        <li>The trend chart should display version-over-version data points when at least two inspections have been recorded, with correct version codes on the x-axis.</li>
+        <li>The resource audit should highlight known duplicate files in your project (create a test by copying an image into two drawable folders and rebuilding).</li>
+        <li>WebP suggestions should list PNG images larger than a few kilobytes, with estimated savings that match the actual size difference when converted with <code>cwebp</code>.</li>
+        <li>If Git association is enabled, the history entry should show the correct commit hash and message that matches <code>git log -1</code> at the time of inspection.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>References</h2>
+    <ul>
+        <li><a href="https://developer.android.com/guide/app-bundle" target="_blank">Android App Bundle Guide</a> &mdash; Official overview of the AAB format, module structure, and how Google Play generates device-specific APKs.</li>
+        <li><a href="https://developer.android.com/topic/performance/reduce-apk-size" target="_blank">Reduce App Size</a> &mdash; Google's best practices for shrinking APK and AAB size, including resource optimization and native library management.</li>
+        <li><a href="https://developer.android.com/tools/bundletool" target="_blank">bundletool CLI Reference</a> &mdash; Documentation for bundletool commands including <code>get-size</code> and <code>dump</code> used internally by the inspector.</li>
     </ul>
 </div>
 

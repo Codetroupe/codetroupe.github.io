@@ -61,31 +61,53 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>AAB Tools is the flagship module of ADB Pro, designed to eliminate the friction between building your Android app and getting it onto a device. It wraps Google's <code>bundletool</code> with an intuitive UI and adds powerful features like remote repository scanning, secure keystore management, and automated signing workflows.</p>
+    <h2>Introduction</h2>
+    <p>AAB Tools is the flagship module of ADB Pro, providing a fully integrated workflow for converting, signing, and installing Android App Bundles (<code>.aab</code> files) directly from your JetBrains IDE. At its core, it wraps Google's <code>bundletool</code> with a visual UI that handles binary management, device detection, and signing configuration automatically.</p>
+    <p>When you build an Android app for release, Gradle produces an <code>.aab</code> file rather than a directly installable APK. To test that bundle on a physical device or emulator, you need to convert it to a device-specific <code>.apks</code> archive, sign it with a valid keystore, and push it via ADB. AAB Tools consolidates all of these steps into a single panel, eliminating context-switching between the IDE, terminal, and file manager.</p>
+    <p>For QA teams and release managers, AAB Tools also supports scanning remote repositories (GitHub, GitLab) for release-candidate bundles, enabling a download-convert-install pipeline without ever leaving the IDE.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
+    <h2>Why Use AAB Tools?</h2>
+    <p>Working with Android App Bundles manually introduces friction at every step of the release pipeline:</p>
+    <ul>
+        <li><strong>Command-line bundletool complexity</strong> &mdash; Converting an AAB to an installable format requires downloading bundletool separately, remembering the correct flags (<code>build-apks</code>, <code>--mode=universal</code>, <code>--connected-device</code>), and specifying output paths manually.</li>
+        <li><strong>Keystore management overhead</strong> &mdash; Each conversion requires pointing bundletool at the right keystore file, alias, and passwords. Switching between debug and release keystores means retyping paths or maintaining shell scripts with credentials embedded.</li>
+        <li><strong>No remote repository support</strong> &mdash; Testing a release candidate from GitHub or GitLab means downloading the AAB manually through a browser or API call, then repeating the entire local conversion and install process.</li>
+        <li><strong>Fragmented tooling</strong> &mdash; The standard workflow jumps between Gradle output, bundletool CLI, <code>adb install</code>, and file manager. There is no single view that ties the build artifact to the installed result.</li>
+        <li><strong>Missing build artifacts</strong> &mdash; Locating the correct <code>.aab</code> file among multiple build output directories is error-prone, especially in multi-module projects with several flavor and build-type combinations.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Features</h2>
 
     <h3>AAB to APKS Conversion</h3>
-    <p>Automatically detects <code>.aab</code> files produced by your Gradle builds and converts them to <code>.apks</code> archives using bundletool. The bundletool binary is downloaded and managed automatically — no manual setup required.</p>
+    <p>ADB Pro automatically detects <code>.aab</code> files produced by your Gradle builds and converts them to <code>.apks</code> archives using bundletool. The bundletool binary is downloaded, version-checked, and managed automatically by the plugin &mdash; no manual installation required. Conversion supports multiple modes including universal APKs for testing, device-specific splits for accurate installs, and standalone APKs for legacy device compatibility.</p>
 
     <h3>One-Click Install</h3>
-    <p>Install converted APKS directly to any connected device or emulator. ADB Pro handles device detection, ADB path discovery, and installation status reporting.</p>
+    <p>Once an AAB has been converted to APKS, ADB Pro handles installation to any connected device or emulator in a single click. The plugin manages ADB path discovery, device enumeration, and installation status reporting. Multi-device installs are supported, letting you push the same bundle to several targets sequentially without repeating the conversion step.</p>
 
     <h3>Signing Configuration</h3>
-    <p>Parse signing configurations from your <code>build.gradle</code> or <code>build.gradle.kts</code> files. Manage keystores and key aliases with favorites. Passwords are stored securely via IntelliJ's PasswordSafe API — never in plain text.</p>
+    <p>AAB Tools parses signing configurations directly from your <code>build.gradle</code> or <code>build.gradle.kts</code> files, populating keystore paths and key aliases automatically. Manage multiple keystores and key aliases through a favorites system for instant switching. All passwords are stored securely via IntelliJ's PasswordSafe API &mdash; credentials are never written to plain-text config files or shell history.</p>
 
     <h3>Remote Repository Scanning</h3>
-    <p>Configure GitHub or GitLab repositories to scan for AAB files in release assets. Download remote bundles, convert, and install — useful for QA teams testing release candidates.</p>
+    <p>Configure GitHub or GitLab repositories to scan for AAB files attached to release assets. ADB Pro lists available bundles with version tags, download sizes, and upload dates. Download remote bundles, convert, and install directly &mdash; particularly useful for QA teams who need to test release candidates produced by CI/CD pipelines without requiring local build access.</p>
 
     <h3>File Scanning</h3>
-    <p>Automatically scans your project's build output directories for AAB files. No need to browse file dialogs — the latest build artifacts appear instantly.</p>
+    <p>AAB Tools automatically scans your project's build output directories (<code>build/outputs/bundle/</code>) for AAB files. The latest build artifacts appear instantly in the panel, sorted by modification time. No file dialogs or manual browsing required &mdash; the most recent AAB is always one click away.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Workflow</h2>
+    <h2>Getting Started</h2>
+    <p>AAB Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; AAB Tools</strong>. From there you can configure:</p>
+    <ul>
+        <li>Custom bundletool path (override the auto-managed version)</li>
+        <li>Default signing configuration and favorite keystores</li>
+        <li>Remote repository credentials and scan patterns</li>
+    </ul>
+    <p>Quick-access actions are also available under the <strong>Tools &gt; ADB Pro</strong> menu: Quick Install AAB, Select and Install AAB, Convert AAB to APKS, and Install APKS File.</p>
+
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -93,34 +115,34 @@
             <div class="code-dot" style="background:#28c840"></div>
             <span style="margin-left:12px; font-size:12px; color:#64748b;">Typical AAB Tools workflow</span>
         </div>
-        <span class="comment"># 1. Build your app</span><br>
+        <span class="comment"># 1. Build your app bundle</span><br>
         <span class="keyword">./gradlew</span> bundleRelease<br><br>
         <span class="comment"># 2. ADB Pro auto-detects the .aab output</span><br>
-        <span class="comment"># 3. Click "Convert" — bundletool generates .apks</span><br>
-        <span class="comment"># 4. Select target device</span><br>
-        <span class="comment"># 5. Click "Install" — done!</span>
+        <span class="comment"># 3. Click "Convert" in the AAB Tools panel</span><br>
+        <span class="comment">#    - bundletool generates a signed .apks archive</span><br>
+        <span class="comment"># 4. Select target device from the device dropdown</span><br>
+        <span class="comment"># 5. Click "Install" - app is pushed via ADB</span>
     </div>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Settings</h2>
-    <p>AAB Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; AAB Tools</strong>. You can configure:</p>
+    <h2>Verification</h2>
+    <p>After using AAB Tools, confirm that everything worked correctly:</p>
     <ul>
-        <li>Custom bundletool path (override auto-managed version)</li>
-        <li>Default signing configuration</li>
-        <li>Remote repository credentials and scan patterns</li>
-        <li>Favorite signing configs for quick access</li>
+        <li>Check that the <code>.apks</code> file appears in the output directory alongside the original <code>.aab</code> after conversion.</li>
+        <li>After installation, verify the app launches on the target device or emulator and displays the expected version name and version code.</li>
+        <li>Run <code>apksigner verify --verbose --print-certs app.apks</code> to confirm that the signing certificate matches the keystore you selected.</li>
+        <li>Use <code>adb shell pm list packages | grep &lt;your.package&gt;</code> to confirm the correct package name is installed on the device.</li>
+        <li>If using remote repository scanning, verify the downloaded AAB's SHA-256 checksum matches the one listed in the release notes.</li>
     </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Menu Actions</h2>
-    <p>AAB Tools also provides quick-access actions under the <strong>Tools &gt; ADB Pro</strong> menu:</p>
+    <h2>References</h2>
     <ul>
-        <li><strong>Quick Install AAB</strong> — Convert and install the most recent build</li>
-        <li><strong>Select and Install AAB...</strong> — Choose from all detected AAB files</li>
-        <li><strong>Convert AAB to APKS</strong> — Convert without installing</li>
-        <li><strong>Install APKS File...</strong> — Install a pre-existing APKS file</li>
+        <li><a href="https://developer.android.com/guide/app-bundle" target="_blank">Android App Bundle Guide</a> &mdash; Official overview of the AAB format, delivery mechanisms, and Play Store requirements.</li>
+        <li><a href="https://developer.android.com/tools/bundletool" target="_blank">bundletool CLI Reference</a> &mdash; Complete documentation for all bundletool commands including <code>build-apks</code>, <code>install-apks</code>, and <code>get-size</code>.</li>
+        <li><a href="https://developer.android.com/studio/publish/app-signing" target="_blank">App Signing Documentation</a> &mdash; Google's guide to keystore management, signing schemes, and Play App Signing.</li>
     </ul>
 </div>
 

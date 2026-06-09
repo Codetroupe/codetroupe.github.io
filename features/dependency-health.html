@@ -61,34 +61,30 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Modern Android projects accumulate hundreds of transitive dependencies, and keeping them healthy is a constant challenge. Dependency Health runs <code>./gradlew dependencies</code> under the hood, parses the full resolution tree, and surfaces problems that Gradle silently resolves — version conflicts, duplicate artifacts, deprecated libraries, and outdated catalog entries. It gives you a single dashboard to understand what your app actually depends on and what needs attention.</p>
+    <h2>Introduction</h2>
+    <p>Dependency Health provides full dependency tree analysis for your Android project. It runs <code>./gradlew dependencies</code> under the hood, parses the full resolution tree, and surfaces problems that Gradle silently resolves — version conflicts, duplicate artifacts, deprecated libraries, and outdated catalog entries.</p>
+    <p>Modern Android projects accumulate hundreds of transitive dependencies. Dependency Health gives you a single dashboard to understand what your app actually depends on, what needs attention, and how to resolve issues before they cause runtime failures. It also includes a visual editor for Gradle version catalogs (<code>libs.versions.toml</code>) so you can manage library versions without hand-editing TOML files.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
+    <h2>Why Use Dependency Health?</h2>
+    <p>Dependency problems are often invisible until they cause a crash in production. Here are the issues that Dependency Health catches early:</p>
+    <ul>
+        <li><strong>Dependency conflicts cause mysterious runtime crashes.</strong> When two libraries request different versions of the same artifact, Gradle silently picks the highest version — which may not be compatible with both callers, leading to <code>NoSuchMethodError</code> or <code>ClassNotFoundException</code> at runtime.</li>
+        <li><strong>Duplicate dependencies bloat APK size.</strong> The same library appearing under different group IDs or as both direct and transitive dependencies wastes space and can cause classpath conflicts.</li>
+        <li><strong>Deprecated libraries have security vulnerabilities.</strong> Libraries like the legacy Support Library, <code>kotlin-android-extensions</code>, and sunset Google Play Services modules no longer receive security patches.</li>
+        <li><strong>Version catalogs (<code>libs.versions.toml</code>) are hard to maintain manually.</strong> Tracking which versions are outdated across dozens of entries is tedious and error-prone without tooling.</li>
+    </ul>
 
-    <h3>Full Dependency Tree Display</h3>
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Features</h2>
+
+    <h3>Dependency Tree Display</h3>
     <p>View the complete dependency tree for any configuration — <code>implementation</code>, <code>debugImplementation</code>, <code>releaseImplementation</code>, <code>androidTestImplementation</code>, and their transitive closures. The tree is displayed in a collapsible panel with color-coded nodes: direct dependencies in bold, transitive dependencies indented, and resolved conflicts highlighted. Search and filter to find any artifact in the tree instantly.</p>
 
-    <h3>Version Conflict Detection with Resolution Suggestions</h3>
-    <p>Gradle resolves version conflicts by picking the highest version, but that does not always mean the right version. Dependency Health shows every conflict — where two paths in the tree request different versions of the same artifact — along with which version Gradle selected and which was rejected. For each conflict, ADB Pro suggests whether to add an explicit constraint, align versions, or investigate compatibility. This is especially valuable when a transitive dependency bumps unexpectedly after a library upgrade.</p>
-
-    <h3>Duplicate Dependency Identification</h3>
-    <p>The same library appearing under different group IDs or as both a direct and transitive dependency wastes APK size and can cause classpath issues. Dependency Health identifies duplicate artifacts (same functionality pulled via different coordinates) and suggests exclusions to keep your classpath clean. This is common when migrating between library ecosystems, such as moving from the old Support Library to AndroidX.</p>
-
-    <h3>Deprecation Warnings</h3>
-    <p>Dependency Health cross-references your dependencies against known deprecation notices. Libraries like the legacy Support Library, deprecated Kotlin extensions (<code>kotlin-android-extensions</code>), and sunset Google Play Services modules are flagged with a recommendation for their modern replacement. The deprecation database is updated with each ADB Pro release.</p>
-
-    <h3>Gradle Version Catalog Management</h3>
-    <p>If your project uses a Gradle version catalog (<code>libs.versions.toml</code>), Dependency Health provides a visual editor for it. View all declared versions, libraries, bundles, and plugins in a table. Sort by version age to find the most outdated entries. ADB Pro checks for newer stable versions and shows an update indicator next to each entry. Click to update the version in place — the TOML file is edited directly with proper formatting preserved.</p>
-
-    <h3>Dependency Diff Between Builds</h3>
-    <p>Compare the dependency tree of your current build against a previously analyzed build. The diff view shows newly added dependencies, removed dependencies, and version changes. This is invaluable during code review — when a PR changes dependencies, you can see exactly what was added, removed, or upgraded and assess the impact on APK size and compatibility.</p>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Dependency Conflict Example</h2>
+    <h3>Conflict Detection</h3>
+    <p>Gradle resolves version conflicts by picking the highest version, but that does not always mean the right version. Dependency Health shows every conflict — where two paths in the tree request different versions of the same artifact — along with which version Gradle selected and which was rejected. For each conflict, ADB Pro suggests whether to add an explicit constraint, align versions, or investigate compatibility.</p>
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -114,9 +110,14 @@
         &nbsp;&nbsp;<span class="comment">Suggestion: No action needed</span>
     </div>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
+    <h3>Duplicate Identification</h3>
+    <p>The same library appearing under different group IDs or as both a direct and transitive dependency wastes APK size and can cause classpath issues. Dependency Health identifies duplicate artifacts (same functionality pulled via different coordinates) and suggests exclusions to keep your classpath clean. This is common when migrating between library ecosystems, such as moving from the old Support Library to AndroidX.</p>
 
-    <h2>Version Catalog Editor</h2>
+    <h3>Deprecation Warnings</h3>
+    <p>Dependency Health cross-references your dependencies against known deprecation notices. Libraries like the legacy Support Library, deprecated Kotlin extensions (<code>kotlin-android-extensions</code>), and sunset Google Play Services modules are flagged with a recommendation for their modern replacement. The deprecation database is updated with each ADB Pro release.</p>
+
+    <h3>Version Catalog Management</h3>
+    <p>If your project uses a Gradle version catalog (<code>libs.versions.toml</code>), Dependency Health provides a visual editor for it. View all declared versions, libraries, bundles, and plugins in a table. Sort by version age to find the most outdated entries. ADB Pro checks for newer stable versions and shows an update indicator next to each entry. Click to update the version in place — the TOML file is edited directly with proper formatting preserved.</p>
     <div class="table-wrapper">
         <table>
             <thead>
@@ -161,27 +162,54 @@
         </table>
     </div>
 
+    <h3>Dependency Diff</h3>
+    <p>Compare the dependency tree of your current build against a previously analyzed build. The diff view shows newly added dependencies, removed dependencies, and version changes. This is invaluable during code review — when a PR changes dependencies, you can see exactly what was added, removed, or upgraded and assess the impact on APK size and compatibility.</p>
+
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Usage</h2>
-    <p>Dependency Health is accessible from multiple entry points:</p>
+    <h2>Getting Started</h2>
+    <p>Scan and manage your dependencies from these entry points:</p>
+    <ol>
+        <li>Open the <strong>Dependency Health</strong> tab in the ADB Pro side panel.</li>
+        <li>The panel runs a full dependency tree analysis, parsing the resolution tree and highlighting conflicts, duplicates, and deprecations.</li>
+        <li>Review the conflict report and apply suggestions — add explicit constraints to your version catalog or investigate compatibility for flagged items.</li>
+        <li>Open the version catalog editor by clicking the <strong>"Catalog Editor"</strong> gutter icon when viewing <code>libs.versions.toml</code>, or from the panel toolbar.</li>
+        <li>Use <strong>"Compare with previous analysis"</strong> from the panel toolbar to see a dependency diff after a library upgrade.</li>
+    </ol>
+    <p>Additional entry points:</p>
     <ul>
         <li><strong>Tools &gt; ADB Pro &gt; Analyze Dependencies</strong> — runs a full dependency tree analysis</li>
-        <li><strong>ADB Pro side panel</strong> — click the "Dependency Health" tab</li>
         <li><strong>Version catalog</strong> — open <code>libs.versions.toml</code> and click the "Catalog Editor" gutter icon</li>
-        <li><strong>Dependency diff</strong> — from the panel toolbar, select "Compare with previous analysis"</li>
     </ul>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Settings</h2>
-    <p>Dependency Health settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Dependency Health</strong>. You can configure:</p>
+    <p>Configure Dependency Health at <strong>Settings &gt; Tools &gt; ADB Pro &gt; Dependency Health</strong>:</p>
     <ul>
         <li>Configurations to analyze (default: <code>releaseRuntimeClasspath</code>)</li>
         <li>Artifact exclusion patterns (ignore known transitive conflicts)</li>
         <li>Deprecation check frequency (on-demand or automatic on project sync)</li>
         <li>Version catalog file path (auto-detected by default)</li>
         <li>Update check scope (stable only, or include release candidates)</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Verification</h2>
+    <p>After scanning dependencies and resolving issues, confirm that your dependency tree is healthy:</p>
+    <ul>
+        <li>Conflict report shows zero unresolved conflicts — all version conflicts have been addressed with explicit constraints or exclusions.</li>
+        <li>No deprecated dependencies are highlighted in red — all flagged libraries have been replaced with their modern equivalents.</li>
+        <li>Your <code>libs.versions.toml</code> version catalog file is up to date, with no stale entries showing "Update available" status.</li>
+        <li>Dependency diff after a library upgrade shows only the expected additions and removals — no unexpected transitive changes.</li>
+        <li>Duplicate identification report is clean — no artifacts appear under multiple coordinates in your classpath.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>References</h2>
+    <p>Official documentation for Gradle dependency management:</p>
+    <ul>
+        <li><a href="https://docs.gradle.org/current/userguide/dependency_resolution.html" target="_blank">Dependency Resolution — Gradle User Guide</a></li>
+        <li><a href="https://developer.android.com/build/dependencies" target="_blank">Add build dependencies — Android Developers</a></li>
+        <li><a href="https://docs.gradle.org/current/userguide/platforms.html" target="_blank">Using Gradle's version catalog — Gradle User Guide</a></li>
     </ul>
 </div>
 

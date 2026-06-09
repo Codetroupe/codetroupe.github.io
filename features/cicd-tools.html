@@ -61,31 +61,42 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Setting up continuous integration for an Android project involves boilerplate that most developers copy from blog posts and then customize through trial and error. CI/CD Tools eliminates this by analyzing your project's Gradle configuration — detecting build variants, signing configs, SDK versions, and Java/Kotlin toolchain requirements — and generating a complete pipeline configuration file. The output is not a generic template; it is a config tailored to your specific project that you can commit directly to your repository.</p>
+    <h2>Introduction</h2>
+    <p>CI/CD Tools generates production-ready continuous integration and deployment configuration files tailored to your Android project. Instead of writing pipeline definitions from scratch, the tool analyzes your Gradle setup &mdash; build variants, signing configs, SDK versions, and toolchain requirements &mdash; and produces a complete, commit-ready config for GitHub Actions, GitLab CI, or Jenkins.</p>
+    <p>The generated output is not a generic starter template. It reflects your project's actual structure: detected variant names, correct JDK and build-tools versions, Gradle caching strategies, and signing credentials mapped to CI environment variables. Whether you are adding CI to an Android project for the first time or migrating an existing pipeline, CI/CD Tools gets you a working configuration in one step.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
+    <h2>Why Use CI/CD Tools?</h2>
+    <p>Writing CI/CD configurations for Android projects from scratch is more difficult than it looks. Here are the common pain points developers face:</p>
+    <ul>
+        <li><strong>Tedious boilerplate</strong> &mdash; Every Android pipeline needs the same foundational steps: JDK setup, SDK configuration, Gradle wrapper invocation, caching, and artifact upload. Writing these from scratch for every project is repetitive and error-prone.</li>
+        <li><strong>Android-specific requirements</strong> &mdash; Unlike simple backend services, Android projects require specific SDK platforms, build-tools versions, signing keystores, and multiple build variants. Missing a single dependency can cause silent build failures in CI.</li>
+        <li><strong>Fragile YAML syntax</strong> &mdash; A misplaced space or incorrect indentation in a YAML pipeline file can break the entire build. Debugging YAML errors in a CI environment (rather than locally) wastes significant time.</li>
+        <li><strong>Keeping configs updated</strong> &mdash; As your project evolves (new product flavors, updated SDK versions, changed signing configs), the CI pipeline must be updated to match. Stale configurations lead to builds that pass in CI but fail in production.</li>
+        <li><strong>Platform-specific differences</strong> &mdash; GitHub Actions, GitLab CI, and Jenkins each have their own syntax, caching mechanisms, and secret management approaches. Maintaining configs across multiple platforms multiplies the effort.</li>
+    </ul>
 
-    <h3>GitHub Actions Workflow Generation</h3>
-    <p>Generate a <code>.github/workflows/android-build.yml</code> file that builds, tests, and optionally signs your Android app. The workflow is configured with the correct JDK version (detected from your <code>build.gradle</code>), Android SDK platform, and build tools version. Jobs include Gradle caching via <code>actions/cache</code>, artifact upload for APK/AAB outputs, and optional signing with keystore secrets. The trigger events (push, pull request, tag) are configurable in the generation dialog.</p>
+    <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h3>GitLab CI Pipeline Generation</h3>
+    <h2>Features</h2>
+
+    <h3>GitHub Actions Generation</h3>
+    <p>Generate a <code>.github/workflows/android-build.yml</code> file that builds, tests, and optionally signs your Android app. The workflow is configured with the correct JDK version (detected from your <code>build.gradle</code>), Android SDK platform, and build-tools version. Jobs include Gradle caching via <code>actions/cache</code>, artifact upload for APK/AAB outputs, and optional signing with keystore secrets stored as GitHub repository secrets. Trigger events (push, pull request, tag) are configurable in the generation dialog.</p>
+
+    <h3>GitLab CI Generation</h3>
     <p>Generate a <code>.gitlab-ci.yml</code> file with stages for build, test, lint, and deploy. The pipeline uses the correct Docker image for your Android SDK version, configures Gradle caching with the GitLab CI cache mechanism, and includes stages for running unit tests and generating build artifacts. For projects with multiple flavors, each flavor can get its own build job running in parallel.</p>
 
-    <h3>Jenkins Jenkinsfile Generation</h3>
-    <p>Generate a declarative <code>Jenkinsfile</code> with stages for checkout, environment setup, build, test, and archive. The pipeline includes proper Android SDK tool installation via the Jenkins Android Emulator plugin, Gradle wrapper invocation, and artifact archiving. Credentials for signing keystores are referenced via Jenkins credential bindings rather than hardcoded.</p>
+    <h3>Jenkins Generation</h3>
+    <p>Generate a declarative <code>Jenkinsfile</code> with stages for checkout, environment setup, build, test, and archive. The pipeline includes proper Android SDK tool installation via the Jenkins Android Emulator plugin, Gradle wrapper invocation, and artifact archiving. Signing keystore credentials are referenced via Jenkins credential bindings rather than hardcoded into the pipeline.</p>
 
     <h3>Auto-Detection of Build Variants and Signing Configs</h3>
-    <p>CI/CD Tools parses your Gradle files to detect all available build variants and signing configurations. The generation dialog pre-populates pipeline jobs based on what it finds — if you have <code>freeDebug</code>, <code>freeRelease</code>, <code>paidDebug</code>, and <code>paidRelease</code> variants, the generated config includes jobs for each (or lets you select which to include). Signing configs detected in <code>build.gradle</code> are mapped to CI environment variables so secrets stay out of the config file.</p>
+    <p>CI/CD Tools parses your Gradle files to detect all available build variants and signing configurations. The generation dialog pre-populates pipeline jobs based on what it finds &mdash; if you have <code>freeDebug</code>, <code>freeRelease</code>, <code>paidDebug</code>, and <code>paidRelease</code> variants, the generated config includes jobs for each (or lets you select which to include). Signing configs detected in <code>build.gradle</code> are mapped to CI environment variables so secrets stay out of the config file.</p>
 
     <h3>Customizable Templates</h3>
     <p>The generation dialog provides a live preview of the configuration file with editable fields. Adjust JDK distribution (Temurin, Zulu, Corretto), add custom environment variables, insert pre-build or post-build scripts, change the Gradle version, or add Firebase App Distribution steps. The preview updates in real time as you modify options, so you can review the final output before generating.</p>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Generated GitHub Actions Example</h2>
+    <h3>Generated GitHub Actions Example</h3>
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -123,9 +134,7 @@
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;path: app/build/outputs/apk/release/*.apk
     </div>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Supported Platforms</h2>
+    <h3>Supported Platforms</h3>
     <div class="table-wrapper">
         <table>
             <thead>
@@ -165,25 +174,43 @@
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Usage</h2>
-    <p>CI/CD Tools can be triggered from:</p>
+    <h2>Getting Started</h2>
+    <p>CI/CD Tools can be triggered from several entry points in your IDE:</p>
     <ul>
-        <li><strong>Tools &gt; ADB Pro &gt; Generate CI/CD Config...</strong> — opens the generation dialog</li>
-        <li><strong>ADB Pro side panel</strong> — click the "CI/CD Tools" tab</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Generate CI/CD Config...</strong> &mdash; opens the generation dialog</li>
+        <li><strong>ADB Pro side panel</strong> &mdash; click the "CI/CD Tools" tab</li>
         <li><strong>Right-click your project root</strong> and select "Generate CI/CD Pipeline"</li>
     </ul>
-    <p>The generated file is written directly to the correct location in your project (e.g., <code>.github/workflows/</code> for GitHub Actions). You can review it, adjust any parameters, and commit it to version control.</p>
+    <p>Once the dialog opens, follow these steps:</p>
+    <ol>
+        <li>Select the target CI/CD platform (GitHub Actions, GitLab CI, or Jenkins).</li>
+        <li>Review the auto-detected build variants and signing configs. Uncheck any variants you do not want included.</li>
+        <li>Configure trigger events, JDK distribution, and optional stages (test, lint, deploy).</li>
+        <li>Review the live preview. Edit any fields as needed.</li>
+        <li>Click <strong>Generate</strong>. The config file is written directly to the correct location in your project (e.g., <code>.github/workflows/</code> for GitHub Actions).</li>
+    </ol>
+    <p>To customize default behavior, go to <strong>Settings &gt; Tools &gt; ADB Pro &gt; CI/CD Tools</strong>. Here you can set the default JDK distribution and version, default trigger events, whether to include test and lint stages, custom pre-build and post-build script snippets, and Firebase App Distribution integration.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Settings</h2>
-    <p>CI/CD Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; CI/CD Tools</strong>. You can configure:</p>
+    <h2>Verification</h2>
+    <p>After generating your CI/CD configuration, confirm everything works correctly:</p>
     <ul>
-        <li>Default JDK distribution and version (auto-detected from project by default)</li>
-        <li>Default trigger events for new workflows</li>
-        <li>Whether to include test and lint stages by default</li>
-        <li>Custom pre-build and post-build script snippets</li>
-        <li>Firebase App Distribution integration (optional deploy stage)</li>
+        <li>The generated file is valid YAML (or valid declarative Groovy for Jenkins). Use a YAML linter or the platform's own validation to check syntax.</li>
+        <li>Pushing the config file to your repository triggers the pipeline automatically on the configured events (push, pull request, or tag).</li>
+        <li>The build succeeds in the CI environment without manual intervention &mdash; JDK setup, SDK installation, Gradle caching, and artifact upload all work as expected.</li>
+        <li>Build variants and signing configurations in the CI output match what you see in local builds.</li>
+        <li>Secrets (keystore passwords, API keys) are sourced from CI environment variables or credential bindings, not hardcoded in the config file.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>References</h2>
+    <ul>
+        <li><a href="https://docs.github.com/en/actions" target="_blank">GitHub Actions Documentation</a></li>
+        <li><a href="https://docs.gitlab.com/ee/ci/" target="_blank">GitLab CI/CD Documentation</a></li>
+        <li><a href="https://www.jenkins.io/doc/book/pipeline/" target="_blank">Jenkins Pipeline Documentation</a></li>
+        <li><a href="https://developer.android.com/studio/build" target="_blank">Android Build System Documentation</a></li>
     </ul>
 </div>
 

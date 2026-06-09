@@ -61,34 +61,35 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Android Lint is a powerful static analysis tool that catches bugs, performance issues, accessibility problems, and security vulnerabilities. However, the raw XML output from a Gradle-based lint run can be overwhelming — hundreds of issues buried in a file you need to open separately. Lint Tools bridges this gap by running lint through Gradle, parsing the XML report, and presenting the results in an interactive panel inside your IDE. Filter by severity, navigate to source, apply fix suggestions, and manage baselines — all without leaving your editor.</p>
+    <h2>Introduction</h2>
+    <p>Lint Tools brings Android Lint integration directly into your IDE with parsed result visualization, severity filtering, and actionable fix suggestions. Instead of wrestling with raw XML output from Gradle-based lint runs, Lint Tools presents issues in a structured, navigable panel where you can filter by severity, jump to source, and apply corrections.</p>
+    <p>It wraps the full power of Android Lint — catching bugs, performance issues, accessibility problems, and security vulnerabilities — and adds baseline management and custom rule integration so you can adopt lint incrementally even in large codebases.</p>
+    <p>Run lint from the ADB Pro panel, review results without leaving your editor, and keep a baseline of known issues so only new violations surface in each run.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
+    <h2>Why Use Lint Tools?</h2>
+    <p>Android Lint is powerful but its raw output is difficult to work with. Here are the problems developers encounter without proper tooling:</p>
+    <ul>
+        <li><strong>Lint warnings accumulate over time and get ignored.</strong> When a project has hundreds of existing warnings, developers stop noticing new ones — and the signal-to-noise ratio drops to zero.</li>
+        <li><strong>Raw lint output is hard to parse.</strong> The Gradle lint task produces a raw XML report that you need to open separately, making it tedious to navigate between issues and source code.</li>
+        <li><strong>No easy way to see severity breakdown.</strong> Without visual grouping by severity or category, it is impossible to quickly assess whether your codebase has critical issues or just cosmetic suggestions.</li>
+        <li><strong>Hard to prioritize which issues to fix first.</strong> Fatal errors that cause crashes should be fixed immediately, but they get buried alongside informational suggestions in a flat list.</li>
+    </ul>
 
-    <h3>Run Lint Checks from IDE</h3>
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Features</h2>
+
+    <h3>Lint Execution</h3>
     <p>Trigger a full lint analysis by clicking "Run Lint" in the ADB Pro panel or via <strong>Tools &gt; ADB Pro &gt; Run Lint</strong>. ADB Pro executes the <code>lint</code> Gradle task for your selected variant and streams progress to the panel. You can also run lint on a specific module or limit the check to a subset of issue categories for faster iteration.</p>
 
     <h3>Parsed Result Display</h3>
-    <p>Instead of opening a raw XML file, lint results are parsed and displayed in a structured tree view grouped by category: Correctness, Performance, Security, Usability, Accessibility, and Internationalization. Each issue shows its ID, message, affected file, and line number. Click any issue to jump directly to the source location in your editor.</p>
+    <p>Lint results are parsed and displayed in a structured tree view grouped by category: Correctness, Performance, Security, Usability, Accessibility, and Internationalization. Each issue shows its ID, message, affected file, and line number. Click any issue to jump directly to the source location in your editor.</p>
 
     <h3>Severity Filtering</h3>
-    <p>Filter lint results by severity level: <strong>Error</strong>, <strong>Warning</strong>, <strong>Information</strong>, or <strong>Fatal</strong>. Combine filters to focus on what matters — for example, show only errors and fatal issues before a release, or include warnings during a cleanup sprint. Filter state is preserved across lint runs for consistency.</p>
+    <p>Filter lint results by severity level: <strong>Fatal</strong>, <strong>Error</strong>, <strong>Warning</strong>, or <strong>Information</strong>. Combine filters to focus on what matters — for example, show only Fatal and Error issues before a release, or include Warnings during a cleanup sprint. Filter state is preserved across lint runs for consistency.</p>
 
-    <h3>Fix Suggestions</h3>
-    <p>Each lint issue includes a description of the problem and, where available, a suggested fix. For common issues like missing <code>contentDescription</code> on ImageView, unused imports, or hardcoded strings, ADB Pro provides one-click quick fixes that apply the correction directly to your source file. More complex issues include a detailed explanation and a link to the official Android documentation.</p>
-
-    <h3>Baseline Management</h3>
-    <p>Lint baselines let you suppress known issues so that only new violations are reported. ADB Pro provides a visual interface for creating, updating, and reviewing baselines. When you run lint with a baseline in place, existing issues are hidden and only newly introduced problems appear — perfect for incremental adoption of lint in large codebases. You can also view exactly which issues are suppressed and remove entries that have been fixed.</p>
-
-    <h3>Custom Lint Rule Integration</h3>
-    <p>If your project includes custom lint rules (via a separate lint-checks module), ADB Pro detects them automatically and includes their results alongside the standard Android Lint checks. Custom rules are tagged with their source module so you can distinguish project-specific issues from built-in ones.</p>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Lint Results Example</h2>
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -112,64 +113,61 @@
         &nbsp;&nbsp;...and 2 more categories
     </div>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
+    <h3>Fix Suggestions</h3>
+    <p>Each lint issue includes a description of the problem and, where available, a suggested fix. For common issues like missing <code>contentDescription</code> on ImageView, unused imports, or hardcoded strings, ADB Pro provides one-click quick fixes that apply the correction directly to your source file. More complex issues include a detailed explanation and a link to the official Android documentation.</p>
 
-    <h2>Severity Levels</h2>
-    <div class="table-wrapper">
-        <table>
-            <thead>
-                <tr>
-                    <th>Severity</th>
-                    <th>Description</th>
-                    <th>Recommended Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Fatal</strong></td>
-                    <td>Definite crash or data loss at runtime</td>
-                    <td>Fix immediately; blocks release</td>
-                </tr>
-                <tr>
-                    <td><strong>Error</strong></td>
-                    <td>Likely bug or misconfiguration</td>
-                    <td>Fix before release</td>
-                </tr>
-                <tr>
-                    <td><strong>Warning</strong></td>
-                    <td>Potential issue or bad practice</td>
-                    <td>Review and fix when possible</td>
-                </tr>
-                <tr>
-                    <td><strong>Information</strong></td>
-                    <td>Suggestion for improvement</td>
-                    <td>Consider for future cleanup</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+    <h3>Baseline Management</h3>
+    <p>Lint baselines let you suppress known issues so that only new violations are reported. ADB Pro provides a visual interface for creating, updating, and reviewing baselines. When you run lint with a baseline in place, existing issues are hidden and only newly introduced problems appear — perfect for incremental adoption of lint in large codebases. You can also view exactly which issues are suppressed and remove entries that have been fixed.</p>
+
+    <h3>Custom Rules</h3>
+    <p>If your project includes custom lint rules (via a separate lint-checks module), ADB Pro detects them automatically and includes their results alongside the standard Android Lint checks. Custom rules are tagged with their source module so you can distinguish project-specific issues from built-in ones.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Usage</h2>
-    <p>Lint Tools can be used from multiple entry points:</p>
+    <h2>Getting Started</h2>
+    <p>Run lint and configure options from these entry points:</p>
+    <ol>
+        <li>Open the <strong>Lint Tools</strong> tab in the ADB Pro side panel.</li>
+        <li>Click <strong>"Run Lint"</strong> to execute a full lint analysis on the current build variant.</li>
+        <li>Review results in the parsed tree view — use severity filters to focus on critical issues first.</li>
+        <li>Click any issue to jump to its source location and apply the suggested fix.</li>
+        <li>Create a baseline from the panel toolbar to suppress known issues and track only new violations going forward.</li>
+    </ol>
+    <p>Additional entry points:</p>
     <ul>
         <li><strong>Tools &gt; ADB Pro &gt; Run Lint</strong> — runs a full lint check on the current variant</li>
-        <li><strong>ADB Pro side panel</strong> — click the "Lint Tools" tab for results and filtering</li>
         <li><strong>Right-click a module</strong> in the project view and select "Run Lint on Module"</li>
         <li><strong>Baseline actions</strong> — create, update, or clear the lint baseline from the panel toolbar</li>
     </ul>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Settings</h2>
-    <p>Lint Tools settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Lint Tools</strong>. You can configure:</p>
+    <p>Configure lint options at <strong>Settings &gt; Tools &gt; ADB Pro &gt; Lint Tools</strong>:</p>
     <ul>
         <li>Default severity filter on panel open</li>
         <li>Lint check categories to include or exclude</li>
         <li>Baseline file path (default: <code>lint-baseline.xml</code> in the project root)</li>
         <li>Auto-run lint after successful build</li>
         <li>Maximum issues displayed (for very large projects)</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Verification</h2>
+    <p>After running lint and applying fixes, confirm that Lint Tools is working correctly:</p>
+    <ul>
+        <li>Lint results table shows issue counts grouped by severity (Fatal, Error, Warning, Information) — verify the totals match your expectations.</li>
+        <li>Zero Fatal errors is the minimum bar for a healthy codebase. Fatal issues indicate definite crashes or data loss at runtime.</li>
+        <li>A baseline file has been created (typically <code>lint-baseline.xml</code> in the project root) to track known issues and suppress them from future runs.</li>
+        <li>After creating or updating a baseline, re-run lint to confirm that only new violations are reported.</li>
+        <li>Click on any issue in the panel to verify that source navigation jumps to the correct file and line number.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>References</h2>
+    <p>Official documentation for Android Lint and custom lint rules:</p>
+    <ul>
+        <li><a href="https://developer.android.com/studio/write/lint" target="_blank">Improve your code with lint — Android Developers</a></li>
+        <li><a href="https://googlesamples.github.io/android-custom-lint-rules/" target="_blank">Android Custom Lint Rules — Google Samples</a></li>
+        <li><a href="https://developer.android.com/studio/write/lint#config" target="_blank">Configure lint options — Android Developers</a></li>
     </ul>
 </div>
 

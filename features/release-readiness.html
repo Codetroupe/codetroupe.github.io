@@ -61,55 +61,66 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>Releasing an Android app involves more than just building a release APK. Release Readiness automates the pre-flight checks that experienced developers run through manually — and that inexperienced developers often skip entirely. Each of the 13 checklist items inspects your project configuration, manifest, build outputs, and dependencies to produce a clear pass/fail result with actionable details. Run it before every release to catch issues early and build confidence in your shipping build.</p>
+    <h2>Introduction</h2>
+    <p>Release Readiness is a 13-point automated pre-release checklist that verifies your app is ready for production deployment. Each check inspects your project configuration, manifest, build outputs, and dependencies to produce a clear pass/fail result with actionable details.</p>
+    <p>Instead of relying on manual checklists that get skipped under deadline pressure, Release Readiness runs all 13 checks in a single pass and presents a consolidated report. It catches the misconfigurations, security issues, and policy violations that commonly slip through before a release reaches the Play Store.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Key Capabilities</h2>
-
-    <h3>Debuggable Flag Check</h3>
-    <p>Verifies that the <code>android:debuggable</code> attribute is set to <code>false</code> in the release build. A debuggable release build exposes your app to security risks and is automatically rejected by the Play Store. This check also scans for <code>BuildConfig.DEBUG</code> usage that may inadvertently enable debug behavior in production.</p>
-
-    <h3>MinifyEnabled Verification</h3>
-    <p>Confirms that code shrinking (R8/ProGuard) is enabled for the release build type via <code>minifyEnabled true</code>. Unminified release builds are larger, slower to install, and expose your source code to reverse engineering. The check includes resource shrinking (<code>shrinkResources true</code>) status as well.</p>
-
-    <h3>API Key Exposure Scan</h3>
-    <p>Scans your source code and resource files for hardcoded API keys, secrets, and tokens using pattern matching. Detects common patterns for Google Maps keys, Firebase config values, AWS credentials, and third-party SDK tokens. Hardcoded secrets in release builds are a critical security vulnerability.</p>
-
-    <h3>SDK Version Compliance</h3>
-    <p>Validates that your <code>targetSdkVersion</code> meets the current Google Play requirements. Google periodically raises the minimum target SDK for new app submissions and updates. This check also verifies that <code>compileSdkVersion</code> is sufficient for the libraries in use and flags any deprecated API usage.</p>
-
-    <h3>Signing Configuration</h3>
-    <p>Ensures the release build is signed with a proper release keystore — not the debug keystore. Checks that the signing config uses v2 or v3 APK Signature Scheme (required for Play App Signing) and that the keystore certificate validity period extends beyond the app's expected lifespan.</p>
-
-    <h3>ProGuard Rules Review</h3>
-    <p>Verifies that ProGuard/R8 rules files exist and are properly referenced in the build configuration. Flags common issues like missing <code>-keep</code> rules for reflection-heavy libraries, overly broad wildcard rules, and rules that may strip required code paths.</p>
-
-    <h3>Version Code and Name</h3>
-    <p>Checks that <code>versionCode</code> is incremented compared to the last known release and that <code>versionName</code> follows semantic versioning conventions. A stale version code will cause Play Store upload failures, and inconsistent version names confuse users and QA teams.</p>
-
-    <h3>Target SDK Version</h3>
-    <p>Goes beyond basic SDK compliance by checking runtime permission behavior changes, background execution limits, and other platform-level requirements introduced in recent Android versions. Ensures your app handles the behavioral changes required by its target API level.</p>
-
-    <h3>Permissions Review</h3>
-    <p>Lists all permissions declared in the manifest and highlights potentially sensitive ones (location, camera, microphone, contacts, phone state). Flags permissions that lack corresponding runtime permission request code, which would cause crashes on Android 6.0+. Also detects unused permissions that should be removed to reduce the app's attack surface.</p>
-
-    <h3>Test Coverage</h3>
-    <p>Checks for the presence of test source sets and optionally runs unit tests to verify they pass before release. While ADB Pro does not enforce a specific coverage threshold, it reports whether tests exist, whether they pass, and the last execution timestamp.</p>
-
-    <h3>Resource Optimization</h3>
-    <p>Verifies that resource shrinking is enabled, checks for unused resources detected by Android Lint, and flags large image assets that could benefit from WebP conversion or vector drawable replacement. Unoptimized resources bloat your APK and increase install abandonment.</p>
-
-    <h3>Manifest Checks</h3>
-    <p>Validates critical manifest attributes: <code>android:allowBackup</code> (should be false or configured with rules), <code>android:usesCleartextTraffic</code> (should be false in production), <code>android:exported</code> on all components (required on Android 12+), and <code>android:networkSecurityConfig</code> presence.</p>
-
-    <h3>Dependency Audit</h3>
-    <p>Scans your dependency tree for known vulnerabilities using public CVE databases. Flags outdated dependencies with available security patches, snapshot versions that should not appear in release builds, and conflicting transitive dependencies that may cause runtime issues.</p>
+    <h2>Why Use Release Readiness?</h2>
+    <p>Pre-release mistakes are costly — they reach production users before you can react. Here are the problems that Release Readiness solves:</p>
+    <ul>
+        <li><strong>Forgetting to disable <code>debuggable</code>.</strong> A debuggable release build exposes your app to security risks and is automatically rejected by the Play Store, yet it is one of the most common oversights.</li>
+        <li><strong>Leaving API keys hardcoded in source code.</strong> Secrets for Google Maps, Firebase, AWS, and third-party SDKs get committed to repositories and shipped in APKs where anyone can extract them.</li>
+        <li><strong>Not enabling <code>minifyEnabled</code>.</strong> Unminified release builds are larger, slower to install, and expose your source code to reverse engineering.</li>
+        <li><strong>Wrong target SDK version.</strong> Google periodically raises the minimum target SDK for new submissions. Missing the requirement means your app update is rejected.</li>
+        <li><strong>Manual checklists are error-prone and get skipped under deadline pressure.</strong> Even experienced developers miss items when rushing to meet a release date, and paper checklists leave no audit trail.</li>
+    </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Checklist Results Example</h2>
+    <h2>Features</h2>
+    <p>Release Readiness runs 13 automated checks, each targeting a specific aspect of release configuration:</p>
+
+    <h3>1. Debuggable Flag Check</h3>
+    <p>Verifies that <code>android:debuggable</code> is set to <code>false</code> in the release build. Also scans for <code>BuildConfig.DEBUG</code> usage that may inadvertently enable debug behavior in production.</p>
+
+    <h3>2. MinifyEnabled Verification</h3>
+    <p>Confirms that code shrinking (R8/ProGuard) is enabled via <code>minifyEnabled true</code> for the release build type, along with resource shrinking (<code>shrinkResources true</code>) status.</p>
+
+    <h3>3. API Key Exposure Scan</h3>
+    <p>Scans source code and resource files for hardcoded API keys, secrets, and tokens using pattern matching. Detects common patterns for Google Maps keys, Firebase config values, AWS credentials, and third-party SDK tokens.</p>
+
+    <h3>4. SDK Version Compliance</h3>
+    <p>Validates that <code>targetSdkVersion</code> meets current Google Play requirements and that <code>compileSdkVersion</code> is sufficient for the libraries in use. Flags deprecated API usage.</p>
+
+    <h3>5. Signing Configuration</h3>
+    <p>Ensures the release build is signed with a proper release keystore — not the debug keystore. Checks for v2 or v3 APK Signature Scheme (required for Play App Signing) and keystore certificate validity.</p>
+
+    <h3>6. ProGuard Rules Review</h3>
+    <p>Verifies that ProGuard/R8 rules files exist and are properly referenced. Flags missing <code>-keep</code> rules for reflection-heavy libraries and overly broad wildcard rules.</p>
+
+    <h3>7. Version Code and Name</h3>
+    <p>Checks that <code>versionCode</code> is incremented compared to the last known release and that <code>versionName</code> follows semantic versioning conventions.</p>
+
+    <h3>8. Target SDK Version</h3>
+    <p>Goes beyond basic SDK compliance by checking runtime permission behavior changes, background execution limits, and platform-level requirements introduced in recent Android versions.</p>
+
+    <h3>9. Permissions Review</h3>
+    <p>Lists all declared permissions and highlights sensitive ones (location, camera, microphone, contacts, phone state). Flags permissions that lack corresponding runtime request code and detects unused permissions.</p>
+
+    <h3>10. Test Coverage</h3>
+    <p>Checks for the presence of test source sets and optionally runs unit tests to verify they pass. Reports whether tests exist, whether they pass, and the last execution timestamp.</p>
+
+    <h3>11. Resource Optimization</h3>
+    <p>Verifies that resource shrinking is enabled, checks for unused resources, and flags large image assets that could benefit from WebP conversion or vector drawable replacement.</p>
+
+    <h3>12. Manifest Checks</h3>
+    <p>Validates critical manifest attributes: <code>android:allowBackup</code>, <code>android:usesCleartextTraffic</code>, <code>android:exported</code> on all components (required on Android 12+), and <code>android:networkSecurityConfig</code> presence.</p>
+
+    <h3>13. Dependency Audit</h3>
+    <p>Scans the dependency tree for known vulnerabilities using public CVE databases. Flags outdated dependencies with available security patches, snapshot versions, and conflicting transitive dependencies.</p>
+
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -136,25 +147,48 @@
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Usage</h2>
-    <p>Release Readiness can be triggered from multiple entry points:</p>
+    <h2>Getting Started</h2>
+    <p>Run the Release Readiness check from any of these entry points:</p>
     <ul>
         <li><strong>Tools &gt; ADB Pro &gt; Run Release Readiness Check</strong> — runs the full 13-point checklist</li>
         <li><strong>ADB Pro side panel</strong> — click the "Release Readiness" tab and press "Run Check"</li>
         <li><strong>Post-build hook</strong> — optionally configure the check to run automatically after every release build</li>
     </ul>
-    <p>Each failed item includes a description of the issue, the affected file or configuration, and a suggested fix. Click on any failed item to navigate directly to the source location in your editor.</p>
+    <p>Interpreting results:</p>
+    <ol>
+        <li>Review the overall score at the top of the report (e.g., 11 / 13 passed).</li>
+        <li>Each item shows a green <strong>[PASS]</strong> or red <strong>[FAIL]</strong> indicator with a description.</li>
+        <li>Click on any failed item to navigate directly to the source location in your editor.</li>
+        <li>Each failed item includes a description of the issue, the affected file or configuration, and a suggested fix.</li>
+    </ol>
+    <p>Additional configuration is available at <strong>Settings &gt; Tools &gt; ADB Pro &gt; Release Readiness</strong>, where you can:</p>
+    <ul>
+        <li>Enable or disable individual checklist items (e.g., skip test coverage for internal builds)</li>
+        <li>Set custom API key patterns for the exposure scan</li>
+        <li>Override the minimum required targetSdkVersion</li>
+        <li>Enable auto-run on release build completion</li>
+        <li>Set severity threshold for blocking release (require all pass, or allow warnings)</li>
+    </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Settings</h2>
-    <p>Release Readiness settings are accessible from <strong>Settings &gt; Tools &gt; ADB Pro &gt; Release Readiness</strong>. You can configure:</p>
+    <h2>Verification</h2>
+    <p>After running the Release Readiness check, confirm that your project is truly release-ready:</p>
     <ul>
-        <li>Enable or disable individual checklist items (e.g., skip test coverage for internal builds)</li>
-        <li>Custom API key patterns for the exposure scan</li>
-        <li>Minimum required targetSdkVersion (overrides automatic detection)</li>
-        <li>Auto-run on release build completion</li>
-        <li>Severity threshold for blocking release (require all pass, or allow warnings)</li>
+        <li>All 13 items should show green checkmarks — a score of 13 / 13 means your app is ready for the Play Store.</li>
+        <li>Any red <strong>[FAIL]</strong> items include specific remediation steps. Apply the suggested fixes and re-run the check.</li>
+        <li>After fixing failures, run a release build and install the APK on a device to verify behavior matches the report.</li>
+        <li>Re-run the check after any build configuration change to catch regressions before they ship.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>References</h2>
+    <p>Official documentation for preparing and publishing Android apps:</p>
+    <ul>
+        <li><a href="https://developer.android.com/studio/publish/preparing" target="_blank">Prepare for release — Android Developers</a></li>
+        <li><a href="https://developer.android.com/google/play/publishing" target="_blank">Publish your app — Google Play</a></li>
+        <li><a href="https://developer.android.com/build/shrink-code" target="_blank">Shrink, obfuscate, and optimize your app — Android Developers</a></li>
     </ul>
 </div>
 

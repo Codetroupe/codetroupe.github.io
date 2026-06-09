@@ -61,35 +61,28 @@
 <!-- ═══ Content ═══ -->
 <div class="feature-section">
 
-    <h2>Overview</h2>
-    <p>The R8 Assistant takes the guesswork out of ProGuard/R8 configuration. It scans your project's dependencies, identifies libraries that need special keep rules, and generates an optimized <code>proguard-rules.pro</code> file. It also includes reflection risk scanning, mapping file analysis, stack trace deobfuscation, and a library of 11 preset obfuscation dictionaries.</p>
+    <h2>Introduction</h2>
+    <p>The R8 Assistant takes the guesswork out of ProGuard/R8 configuration. It scans your project's dependencies, identifies libraries that need special keep rules, and generates an optimized <code>proguard-rules.pro</code> file tailored to your stack.</p>
+    <p>Beyond rule generation, it provides a comprehensive suite of obfuscation tools: a reflection risk scanner that catches code patterns that silently break after obfuscation, mapping file analysis for understanding build outputs, stack trace deobfuscation for production crash reports, and a library of 11 preset obfuscation dictionaries that use Unicode confusable characters for maximum code protection.</p>
+    <p>The R8 Assistant is accessible from the <strong>R8 Assistant</strong> tab in the ADB Pro tool window, giving you a single panel to manage every aspect of code shrinking and obfuscation.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
-    <h2>Sub-Features</h2>
+    <h2>Why Use R8 Assistant?</h2>
+    <p>ProGuard and R8 configuration is one of the most error-prone parts of Android release builds. Here are the problems developers face without proper tooling:</p>
+    <ul>
+        <li><strong>A single missing <code>-keep</code> rule crashes your app in production — but only after release.</strong> R8 strips and renames aggressively, and the resulting <code>ClassNotFoundException</code> or <code>NoSuchMethodError</code> won't appear during debug builds.</li>
+        <li><strong>There are 20+ popular libraries, each needing specific rules.</strong> Retrofit, Gson, Moshi, Room, Hilt, Kotlin Coroutines, and many more all require unique ProGuard configurations. Tracking them manually across library upgrades is unsustainable.</li>
+        <li><strong>Reflection-based code silently breaks after obfuscation.</strong> Calls to <code>Class.forName()</code>, <code>getMethod()</code>, or JSON serialization via field-name matching work fine in debug but fail when class and field names are obfuscated.</li>
+        <li><strong>No tool tells you which rules you're missing.</strong> The compiler won't warn you, your tests pass in debug, and the crash only surfaces on real devices running release builds — the worst possible feedback loop.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Features</h2>
 
     <h3>Rule Recommendation</h3>
     <p>Scans your <code>build.gradle</code> dependencies and recommends ProGuard/R8 rules from a database of 20+ popular libraries including Retrofit, Gson, Moshi, Room, Hilt, Kotlin Coroutines, and more. Each recommendation includes comments explaining why the rule is needed.</p>
-
-    <h3>Reflection Risk Scanner</h3>
-    <p>Scans your source code for reflection-based patterns that can break after obfuscation. Detects usages of <code>Class.forName()</code>, <code>getMethod()</code>, <code>getDeclaredField()</code>, and JSON serialization libraries that rely on field name matching.</p>
-
-    <h3>Mapping File Analysis</h3>
-    <p>Load and analyze <code>mapping.txt</code> files from R8/ProGuard builds. View class and method renaming statistics, identify heavily obfuscated packages, and search for specific class mappings.</p>
-
-    <h3>Stack Trace Deobfuscation</h3>
-    <p>Paste a stack trace from a production crash and deobfuscate it using your mapping file. Supports both R8 and ProGuard mapping formats. Integrates with remote mapping file storage.</p>
-
-    <h3>Rule Tester</h3>
-    <p>Validate your ProGuard rules before running a full release build. The rule tester checks for common syntax errors, conflicting rules, and overly broad keep patterns that could inflate your APK size.</p>
-
-    <h3>Obfuscation Dictionaries</h3>
-    <p>Download and apply preset obfuscation dictionaries that use Unicode confusable characters for maximum code protection. 11 preset dictionaries are available — from visual lookalikes (Greek, Cyrillic) to cross-encoding confusion (characters that display differently in GBK, Big5, Shift-JIS).</p>
-    <p><a href="../dictionaries/index.html">Browse all 11 dictionaries &rarr;</a></p>
-
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Example Output</h2>
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
@@ -114,10 +107,8 @@
         <span class="keyword">-obfuscationdictionary</span> <span class="string">proguard-dic-encoding-chaos.txt</span>
     </div>
 
-    <hr class="feature-divider" style="margin: 32px 0;">
-
-    <h2>Reflection Risk Report</h2>
-    <p>The reflection scanner produces a categorized report:</p>
+    <h3>Reflection Risk Scanner</h3>
+    <p>Scans your source code for reflection-based patterns that can break after obfuscation. Detects usages of <code>Class.forName()</code>, <code>getMethod()</code>, <code>getDeclaredField()</code>, and JSON serialization libraries that rely on field name matching. The scanner produces a categorized report:</p>
     <table class="comparison-table">
         <thead>
             <tr>
@@ -149,6 +140,61 @@
             </tr>
         </tbody>
     </table>
+
+    <h3>Mapping File Analysis</h3>
+    <p>Load and analyze <code>mapping.txt</code> files from R8/ProGuard builds. View class and method renaming statistics, identify heavily obfuscated packages, and search for specific class mappings to understand exactly how your code was transformed.</p>
+
+    <h3>Stack Trace Deobfuscation</h3>
+    <p>Paste a stack trace from a production crash and deobfuscate it using your mapping file. Supports both R8 and ProGuard mapping formats. Integrates with remote mapping file storage so you can resolve crash reports against the exact mapping used for that release.</p>
+
+    <h3>Rule Tester</h3>
+    <p>Validate your ProGuard rules before running a full release build. The rule tester checks for common syntax errors, conflicting rules, and overly broad keep patterns that could inflate your APK size. Catch misconfigurations in seconds instead of waiting for a multi-minute build.</p>
+
+    <h3>Obfuscation Dictionaries</h3>
+    <p>Download and apply preset obfuscation dictionaries that use Unicode confusable characters for maximum code protection. 11 preset dictionaries are available — from visual lookalikes (Greek, Cyrillic) to cross-encoding confusion (characters that display differently in GBK, Big5, Shift-JIS).</p>
+    <p><a href="../dictionaries/index.html">Browse all 11 dictionaries &rarr;</a></p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Getting Started</h2>
+    <p>Follow these steps to generate and apply ProGuard/R8 rules for your project:</p>
+    <ol>
+        <li>Open the <strong>R8 Assistant</strong> tab in the ADB Pro tool window.</li>
+        <li>Click <strong>"Generate Rules"</strong> — the assistant scans your <code>build.gradle</code> dependencies and produces recommended keep rules.</li>
+        <li>Review the generated rules in the panel. Each rule includes a comment explaining which library it targets and why it is needed.</li>
+        <li>Copy the generated rules into your <code>proguard-rules.pro</code> file (or use the one-click apply button).</li>
+        <li>Run the <strong>Reflection Risk Scanner</strong> to check for code patterns that may break after obfuscation.</li>
+        <li>Build a release APK with <code>minifyEnabled true</code> to verify everything works.</li>
+    </ol>
+    <p>Additional configuration is available at <strong>Settings &gt; Tools &gt; ADB Pro &gt; R8 Assistant</strong>, where you can customize:</p>
+    <ul>
+        <li>Custom <code>proguard-rules.pro</code> file path (override auto-detected location)</li>
+        <li>Preferred dictionary download URL (defaults to the built-in GitHub Pages CDN)</li>
+        <li>Reflection scan scope (source directories to include/exclude)</li>
+        <li>Mapping file auto-detection paths</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Verification</h2>
+    <p>After applying generated rules and building a release APK, confirm that the R8 Assistant is working correctly:</p>
+    <ul>
+        <li>Run a release build with <code>minifyEnabled true</code> and <code>shrinkResources true</code> — the build should complete without errors.</li>
+        <li>Launch the release APK on a device or emulator and verify that the app does not crash on startup or during normal use.</li>
+        <li>Use <code>jadx</code> or the Android Studio APK Analyzer to inspect the APK and confirm that class names are obfuscated (renamed to short or dictionary-based names).</li>
+        <li>Check that <code>mapping.txt</code> was generated in <code>app/build/outputs/mapping/</code> — this file is essential for deobfuscating crash reports.</li>
+        <li>Run the Reflection Risk Scanner and confirm that all high-risk items have corresponding <code>-keep</code> rules in your ProGuard configuration.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>References</h2>
+    <p>Official documentation for code shrinking and obfuscation:</p>
+    <ul>
+        <li><a href="https://developer.android.com/build/shrink-code" target="_blank">Shrink, obfuscate, and optimize your app — Android Developers</a></li>
+        <li><a href="https://www.guardsquare.com/manual/home" target="_blank">ProGuard Manual — Guardsquare</a></li>
+        <li><a href="https://developer.android.com/build/shrink-code#configuration-files" target="_blank">Customize which resources to keep — Configuration files</a></li>
+    </ul>
 </div>
 
 <!-- ═══ CTA ═══ -->
