@@ -277,13 +277,7 @@
 <script src="assets/js/main.js"></script>
 <script>
     // ── GitHub Configuration ──────────────────────────────────────
-    // TODO: Create a Fine-Grained Personal Access Token at:
-    //   https://github.com/settings/tokens?type=beta
-    //   - Repository access: "codetroupe.github.io" only
-    //   - Permissions: Issues → Read and Write
-    // Then paste the token below:
-    const GITHUB_TOKEN = 'YOUR_GITHUB_PAT_HERE';
-    const GITHUB_REPO  = 'Codetroupe/codetroupe.github.io';
+    const GITHUB_REPO = 'Codetroupe/codetroupe.github.io';
 
     // ── Feature slug → display name mapping (for ?feature= deep link) ──
     const FEATURE_SLUGS = {
@@ -306,7 +300,6 @@
         const params = new URLSearchParams(window.location.search);
         const featureParam = params.get('feature');
         if (featureParam) {
-            // Try matching by display name first (plugin sends "Lint Tools", "AAB Tools", etc.)
             var select = document.getElementById('feature');
             var matched = false;
             for (var i = 0; i < select.options.length; i++) {
@@ -316,7 +309,6 @@
                     break;
                 }
             }
-            // Fallback: try matching by slug key (e.g. "lint-tools")
             if (!matched && FEATURE_SLUGS[featureParam]) {
                 select.value = FEATURE_SLUGS[featureParam];
                 matched = true;
@@ -342,8 +334,8 @@
         }
     }
 
-    // ── Submit feedback to GitHub Issues ──
-    async function submitFeedback() {
+    // ── Submit feedback via GitHub pre-filled issue URL ──
+    function submitFeedback() {
         var feature = document.getElementById('feature').value;
         var type    = document.getElementById('type').value;
         var content = document.getElementById('content').value.trim();
@@ -355,17 +347,6 @@
         if (content.length < 10) return showStatus('error', 'Description is too short. Please provide more detail.');
         if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showStatus('error', 'Please enter a valid email address.');
 
-        // Check token
-        if (GITHUB_TOKEN === 'YOUR_GITHUB_PAT_HERE') {
-            return showStatus('error', 'Feedback submission is not configured yet. Please contact the developer directly at <a href="mailto:294128852@qq.com">294128852@qq.com</a>.');
-        }
-
-        var btn = document.getElementById('submitBtn');
-        var statusEl = document.getElementById('submitStatus');
-        btn.disabled = true;
-        btn.textContent = 'Submitting...';
-        statusEl.textContent = '';
-
         var title = '[' + type + '] ' + feature + ' — ' + content.substring(0, 60) + (content.length > 60 ? '...' : '');
 
         var body  = '## Feature\n' + feature + '\n\n';
@@ -376,69 +357,24 @@
         }
         body += '---\n*Submitted via [ADB Pro Feedback](https://codetroupe.github.io/feedback.html)*';
 
-        var labels = ['feedback'];
+        var url = 'https://github.com/' + GITHUB_REPO + '/issues/new'
+            + '?title=' + encodeURIComponent(title)
+            + '&body=' + encodeURIComponent(body)
+            + '&labels=feedback';
 
-        try {
-            // Try to create the label if it doesn't exist
-            await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/labels', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + GITHUB_TOKEN,
-                    'Accept': 'application/vnd.github+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ name: 'feedback', color: '0e8a16', description: 'User feedback from ADB Pro' })
-            }).catch(function() {});
+        window.open(url, '_blank');
 
-            // Create the issue (try with label first)
-            var response = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/issues', {
-                method: 'POST',
-                headers: {
-                    'Authorization': 'Bearer ' + GITHUB_TOKEN,
-                    'Accept': 'application/vnd.github+json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ title: title, body: body, labels: labels })
-            });
+        showStatus('success', 'A GitHub issue page has been opened in a new tab. Please review the content and click <strong>"Submit new issue"</strong> to complete your submission.');
 
-            if (!response.ok) {
-                // Retry without labels
-                response = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/issues', {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': 'Bearer ' + GITHUB_TOKEN,
-                        'Accept': 'application/vnd.github+json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ title: title, body: body })
-                });
-            }
-
-            if (!response.ok) {
-                var errData = await response.json().catch(function() { return {}; });
-                throw new Error(errData.message || 'HTTP ' + response.status);
-            }
-
-            var data = await response.json();
-            showStatus('success', 'Thank you! Your feedback has been submitted as <a href="' + data.html_url + '" target="_blank">#' + data.number + '</a>. ' +
-                (email ? 'We will notify you at <strong>' + email + '</strong> when it is resolved.' : ''));
-
-            // Reset form
-            document.getElementById('feature').value = '';
-            document.getElementById('type').selectedIndex = 0;
-            document.getElementById('content').value = '';
-            document.getElementById('content').disabled = true;
-            document.getElementById('content').placeholder = 'Select a feature first...';
-            document.getElementById('email').value = '';
-            var hint = document.getElementById('content').parentElement.querySelector('.form-hint');
-            if (hint) hint.style.display = '';
-
-        } catch (err) {
-            showStatus('error', 'Submission failed: ' + err.message + '. Please try again or email us directly at <a href="mailto:294128852@qq.com">294128852@qq.com</a>.');
-        } finally {
-            btn.disabled = false;
-            btn.textContent = 'Submit Feedback';
-        }
+        // Reset form
+        document.getElementById('feature').value = '';
+        document.getElementById('type').selectedIndex = 0;
+        document.getElementById('content').value = '';
+        document.getElementById('content').disabled = true;
+        document.getElementById('content').placeholder = 'Select a feature first...';
+        document.getElementById('email').value = '';
+        var hint = document.getElementById('content').parentElement.querySelector('.form-hint');
+        if (hint) hint.style.display = '';
     }
 
     function showStatus(type, message) {
