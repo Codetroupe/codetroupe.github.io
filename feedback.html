@@ -304,10 +304,24 @@
     // ── Auto-select feature from URL query param ──
     (function() {
         const params = new URLSearchParams(window.location.search);
-        const slug = params.get('feature');
-        if (slug && FEATURE_SLUGS[slug]) {
-            document.getElementById('feature').value = FEATURE_SLUGS[slug];
-            onFeatureChange();
+        const featureParam = params.get('feature');
+        if (featureParam) {
+            // Try matching by display name first (plugin sends "Lint Tools", "AAB Tools", etc.)
+            var select = document.getElementById('feature');
+            var matched = false;
+            for (var i = 0; i < select.options.length; i++) {
+                if (select.options[i].value === featureParam) {
+                    select.selectedIndex = i;
+                    matched = true;
+                    break;
+                }
+            }
+            // Fallback: try matching by slug key (e.g. "lint-tools")
+            if (!matched && FEATURE_SLUGS[featureParam]) {
+                select.value = FEATURE_SLUGS[featureParam];
+                matched = true;
+            }
+            if (matched) onFeatureChange();
         }
     })();
 
