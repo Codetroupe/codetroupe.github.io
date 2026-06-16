@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADB Pro Plugin — Privacy Policy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-brand">
+            <img src="assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="features/index.html">Features</a>
+            <a href="getting-started.html">Getting Started</a>
+            <a href="pricing.html">Pricing</a>
+            <a href="dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="index.html">Home</a>
+    <a href="features/index.html">Features</a>
+    <a href="getting-started.html">Getting Started</a>
+    <a href="pricing.html">Pricing</a>
+    <a href="dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero" style="padding: 48px 24px 60px;">
+    <div class="hero-content">
+        <h1>ADB Pro Plugin &mdash; Privacy Policy</h1>
+        <p>Last updated: June 17, 2026</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <p>ADB Pro ("the Plugin") is a JetBrains IDE plugin for Android development, distributed through the JetBrains Marketplace and developed by pomok ("we", "us", "our"). This Privacy Policy explains how the Plugin handles your data when installed and used in JetBrains IDEs such as IntelliJ IDEA and Android Studio.</p>
+
+    <h2>1. Data Collection</h2>
+    <p>The Plugin operates entirely on your local machine. We do <strong>not</strong> collect, transmit, or store any personal data, usage analytics, or telemetry. Specifically:</p>
+    <ul>
+        <li>No personal information (name, email, address) is collected by the Plugin.</li>
+        <li>No usage data, behavioral analytics, or feature usage metrics are gathered.</li>
+        <li>No source code, project files, or build artifacts on your machine are accessed or transmitted to our servers.</li>
+        <li>No telemetry or crash reporting is performed by the Plugin.</li>
+    </ul>
+
+    <h2>2. License Validation</h2>
+    <p>The Plugin uses <strong>JetBrains Marketplace</strong> for license validation. When you activate your license or start a trial, the communication occurs between your JetBrains IDE and JetBrains' servers &mdash; not through our servers. JetBrains' handling of your data is governed by the <a href="https://www.jetbrains.com/legal/docs/privacy/privacy.html" target="_blank">JetBrains Privacy Policy</a>.</p>
+
+    <h2>3. Network Communications</h2>
+    <p>The Plugin operates primarily on your local machine. The following features initiate network connections <strong>only when you explicitly use them</strong>. In all cases, the Plugin communicates directly with the target service. We do not operate intermediary servers, proxies, or relay services.</p>
+
+    <h3>3.1 Quick Setup &mdash; SDK Version Fetching</h3>
+    <p>When you use the Quick Setup feature to configure third-party SDKs, the Plugin queries <strong>Maven Central</strong> (repo1.maven.org) to retrieve available version lists. Only public package metadata (group IDs, artifact IDs, version numbers) is fetched. No project data, source code, or identifying information is sent.</p>
+
+    <h3>3.2 AAB Tools &mdash; Remote Repository Scanning</h3>
+    <p>If you configure remote repositories in AAB Tools, the Plugin communicates directly with <strong>GitHub</strong> or <strong>GitLab</strong> repositories you specify, using API tokens you provide. We do not operate or control these third-party services.</p>
+
+    <h3>3.3 AAB Tools &mdash; Bundletool Download</h3>
+    <p>The Plugin downloads <strong>bundletool</strong> from Google's official Maven repository (dl.google.com) when needed for AAB-to-APKS conversion. This is a one-time binary download; no project data is transmitted.</p>
+
+    <h3>3.4 R8 Assistant &mdash; Remote Mapping Files</h3>
+    <p>If configured, the R8 Assistant fetches ProGuard/R8 mapping files from your CI server, GitHub Releases, or GitLab job artifacts using URLs and authentication tokens you provide. No data is sent to our servers.</p>
+
+    <h3>3.5 R8 Assistant &mdash; Obfuscation Dictionary Download</h3>
+    <p>The R8 Assistant can download preset obfuscation dictionaries from the built-in GitHub Pages CDN (codetroupe.github.io). These are static text files hosted by GitHub; no project data is transmitted.</p>
+
+    <h3>3.6 Res Guard &mdash; AabResGuard JAR Download</h3>
+    <p>The Res Guard feature downloads the <strong>AabResGuard</strong> tool JAR from its official GitHub releases repository when needed for resource obfuscation. This is a one-time binary download; no project data is transmitted.</p>
+
+    <h3>3.7 Build Tools &mdash; Gradle Build Scans</h3>
+    <p>If you enable the <code>--scan</code> option in Build Tools, the Gradle daemon sends build performance data to <strong>Gradle Enterprise</strong> (gradle.com). This is handled entirely by the Gradle tooling; the Plugin does not intercept, modify, or access this data.</p>
+
+    <h3>3.8 Dependency Health &mdash; Version Checks</h3>
+    <p>The Dependency Health feature may query <strong>Maven Central</strong> to check for newer stable versions of your dependencies. Only public artifact metadata is retrieved. No project data or dependency tree information is sent.</p>
+
+    <h2>4. Data Storage</h2>
+    <p>All Plugin data is stored locally on your machine via IntelliJ Platform's persistence mechanisms. No Plugin data is transmitted to our servers.</p>
+
+    <h3>4.1 Plugin Settings</h3>
+    <p>Per-project configurations &mdash; including AAB Tools remote repositories, Build Tools parameters, R8 Assistant preferences, Res Guard whitelists, Dependency Health analysis settings, CI/CD generation options, and UI state &mdash; are stored locally within your project directory or IntelliJ's per-project storage.</p>
+
+    <h3>4.2 Credentials</h3>
+    <p>Signing passwords, keystore passwords, and remote repository API tokens are stored securely using your operating system's credential store (e.g., Windows Credential Manager, macOS Keychain, Linux Secret Service) via IntelliJ's PasswordSafe API. Credentials are never written to plain-text configuration files or shell history.</p>
+
+    <h3>4.3 Build History and Analysis Data</h3>
+    <p>The following data is stored locally within your project settings:</p>
+    <ul>
+        <li><strong>Build History</strong> &mdash; timestamps, variant names, Gradle tasks, durations, exit codes, and artifact paths (Build Tools).</li>
+        <li><strong>Bundle Size History</strong> &mdash; total sizes, module breakdowns, version codes, and Git commit associations (Bundle Inspector).</li>
+        <li><strong>Dependency Analysis Snapshots</strong> &mdash; conflict reports, duplicate detections, deprecation warnings, and version catalog states (Dependency Health).</li>
+        <li><strong>Release Readiness Results</strong> &mdash; check results with pass/warning/fail/skip statuses and check history (Release Readiness).</li>
+        <li><strong>Lint Analysis Results</strong> &mdash; severity breakdowns, issue counts, and fix suggestions (Lint Tools).</li>
+        <li><strong>Gradle Profiling History</strong> &mdash; build performance metrics and bottleneck analysis (Build Performance).</li>
+    </ul>
+
+    <h3>4.4 Diagnostic Logs</h3>
+    <p>The Plugin's internal diagnostic logs (visible in the Logs tab of the ADB Pro tool window) are stored <strong>in memory only</strong>. They are not persisted to disk and are lost when the IDE restarts. You can export them manually for bug reports.</p>
+
+    <h3>4.5 File Modifications</h3>
+    <p>The Quick Setup feature modifies project files including <code>build.gradle.kts</code>, <code>proguard-rules.pro</code>, <code>libs.versions.toml</code>, <code>gradle.properties</code>, and CI/CD configuration files. An automatic backup is created before each modification so you can undo changes at any time. The R8 Assistant, Res Guard, and CI/CD Tools features may also write to these files when applying generated configurations.</p>
+
+    <h2>5. Third-Party Services</h2>
+    <p>The Plugin interacts with the following third-party services only when you initiate the action. Their respective privacy policies apply:</p>
+    <ul>
+        <li><strong>JetBrains Marketplace</strong> (jetbrains.com) &mdash; license management and subscription validation.</li>
+        <li><strong>GitHub API</strong> (api.github.com) &mdash; remote AAB repository scanning, AabResGuard JAR downloads, and obfuscation dictionary downloads, only if configured by the user.</li>
+        <li><strong>GitLab API</strong> &mdash; remote AAB repository scanning and mapping file retrieval, only if configured by the user.</li>
+        <li><strong>Maven Central</strong> (repo1.maven.org) &mdash; SDK version metadata queries during Quick Setup and dependency version checks.</li>
+        <li><strong>Google Maven</strong> (dl.google.com) &mdash; bundletool binary download for AAB conversion.</li>
+        <li><strong>Gradle Enterprise</strong> (gradle.com) &mdash; build scan data sent by Gradle tooling when <code>--scan</code> is enabled. The Plugin does not control this communication.</li>
+        <li><strong>AabResGuard</strong> (GitHub) &mdash; tool JAR download from the official releases repository for resource obfuscation.</li>
+    </ul>
+
+    <h2>6. Source Code</h2>
+    <p>The ADB Pro Plugin is proprietary software. The Plugin's source code is not publicly available. For information about the Plugin's functionality, data handling practices, or to request a code review for security purposes, please contact us through the <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace plugin page</a>.</p>
+
+    <h2>7. Children's Privacy</h2>
+    <p>The Plugin is a developer tool intended for professional use by software engineers. We do not knowingly collect any information from children under the age of 13.</p>
+
+    <h2>8. Data Deletion</h2>
+    <p>Since all data is stored locally on your machine, you can delete it at any time by:</p>
+    <ul>
+        <li>Uninstalling the Plugin through your JetBrains IDE's plugin manager.</li>
+        <li>Deleting the Plugin's configuration files from your IntelliJ settings directory.</li>
+        <li>Removing per-project data stored under <code>.idea/</code> directories.</li>
+    </ul>
+    <p>No data deletion request to us is necessary because we do not possess any of your data.</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be reflected on this page with an updated "Last updated" date. Continued use of the Plugin after changes constitutes acceptance of the revised policy.</p>
+
+    <h2>10. Contact</h2>
+    <p>If you have questions about this Privacy Policy, you can reach us through the <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">ADB Pro plugin page</a> on JetBrains Marketplace.</p>
+
+</div>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="index.html" class="nav-brand" style="font-size:16px;">
+                <img src="assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="features/index.html">Features</a>
+                <a href="pricing.html">Pricing</a>
+                <a href="getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
