@@ -112,8 +112,12 @@ img { max-width: 100%; display: block; }
 }
 .nav-brand-logo {
   width: 32px; height: 32px;
+  min-width: 32px; max-width: 32px;
+  min-height: 32px; max-height: 32px;
   border-radius: 6px;
   object-fit: contain;
+  display: block;
+  flex-shrink: 0;
 }
 .nav-links {
   display: flex;
