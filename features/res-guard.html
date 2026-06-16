@@ -97,6 +97,24 @@
     <h3>Execution and Logging</h3>
     <p>The Execution tab runs the AabResGuard obfuscation task and displays real-time execution output. You can see the obfuscation progress, any warnings about resources that were skipped, and the final output size comparison. The execution log is timestamped and persisted for reference.</p>
 
+    <h3>Local JAR Import</h3>
+    <p>In addition to automatic download, you can import an AabResGuard JAR from a local path. This is useful when working in environments without internet access, using a custom fork of AabResGuard, or when your organization hosts the JAR on an internal artifact server. Imported JARs are tracked with the same version metadata as downloaded ones, so update detection still works.</p>
+
+    <h3>Merge Duplicated Resources</h3>
+    <p>Enable the <code>mergeDuplicatedRes</code> toggle to instruct AabResGuard to deduplicate identical resource files before obfuscation. When multiple drawable or raw resources share the same content but have different names, they are merged into a single resource entry. This can significantly reduce the resource table size in projects with duplicated assets across flavor-specific resource directories.</p>
+
+    <h3>File Filtering</h3>
+    <p>When file filtering is enabled, AabResGuard only obfuscates resources with the specified file extensions. By default, common resource extensions like <code>.png</code>, <code>.webp</code>, and <code>.xml</code> are included. You can customize the filter list to include or exclude specific extensions — for example, excluding <code>.json</code> files that are loaded dynamically at runtime by name.</p>
+
+    <h3>Unused String Filtering</h3>
+    <p>Enable string filtering to remove unused string resources from the final output. When paired with an unused-string list file, AabResGuard strips string entries that are not referenced by any layout, code, or configuration resource. This is particularly effective for apps with large localization files where many string keys are defined but never used.</p>
+
+    <h3>Language Whitelist</h3>
+    <p>When string filtering is active, the language whitelist prevents specific locale string files from being stripped. For example, whitelisting <code>en</code> and <code>zh</code> ensures that English and Chinese string resources are preserved even if they appear unused to the static analyzer. This is important for apps that load localized strings dynamically or use string resources selected at runtime based on user preferences.</p>
+
+    <h3>Variant Selection</h3>
+    <p>AabResGuard obfuscation can target specific build variants. The Gradle analysis step detects all available variants in your project (e.g., <code>release</code>, <code>freeRelease</code>, <code>paidRelease</code>) and presents them for selection. Choose the variant whose AAB output should be obfuscated. The variant selection also controls which Gradle task is invoked — for example, selecting <code>freeRelease</code> runs the AabResGuard task against the <code>bundleFreeRelease</code> output.</p>
+
     <h3>Example Configuration</h3>
     <div class="code-block">
         <div class="code-header">

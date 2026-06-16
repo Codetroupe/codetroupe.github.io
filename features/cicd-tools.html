@@ -97,6 +97,18 @@
     <h3>Customizable Templates</h3>
     <p>The generation dialog provides a live preview of the configuration file with editable fields. Adjust JDK distribution (Temurin, Zulu, Corretto), add custom environment variables, insert pre-build or post-build scripts, change the Gradle version, or add Firebase App Distribution steps. The preview updates in real time as you modify options, so you can review the final output before generating.</p>
 
+    <h3>Mapping File Upload</h3>
+    <p>When code shrinking is enabled, the generated pipeline includes a step to upload the <code>mapping.txt</code> file as a build artifact. This is critical for deobfuscating production crash reports — without the mapping file, stack traces from R8/ProGuard-obfuscated builds are unreadable. The mapping upload step runs automatically after a successful release build and stores the file alongside the APK/AAB artifacts. For GitHub Actions, it uses <code>actions/upload-artifact</code>; for GitLab CI, it adds the mapping to the job artifacts; for Jenkins, it archives the file in the build results.</p>
+
+    <h3>Output Type Selection</h3>
+    <p>Choose whether your CI pipeline produces APKs, AABs, or both. When "Both" is selected, the generated config includes separate build steps for <code>assemble</code> and <code>bundle</code> tasks with independent artifact upload paths. This mirrors the common release workflow where the AAB goes to the Play Store and a universal APK is distributed internally or via alternative channels.</p>
+
+    <h3>Custom Secret Names</h3>
+    <p>Signing credentials are referenced as CI/CD secrets rather than hardcoded values. ADB Pro lets you customize the secret names used in the generated config: keystore file (<code>KEYSTORE_BASE64</code>), keystore password (<code>KEYSTORE_PASSWORD</code>), key alias (<code>KEY_ALIAS</code>), and key password (<code>KEY_PASSWORD</code>). This allows you to match your organization's existing secret naming conventions or comply with security team requirements.</p>
+
+    <h3>Branch Configuration</h3>
+    <p>Configure which Git branches trigger the build pipeline. The default is <code>master</code>, but you can set any branch name or pattern. For GitHub Actions, this maps to the <code>on.push.branches</code> trigger; for GitLab CI, it becomes a <code>only: refs</code> filter; for Jenkins, it configures the SCM branch specifier. Pull request triggers and tag-based triggers are also configurable.</p>
+
     <h3>Generated GitHub Actions Example</h3>
     <div class="code-block">
         <div class="code-header">

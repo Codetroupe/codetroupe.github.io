@@ -122,6 +122,12 @@
     <h3>13. Dependency Audit</h3>
     <p>Scans the dependency tree for known vulnerabilities using public CVE databases. Flags outdated dependencies with available security patches, snapshot versions, and conflicting transitive dependencies.</p>
 
+    <h3>Check Status Types</h3>
+    <p>Each check produces one of five status levels: <span class="badge badge-green">PASS</span> for checks that passed cleanly, <span class="badge badge-blue">INFO</span> for informational notes that require no action, <span class="badge badge-amber">WARNING</span> for items that are not blocking but should be reviewed (e.g., permissions that are declared but never requested at runtime), <span class="badge badge-red">FAIL</span> for critical issues that must be resolved before release, and <span class="badge badge-gray">SKIP</span> for checks that could not be evaluated (e.g., no test source set found, or no Git history available). The overall readiness score counts only PASS checks, making it easy to see at a glance whether your build is ready to ship.</p>
+
+    <h3>Check History</h3>
+    <p>Release Readiness results are persisted between scans, so you can compare readiness across builds and track improvements over time. The history view shows a timeline of past scans with pass/fail/warning counts for each. This is especially useful during release cycles — you can verify that the number of warnings is decreasing with each build and that no new failures have been introduced by recent changes.</p>
+
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>

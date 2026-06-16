@@ -95,7 +95,7 @@
             <div class="step-number"></div>
             <div class="step-content">
                 <h3>Explore Features</h3>
-                <p>Each tab in the ADB Pro tool window is a self-contained tool. Use the <strong>R8 Assistant</strong> for intelligent obfuscation rules, <strong>Release Readiness</strong> for pre-release checks, <strong>Bundle Inspector</strong> for size analysis, <strong>Lint Tools</strong> for code quality, and more. Every feature is designed to work independently — use what you need, when you need it.</p>
+                <p>Each tab in the ADB Pro tool window is a self-contained tool. For the fastest setup, try <strong>Quick Setup</strong> — it analyzes your project and configures dependencies, R8 obfuscation rules, resource guarding, build performance optimizations, and CI/CD pipelines in a single click. Or explore individual tools: <strong>R8 Assistant</strong> for intelligent obfuscation rules, <strong>Release Readiness</strong> for pre-release checks, <strong>Bundle Inspector</strong> for size analysis, <strong>Lint Tools</strong> for code quality, and more. Every feature is designed to work independently — use what you need, when you need it.</p>
             </div>
         </div>
     </div>
@@ -115,6 +115,9 @@
                 <div class="code-dot" style="background:#28c840"></div>
                 <span style="margin-left:12px; font-size:12px; color:#64748b;">release-workflow.sh</span>
             </div>
+            <span class="comment"># 0. (Optional) One-click Quick Setup for new projects</span><br>
+            <span class="comment">#    Open Quick Setup tab → Select your SDK stack</span><br>
+            <span class="comment">#    Click "Apply All" — dependencies, R8 rules, Res Guard, CI/CD configured</span><br><br>
             <span class="comment"># 1. Build the release bundle</span><br>
             <span class="keyword">./gradlew</span> bundleRelease<br><br>
             <span class="comment"># 2. Inspect bundle size and contents</span><br>

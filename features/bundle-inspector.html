@@ -101,6 +101,15 @@
     <h3>Size History</h3>
     <p>All inspected builds are stored locally in a lightweight database. The history view shows a chronological list with version code, total size, and module breakdown. Trend indicators highlight builds where the size changed significantly compared to the previous entry, helping you spot regressions at a glance. The trend chart visualizes version-over-version size progression so you can identify inflection points where the bundle started growing faster than expected.</p>
 
+    <h3>Manifest Analysis</h3>
+    <p>Bundle Inspector parses the compiled <code>AndroidManifest.xml</code> inside the AAB and presents a structured view of all key attributes: package name, version code, version name, min/target/compile SDK versions, application label, icon, and network security config. It also lists every declared component (activities, services, receivers, providers), all permissions, metadata entries, intent filters, and feature declarations. Security-sensitive flags like <code>android:debuggable</code>, <code>android:allowBackup</code>, and <code>android:usesCleartextTraffic</code> are highlighted so you can confirm they are correctly configured for release.</p>
+
+    <h3>Native Library ABI Analysis</h3>
+    <p>For apps that include native code, Bundle Inspector displays a matrix of all <code>.so</code> files distributed across each supported ABI (arm64-v8a, armeabi-v7a, x86, x86_64). The matrix shows per-library file sizes for each ABI and highlights any <code>.so</code> files that are missing from certain ABIs — a common source of <code>UnsatisfiedLinkError</code> crashes on devices with those architectures. Total size per ABI is computed automatically, so you can see at a glance which architecture contributes the most to the bundle.</p>
+
+    <h3>Automated Issue Scanning</h3>
+    <p>During analysis, Bundle Inspector runs a set of automated checks against the bundle contents and flags potential problems. Issues are categorized by severity: errors for critical problems (e.g., debuggable flag enabled in release), warnings for suboptimal configurations (e.g., missing <code>.so</code> files for certain ABIs), and informational notes for minor observations. Each issue includes a title, detailed message, and actionable recommendation for how to fix it. The issues panel provides a quick health check without requiring a separate Release Readiness scan.</p>
+
     <hr class="feature-divider" style="margin: 32px 0;">
 
     <h2>Getting Started</h2>

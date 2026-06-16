@@ -50,7 +50,7 @@
 <section class="feature-hero" style="padding: 48px 24px 60px;">
     <div class="hero-content">
         <h1>Privacy Policy</h1>
-        <p>Last updated: June 6, 2026</p>
+        <p>Last updated: June 16, 2026</p>
     </div>
 </section>
 
@@ -70,18 +70,38 @@
     <h2>2. License Validation</h2>
     <p>The Plugin uses <strong>JetBrains Marketplace</strong> for license validation. When you activate your license or start a trial, the communication occurs between your JetBrains IDE and JetBrains' servers — not through our servers. JetBrains' handling of your data is governed by the <a href="https://www.jetbrains.com/legal/docs/privacy/privacy.html" target="_blank">JetBrains Privacy Policy</a>.</p>
 
-    <h2>3. Remote Repository Scanning (AAB Tools)</h2>
-    <p>If you configure remote repository scanning in the AAB Tools feature, the Plugin communicates directly with the repository hosts you specify (e.g., GitHub, GitLab) using the credentials <strong>you</strong> provide. We do not operate or control these third-party services. Their respective privacy policies apply.</p>
+    <h2>3. Network Communications</h2>
+    <p>The Plugin operates primarily on your local machine. The following features initiate network connections <strong>only when you use them</strong>:</p>
+    <ul>
+        <li><strong>Remote Repository Scanning (AAB Tools)</strong> — communicates directly with GitHub or GitLab repositories you configure, using credentials you provide. We do not operate or control these services.</li>
+        <li><strong>SDK Version Fetching (Quick Setup)</strong> — queries Maven Central (repo1.maven.org) to retrieve available version lists for third-party SDKs. Only package metadata (version numbers) is fetched; no project data is sent.</li>
+        <li><strong>Remote Mapping Files (R8 Assistant)</strong> — if configured, fetches ProGuard/R8 mapping files from your CI server or remote storage using URLs you provide. No data is sent to our servers.</li>
+        <li><strong>AabResGuard JAR Download (Res Guard)</strong> — downloads the AabResGuard tool JAR from its official GitHub releases repository when needed for resource obfuscation.</li>
+        <li><strong>Gradle Build Scans (Build Performance)</strong> — if you enable the <code>--scan</code> option, Gradle sends build performance data to Gradle Enterprise (gradle.com). This is handled entirely by the Gradle tooling; the Plugin does not intercept or modify this data.</li>
+        <li><strong>Bundletool Download (AAB Tools)</strong> — downloads bundletool from Google's official Maven repository when needed for AAB-to-APKS conversion.</li>
+    </ul>
+    <p>In all cases, the Plugin communicates directly with the target service. We do not operate intermediary servers, proxies, or relay services.</p>
 
     <h2>4. Data Storage</h2>
-    <p>All Plugin settings, including per-project remote repository configurations, are stored locally on your machine via IntelliJ Platform's persistence mechanisms. License keys are stored securely using your operating system's credential store (e.g., Windows Credential Manager, macOS Keychain).</p>
+    <p>All Plugin data is stored locally on your machine. Specifically:</p>
+    <ul>
+        <li><strong>Plugin Settings</strong> — per-project configurations (remote repositories, build options, UI state) are stored via IntelliJ Platform's persistence mechanisms.</li>
+        <li><strong>Credentials</strong> — signing passwords and license keys are stored securely using your operating system's credential store (e.g., Windows Credential Manager, macOS Keychain, Linux Secret Service).</li>
+        <li><strong>Build History &amp; Analysis Data</strong> — build history records, bundle size trends, lint results, dependency analysis snapshots, and Gradle profiling history are stored locally within your project directory or IntelliJ's per-project storage.</li>
+        <li><strong>Diagnostic Logs</strong> — the Plugin's internal diagnostic logs (visible in the Logs tab) are stored <strong>in memory only</strong>. They are not persisted to disk and are lost when the IDE restarts. You can export them manually for bug reports.</li>
+        <li><strong>File Modifications</strong> — Quick Setup modifies project files (<code>build.gradle.kts</code>, <code>proguard-rules.pro</code>, <code>libs.versions.toml</code>, <code>gradle.properties</code>, CI/CD configs). An automatic backup is created before each modification so you can undo changes at any time.</li>
+    </ul>
+    <p>No Plugin data is transmitted to our servers. All data remains on your machine unless you explicitly export or share it.</p>
 
     <h2>5. Third-Party Services</h2>
-    <p>The Plugin interacts with the following third-party services only when you initiate the action:</p>
+    <p>The Plugin interacts with the following third-party services only when you initiate the action. Their respective privacy policies apply:</p>
     <ul>
         <li><strong>JetBrains Marketplace</strong> — for license management and subscription validation.</li>
-        <li><strong>GitHub / GitLab APIs</strong> — for remote AAB repository scanning, only if configured by the user.</li>
-        <li><strong>Bundletool</strong> — downloaded from Google's official repositories when needed for AAB conversion.</li>
+        <li><strong>GitHub / GitLab APIs</strong> — for remote AAB repository scanning and AabResGuard JAR downloads, only if configured by the user.</li>
+        <li><strong>Bundletool</strong> — downloaded from Google's official Maven repository when needed for AAB conversion.</li>
+        <li><strong>Maven Central (repo1.maven.org)</strong> — queried for SDK version metadata during Quick Setup. Only public package information is retrieved.</li>
+        <li><strong>Gradle Enterprise (gradle.com)</strong> — build scan data is sent by the Gradle tooling itself when <code>--scan</code> is enabled in Build Performance. The Plugin does not control this communication.</li>
+        <li><strong>AabResGuard (GitHub)</strong> — the AabResGuard tool JAR is downloaded from its official GitHub releases page when needed for resource obfuscation.</li>
     </ul>
 
     <h2>6. Children's Privacy</h2>

@@ -109,38 +109,74 @@
     </div>
 
     <h3>Reflection Risk Scanner</h3>
-    <p>Scans your source code for reflection-based patterns that can break after obfuscation. Detects usages of <code>Class.forName()</code>, <code>getMethod()</code>, <code>getDeclaredField()</code>, and JSON serialization libraries that rely on field name matching. The scanner produces a categorized report:</p>
+    <p>Scans your source code for reflection-based patterns that can break after obfuscation. The scanner detects 12 distinct code patterns across 7 risk categories:</p>
     <table class="comparison-table">
         <thead>
             <tr>
                 <th>Risk Level</th>
-                <th>Pattern</th>
+                <th>Category</th>
+                <th>Patterns Detected</th>
                 <th>Action Needed</th>
             </tr>
         </thead>
         <tbody>
             <tr>
                 <td><span class="badge badge-amber">High</span></td>
-                <td><code>Class.forName("com.example.MyClass")</code></td>
-                <td>Add <code>-keep</code> rule for target class</td>
+                <td>Reflection</td>
+                <td><code>Class.forName()</code>, <code>getMethod()</code>, <code>getDeclaredField()</code>, <code>getDeclaredMethod()</code></td>
+                <td>Add <code>-keep</code> rule for target class/method</td>
             </tr>
             <tr>
                 <td><span class="badge badge-amber">High</span></td>
-                <td><code>getDeclaredMethod("processData")</code></td>
-                <td>Add <code>-keepclassmembers</code> for method</td>
-            </tr>
-            <tr>
-                <td><span class="badge badge-blue">Medium</span></td>
-                <td>Gson <code>fromJson()</code> on data class</td>
+                <td>Serialization</td>
+                <td>Gson <code>@SerializedName</code>, Moshi <code>@Json</code>, <code>implements Serializable</code></td>
                 <td>Add <code>-keepclassmembers</code> for fields</td>
             </tr>
             <tr>
+                <td><span class="badge badge-amber">High</span></td>
+                <td>Room Entities</td>
+                <td><code>@Entity</code>, <code>@Dao</code> annotations</td>
+                <td>Add <code>-keep</code> for entity and DAO classes</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-amber">High</span></td>
+                <td>WebView JS Bridge</td>
+                <td><code>@JavascriptInterface</code> annotated methods</td>
+                <td>Add <code>-keepclassmembers</code> for JS-exposed methods</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-blue">Medium</span></td>
+                <td>Custom Views</td>
+                <td>Custom View constructors (<code>: View(</code> inheritance)</td>
+                <td>Add <code>-keepclassmembers</code> for constructors</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-blue">Medium</span></td>
+                <td>Kotlin Class Refs</td>
+                <td><code>::class.java</code> Kotlin class references</td>
+                <td>Verify class is kept or add explicit rule</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-blue">Medium</span></td>
+                <td>Enum Usage</td>
+                <td>Enum types used via <code>valueOf()</code> or <code>values()</code></td>
+                <td>Add <code>-keepclassmembers</code> for enum methods</td>
+            </tr>
+            <tr>
                 <td><span class="badge badge-gray">Low</span></td>
-                <td><code>getResourceAsStream()</code></td>
+                <td>Native Methods</td>
+                <td><code>native</code> method declarations, JNI bindings</td>
+                <td>Add <code>-keepclasseswithmembernames</code> for native methods</td>
+            </tr>
+            <tr>
+                <td><span class="badge badge-gray">Low</span></td>
+                <td>Resource Loading</td>
+                <td><code>getResourceAsStream()</code>, <code>getResource()</code></td>
                 <td>Verify resource path after obfuscation</td>
             </tr>
         </tbody>
     </table>
+    <p>Each detected risk includes the file path, line number, severity, and a suggested ProGuard rule. Right-click any entry to copy the rule or open the source file at the exact line.</p>
 
     <h3>Mapping File Analysis</h3>
     <p>Load and analyze <code>mapping.txt</code> files from R8/ProGuard builds. View class and method renaming statistics, identify heavily obfuscated packages, and search for specific class mappings to understand exactly how your code was transformed.</p>
@@ -153,7 +189,17 @@
 
     <h3>Obfuscation Dictionaries</h3>
     <p>Download and apply preset obfuscation dictionaries that use Unicode confusable characters for maximum code protection. 11 preset dictionaries are available — from visual lookalikes (Greek, Cyrillic) to cross-encoding confusion (characters that display differently in GBK, Big5, Shift-JIS).</p>
+    <p>The dictionary lifecycle is fully managed: download presets from the built-in CDN, install them into your project with a single click, configure apply directives (<code>-obfuscationdictionary</code>, <code>-classobfuscationdictionary</code>, <code>-packageobfuscationdictionary</code>) directly in your <code>proguard-rules.pro</code>, and uninstall dictionaries you no longer need. The R8 Assistant also includes a recommendation engine that suggests the best dictionary for your obfuscation goals — visual confusion, cross-encoding chaos, or maximum entropy.</p>
     <p><a href="../dictionaries/index.html">Browse all 11 dictionaries &rarr;</a></p>
+
+    <h3>Seeds Viewer</h3>
+    <p>After R8 runs, it produces a <code>seeds.txt</code> file listing every class and member that was kept (not obfuscated or removed). The Seeds Viewer parses this file and cross-references it against your recommended rules, showing you exactly which rules had an effect and which produced no matches. This lets you prune dead rules that add noise to your configuration and verify that every library you care about is actually being protected. The viewer presents a side-by-side comparison: your rules on the left, matched seeds on the right, with unmatched rules highlighted in amber.</p>
+
+    <h3>ProGuard Rules Editor</h3>
+    <p>The built-in rules editor provides an in-panel text editor for your <code>proguard-rules.pro</code> file. Open the file directly in the R8 Assistant panel, edit rules with syntax highlighting, and save changes without leaving the tool window. A file selector lets you choose from multiple ProGuard configuration files in your project (e.g., <code>proguard-rules.pro</code>, module-specific rules, or consumer rules from library modules). You can append newly generated rules to an existing file or replace the entire contents — the editor always creates a backup before overwriting.</p>
+
+    <h3>Remote Mapping File Fetching</h3>
+    <p>Production crash reports need to be deobfuscated with the exact <code>mapping.txt</code> from the release build. The R8 Assistant can fetch mapping files from remote sources — CI server artifact stores, GitHub Releases, GitLab job artifacts — and cache them locally for instant stack trace resolution. Configure your mapping source URL, authentication token, and file naming pattern in settings. When a crash report arrives, the assistant automatically locates and downloads the correct mapping file by version name and build variant, so you never have to manually hunt for it across build servers.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 

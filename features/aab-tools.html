@@ -98,6 +98,18 @@
     <h3>File Scanning</h3>
     <p>AAB Tools automatically scans your project's build output directories (<code>build/outputs/bundle/</code>) for AAB files. The latest build artifacts appear instantly in the panel, sorted by modification time. No file dialogs or manual browsing required &mdash; the most recent AAB is always one click away.</p>
 
+    <h3>AAB File Selection Dialog</h3>
+    <p>When multiple AAB files are present — across different variants, modules, or external locations — the file selection dialog lets you pick the exact bundle to convert or install. It displays file name, size, modification date, and variant information for each candidate. You can also browse to AAB files outside the project directory, such as downloaded CI artifacts or bundles received from other developers.</p>
+
+    <h3>Remote AAB Cache</h3>
+    <p>Downloaded AAB files from remote repositories are cached locally so you don't need to re-download them for every install. The cache is managed automatically — older entries are cleaned up based on age and available disk space. Cached bundles are available offline, making it easy to re-install a specific release candidate without network access.</p>
+
+    <h3>Conversion Mode Options</h3>
+    <p>When converting AAB to APKS, ADB Pro supports multiple output modes: universal APK (a single APK for all devices), device-specific split APKs (optimized for a connected device's ABI, screen density, and locale), and standalone APKs for legacy device compatibility. You can filter splits by ABI (e.g., arm64-v8a only), screen density, or locale to produce leaner output for specific target devices. Your last-used conversion settings are remembered across sessions.</p>
+
+    <h3>Gradle Signing Config Integration</h3>
+    <p>AAB Tools can read signing configurations directly from your <code>build.gradle.kts</code> files instead of requiring manual keystore input. Select from detected signing configs (e.g., <code>release</code>, <code>debug</code>) and the plugin automatically populates the keystore path, key alias, and prompts for passwords. This ensures the APKS archive is signed with the same credentials as your production builds, avoiding signature mismatches during install.</p>
+
     <hr class="feature-divider" style="margin: 32px 0;">
 
     <h2>Getting Started</h2>

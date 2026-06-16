@@ -98,6 +98,33 @@
     <h3>Artifact Location</h3>
     <p>After a successful build, ADB Pro automatically locates the output APK or AAB file and shows its full path in the panel. Click to reveal the file in your system file manager, copy the path to clipboard, or pass it directly to Signing Tools or AAB Tools for the next step in your release pipeline. No more navigating <code>build/outputs/apk/</code> directories manually.</p>
 
+    <h3>Add Flavor Dialog</h3>
+    <p>Adding a new product flavor to your build configuration no longer requires hand-editing Gradle files. The Add Flavor dialog provides a guided form with fields for flavor name, dimension (choose from existing dimensions or create a new one), application ID override, signing config selection, and optional <code>buildConfigField</code> declarations. As you fill in the form, a live code preview shows the exact Kotlin DSL or Groovy DSL block that will be inserted. The dialog auto-detects the next sequential <code>buildConfigField</code> value based on existing flavors, validates naming rules, and checks for duplicate names before writing.</p>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Add Flavor Dialog — live preview</span>
+        </div>
+        <span class="comment">// Generated code (Kotlin DSL):</span><br>
+        <span class="keyword">create</span>(<span class="string">"staging"</span>) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;dimension = <span class="string">"env"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;buildConfigField(<span class="string">"int"</span>, <span class="string">"ENV_TYPE"</span>, <span class="string">"2"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;applicationId = <span class="string">"com.example.app.staging"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;signingConfig = signingConfigs.getByName(<span class="string">"debug"</span>)<br>
+        }
+    </div>
+
+    <h3>Build Parameters</h3>
+    <p>Fine-tune every build with a set of toggleable Gradle parameters directly in the Build Tools panel. Common options are available as checkboxes: clean before build, <code>--stacktrace</code>, <code>--info</code>, <code>--debug</code>, <code>--offline</code>, <code>--profile</code>, <code>--dry-run</code>, <code>--no-build-cache</code>, and <code>--rerun-tasks</code>. These are appended to your Gradle command automatically, so you do not need to type them in the terminal. The selected parameters persist across builds, making it easy to keep <code>--stacktrace</code> enabled during development or <code>--offline</code> when working without network access.</p>
+
+    <h3>Artifact Renaming Templates</h3>
+    <p>After a build completes, the output APK or AAB can be automatically renamed using a configurable template. Built-in template variables include <code>${appName}</code>, <code>${versionName}</code>, <code>${versionCode}</code>, <code>${flavor}</code>, <code>${buildType}</code>, <code>${date}</code> (yyyyMMdd), and <code>${time}</code> (HHmmss). The default template produces filenames like <code>MyApp_v1.2.0_20260616_freeRelease.apk</code>. Renaming is non-destructive — the original file is renamed in place, and the new path is recorded in the build history entry. This is especially useful for CI/CD pipelines and release managers who need to archive builds with consistent, version-stamped filenames.</p>
+
+    <h3>Output Type Selection</h3>
+    <p>Choose whether each build produces an APK, an AAB (Android App Bundle), or both. When "Both" is selected, Build Tools runs <code>assemble</code> and <code>bundle</code> tasks in sequence and records both artifacts in the build history. This is handy for release workflows where the AAB goes to the Play Store while a universal APK is needed for internal testing or direct distribution.</p>
+
     <hr class="feature-divider" style="margin: 32px 0;">
 
     <h2>Getting Started</h2>
