@@ -110,6 +110,11 @@ img { max-width: 100%; display: block; }
   display: flex; align-items: center; justify-content: center;
   color: #fff; font-weight: 800; font-size: 14px;
 }
+.nav-brand-logo {
+  width: 32px; height: 32px;
+  border-radius: 6px;
+  object-fit: contain;
+}
 .nav-links {
   display: flex;
   align-items: center;
