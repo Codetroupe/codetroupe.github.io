@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Obfuscation — ADB Pro</title>
+    <meta name="description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, and configure whitelists — all from your JetBrains IDE.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            Pro Feature
+        </div>
+        <h1>Resource Obfuscation</h1>
+        <p>Obfuscate your Android app resources using AabResGuard &mdash; rename resource identifiers to shorten names, reduce APK size, and add a layer of protection against reverse engineering.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Introduction</h2>
+    <p>Resource Obfuscation (Res Guard) integrates AabResGuard directly into your IDE workflow. AabResGuard is a tool that obfuscates Android resource names in AAB/APK files, replacing readable resource identifiers (like <code>ic_launcher_background</code> or <code>strings_app_name</code>) with short, meaningless names. This reduces APK size by removing redundant string data in the resource table and adds a layer of protection against reverse engineering.</p>
+    <p>ADB Pro manages the entire AabResGuard lifecycle: downloading and managing the AabResGuard JAR, configuring whitelist rules and filter options, injecting the Gradle plugin configuration into your <code>build.gradle.kts</code>, and executing the obfuscation task. Everything is controlled from a single tab with three sub-sections: JAR Management, Configuration, and Execution.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Why Use Resource Obfuscation?</h2>
+    <p>Without resource obfuscation, Android apps expose more than most developers realize. Here are the common pain points:</p>
+    <ul>
+        <li><strong>Resource name exposure</strong> &mdash; Without obfuscation, all resource names (drawables, strings, layouts) are fully readable in the APK. Reverse engineers can infer app structure and business logic from resource names alone.</li>
+        <li><strong>Bloated resource tables</strong> &mdash; Android resource tables store full string identifiers for every resource. Projects with hundreds of drawables and string resources carry significant overhead from long, descriptive names.</li>
+        <li><strong>Manual AabResGuard setup</strong> &mdash; Setting up AabResGuard requires downloading the JAR, configuring Gradle classpath entries, writing whitelist rules for resources that must not be renamed (launcher icons, notification icons, Firebase resources), and debugging configuration errors.</li>
+        <li><strong>Whitelist maintenance</strong> &mdash; Third-party SDKs often reference resources by name at runtime. Missing a whitelist entry for a Firebase Crashlytics resource or a notification icon causes silent runtime failures that only appear in production.</li>
+        <li><strong>No IDE integration</strong> &mdash; Without ADB Pro, AabResGuard is a standalone command-line tool. You have to manually invoke it, manage configuration files, and check output logs outside the IDE.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Features</h2>
+
+    <h3>JAR Management</h3>
+    <p>Res Guard automatically downloads and manages the AabResGuard JAR file. The JAR Management tab shows the current version, download status, and file location. If the JAR is missing or outdated, a single click downloads the latest version. The JAR path is persisted as an application-level setting, so it's shared across all projects.</p>
+
+    <h3>Visual Configuration</h3>
+    <p>The Configuration tab provides a visual editor for AabResGuard settings. Configure whitelist rules organized by resource type (raw, drawable, mipmap, string, xml), enable or disable file and string filtering toggles, and set up SDK-specific whitelist entries. The configuration is written as a Gradle configuration block that AabResGuard reads during the build process.</p>
+
+    <h3>SDK-Linked Whitelist Rules</h3>
+    <p>When third-party SDKs are configured (via Quick Setup or manually), Res Guard automatically adds the necessary whitelist entries. Firebase Analytics, Firebase Crashlytics, Google Ads, Pangle, Facebook SDK, and notification resources each have predefined whitelist patterns. This prevents the common mistake of obfuscating resources that SDKs reference by name at runtime.</p>
+
+    <h3>Gradle Injection</h3>
+    <p>Res Guard can inject the AabResGuard Gradle plugin configuration directly into your <code>build.gradle.kts</code>. The Gradle injector analyzes your existing build file structure, detects the correct insertion point, and writes the classpath dependency and plugin application block. If an existing AabResGuard configuration is detected, the tool updates it rather than creating a duplicate.</p>
+
+    <h3>Execution and Logging</h3>
+    <p>The Execution tab runs the AabResGuard obfuscation task and displays real-time execution output. You can see the obfuscation progress, any warnings about resources that were skipped, and the final output size comparison. The execution log is timestamped and persisted for reference.</p>
+
+    <h3>Example Configuration</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">build.gradle.kts</span>
+        </div>
+        <span class="keyword">// AabResGuard configuration — injected by ADB Pro</span><br><br>
+        <span class="keyword">buildscript</span> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">dependencies</span> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classpath(<span style="color:#a5d6ff;">"com.bytedance.android:aabresguard:0.1.10"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        }<br><br>
+        apply(plugin = <span style="color:#a5d6ff;">"com.bytedance.android.aabresguard"</span>)<br><br>
+        <span class="keyword">configure</span>&lt;com.bytedance.android.aabresguard.plugin.AabResGuardExtension&gt; {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;enableObfuscation = <span class="keyword">true</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;obfuscatedBundleName = <span style="color:#a5d6ff;">"app-obfuscated.aab"</span><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">whitelist</span> {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">// Launcher icons</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule(<span style="color:#a5d6ff;">"*/ic_launcher*"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">// Firebase resources</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule(<span style="color:#a5d6ff;">"*/google_app_id"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule(<span style="color:#a5d6ff;">"*/gcm_defaultSenderId"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule(<span style="color:#a5d6ff;">"*/firebase_crashlytics_collection_enabled"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">// Notification icons</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rule(<span style="color:#a5d6ff;">"*/ic_stat_*"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;filteredFileExtensions = setOf(<span style="color:#a5d6ff;">"png"</span>, <span style="color:#a5d6ff;">"webp"</span>, <span style="color:#a5d6ff;">"xml"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;filteredStringPrefixes = setOf(<span style="color:#a5d6ff;">"app_name"</span>, <span style="color:#a5d6ff;">"title_"</span>)<br>
+        }
+    </div>
+
+    <h3>Supported Resource Types</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Resource Type</th>
+                    <th>Whitelist Pattern Example</th>
+                    <th>Common SDKs Needing Whitelist</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>drawable</strong></td>
+                    <td><code>*/ic_launcher*</code></td>
+                    <td>Firebase, Facebook SDK</td>
+                </tr>
+                <tr>
+                    <td><strong>mipmap</strong></td>
+                    <td><code>*/ic_launcher*</code></td>
+                    <td>Launcher, Adaptive icons</td>
+                </tr>
+                <tr>
+                    <td><strong>raw</strong></td>
+                    <td><code>*/google_*</code></td>
+                    <td>Firebase Analytics, Crashlytics</td>
+                </tr>
+                <tr>
+                    <td><strong>string</strong></td>
+                    <td><code>*/app_name</code></td>
+                    <td>Google Ads, Pangle</td>
+                </tr>
+                <tr>
+                    <td><strong>xml</strong></td>
+                    <td><code>*/network_security_config</code></td>
+                    <td>Network security configs</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Getting Started</h2>
+    <p>Res Guard is accessible from the ADB Pro side panel. Follow these steps to set up resource obfuscation:</p>
+    <ol>
+        <li>Open the ADB Pro side panel and click the <strong>"Res Guard"</strong> tab.</li>
+        <li>In the <strong>JAR Management</strong> tab, ensure the AabResGuard JAR is downloaded.</li>
+        <li>In the <strong>Configuration</strong> tab, review and customize whitelist rules for your project.</li>
+        <li>Enable or disable file and string filtering as needed.</li>
+        <li>Click <strong>"Apply Configuration"</strong> to inject the Gradle plugin config into your build file.</li>
+        <li>In the <strong>Execution</strong> tab, click <strong>"Run AabResGuard"</strong> to obfuscate resources.</li>
+        <li>Check the execution log for the output size comparison.</li>
+    </ol>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Verification</h2>
+    <p>After running AabResGuard, confirm everything works correctly:</p>
+    <ul>
+        <li>Gradle sync succeeds after AabResGuard plugin injection.</li>
+        <li>The obfuscated AAB/APK has smaller resource table size than the original.</li>
+        <li>Launcher icons and notification icons are not obfuscated (whitelist working).</li>
+        <li>Third-party SDK resources (Firebase, ads) function correctly at runtime.</li>
+        <li>No <code>ClassNotFoundException</code> or <code>Resources.NotFoundException</code> for whitelisted resources.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>References</h2>
+    <ul>
+        <li><a href="https://github.com/nickelchen/AabResGuard" target="_blank">AabResGuard GitHub</a></li>
+        <li><a href="https://developer.android.com/guide/app-bundle" target="_blank">Android App Bundle</a></li>
+        <li><a href="https://www.guardsquare.com/manual/configuration/examples#resourceobfuscation" target="_blank">ProGuard Resource Obfuscation</a></li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Protect Your App Resources</h2>
+    <p>Install ADB Pro and add resource obfuscation to your build pipeline in minutes.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

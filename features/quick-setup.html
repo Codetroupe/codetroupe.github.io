@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Setup — ADB Pro</title>
+    <meta name="description" content="One-click Android project setup — channels, SDKs, R8 rules, resource obfuscation, CI/CD, and build performance. Scan, configure, and deploy in seconds.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
+</head>
+<body>
+
+<!-- ═══ Navigation ═══ -->
+<nav class="site-nav">
+    <div class="nav-inner">
+        <a href="../index.html" class="nav-brand">
+            <div class="nav-brand-icon">AP</div>
+            ADB Pro
+        </a>
+        <div class="nav-links">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active">Features</a>
+            <a href="../getting-started.html">Getting Started</a>
+            <a href="../pricing.html">Pricing</a>
+            <a href="../dictionaries/index.html">Dictionaries</a>
+        </div>
+        <div class="nav-actions">
+            <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+                <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+            </button>
+            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+        </div>
+        <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+    <a href="../index.html">Home</a>
+    <a href="index.html" class="active">Features</a>
+    <a href="../getting-started.html">Getting Started</a>
+    <a href="../pricing.html">Pricing</a>
+    <a href="../dictionaries/index.html">Dictionaries</a>
+</div>
+
+<!-- ═══ Hero ═══ -->
+<section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge" style="margin-bottom:16px">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg>
+            Pro Feature
+        </div>
+        <h1>Quick Setup</h1>
+        <p>Configure your entire Android project in one click &mdash; product flavors, third-party SDKs, ProGuard rules, resource obfuscation, CI/CD pipelines, and build performance optimizations. Scan your project, select what you need, and let ADB Pro write all the Gradle configuration for you.</p>
+    </div>
+</section>
+
+<!-- ═══ Content ═══ -->
+<div class="feature-section">
+
+    <h2>Introduction</h2>
+    <p>Quick Setup is the most powerful module in ADB Pro. It consolidates the work of multiple feature tabs &mdash; channels, SDKs, R8, Res Guard, CI/CD, and Build Performance &mdash; into a single guided workflow. Instead of manually editing <code>build.gradle.kts</code> files, <code>proguard-rules.pro</code>, <code>libs.versions.toml</code>, and CI/CD configs, you scan your project once, select the features you want, review a real-time code preview, and apply everything with one click.</p>
+    <p>The tool understands your project's existing configuration. It detects current flavors, dependencies, minify settings, AabResGuard configuration, and CI/CD setup. With Incremental Mode enabled, it skips already-configured items so you only add what's new. If anything goes wrong, the Undo Last button restores your project from an automatic backup.</p>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Why Use Quick Setup?</h2>
+    <p>Setting up an Android project with all the right configurations is tedious and error-prone. Here are the common pain points developers face:</p>
+    <ul>
+        <li><strong>Manual Gradle editing</strong> &mdash; Setting up product flavors, adding dependencies, enabling minify, and configuring AabResGuard requires editing multiple files (<code>build.gradle.kts</code>, <code>proguard-rules.pro</code>, <code>libs.versions.toml</code>, <code>gradle.properties</code>). One syntax error breaks the entire build.</li>
+        <li><strong>SDK version hunting</strong> &mdash; Adding third-party SDKs means searching Maven Central for the latest version, writing the correct dependency notation, adding ProGuard keep rules, and updating ResGuard whitelists. Doing this for 10+ SDKs takes hours.</li>
+        <li><strong>Inconsistent configurations</strong> &mdash; When you configure features across multiple tabs or manually, it's easy to miss a ProGuard rule for a new dependency or forget to add a ResGuard whitelist entry for Firebase resources.</li>
+        <li><strong>No undo</strong> &mdash; Manual Gradle edits are not easily reversible. If a configuration change breaks your build, you're left diffing through git history to find what changed.</li>
+        <li><strong>One project at a time</strong> &mdash; Setting up multiple Android projects with the same configuration patterns means copy-pasting and editing build files repeatedly.</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Features</h2>
+
+    <h3>Project Scan and Auto-Detection</h3>
+    <p>Quick Setup starts by scanning your project. It detects existing product flavors, current dependencies, <code>minifyEnabled</code> and <code>shrinkResources</code> settings, AabResGuard configuration, CI/CD files, and Gradle performance settings. The scan results pre-populate each configuration section so you only see what's relevant to your project.</p>
+
+    <h3>Channel Configuration</h3>
+    <p>Configure product flavors for multi-channel distribution. Quick Setup includes a pre-defined channel pool grouped by category (app stores, regions, analytics platforms) and supports custom channel creation. You can set the flavor dimension name and pre-select channels based on scan results. Each channel generates the correct <code>productFlavors</code> block in your <code>build.gradle.kts</code>.</p>
+
+    <h3>Third-Party SDK Management</h3>
+    <p>Add third-party SDKs with correct versions, ProGuard rules, and ResGuard whitelists &mdash; all in one step. The SDK pool is organized by category (Firebase, Analytics, Ads, UI, etc.) with live version fetching from Maven Central. Firebase libraries use BOM (Bill of Materials) unified version management. When you select an SDK, its associated R8 keep rules and ResGuard whitelist entries are automatically linked &mdash; no manual cross-referencing needed. The "Check Updates" button detects newer SDK versions across all selected libraries.</p>
+
+    <h3>R8 Obfuscation Setup</h3>
+    <p>Configure code obfuscation without leaving the Quick Setup tab. Toggle <code>minifyEnabled</code> and <code>shrinkResources</code>, add the default ProGuard file, and review auto-linked R8 rules that sync with your SDK selections (22+ library rule definitions). The built-in reflection risk scanner analyzes your source code for patterns like <code>Class.forName</code> and <code>getDeclaredMethod</code>, flagging classes that need explicit keep rules. You can also enable obfuscation dictionaries from 11 Unicode confusable character presets, with directive checkboxes for <code>-obfuscationdictionary</code>, <code>-classobfuscationdictionary</code>, and <code>-packageobfuscationdictionary</code>.</p>
+
+    <h3>Resource Obfuscation (AabResGuard)</h3>
+    <p>Enable resource obfuscation with AabResGuard in a single toggle. Configure base whitelist rules (raw, drawable, mipmap, string, xml), SDK-linked whitelist rules for Firebase, Crashlytics, Notifications, Google Ads, and other third-party SDKs, and filter toggles for files and strings. The configuration is injected directly into your <code>build.gradle.kts</code> alongside the AabResGuard plugin declaration.</p>
+
+    <h3>CI/CD Pipeline Generation</h3>
+    <p>Select your CI/CD platform (GitHub Actions, GitLab CI, or Jenkins) with radio buttons. Quick Setup generates the complete pipeline configuration file using your project's detected build variants, signing configs, and SDK versions &mdash; the same output as the dedicated CI/CD Tools tab, but integrated into the one-click workflow.</p>
+
+    <h3>Build Performance Optimization</h3>
+    <p>After the project scan, Quick Setup presents actionable Gradle configuration recommendations from the GradleConfigAnalyzer. Each optimization is a checkbox &mdash; enable Gradle Daemon, parallel builds, build cache, JVM memory tuning, Kotlin incremental compilation, and configuration cache. Selected optimizations are written directly to <code>gradle.properties</code>.</p>
+
+    <h3>Real-Time Code Preview</h3>
+    <p>As you select options in each section, the Code Preview panel updates in real time showing exactly what will be written to your build files. The preview covers: product flavors, R8/ProGuard config, <code>proguard-rules.pro</code> content, obfuscation dictionary directives, AabResGuard config, dependencies (with BOM), plugins, build performance optimizations, and CI/CD config. You can review every line before applying.</p>
+
+    <h3>Apply All and Undo</h3>
+    <p>Click "Apply All to Project" to write all selected configurations to <code>build.gradle.kts</code>, <code>proguard-rules.pro</code>, <code>gradle/libs.versions.toml</code>, CI/CD config files, and <code>gradle.properties</code> in one operation. An automatic backup is created before any changes. The "Undo Last" button restores from backup instantly. You can also export your setup plan as JSON for reuse across projects, or import a previously saved plan.</p>
+
+    <h3>Example build.gradle.kts Output</h3>
+    <div class="code-block">
+        <div class="code-header">
+            <div class="code-dot" style="background:#ff5f57"></div>
+            <div class="code-dot" style="background:#febc2e"></div>
+            <div class="code-dot" style="background:#28c840"></div>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">build.gradle.kts</span>
+        </div>
+        <span class="comment">// Generated by ADB Pro Quick Setup</span><br><br>
+        android {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;flavorDimensions += <span class="string">"channel"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;productFlavors {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create(<span class="string">"google"</span>) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dimension = <span class="string">"channel"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;applicationIdSuffix = <span class="string">".google"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create(<span class="string">"huawei"</span>) {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dimension = <span class="string">"channel"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;applicationIdSuffix = <span class="string">".huawei"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;buildTypes {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;release {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isMinifyEnabled = <span class="keyword">true</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isShrinkResources = <span class="keyword">true</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proguardFiles(<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getDefaultProguardFile(<span class="string">"proguard-android-optimize.txt"</span>),<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="string">"proguard-rules.pro"</span><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+        }<br><br>
+        dependencies {<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;implementation(platform(<span class="string">"com.google.firebase:firebase-bom:33.7.0"</span>))<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;implementation(<span class="string">"com.google.firebase:firebase-analytics"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;implementation(<span class="string">"com.google.firebase:firebase-crashlytics"</span>)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;implementation(<span class="string">"com.squareup.retrofit2:retrofit:2.11.0"</span>)<br>
+        }
+    </div>
+
+    <h3>What Quick Setup Configures</h3>
+    <div class="table-wrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>Section</th>
+                    <th>Files Modified</th>
+                    <th>Auto-Linked</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Channels</strong></td>
+                    <td>build.gradle.kts</td>
+                    <td>&mdash;</td>
+                </tr>
+                <tr>
+                    <td><strong>SDKs</strong></td>
+                    <td>build.gradle.kts, libs.versions.toml</td>
+                    <td>R8 rules, ResGuard whitelist</td>
+                </tr>
+                <tr>
+                    <td><strong>R8 Obfuscation</strong></td>
+                    <td>build.gradle.kts, proguard-rules.pro</td>
+                    <td>SDK-linked keep rules</td>
+                </tr>
+                <tr>
+                    <td><strong>Resource Obfuscation</strong></td>
+                    <td>build.gradle.kts</td>
+                    <td>SDK-linked whitelist</td>
+                </tr>
+                <tr>
+                    <td><strong>CI/CD</strong></td>
+                    <td>.github/workflows/*.yml (or .gitlab-ci.yml, Jenkinsfile)</td>
+                    <td>Signing config, variants</td>
+                </tr>
+                <tr>
+                    <td><strong>Build Performance</strong></td>
+                    <td>gradle.properties</td>
+                    <td>&mdash;</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Getting Started</h2>
+    <ol>
+        <li>Open the ADB Pro side panel and click the "Quick Setup" tab.</li>
+        <li>Click "Scan Project" to detect your existing configuration.</li>
+        <li>Toggle "Incremental Mode" if you want to skip already-configured items.</li>
+        <li>Expand each section (Channels, SDKs, R8, Res Guard, CI/CD, Build Perf) and select what you need.</li>
+        <li>Review the real-time Code Preview on the right.</li>
+        <li>Click <strong>Apply All to Project</strong>.</li>
+        <li>If anything is wrong, click "Undo Last" to restore from backup.</li>
+    </ol>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>Verification</h2>
+    <p>After applying your Quick Setup configuration, confirm everything works correctly:</p>
+    <ul>
+        <li>Gradle sync succeeds after applying (no syntax errors in generated build files).</li>
+        <li>Product flavors appear correctly in the Build Variants panel.</li>
+        <li>Selected SDKs resolve to the correct versions in the dependency tree.</li>
+        <li>ProGuard rules are syntactically valid and cover all selected libraries.</li>
+        <li>CI/CD config files are valid YAML/Jenkinsfile syntax.</li>
+        <li>Build performance settings take effect on next build (check <code>gradle.properties</code>).</li>
+    </ul>
+
+    <hr class="feature-divider" style="margin: 32px 0;">
+
+    <h2>References</h2>
+    <ul>
+        <li><a href="https://developer.android.com/build/build-variants" target="_blank">Android Build Variants</a></li>
+        <li><a href="https://www.guardsquare.com/manual/home" target="_blank">ProGuard Manual</a></li>
+        <li><a href="https://docs.gradle.org/current/userguide/build_environment.html" target="_blank">Gradle Properties</a></li>
+        <li><a href="https://github.com/nickelchen/AabResGuard" target="_blank">AabResGuard</a></li>
+    </ul>
+</div>
+
+<!-- ═══ CTA ═══ -->
+<section class="cta-banner">
+    <h2>Set Up Your Project in One Click</h2>
+    <p>Install ADB Pro and configure channels, SDKs, obfuscation, and CI/CD in seconds.</p>
+    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+</section>
+
+<!-- ═══ Footer ═══ -->
+<footer class="site-footer">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="../index.html" class="nav-brand" style="font-size:16px;">
+                <div class="nav-brand-icon" style="width:28px;height:28px;font-size:12px;border-radius:6px;">AP</div>
+                ADB Pro
+            </a>
+            <p>Advanced Android Development Tools for JetBrains IDEs.</p>
+        </div>
+        <div class="footer-links">
+            <div class="footer-col">
+                <h4>Product</h4>
+                <a href="index.html">Features</a>
+                <a href="../pricing.html">Pricing</a>
+                <a href="../getting-started.html">Getting Started</a>
+            </div>
+            <div class="footer-col">
+                <h4>Resources</h4>
+                <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
+                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+            </div>
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 pomok. All rights reserved.
+    </div>
+</footer>
+
+<script src="../assets/js/main.js"></script>
+</body>
+</html>

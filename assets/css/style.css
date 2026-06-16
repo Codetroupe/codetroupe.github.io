@@ -721,6 +721,13 @@ img { max-width: 100%; display: block; }
 .comparison-table tr:hover td {
   background: var(--bg-elevated);
 }
+.comparison-table td a[href$=".txt"]:hover strong {
+  color: var(--accent);
+  text-decoration: underline;
+}
+.comparison-table td a[href$=".txt"] {
+  transition: color 0.15s ease;
+}
 
 /* ── Responsive ────────────────────────────────────── */
 @media (max-width: 640px) {

@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Features — ADB Pro</title>
-    <meta name="description" content="Explore all 11 feature modules of ADB Pro: AAB Tools, R8 Assistant, Build Tools, Bundle Inspector, Release Readiness, and more.">
+    <meta name="description" content="Explore all 13 feature modules of ADB Pro: Quick Setup, AAB Tools, R8 Assistant, Res Guard, Build Tools, Bundle Inspector, Release Readiness, and more.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../assets/css/style.css">
+    <link rel="icon" type="image/x-icon" href="../assets/favicon.ico">
 </head>
 <body>
 
@@ -50,13 +51,23 @@
 <section class="feature-hero">
     <div class="hero-content">
         <h1>All Features</h1>
-        <p>11 powerful modules covering every stage of the Android app release lifecycle.</p>
+        <p>13 powerful modules covering every stage of the Android app release lifecycle.</p>
     </div>
 </section>
 
 <!-- ═══ Features ═══ -->
 <section class="section">
     <div class="features-grid">
+        <!-- Quick Setup -->
+        <a href="quick-setup.html" class="feature-card">
+            <div class="feature-card-icon icon-green">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            </div>
+            <h3>Quick Setup</h3>
+            <p>One-click project deployment. Scan, configure channels, SDKs, R8 rules, resource obfuscation, CI/CD, and build performance — all applied in one step with real-time code preview.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
         <!-- AAB Tools -->
         <a href="aab-tools.html" class="feature-card">
             <div class="feature-card-icon icon-blue">
@@ -74,6 +85,16 @@
             </div>
             <h3>R8 Assistant</h3>
             <p>ProGuard/R8 rule recommendation with 20+ library templates. Reflection risk scanning, mapping file analysis, stack trace deobfuscation, and obfuscation dictionaries.</p>
+            <div class="card-arrow">Learn more &rarr;</div>
+        </a>
+
+        <!-- Res Guard -->
+        <a href="res-guard.html" class="feature-card">
+            <div class="feature-card-icon icon-amber">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
+            </div>
+            <h3>Res Guard</h3>
+            <p>Obfuscate Android app resources with AabResGuard. Rename resource identifiers, reduce APK size, configure whitelists, and inject Gradle config — all from the IDE.</p>
             <div class="card-arrow">Learn more &rarr;</div>
         </a>
 
