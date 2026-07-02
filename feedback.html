@@ -293,9 +293,11 @@
         'quick-setup': 'Quick Setup'
     };
 
-    // ── Auto-select feature from URL query param ──
+    // ── Auto-fill form from URL query params ──
     (function() {
         const params = new URLSearchParams(window.location.search);
+
+        // Auto-select feature
         const featureParam = params.get('feature');
         if (featureParam) {
             var select = document.getElementById('feature');
@@ -312,6 +314,28 @@
                 matched = true;
             }
             if (matched) onFeatureChange();
+        }
+
+        // Auto-select feedback type
+        const typeParam = params.get('type');
+        if (typeParam) {
+            var typeSelect = document.getElementById('type');
+            for (var i = 0; i < typeSelect.options.length; i++) {
+                if (typeSelect.options[i].value === typeParam) {
+                    typeSelect.selectedIndex = i;
+                    break;
+                }
+            }
+        }
+
+        // Auto-fill description (e.g. error logs from plugin)
+        const descParam = params.get('description');
+        if (descParam) {
+            var textarea = document.getElementById('content');
+            textarea.value = descParam;
+            textarea.disabled = false;
+            var hint = textarea.parentElement.querySelector('.form-hint');
+            if (hint) hint.style.display = 'none';
         }
     })();
 
