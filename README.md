@@ -1,10 +1,10 @@
 # ADB Pro — Official Website
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fcodetroupe.github.io)](https://codetroupe.github.io/)
-[![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/26180?label=ADB%20Pro)](https://plugins.jetbrains.com/plugin/26180-adb-pro)
+[![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/32100?label=ADB%20Pro)](https://plugins.jetbrains.com/plugin/32100-adb-pro)
 [![License](https://img.shields.io/badge/license-proprietary-blue)](https://codetroupe.github.io/subscription-agreement.html)
 
-The official marketing and documentation site for [ADB Pro](https://plugins.jetbrains.com/plugin/26180-adb-pro) — an all-in-one Android build, sign & release toolkit for Android Studio and IntelliJ IDEA.
+The official marketing and documentation site for [ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro) — an all-in-one Android build, sign & release toolkit for Android Studio and IntelliJ IDEA.
 
 ## Live Site
 
@@ -70,18 +70,9 @@ assets/                     # Static assets
 
 This site is deployed automatically via GitHub Actions (`deploy-web.yml`) on push to the `master` branch.
 
-## Local Preview
-
-```bash
-# Any static file server works
-npx serve .
-# or
-python -m http.server 8000
-```
-
 ## Links
 
-- [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/26180-adb-pro)
+- [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32100-adb-pro)
 - [Free ProGuard Dictionaries](https://codetroupe.github.io/dictionaries/)
 
 ## License
