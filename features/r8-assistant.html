@@ -1,9 +1,9 @@
-ï»¿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>R8 Assistant â€” ADB Pro</title>
+    <title>R8 Assistant ¡ª ADB Pro</title>
     <meta name="description" content="Intelligent ProGuard/R8 rule recommendation with 20+ library templates, reflection scanning, mapping analysis, and obfuscation dictionaries.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!-- â•â•â• Navigation â•â•â• -->
+<!-- ¨T¨T¨T Navigation ¨T¨T¨T -->
 <nav class="site-nav">
     <div class="nav-inner">
         <a href="../index.html" class="nav-brand">
@@ -26,6 +26,7 @@
             <a href="../getting-started.html">Getting Started</a>
             <a href="../pricing.html">Pricing</a>
             <a href="../dictionaries/index.html">Dictionaries</a>
+            <a href="../blog/index.html">Blog</a>
             <a href="../feedback.html">Feedback</a>
         </div>
         <div class="nav-actions">
@@ -33,7 +34,7 @@
                 <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
                 <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
             </button>
-            <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
+            <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank">Get ADB Pro</a>
         </div>
         <button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
@@ -46,10 +47,11 @@
     <a href="../getting-started.html">Getting Started</a>
     <a href="../pricing.html">Pricing</a>
     <a href="../dictionaries/index.html">Dictionaries</a>
-    <a href="../feedback.html">Feedback</a>
+    <a href="../blog/index.html">Blog</a>
+            <a href="../feedback.html">Feedback</a>
 </div>
 
-<!-- â•â•â• Hero â•â•â• -->
+<!-- ¨T¨T¨T Hero ¨T¨T¨T -->
 <section class="feature-hero">
     <div class="hero-content">
         <div class="hero-badge" style="margin-bottom:16px">
@@ -61,7 +63,7 @@
     </div>
 </section>
 
-<!-- â•â•â• Content â•â•â• -->
+<!-- ¨T¨T¨T Content ¨T¨T¨T -->
 <div class="feature-section">
 
     <h2>Introduction</h2>
@@ -74,10 +76,10 @@
     <h2>Why Use R8 Assistant?</h2>
     <p>ProGuard and R8 configuration is one of the most error-prone parts of Android release builds. Here are the problems developers face without proper tooling:</p>
     <ul>
-        <li><strong>A single missing <code>-keep</code> rule crashes your app in production â€” but only after release.</strong> R8 strips and renames aggressively, and the resulting <code>ClassNotFoundException</code> or <code>NoSuchMethodError</code> won't appear during debug builds.</li>
+        <li><strong>A single missing <code>-keep</code> rule crashes your app in production ¡ª but only after release.</strong> R8 strips and renames aggressively, and the resulting <code>ClassNotFoundException</code> or <code>NoSuchMethodError</code> won't appear during debug builds.</li>
         <li><strong>There are 20+ popular libraries, each needing specific rules.</strong> Retrofit, Gson, Moshi, Room, Hilt, Kotlin Coroutines, and many more all require unique ProGuard configurations. Tracking them manually across library upgrades is unsustainable.</li>
         <li><strong>Reflection-based code silently breaks after obfuscation.</strong> Calls to <code>Class.forName()</code>, <code>getMethod()</code>, or JSON serialization via field-name matching work fine in debug but fail when class and field names are obfuscated.</li>
-        <li><strong>No tool tells you which rules you're missing.</strong> The compiler won't warn you, your tests pass in debug, and the crash only surfaces on real devices running release builds â€” the worst possible feedback loop.</li>
+        <li><strong>No tool tells you which rules you're missing.</strong> The compiler won't warn you, your tests pass in debug, and the crash only surfaces on real devices running release builds ¡ª the worst possible feedback loop.</li>
     </ul>
 
     <hr class="feature-divider" style="margin: 32px 0;">
@@ -93,7 +95,7 @@
             <div class="code-dot" style="background:#28c840"></div>
             <span style="margin-left:12px; font-size:12px; color:#64748b;">Generated proguard-rules.pro</span>
         </div>
-        <span class="comment"># â”€â”€ ADB Pro R8 Assistant â”€â”€ Generated Rules â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€</span><br>
+        <span class="comment"># ©¤©¤ ADB Pro R8 Assistant ©¤©¤ Generated Rules ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤</span><br>
         <span class="comment"># Detected: Retrofit 2.9.0, Gson 2.10.1, Room 2.6.0</span><br><br>
         <span class="comment"># Retrofit</span><br>
         <span class="keyword">-keepattributes</span> Signature, *Annotation*<br>
@@ -190,18 +192,18 @@
     <p>Validate your ProGuard rules before running a full release build. The rule tester checks for common syntax errors, conflicting rules, and overly broad keep patterns that could inflate your APK size. Catch misconfigurations in seconds instead of waiting for a multi-minute build.</p>
 
     <h3>Obfuscation Dictionaries</h3>
-    <p>Download and apply preset obfuscation dictionaries that use Unicode confusable characters for maximum code protection. 11 preset dictionaries are available â€” from visual lookalikes (Greek, Cyrillic) to cross-encoding confusion (characters that display differently in GBK, Big5, Shift-JIS).</p>
-    <p>The dictionary lifecycle is fully managed: download presets from the built-in CDN, install them into your project with a single click, configure apply directives (<code>-obfuscationdictionary</code>, <code>-classobfuscationdictionary</code>, <code>-packageobfuscationdictionary</code>) directly in your <code>proguard-rules.pro</code>, and uninstall dictionaries you no longer need. The R8 Assistant also includes a recommendation engine that suggests the best dictionary for your obfuscation goals â€” visual confusion, cross-encoding chaos, or maximum entropy.</p>
+    <p>Download and apply preset obfuscation dictionaries that use Unicode confusable characters for maximum code protection. 11 preset dictionaries are available ¡ª from visual lookalikes (Greek, Cyrillic) to cross-encoding confusion (characters that display differently in GBK, Big5, Shift-JIS).</p>
+    <p>The dictionary lifecycle is fully managed: download presets from the built-in CDN, install them into your project with a single click, configure apply directives (<code>-obfuscationdictionary</code>, <code>-classobfuscationdictionary</code>, <code>-packageobfuscationdictionary</code>) directly in your <code>proguard-rules.pro</code>, and uninstall dictionaries you no longer need. The R8 Assistant also includes a recommendation engine that suggests the best dictionary for your obfuscation goals ¡ª visual confusion, cross-encoding chaos, or maximum entropy.</p>
     <p><a href="../dictionaries/index.html">Browse all 11 dictionaries &rarr;</a></p>
 
     <h3>Seeds Viewer</h3>
     <p>After R8 runs, it produces a <code>seeds.txt</code> file listing every class and member that was kept (not obfuscated or removed). The Seeds Viewer parses this file and cross-references it against your recommended rules, showing you exactly which rules had an effect and which produced no matches. This lets you prune dead rules that add noise to your configuration and verify that every library you care about is actually being protected. The viewer presents a side-by-side comparison: your rules on the left, matched seeds on the right, with unmatched rules highlighted in amber.</p>
 
     <h3>ProGuard Rules Editor</h3>
-    <p>The built-in rules editor provides an in-panel text editor for your <code>proguard-rules.pro</code> file. Open the file directly in the R8 Assistant panel, edit rules with syntax highlighting, and save changes without leaving the tool window. A file selector lets you choose from multiple ProGuard configuration files in your project (e.g., <code>proguard-rules.pro</code>, module-specific rules, or consumer rules from library modules). You can append newly generated rules to an existing file or replace the entire contents â€” the editor always creates a backup before overwriting.</p>
+    <p>The built-in rules editor provides an in-panel text editor for your <code>proguard-rules.pro</code> file. Open the file directly in the R8 Assistant panel, edit rules with syntax highlighting, and save changes without leaving the tool window. A file selector lets you choose from multiple ProGuard configuration files in your project (e.g., <code>proguard-rules.pro</code>, module-specific rules, or consumer rules from library modules). You can append newly generated rules to an existing file or replace the entire contents ¡ª the editor always creates a backup before overwriting.</p>
 
     <h3>Remote Mapping File Fetching</h3>
-    <p>Production crash reports need to be deobfuscated with the exact <code>mapping.txt</code> from the release build. The R8 Assistant can fetch mapping files from remote sources â€” CI server artifact stores, GitHub Releases, GitLab job artifacts â€” and cache them locally for instant stack trace resolution. Configure your mapping source URL, authentication token, and file naming pattern in settings. When a crash report arrives, the assistant automatically locates and downloads the correct mapping file by version name and build variant, so you never have to manually hunt for it across build servers.</p>
+    <p>Production crash reports need to be deobfuscated with the exact <code>mapping.txt</code> from the release build. The R8 Assistant can fetch mapping files from remote sources ¡ª CI server artifact stores, GitHub Releases, GitLab job artifacts ¡ª and cache them locally for instant stack trace resolution. Configure your mapping source URL, authentication token, and file naming pattern in settings. When a crash report arrives, the assistant automatically locates and downloads the correct mapping file by version name and build variant, so you never have to manually hunt for it across build servers.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
@@ -209,7 +211,7 @@
     <p>Follow these steps to generate and apply ProGuard/R8 rules for your project:</p>
     <ol>
         <li>Open the <strong>R8 Assistant</strong> tab in the ADB Pro tool window.</li>
-        <li>Click <strong>"Generate Rules"</strong> â€” the assistant scans your <code>build.gradle</code> dependencies and produces recommended keep rules.</li>
+        <li>Click <strong>"Generate Rules"</strong> ¡ª the assistant scans your <code>build.gradle</code> dependencies and produces recommended keep rules.</li>
         <li>Review the generated rules in the panel. Each rule includes a comment explaining which library it targets and why it is needed.</li>
         <li>Copy the generated rules into your <code>proguard-rules.pro</code> file (or use the one-click apply button).</li>
         <li>Run the <strong>Reflection Risk Scanner</strong> to check for code patterns that may break after obfuscation.</li>
@@ -228,10 +230,10 @@
     <h2>Verification</h2>
     <p>After applying generated rules and building a release APK, confirm that the R8 Assistant is working correctly:</p>
     <ul>
-        <li>Run a release build with <code>minifyEnabled true</code> and <code>shrinkResources true</code> â€” the build should complete without errors.</li>
+        <li>Run a release build with <code>minifyEnabled true</code> and <code>shrinkResources true</code> ¡ª the build should complete without errors.</li>
         <li>Launch the release APK on a device or emulator and verify that the app does not crash on startup or during normal use.</li>
         <li>Use <code>jadx</code> or the Android Studio APK Analyzer to inspect the APK and confirm that class names are obfuscated (renamed to short or dictionary-based names).</li>
-        <li>Check that <code>mapping.txt</code> was generated in <code>app/build/outputs/mapping/</code> â€” this file is essential for deobfuscating crash reports.</li>
+        <li>Check that <code>mapping.txt</code> was generated in <code>app/build/outputs/mapping/</code> ¡ª this file is essential for deobfuscating crash reports.</li>
         <li>Run the Reflection Risk Scanner and confirm that all high-risk items have corresponding <code>-keep</code> rules in your ProGuard configuration.</li>
     </ul>
 
@@ -240,20 +242,20 @@
     <h2>References</h2>
     <p>Official documentation for code shrinking and obfuscation:</p>
     <ul>
-        <li><a href="https://developer.android.com/build/shrink-code" target="_blank">Shrink, obfuscate, and optimize your app â€” Android Developers</a></li>
-        <li><a href="https://www.guardsquare.com/manual/home" target="_blank">ProGuard Manual â€” Guardsquare</a></li>
-        <li><a href="https://developer.android.com/build/shrink-code#configuration-files" target="_blank">Customize which resources to keep â€” Configuration files</a></li>
+        <li><a href="https://developer.android.com/build/shrink-code" target="_blank">Shrink, obfuscate, and optimize your app ¡ª Android Developers</a></li>
+        <li><a href="https://www.guardsquare.com/manual/home" target="_blank">ProGuard Manual ¡ª Guardsquare</a></li>
+        <li><a href="https://developer.android.com/build/shrink-code#configuration-files" target="_blank">Customize which resources to keep ¡ª Configuration files</a></li>
     </ul>
 </div>
 
-<!-- â•â•â• CTA â•â•â• -->
+<!-- ¨T¨T¨T CTA ¨T¨T¨T -->
 <section class="cta-banner">
     <h2>Harden Your Code with R8 Assistant</h2>
     <p>Stop guessing which keep rules you need. Let ADB Pro analyze your project and generate correct rules automatically.</p>
-    <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
+    <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
 </section>
 
-<!-- â•â•â• Footer â•â•â• -->
+<!-- ¨T¨T¨T Footer ¨T¨T¨T -->
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
@@ -269,12 +271,13 @@
                 <a href="index.html">Features</a>
                 <a href="../pricing.html">Pricing</a>
                 <a href="../getting-started.html">Getting Started</a>
-                <a href="../feedback.html">Feedback</a>
+                <a href="../blog/index.html">Blog</a>
+            <a href="../feedback.html">Feedback</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
                 <a href="../dictionaries/index.html">ProGuard Dictionaries</a>
-                <a href="https://plugins.jetbrains.com/plugin/com.adbpro.plugin" target="_blank">JetBrains Marketplace</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank">JetBrains Marketplace</a>
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
