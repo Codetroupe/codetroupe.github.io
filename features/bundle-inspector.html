@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bundle Inspector ¡ª ADB Pro</title>
+    <title>Bundle Inspector â€” ADB Pro</title>
     <meta name="description" content="Deep AAB analysis with size tracking, resource auditing, redundancy scanning, and build size trend charts.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!-- ¨T¨T¨T Navigation ¨T¨T¨T -->
+<!-- â•â•â• Navigation â•â•â• -->
 <nav class="site-nav">
     <div class="nav-inner">
         <a href="../index.html" class="nav-brand">
@@ -24,10 +24,11 @@
             <a href="../index.html">Home</a>
             <a href="index.html" class="active">Features</a>
             <a href="../getting-started.html">Getting Started</a>
-            <a href="../pricing.html">Pricing</a>
+            <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
             <a href="../dictionaries/index.html">Dictionaries</a>
             <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
         </div>
         <div class="nav-actions">
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -45,13 +46,14 @@
     <a href="../index.html">Home</a>
     <a href="index.html" class="active">Features</a>
     <a href="../getting-started.html">Getting Started</a>
-    <a href="../pricing.html">Pricing</a>
+    <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
     <a href="../dictionaries/index.html">Dictionaries</a>
     <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
 </div>
 
-<!-- ¨T¨T¨T Hero ¨T¨T¨T -->
+<!-- â•â•â• Hero â•â•â• -->
 <section class="feature-hero">
     <div class="hero-content">
         <div class="hero-badge" style="margin-bottom:16px">
@@ -63,7 +65,7 @@
     </div>
 </section>
 
-<!-- ¨T¨T¨T Content ¨T¨T¨T -->
+<!-- â•â•â• Content â•â•â• -->
 <div class="feature-section">
 
     <h2>Introduction</h2>
@@ -109,7 +111,7 @@
     <p>Bundle Inspector parses the compiled <code>AndroidManifest.xml</code> inside the AAB and presents a structured view of all key attributes: package name, version code, version name, min/target/compile SDK versions, application label, icon, and network security config. It also lists every declared component (activities, services, receivers, providers), all permissions, metadata entries, intent filters, and feature declarations. Security-sensitive flags like <code>android:debuggable</code>, <code>android:allowBackup</code>, and <code>android:usesCleartextTraffic</code> are highlighted so you can confirm they are correctly configured for release.</p>
 
     <h3>Native Library ABI Analysis</h3>
-    <p>For apps that include native code, Bundle Inspector displays a matrix of all <code>.so</code> files distributed across each supported ABI (arm64-v8a, armeabi-v7a, x86, x86_64). The matrix shows per-library file sizes for each ABI and highlights any <code>.so</code> files that are missing from certain ABIs ¡ª a common source of <code>UnsatisfiedLinkError</code> crashes on devices with those architectures. Total size per ABI is computed automatically, so you can see at a glance which architecture contributes the most to the bundle.</p>
+    <p>For apps that include native code, Bundle Inspector displays a matrix of all <code>.so</code> files distributed across each supported ABI (arm64-v8a, armeabi-v7a, x86, x86_64). The matrix shows per-library file sizes for each ABI and highlights any <code>.so</code> files that are missing from certain ABIs â€” a common source of <code>UnsatisfiedLinkError</code> crashes on devices with those architectures. Total size per ABI is computed automatically, so you can see at a glance which architecture contributes the most to the bundle.</p>
 
     <h3>Automated Issue Scanning</h3>
     <p>During analysis, Bundle Inspector runs a set of automated checks against the bundle contents and flags potential problems. Issues are categorized by severity: errors for critical problems (e.g., debuggable flag enabled in release), warnings for suboptimal configurations (e.g., missing <code>.so</code> files for certain ABIs), and informational notes for minor observations. Each issue includes a title, detailed message, and actionable recommendation for how to fix it. The issues panel provides a quick health check without requiring a separate Release Readiness scan.</p>
@@ -164,14 +166,14 @@
     </ul>
 </div>
 
-<!-- ¨T¨T¨T CTA ¨T¨T¨T -->
+<!-- â•â•â• CTA â•â•â• -->
 <section class="cta-banner">
     <h2>Shrink Your App Size</h2>
     <p>Install ADB Pro and get deep insights into every byte of your bundle.</p>
     <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
 </section>
 
-<!-- ¨T¨T¨T Footer ¨T¨T¨T -->
+<!-- â•â•â• Footer â•â•â• -->
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
@@ -185,10 +187,11 @@
             <div class="footer-col">
                 <h4>Product</h4>
                 <a href="index.html">Features</a>
-                <a href="../pricing.html">Pricing</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
                 <a href="../getting-started.html">Getting Started</a>
                 <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
@@ -197,7 +200,7 @@
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
-                <a href="../subscription-agreement.html">Subscription Agreement</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Subscription Agreement</a>
                 <a href="../privacy-policy.html">Privacy Policy</a>
                 <a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a>
             </div>

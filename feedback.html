@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback ¡ª ADB Pro</title>
+    <title>Feedback â€” ADB Pro</title>
     <meta name="description" content="Submit feedback, bug reports, and feature requests for ADB Pro.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -137,7 +137,7 @@
 </head>
 <body>
 
-<!-- ¨T¨T¨T Navigation ¨T¨T¨T -->
+<!-- â•â•â• Navigation â•â•â• -->
 <nav class="site-nav">
     <div class="nav-inner">
         <a href="index.html" class="nav-brand">
@@ -148,8 +148,9 @@
             <a href="index.html">Home</a>
             <a href="features/index.html">Features</a>
             <a href="getting-started.html">Getting Started</a>
-            <a href="pricing.html">Pricing</a>
+            <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
             <a href="dictionaries/index.html">Dictionaries</a>
+    <a href="blog/index.html">Blog</a>
             <a href="blog/index.html">Blog</a>
         </div>
         <div class="nav-actions">
@@ -168,12 +169,11 @@
     <a href="index.html">Home</a>
     <a href="features/index.html">Features</a>
     <a href="getting-started.html">Getting Started</a>
-    <a href="pricing.html">Pricing</a>
+    <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
     <a href="dictionaries/index.html">Dictionaries</a>
-    <a href="blog/index.html">Blog</a>
 </div>
 
-<!-- ¨T¨T¨T Hero ¨T¨T¨T -->
+<!-- â•â•â• Hero â•â•â• -->
 <section class="hero">
     <div class="hero-content">
         <div class="hero-badge">We value your input</div>
@@ -182,7 +182,7 @@
     </div>
 </section>
 
-<!-- ¨T¨T¨T Feedback Form ¨T¨T¨T -->
+<!-- â•â•â• Feedback Form â•â•â• -->
 <section class="section">
     <div class="feedback-container">
         <div class="feedback-form" id="feedbackForm">
@@ -190,7 +190,7 @@
             <div class="form-group">
                 <label for="feature">Feature<span class="required">*</span></label>
                 <select id="feature" required>
-                    <option value="">¡ª Select a feature ¡ª</option>
+                    <option value="">â€” Select a feature â€”</option>
                     <option value="AAB Tools">AAB Tools</option>
                     <option value="Signing Tools">Signing Tools</option>
                     <option value="Build Tools">Build Tools</option>
@@ -239,7 +239,7 @@
     </div>
 </section>
 
-<!-- ¨T¨T¨T Footer ¨T¨T¨T -->
+<!-- â•â•â• Footer â•â•â• -->
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
@@ -253,7 +253,7 @@
             <div class="footer-col">
                 <h4>Product</h4>
                 <a href="features/index.html">Features</a>
-                <a href="pricing.html">Pricing</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
                 <a href="getting-started.html">Getting Started</a>
             </div>
             <div class="footer-col">
@@ -263,7 +263,7 @@
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
-                <a href="subscription-agreement.html">Subscription Agreement</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Subscription Agreement</a>
                 <a href="privacy-policy.html">Privacy Policy</a>
                 <a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a>
             </div>
@@ -276,10 +276,10 @@
 
 <script src="assets/js/main.js"></script>
 <script>
-    // ©¤©¤ GitHub Configuration ©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤©¤
+    // â”€â”€ GitHub Configuration â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const GITHUB_REPO = 'Codetroupe/codetroupe.github.io';
 
-    // ©¤©¤ Feature slug ¡ú display name mapping (for ?feature= deep link) ©¤©¤
+    // â”€â”€ Feature slug â†’ display name mapping (for ?feature= deep link) â”€â”€
     const FEATURE_SLUGS = {
         'aab-tools': 'AAB Tools',
         'signing-tools': 'Signing Tools',
@@ -295,7 +295,7 @@
         'quick-setup': 'Quick Setup'
     };
 
-    // ©¤©¤ Auto-fill form from URL query params ©¤©¤
+    // â”€â”€ Auto-fill form from URL query params â”€â”€
     (function() {
         const params = new URLSearchParams(window.location.search);
 
@@ -341,7 +341,7 @@
         }
     })();
 
-    // ©¤©¤ Enable textarea when a feature is selected ©¤©¤
+    // â”€â”€ Enable textarea when a feature is selected â”€â”€
     document.getElementById('feature').addEventListener('change', onFeatureChange);
 
     function onFeatureChange() {
@@ -358,7 +358,7 @@
         }
     }
 
-    // ©¤©¤ Submit feedback via GitHub pre-filled issue URL ©¤©¤
+    // â”€â”€ Submit feedback via GitHub pre-filled issue URL â”€â”€
     function submitFeedback() {
         var feature = document.getElementById('feature').value;
         var type    = document.getElementById('type').value;
@@ -371,7 +371,7 @@
         if (content.length < 10) return showStatus('error', 'Description is too short. Please provide more detail.');
         if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showStatus('error', 'Please enter a valid email address.');
 
-        var title = '[' + type + '] ' + feature + ' ¡ª ' + content.substring(0, 60) + (content.length > 60 ? '...' : '');
+        var title = '[' + type + '] ' + feature + ' â€” ' + content.substring(0, 60) + (content.length > 60 ? '...' : '');
 
         var body  = '## Feature\n' + feature + '\n\n';
             body += '## Feedback Type\n' + type + '\n\n';

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Release Readiness ¡ª ADB Pro</title>
+    <title>Release Readiness â€” ADB Pro</title>
     <meta name="description" content="13-point pre-release checklist covering debuggable flags, minifyEnabled, API key exposure, SDK compliance, signing config, and more.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!-- ¨T¨T¨T Navigation ¨T¨T¨T -->
+<!-- â•â•â• Navigation â•â•â• -->
 <nav class="site-nav">
     <div class="nav-inner">
         <a href="../index.html" class="nav-brand">
@@ -24,10 +24,11 @@
             <a href="../index.html">Home</a>
             <a href="index.html" class="active">Features</a>
             <a href="../getting-started.html">Getting Started</a>
-            <a href="../pricing.html">Pricing</a>
+            <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
             <a href="../dictionaries/index.html">Dictionaries</a>
             <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
         </div>
         <div class="nav-actions">
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -45,13 +46,14 @@
     <a href="../index.html">Home</a>
     <a href="index.html" class="active">Features</a>
     <a href="../getting-started.html">Getting Started</a>
-    <a href="../pricing.html">Pricing</a>
+    <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
     <a href="../dictionaries/index.html">Dictionaries</a>
     <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
 </div>
 
-<!-- ¨T¨T¨T Hero ¨T¨T¨T -->
+<!-- â•â•â• Hero â•â•â• -->
 <section class="feature-hero">
     <div class="hero-content">
         <div class="hero-badge" style="margin-bottom:16px">
@@ -63,7 +65,7 @@
     </div>
 </section>
 
-<!-- ¨T¨T¨T Content ¨T¨T¨T -->
+<!-- â•â•â• Content â•â•â• -->
 <div class="feature-section">
 
     <h2>Introduction</h2>
@@ -73,7 +75,7 @@
     <hr class="feature-divider" style="margin: 32px 0;">
 
     <h2>Why Use Release Readiness?</h2>
-    <p>Pre-release mistakes are costly ¡ª they reach production users before you can react. Here are the problems that Release Readiness solves:</p>
+    <p>Pre-release mistakes are costly â€” they reach production users before you can react. Here are the problems that Release Readiness solves:</p>
     <ul>
         <li><strong>Forgetting to disable <code>debuggable</code>.</strong> A debuggable release build exposes your app to security risks and is automatically rejected by the Play Store, yet it is one of the most common oversights.</li>
         <li><strong>Leaving API keys hardcoded in source code.</strong> Secrets for Google Maps, Firebase, AWS, and third-party SDKs get committed to repositories and shipped in APKs where anyone can extract them.</li>
@@ -100,7 +102,7 @@
     <p>Validates that <code>targetSdkVersion</code> meets current Google Play requirements and that <code>compileSdkVersion</code> is sufficient for the libraries in use. Flags deprecated API usage.</p>
 
     <h3>5. Signing Configuration</h3>
-    <p>Ensures the release build is signed with a proper release keystore ¡ª not the debug keystore. Checks for v2 or v3 APK Signature Scheme (required for Play App Signing) and keystore certificate validity.</p>
+    <p>Ensures the release build is signed with a proper release keystore â€” not the debug keystore. Checks for v2 or v3 APK Signature Scheme (required for Play App Signing) and keystore certificate validity.</p>
 
     <h3>6. ProGuard Rules Review</h3>
     <p>Verifies that ProGuard/R8 rules files exist and are properly referenced. Flags missing <code>-keep</code> rules for reflection-heavy libraries and overly broad wildcard rules.</p>
@@ -130,16 +132,16 @@
     <p>Each check produces one of five status levels: <span class="badge badge-green">PASS</span> for checks that passed cleanly, <span class="badge badge-blue">INFO</span> for informational notes that require no action, <span class="badge badge-amber">WARNING</span> for items that are not blocking but should be reviewed (e.g., permissions that are declared but never requested at runtime), <span class="badge badge-red">FAIL</span> for critical issues that must be resolved before release, and <span class="badge badge-gray">SKIP</span> for checks that could not be evaluated (e.g., no test source set found, or no Git history available). The overall readiness score counts only PASS checks, making it easy to see at a glance whether your build is ready to ship.</p>
 
     <h3>Check History</h3>
-    <p>Release Readiness results are persisted between scans, so you can compare readiness across builds and track improvements over time. The history view shows a timeline of past scans with pass/fail/warning counts for each. This is especially useful during release cycles ¡ª you can verify that the number of warnings is decreasing with each build and that no new failures have been introduced by recent changes.</p>
+    <p>Release Readiness results are persisted between scans, so you can compare readiness across builds and track improvements over time. The history view shows a timeline of past scans with pass/fail/warning counts for each. This is especially useful during release cycles â€” you can verify that the number of warnings is decreasing with each build and that no new failures have been introduced by recent changes.</p>
 
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
             <div class="code-dot" style="background:#febc2e"></div>
             <div class="code-dot" style="background:#28c840"></div>
-            <span style="margin-left:12px; font-size:12px; color:#64748b;">Release Readiness ¡ª scan results</span>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Release Readiness â€” scan results</span>
         </div>
-        <span class="keyword">Release Readiness Report</span> ¡ª app-release v2.4.1<br>
+        <span class="keyword">Release Readiness Report</span> â€” app-release v2.4.1<br>
         <span class="keyword">Score:</span> 11 / 13 passed<br><br>
         <span style="color:#4ade80;">[PASS]</span> Debuggable flag is false<br>
         <span style="color:#4ade80;">[PASS]</span> minifyEnabled is true<br>
@@ -161,9 +163,9 @@
     <h2>Getting Started</h2>
     <p>Run the Release Readiness check from any of these entry points:</p>
     <ul>
-        <li><strong>Tools &gt; ADB Pro &gt; Run Release Readiness Check</strong> ¡ª runs the full 13-point checklist</li>
-        <li><strong>ADB Pro side panel</strong> ¡ª click the "Release Readiness" tab and press "Run Check"</li>
-        <li><strong>Post-build hook</strong> ¡ª optionally configure the check to run automatically after every release build</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Run Release Readiness Check</strong> â€” runs the full 13-point checklist</li>
+        <li><strong>ADB Pro side panel</strong> â€” click the "Release Readiness" tab and press "Run Check"</li>
+        <li><strong>Post-build hook</strong> â€” optionally configure the check to run automatically after every release build</li>
     </ul>
     <p>Interpreting results:</p>
     <ol>
@@ -186,7 +188,7 @@
     <h2>Verification</h2>
     <p>After running the Release Readiness check, confirm that your project is truly release-ready:</p>
     <ul>
-        <li>All 13 items should show green checkmarks ¡ª a score of 13 / 13 means your app is ready for the Play Store.</li>
+        <li>All 13 items should show green checkmarks â€” a score of 13 / 13 means your app is ready for the Play Store.</li>
         <li>Any red <strong>[FAIL]</strong> items include specific remediation steps. Apply the suggested fixes and re-run the check.</li>
         <li>After fixing failures, run a release build and install the APK on a device to verify behavior matches the report.</li>
         <li>Re-run the check after any build configuration change to catch regressions before they ship.</li>
@@ -197,20 +199,20 @@
     <h2>References</h2>
     <p>Official documentation for preparing and publishing Android apps:</p>
     <ul>
-        <li><a href="https://developer.android.com/studio/publish/preparing" target="_blank">Prepare for release ¡ª Android Developers</a></li>
-        <li><a href="https://developer.android.com/google/play/publishing" target="_blank">Publish your app ¡ª Google Play</a></li>
-        <li><a href="https://developer.android.com/build/shrink-code" target="_blank">Shrink, obfuscate, and optimize your app ¡ª Android Developers</a></li>
+        <li><a href="https://developer.android.com/studio/publish/preparing" target="_blank">Prepare for release â€” Android Developers</a></li>
+        <li><a href="https://developer.android.com/google/play/publishing" target="_blank">Publish your app â€” Google Play</a></li>
+        <li><a href="https://developer.android.com/build/shrink-code" target="_blank">Shrink, obfuscate, and optimize your app â€” Android Developers</a></li>
     </ul>
 </div>
 
-<!-- ¨T¨T¨T CTA ¨T¨T¨T -->
+<!-- â•â•â• CTA â•â•â• -->
 <section class="cta-banner">
     <h2>Ship with Confidence</h2>
     <p>Install ADB Pro and catch release-blocking issues before they reach the Play Store.</p>
     <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
 </section>
 
-<!-- ¨T¨T¨T Footer ¨T¨T¨T -->
+<!-- â•â•â• Footer â•â•â• -->
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
@@ -224,10 +226,11 @@
             <div class="footer-col">
                 <h4>Product</h4>
                 <a href="index.html">Features</a>
-                <a href="../pricing.html">Pricing</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
                 <a href="../getting-started.html">Getting Started</a>
                 <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
@@ -236,7 +239,7 @@
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
-                <a href="../subscription-agreement.html">Subscription Agreement</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Subscription Agreement</a>
                 <a href="../privacy-policy.html">Privacy Policy</a>
                 <a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a>
             </div>

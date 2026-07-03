@@ -1,10 +1,10 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resource Obfuscation ¡ª ADB Pro</title>
-    <meta name="description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, and configure whitelists ¡ª all from your JetBrains IDE.">
+    <title>Resource Obfuscation â€” ADB Pro</title>
+    <meta name="description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, and configure whitelists â€” all from your JetBrains IDE.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!-- ¨T¨T¨T Navigation ¨T¨T¨T -->
+<!-- â•â•â• Navigation â•â•â• -->
 <nav class="site-nav">
     <div class="nav-inner">
         <a href="../index.html" class="nav-brand">
@@ -24,10 +24,11 @@
             <a href="../index.html">Home</a>
             <a href="index.html" class="active">Features</a>
             <a href="../getting-started.html">Getting Started</a>
-            <a href="../pricing.html">Pricing</a>
+            <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
             <a href="../dictionaries/index.html">Dictionaries</a>
             <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
         </div>
         <div class="nav-actions">
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -45,13 +46,14 @@
     <a href="../index.html">Home</a>
     <a href="index.html" class="active">Features</a>
     <a href="../getting-started.html">Getting Started</a>
-    <a href="../pricing.html">Pricing</a>
+    <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
     <a href="../dictionaries/index.html">Dictionaries</a>
     <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
 </div>
 
-<!-- ¨T¨T¨T Hero ¨T¨T¨T -->
+<!-- â•â•â• Hero â•â•â• -->
 <section class="feature-hero">
     <div class="hero-content">
         <div class="hero-badge" style="margin-bottom:16px">
@@ -63,7 +65,7 @@
     </div>
 </section>
 
-<!-- ¨T¨T¨T Content ¨T¨T¨T -->
+<!-- â•â•â• Content â•â•â• -->
 <div class="feature-section">
 
     <h2>Introduction</h2>
@@ -108,7 +110,7 @@
     <p>Enable the <code>mergeDuplicatedRes</code> toggle to instruct AabResGuard to deduplicate identical resource files before obfuscation. When multiple drawable or raw resources share the same content but have different names, they are merged into a single resource entry. This can significantly reduce the resource table size in projects with duplicated assets across flavor-specific resource directories.</p>
 
     <h3>File Filtering</h3>
-    <p>When file filtering is enabled, AabResGuard only obfuscates resources with the specified file extensions. By default, common resource extensions like <code>.png</code>, <code>.webp</code>, and <code>.xml</code> are included. You can customize the filter list to include or exclude specific extensions ¡ª for example, excluding <code>.json</code> files that are loaded dynamically at runtime by name.</p>
+    <p>When file filtering is enabled, AabResGuard only obfuscates resources with the specified file extensions. By default, common resource extensions like <code>.png</code>, <code>.webp</code>, and <code>.xml</code> are included. You can customize the filter list to include or exclude specific extensions â€” for example, excluding <code>.json</code> files that are loaded dynamically at runtime by name.</p>
 
     <h3>Unused String Filtering</h3>
     <p>Enable string filtering to remove unused string resources from the final output. When paired with an unused-string list file, AabResGuard strips string entries that are not referenced by any layout, code, or configuration resource. This is particularly effective for apps with large localization files where many string keys are defined but never used.</p>
@@ -117,7 +119,7 @@
     <p>When string filtering is active, the language whitelist prevents specific locale string files from being stripped. For example, whitelisting <code>en</code> and <code>zh</code> ensures that English and Chinese string resources are preserved even if they appear unused to the static analyzer. This is important for apps that load localized strings dynamically or use string resources selected at runtime based on user preferences.</p>
 
     <h3>Variant Selection</h3>
-    <p>AabResGuard obfuscation can target specific build variants. The Gradle analysis step detects all available variants in your project (e.g., <code>release</code>, <code>freeRelease</code>, <code>paidRelease</code>) and presents them for selection. Choose the variant whose AAB output should be obfuscated. The variant selection also controls which Gradle task is invoked ¡ª for example, selecting <code>freeRelease</code> runs the AabResGuard task against the <code>bundleFreeRelease</code> output.</p>
+    <p>AabResGuard obfuscation can target specific build variants. The Gradle analysis step detects all available variants in your project (e.g., <code>release</code>, <code>freeRelease</code>, <code>paidRelease</code>) and presents them for selection. Choose the variant whose AAB output should be obfuscated. The variant selection also controls which Gradle task is invoked â€” for example, selecting <code>freeRelease</code> runs the AabResGuard task against the <code>bundleFreeRelease</code> output.</p>
 
     <h3>Example Configuration</h3>
     <div class="code-block">
@@ -127,7 +129,7 @@
             <div class="code-dot" style="background:#28c840"></div>
             <span style="margin-left:12px; font-size:12px; color:#64748b;">build.gradle.kts</span>
         </div>
-        <span class="keyword">// AabResGuard configuration ¡ª injected by ADB Pro</span><br><br>
+        <span class="keyword">// AabResGuard configuration â€” injected by ADB Pro</span><br><br>
         <span class="keyword">buildscript</span> {<br>
         &nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">dependencies</span> {<br>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;classpath(<span style="color:#a5d6ff;">"com.bytedance.android:aabresguard:0.1.10"</span>)<br>
@@ -228,14 +230,14 @@
     </ul>
 </div>
 
-<!-- ¨T¨T¨T CTA ¨T¨T¨T -->
+<!-- â•â•â• CTA â•â•â• -->
 <section class="cta-banner">
     <h2>Protect Your App Resources</h2>
     <p>Install ADB Pro and add resource obfuscation to your build pipeline in minutes.</p>
     <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
 </section>
 
-<!-- ¨T¨T¨T Footer ¨T¨T¨T -->
+<!-- â•â•â• Footer â•â•â• -->
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
@@ -249,10 +251,11 @@
             <div class="footer-col">
                 <h4>Product</h4>
                 <a href="index.html">Features</a>
-                <a href="../pricing.html">Pricing</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
                 <a href="../getting-started.html">Getting Started</a>
                 <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
@@ -261,7 +264,7 @@
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
-                <a href="../subscription-agreement.html">Subscription Agreement</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Subscription Agreement</a>
                 <a href="../privacy-policy.html">Privacy Policy</a>
                 <a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a>
             </div>

@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Build Tools ¡ª ADB Pro</title>
+    <title>Build Tools â€” ADB Pro</title>
     <meta name="description" content="Gradle build automation with variant management, batch builds across flavors, build history tracking, and artifact location.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!-- ¨T¨T¨T Navigation ¨T¨T¨T -->
+<!-- â•â•â• Navigation â•â•â• -->
 <nav class="site-nav">
     <div class="nav-inner">
         <a href="../index.html" class="nav-brand">
@@ -24,10 +24,11 @@
             <a href="../index.html">Home</a>
             <a href="index.html" class="active">Features</a>
             <a href="../getting-started.html">Getting Started</a>
-            <a href="../pricing.html">Pricing</a>
+            <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
             <a href="../dictionaries/index.html">Dictionaries</a>
             <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
         </div>
         <div class="nav-actions">
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -45,13 +46,14 @@
     <a href="../index.html">Home</a>
     <a href="index.html" class="active">Features</a>
     <a href="../getting-started.html">Getting Started</a>
-    <a href="../pricing.html">Pricing</a>
+    <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
     <a href="../dictionaries/index.html">Dictionaries</a>
     <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
 </div>
 
-<!-- ¨T¨T¨T Hero ¨T¨T¨T -->
+<!-- â•â•â• Hero â•â•â• -->
 <section class="feature-hero">
     <div class="hero-content">
         <div class="hero-badge" style="margin-bottom:16px">
@@ -63,7 +65,7 @@
     </div>
 </section>
 
-<!-- ¨T¨T¨T Content ¨T¨T¨T -->
+<!-- â•â•â• Content â•â•â• -->
 <div class="feature-section">
 
     <h2>Introduction</h2>
@@ -109,7 +111,7 @@
             <div class="code-dot" style="background:#ff5f57"></div>
             <div class="code-dot" style="background:#febc2e"></div>
             <div class="code-dot" style="background:#28c840"></div>
-            <span style="margin-left:12px; font-size:12px; color:#64748b;">Add Flavor Dialog ¡ª live preview</span>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Add Flavor Dialog â€” live preview</span>
         </div>
         <span class="comment">// Generated code (Kotlin DSL):</span><br>
         <span class="keyword">create</span>(<span class="string">"staging"</span>) {<br>
@@ -124,7 +126,7 @@
     <p>Fine-tune every build with a set of toggleable Gradle parameters directly in the Build Tools panel. Common options are available as checkboxes: clean before build, <code>--stacktrace</code>, <code>--info</code>, <code>--debug</code>, <code>--offline</code>, <code>--profile</code>, <code>--dry-run</code>, <code>--no-build-cache</code>, and <code>--rerun-tasks</code>. These are appended to your Gradle command automatically, so you do not need to type them in the terminal. The selected parameters persist across builds, making it easy to keep <code>--stacktrace</code> enabled during development or <code>--offline</code> when working without network access.</p>
 
     <h3>Artifact Renaming Templates</h3>
-    <p>After a build completes, the output APK or AAB can be automatically renamed using a configurable template. Built-in template variables include <code>${appName}</code>, <code>${versionName}</code>, <code>${versionCode}</code>, <code>${flavor}</code>, <code>${buildType}</code>, <code>${date}</code> (yyyyMMdd), and <code>${time}</code> (HHmmss). The default template produces filenames like <code>MyApp_v1.2.0_20260616_freeRelease.apk</code>. Renaming is non-destructive ¡ª the original file is renamed in place, and the new path is recorded in the build history entry. This is especially useful for CI/CD pipelines and release managers who need to archive builds with consistent, version-stamped filenames.</p>
+    <p>After a build completes, the output APK or AAB can be automatically renamed using a configurable template. Built-in template variables include <code>${appName}</code>, <code>${versionName}</code>, <code>${versionCode}</code>, <code>${flavor}</code>, <code>${buildType}</code>, <code>${date}</code> (yyyyMMdd), and <code>${time}</code> (HHmmss). The default template produces filenames like <code>MyApp_v1.2.0_20260616_freeRelease.apk</code>. Renaming is non-destructive â€” the original file is renamed in place, and the new path is recorded in the build history entry. This is especially useful for CI/CD pipelines and release managers who need to archive builds with consistent, version-stamped filenames.</p>
 
     <h3>Output Type Selection</h3>
     <p>Choose whether each build produces an APK, an AAB (Android App Bundle), or both. When "Both" is selected, Build Tools runs <code>assemble</code> and <code>bundle</code> tasks in sequence and records both artifacts in the build history. This is handy for release workflows where the AAB goes to the Play Store while a universal APK is needed for internal testing or direct distribution.</p>
@@ -182,14 +184,14 @@
     </ul>
 </div>
 
-<!-- ¨T¨T¨T CTA ¨T¨T¨T -->
+<!-- â•â•â• CTA â•â•â• -->
 <section class="cta-banner">
     <h2>Take Control of Your Builds</h2>
     <p>Install ADB Pro and manage Gradle builds without leaving your IDE.</p>
     <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
 </section>
 
-<!-- ¨T¨T¨T Footer ¨T¨T¨T -->
+<!-- â•â•â• Footer â•â•â• -->
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
@@ -203,10 +205,11 @@
             <div class="footer-col">
                 <h4>Product</h4>
                 <a href="index.html">Features</a>
-                <a href="../pricing.html">Pricing</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
                 <a href="../getting-started.html">Getting Started</a>
                 <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
@@ -215,7 +218,7 @@
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
-                <a href="../subscription-agreement.html">Subscription Agreement</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Subscription Agreement</a>
                 <a href="../privacy-policy.html">Privacy Policy</a>
                 <a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a>
             </div>

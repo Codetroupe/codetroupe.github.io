@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lint Tools ¡ª ADB Pro</title>
+    <title>Lint Tools â€” ADB Pro</title>
     <meta name="description" content="Run Android Lint from your IDE with parsed issue visualization, severity filtering, fix suggestions, and baseline management.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<!-- ¨T¨T¨T Navigation ¨T¨T¨T -->
+<!-- â•â•â• Navigation â•â•â• -->
 <nav class="site-nav">
     <div class="nav-inner">
         <a href="../index.html" class="nav-brand">
@@ -24,10 +24,11 @@
             <a href="../index.html">Home</a>
             <a href="index.html" class="active">Features</a>
             <a href="../getting-started.html">Getting Started</a>
-            <a href="../pricing.html">Pricing</a>
+            <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
             <a href="../dictionaries/index.html">Dictionaries</a>
             <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
         </div>
         <div class="nav-actions">
             <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -45,13 +46,14 @@
     <a href="../index.html">Home</a>
     <a href="index.html" class="active">Features</a>
     <a href="../getting-started.html">Getting Started</a>
-    <a href="../pricing.html">Pricing</a>
+    <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
     <a href="../dictionaries/index.html">Dictionaries</a>
     <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
 </div>
 
-<!-- ¨T¨T¨T Hero ¨T¨T¨T -->
+<!-- â•â•â• Hero â•â•â• -->
 <section class="feature-hero">
     <div class="hero-content">
         <div class="hero-badge" style="margin-bottom:16px">
@@ -63,12 +65,12 @@
     </div>
 </section>
 
-<!-- ¨T¨T¨T Content ¨T¨T¨T -->
+<!-- â•â•â• Content â•â•â• -->
 <div class="feature-section">
 
     <h2>Introduction</h2>
     <p>Lint Tools brings Android Lint integration directly into your IDE with parsed result visualization, severity filtering, and actionable fix suggestions. Instead of wrestling with raw XML output from Gradle-based lint runs, Lint Tools presents issues in a structured, navigable panel where you can filter by severity, jump to source, and apply corrections.</p>
-    <p>It wraps the full power of Android Lint ¡ª catching bugs, performance issues, accessibility problems, and security vulnerabilities ¡ª and adds baseline management and custom rule integration so you can adopt lint incrementally even in large codebases.</p>
+    <p>It wraps the full power of Android Lint â€” catching bugs, performance issues, accessibility problems, and security vulnerabilities â€” and adds baseline management and custom rule integration so you can adopt lint incrementally even in large codebases.</p>
     <p>Run lint from the ADB Pro panel, review results without leaving your editor, and keep a baseline of known issues so only new violations surface in each run.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
@@ -76,7 +78,7 @@
     <h2>Why Use Lint Tools?</h2>
     <p>Android Lint is powerful but its raw output is difficult to work with. Here are the problems developers encounter without proper tooling:</p>
     <ul>
-        <li><strong>Lint warnings accumulate over time and get ignored.</strong> When a project has hundreds of existing warnings, developers stop noticing new ones ¡ª and the signal-to-noise ratio drops to zero.</li>
+        <li><strong>Lint warnings accumulate over time and get ignored.</strong> When a project has hundreds of existing warnings, developers stop noticing new ones â€” and the signal-to-noise ratio drops to zero.</li>
         <li><strong>Raw lint output is hard to parse.</strong> The Gradle lint task produces a raw XML report that you need to open separately, making it tedious to navigate between issues and source code.</li>
         <li><strong>No easy way to see severity breakdown.</strong> Without visual grouping by severity or category, it is impossible to quickly assess whether your codebase has critical issues or just cosmetic suggestions.</li>
         <li><strong>Hard to prioritize which issues to fix first.</strong> Fatal errors that cause crashes should be fixed immediately, but they get buried alongside informational suggestions in a flat list.</li>
@@ -93,16 +95,16 @@
     <p>Lint results are parsed and displayed in a structured tree view grouped by category: Correctness, Performance, Security, Usability, Accessibility, and Internationalization. Each issue shows its ID, message, affected file, and line number. Click any issue to jump directly to the source location in your editor.</p>
 
     <h3>Severity Filtering</h3>
-    <p>Filter lint results by severity level: <strong>Fatal</strong>, <strong>Error</strong>, <strong>Warning</strong>, or <strong>Information</strong>. Combine filters to focus on what matters ¡ª for example, show only Fatal and Error issues before a release, or include Warnings during a cleanup sprint. Filter state is preserved across lint runs for consistency.</p>
+    <p>Filter lint results by severity level: <strong>Fatal</strong>, <strong>Error</strong>, <strong>Warning</strong>, or <strong>Information</strong>. Combine filters to focus on what matters â€” for example, show only Fatal and Error issues before a release, or include Warnings during a cleanup sprint. Filter state is preserved across lint runs for consistency.</p>
 
     <div class="code-block">
         <div class="code-header">
             <div class="code-dot" style="background:#ff5f57"></div>
             <div class="code-dot" style="background:#febc2e"></div>
             <div class="code-dot" style="background:#28c840"></div>
-            <span style="margin-left:12px; font-size:12px; color:#64748b;">Lint Tools ¡ª parsed results summary</span>
+            <span style="margin-left:12px; font-size:12px; color:#64748b;">Lint Tools â€” parsed results summary</span>
         </div>
-        <span class="keyword">Lint Report</span> ¡ª app module (freeRelease)<br>
+        <span class="keyword">Lint Report</span> â€” app module (freeRelease)<br>
         <span class="keyword">Total issues:</span> 47<br><br>
         <span style="color:#f87171;">Errors (3):</span><br>
         &nbsp;&nbsp;InvalidPackage &nbsp;&nbsp;&nbsp;&nbsp;src/main/java/.../ApiService.kt:42<br>
@@ -122,7 +124,7 @@
     <p>Each lint issue includes a description of the problem and, where available, a suggested fix. For common issues like missing <code>contentDescription</code> on ImageView, unused imports, or hardcoded strings, ADB Pro provides one-click quick fixes that apply the correction directly to your source file. More complex issues include a detailed explanation and a link to the official Android documentation.</p>
 
     <h3>Baseline Management</h3>
-    <p>Lint baselines let you suppress known issues so that only new violations are reported. ADB Pro provides a visual interface for creating, updating, and reviewing baselines. When you run lint with a baseline in place, existing issues are hidden and only newly introduced problems appear ¡ª perfect for incremental adoption of lint in large codebases. You can also view exactly which issues are suppressed and remove entries that have been fixed.</p>
+    <p>Lint baselines let you suppress known issues so that only new violations are reported. ADB Pro provides a visual interface for creating, updating, and reviewing baselines. When you run lint with a baseline in place, existing issues are hidden and only newly introduced problems appear â€” perfect for incremental adoption of lint in large codebases. You can also view exactly which issues are suppressed and remove entries that have been fixed.</p>
 
     <h3>Custom Rules</h3>
     <p>If your project includes custom lint rules (via a separate lint-checks module), ADB Pro detects them automatically and includes their results alongside the standard Android Lint checks. Custom rules are tagged with their source module so you can distinguish project-specific issues from built-in ones.</p>
@@ -134,15 +136,15 @@
     <ol>
         <li>Open the <strong>Lint Tools</strong> tab in the ADB Pro side panel.</li>
         <li>Click <strong>"Run Lint"</strong> to execute a full lint analysis on the current build variant.</li>
-        <li>Review results in the parsed tree view ¡ª use severity filters to focus on critical issues first.</li>
+        <li>Review results in the parsed tree view â€” use severity filters to focus on critical issues first.</li>
         <li>Click any issue to jump to its source location and apply the suggested fix.</li>
         <li>Create a baseline from the panel toolbar to suppress known issues and track only new violations going forward.</li>
     </ol>
     <p>Additional entry points:</p>
     <ul>
-        <li><strong>Tools &gt; ADB Pro &gt; Run Lint</strong> ¡ª runs a full lint check on the current variant</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Run Lint</strong> â€” runs a full lint check on the current variant</li>
         <li><strong>Right-click a module</strong> in the project view and select "Run Lint on Module"</li>
-        <li><strong>Baseline actions</strong> ¡ª create, update, or clear the lint baseline from the panel toolbar</li>
+        <li><strong>Baseline actions</strong> â€” create, update, or clear the lint baseline from the panel toolbar</li>
     </ul>
     <p>Configure lint options at <strong>Settings &gt; Tools &gt; ADB Pro &gt; Lint Tools</strong>:</p>
     <ul>
@@ -158,7 +160,7 @@
     <h2>Verification</h2>
     <p>After running lint and applying fixes, confirm that Lint Tools is working correctly:</p>
     <ul>
-        <li>Lint results table shows issue counts grouped by severity (Fatal, Error, Warning, Information) ¡ª verify the totals match your expectations.</li>
+        <li>Lint results table shows issue counts grouped by severity (Fatal, Error, Warning, Information) â€” verify the totals match your expectations.</li>
         <li>Zero Fatal errors is the minimum bar for a healthy codebase. Fatal issues indicate definite crashes or data loss at runtime.</li>
         <li>A baseline file has been created (typically <code>lint-baseline.xml</code> in the project root) to track known issues and suppress them from future runs.</li>
         <li>After creating or updating a baseline, re-run lint to confirm that only new violations are reported.</li>
@@ -170,20 +172,20 @@
     <h2>References</h2>
     <p>Official documentation for Android Lint and custom lint rules:</p>
     <ul>
-        <li><a href="https://developer.android.com/studio/write/lint" target="_blank">Improve your code with lint ¡ª Android Developers</a></li>
-        <li><a href="https://googlesamples.github.io/android-custom-lint-rules/" target="_blank">Android Custom Lint Rules ¡ª Google Samples</a></li>
-        <li><a href="https://developer.android.com/studio/write/lint#config" target="_blank">Configure lint options ¡ª Android Developers</a></li>
+        <li><a href="https://developer.android.com/studio/write/lint" target="_blank">Improve your code with lint â€” Android Developers</a></li>
+        <li><a href="https://googlesamples.github.io/android-custom-lint-rules/" target="_blank">Android Custom Lint Rules â€” Google Samples</a></li>
+        <li><a href="https://developer.android.com/studio/write/lint#config" target="_blank">Configure lint options â€” Android Developers</a></li>
     </ul>
 </div>
 
-<!-- ¨T¨T¨T CTA ¨T¨T¨T -->
+<!-- â•â•â• CTA â•â•â• -->
 <section class="cta-banner">
     <h2>Catch Bugs Before Your Users Do</h2>
     <p>Install ADB Pro and make Android Lint a first-class citizen in your workflow.</p>
     <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro</a>
 </section>
 
-<!-- ¨T¨T¨T Footer ¨T¨T¨T -->
+<!-- â•â•â• Footer â•â•â• -->
 <footer class="site-footer">
     <div class="footer-inner">
         <div class="footer-brand">
@@ -197,10 +199,11 @@
             <div class="footer-col">
                 <h4>Product</h4>
                 <a href="index.html">Features</a>
-                <a href="../pricing.html">Pricing</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Pricing</a>
                 <a href="../getting-started.html">Getting Started</a>
                 <a href="../blog/index.html">Blog</a>
-            <a href="../feedback.html">Feedback</a>
+            <a href="../blog/index.html">Blog</a>
+    <a href="../feedback.html">Feedback</a>
             </div>
             <div class="footer-col">
                 <h4>Resources</h4>
@@ -209,7 +212,7 @@
             </div>
             <div class="footer-col">
                 <h4>Legal</h4>
-                <a href="../subscription-agreement.html">Subscription Agreement</a>
+                <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank">Subscription Agreement</a>
                 <a href="../privacy-policy.html">Privacy Policy</a>
                 <a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a>
             </div>
