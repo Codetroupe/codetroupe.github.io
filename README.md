@@ -1,6 +1,5 @@
 # ADB Pro — Official Website
 
-
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fcodetroupe.github.io)](https://codetroupe.github.io/)
 [![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/32100?label=ADB%20Pro)](https://plugins.jetbrains.com/plugin/32100-adb-pro)
 [![License](https://img.shields.io/badge/license-proprietary-blue)](https://codetroupe.github.io/subscription-agreement.html)
