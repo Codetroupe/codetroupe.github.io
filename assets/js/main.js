@@ -13,13 +13,15 @@
   function getSystemTheme() {
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   }
-  function applyTheme(theme) {
+  function applyTheme(theme, persist) {
     root.setAttribute('data-theme', theme);
-    try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+    if (persist) {
+      try { localStorage.setItem(THEME_KEY, theme); } catch (_) {}
+    }
   }
 
   // Init theme on load
-  applyTheme(getStoredTheme() || getSystemTheme());
+  applyTheme(getStoredTheme() || getSystemTheme(), false);
 
   // Listen for system theme changes
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function (e) {
@@ -29,7 +31,7 @@
   // Expose toggle for onclick
   window.toggleTheme = function () {
     var current = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-    applyTheme(current);
+    applyTheme(current, true);
   };
 
   /* ── Mobile Menu ──────────────────────────────── */
@@ -56,6 +58,41 @@
     var currentNorm = currentPath.replace(/^.*\/web\//, '').replace(/^\//, '');
     if (normalized === currentNorm || (currentNorm === '' && normalized === 'index.html')) {
       link.classList.add('active');
+    }
+  });
+
+  /* Click tracking */
+  function slugifyEventLabel(value) {
+    return (value || 'unknown')
+      .toLowerCase()
+      .replace(/[^a-z0-9_-]+/g, '-')
+      .replace(/^-+|-+$/g, '') || 'unknown';
+  }
+
+  function trackEvent(path, title) {
+    if (!window.goatcounter || typeof window.goatcounter.count !== 'function') return;
+    try {
+      window.goatcounter.count({
+        path: path,
+        title: title || path,
+        event: true
+      });
+    } catch (_) {}
+  }
+
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest('a');
+    if (!link) return;
+
+    var track = link.getAttribute('data-track');
+    var label = link.getAttribute('data-track-label') || link.textContent.trim() || link.href;
+    if (track) {
+      trackEvent('/event/' + track + '/' + slugifyEventLabel(label), track + ': ' + label);
+      return;
+    }
+
+    if (link.hostname && link.hostname !== window.location.hostname) {
+      trackEvent('/event/outbound/' + slugifyEventLabel(link.hostname), 'Outbound: ' + link.href);
     }
   });
 })();
