@@ -60,15 +60,27 @@ assets/                     # Static assets
 
 ## Tech Stack
 
-- Pure static HTML (no build tools or frameworks)
+- Astro static site generation
+- Shared layout, SEO, navigation, and footer components
+- Editable page bodies stored in `site/src/content-pages/`
 - Custom CSS with dark/light theme support
 - Google Fonts: Inter + JetBrains Mono
-- Feather icon set (inline SVG)
+- Feather-style inline SVG icons
 - Deployed via GitHub Pages
 
 ## Deployment
 
-This site is deployed automatically via GitHub Actions (`deploy-web.yml`) on push to the `master` branch.
+The source site lives in `site/`. Build it with:
+
+```bash
+cd site
+npm install
+npm run build
+```
+
+The build writes the generated static output to `web/`. The `deploy-web.yml` workflow builds `site/` first, then deploys the generated `web/` directory.
+
+For long-term changes, edit `site/src` or `site/public` and rebuild. The `web/` directory is generated output.
 
 ## Links
 
