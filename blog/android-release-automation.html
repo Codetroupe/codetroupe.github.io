@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Android 发版踩坑实录：从手动打包到全流程自动化 — ADB Pro</title><meta name="description" content="Android发版5大痛点：Bundletool管理、ProGuard规则、发版检查、多渠道打包、CI/CD配置。逐一拆解自动化思路，附可复用的Gradle脚本与检查清单。"><link rel="canonical" href="https://codetroupe.github.io/blog/android-release-automation.html"><meta property="og:title" content="Android 发版踩坑实录：从手动打包到全流程自动化 — ADB Pro"><meta property="og:description" content="Android发版5大痛点：Bundletool管理、ProGuard规则、发版检查、多渠道打包、CI/CD配置。逐一拆解自动化思路，附可复用的Gradle脚本与检查清单。"><meta property="og:type" content="article"><meta property="og:url" content="https://codetroupe.github.io/blog/android-release-automation.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Android 发版踩坑实录：从手动打包到全流程自动化 — ADB Pro"><meta name="twitter:description" content="Android发版5大痛点：Bundletool管理、ProGuard规则、发版检查、多渠道打包、CI/CD配置。逐一拆解自动化思路，附可复用的Gradle脚本与检查清单。"><style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Android Release Automation for APK and AAB Builds - ADB Pro</title><meta name="description" content="A practical guide to Android release automation covering bundletool, ProGuard rules, release checks, multi-channel builds, and CI/CD setup."><link rel="canonical" href="https://codetroupe.github.io/blog/android-release-automation.html"><meta property="og:title" content="Android Release Automation for APK and AAB Builds - ADB Pro"><meta property="og:description" content="A practical guide to Android release automation covering bundletool, ProGuard rules, release checks, multi-channel builds, and CI/CD setup."><meta property="og:type" content="article"><meta property="og:url" content="https://codetroupe.github.io/blog/android-release-automation.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Android Release Automation for APK and AAB Builds - ADB Pro"><meta name="twitter:description" content="A practical guide to Android release automation covering bundletool, ProGuard rules, release checks, multi-channel builds, and CI/CD setup."><style>
         .blog-hero {
             background: var(--bg-hero);
             padding: 60px 24px 48px;
@@ -128,9 +128,9 @@
         document.documentElement.setAttribute('data-theme', theme);
       } catch (_) {}
     })();
-  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><!-- ═══ Blog Hero ═══ -->
+  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div>﻿<!-- 鈺愨晲鈺?Blog Hero 鈺愨晲鈺?-->
 <section class="blog-hero">
-    <h1>Android 发版踩坑实录：从手动打包到全流程自动化</h1>
+    <h1>Android 鍙戠増韪╁潙瀹炲綍锛氫粠鎵嬪姩鎵撳寘鍒板叏娴佺▼鑷姩鍖?/h1>
     <div class="blog-meta">
         <span>
             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
@@ -147,16 +147,16 @@
     </div>
 </section>
 
-<!-- ═══ Article Body ═══ -->
+<!-- 鈺愨晲鈺?Article Body 鈺愨晲鈺?-->
 <article class="article-body">
 
-<p>作为一个做了多年 Android 的开发者，每次发版都像一场小型战役。Bundletool 版本不对、签名配置丢失、ProGuard 规则漏写、发布前忘了关 debug 开关……这些问题反复出现，每次都要花时间排查。</p>
+<p>浣滀负涓€涓仛浜嗗骞?Android 鐨勫紑鍙戣€咃紝姣忔鍙戠増閮藉儚涓€鍦哄皬鍨嬫垬褰广€侭undletool 鐗堟湰涓嶅銆佺鍚嶉厤缃涪澶便€丳roGuard 瑙勫垯婕忓啓銆佸彂甯冨墠蹇樹簡鍏?debug 寮€鍏斥€︹€﹁繖浜涢棶棰樺弽澶嶅嚭鐜帮紝姣忔閮借鑺辨椂闂存帓鏌ャ€?/p>
 
-<p>这篇文章把我在实际项目中遇到的发版痛点，以及逐步搭建自动化流程的思路分享出来。如果你也在为 Android 发版流程头疼，希望能给你一些参考。</p>
+<p>杩欑瘒鏂囩珷鎶婃垜鍦ㄥ疄闄呴」鐩腑閬囧埌鐨勫彂鐗堢棝鐐癸紝浠ュ強閫愭鎼缓鑷姩鍖栨祦绋嬬殑鎬濊矾鍒嗕韩鍑烘潵銆傚鏋滀綘涔熷湪涓?Android 鍙戠増娴佺▼澶寸柤锛屽笇鏈涜兘缁欎綘涓€浜涘弬鑰冦€?/p>
 
-<h2>痛点一：Bundletool 管理是个无底洞</h2>
+<h2>鐥涚偣涓€锛欱undletool 绠＄悊鏄釜鏃犲簳娲?/h2>
 
-<p>Google Play 强制要求 AAB 格式后，<code>bundletool</code> 成了必备工具。但它的使用体验是这样的：</p>
+<p>Google Play 寮哄埗瑕佹眰 AAB 鏍煎紡鍚庯紝<code>bundletool</code> 鎴愪簡蹇呭宸ュ叿銆備絾瀹冪殑浣跨敤浣撻獙鏄繖鏍风殑锛?/p>
 
 <div class="code-block">
     <div class="code-header">
@@ -165,8 +165,8 @@
         <div class="code-dot" style="background:#28c840"></div>
         <span style="margin-left:12px; font-size:12px; color:#64748b;">Terminal</span>
     </div>
-    <code><span class="comment"># 1. 手动下载 bundletool jar（版本号经常更新）</span>
-<span class="comment"># 2. 把 AAB 转成 APKS</span>
+    <code><span class="comment"># 1. 鎵嬪姩涓嬭浇 bundletool jar锛堢増鏈彿缁忓父鏇存柊锛?/span>
+<span class="comment"># 2. 鎶?AAB 杞垚 APKS</span>
 java -jar bundletool-all-1.17.2.jar build-apks \
   --bundle=app-release.aab \
   --output=app-release.apks \
@@ -174,19 +174,19 @@ java -jar bundletool-all-1.17.2.jar build-apks \
   --ks-key-alias=myalias \
   --ks-pass=pass:xxxxx
 
-<span class="comment"># 3. 安装到设备</span>
+<span class="comment"># 3. 瀹夎鍒拌澶?/span>
 java -jar bundletool-all-1.17.2.jar install-apks \
   --apks=app-release.apks \
   --device-id=XXXXXX</code>
 </div>
 
-<p>三条命令，每次都手敲。版本号变了要重新下载 jar，密钥密码要明文写在命令行（安全问题），多设备时还要指定 device-id。</p>
+<p>涓夋潯鍛戒护锛屾瘡娆￠兘鎵嬫暡銆傜増鏈彿鍙樹簡瑕侀噸鏂颁笅杞?jar锛屽瘑閽ュ瘑鐮佽鏄庢枃鍐欏湪鍛戒护琛岋紙瀹夊叏闂锛夛紝澶氳澶囨椂杩樿鎸囧畾 device-id銆?/p>
 
-<h3>我的解决思路</h3>
+<h3>鎴戠殑瑙ｅ喅鎬濊矾</h3>
 
-<p>把 Bundletool 的版本管理和下载自动化：检测到本地没有 bundletool 或版本过低时，自动从 GitHub Releases 下载最新版。把密钥信息从项目配置中读取，而不是命令行参数。</p>
+<p>鎶?Bundletool 鐨勭増鏈鐞嗗拰涓嬭浇鑷姩鍖栵細妫€娴嬪埌鏈湴娌℃湁 bundletool 鎴栫増鏈繃浣庢椂锛岃嚜鍔ㄤ粠 GitHub Releases 涓嬭浇鏈€鏂扮増銆傛妸瀵嗛挜淇℃伅浠庨」鐩厤缃腑璇诲彇锛岃€屼笉鏄懡浠よ鍙傛暟銆?/p>
 
-<p>核心逻辑其实不复杂，就是一个带自动更新的下载器 + 命令封装：</p>
+<p>鏍稿績閫昏緫鍏跺疄涓嶅鏉傦紝灏辨槸涓€涓甫鑷姩鏇存柊鐨勪笅杞藉櫒 + 鍛戒护灏佽锛?/p>
 
 <div class="code-block">
     <div class="code-header">
@@ -195,10 +195,10 @@ java -jar bundletool-all-1.17.2.jar install-apks \
         <div class="code-dot" style="background:#28c840"></div>
         <span style="margin-left:12px; font-size:12px; color:#64748b;">Kotlin</span>
     </div>
-    <code><span class="comment">// 检测本地 bundletool 版本，低于最新版则自动下载</span>
+    <code><span class="comment">// 妫€娴嬫湰鍦?bundletool 鐗堟湰锛屼綆浜庢渶鏂扮増鍒欒嚜鍔ㄤ笅杞?/span>
 <span class="keyword">fun</span> ensureBundletool(): File {
     <span class="keyword">val</span> local = getLocalBundletool()
-    <span class="keyword">val</span> latest = fetchLatestVersion() <span class="comment">// 从 GitHub API 获取</span>
+    <span class="keyword">val</span> latest = fetchLatestVersion() <span class="comment">// 浠?GitHub API 鑾峰彇</span>
     <span class="keyword">if</span> (local == <span class="keyword">null</span> || compareVersions(local.version, latest) &lt; <span class="string">0</span>) {
         downloadBundletool(latest)
     }
@@ -206,15 +206,15 @@ java -jar bundletool-all-1.17.2.jar install-apks \
 }</code>
 </div>
 
-<p>把这个封装好后，"选 AAB → 选设备 → 一键安装"就变成了一个 UI 操作，不需要再碰命令行。</p>
+<p>鎶婅繖涓皝瑁呭ソ鍚庯紝"閫?AAB 鈫?閫夎澶?鈫?涓€閿畨瑁?灏卞彉鎴愪簡涓€涓?UI 鎿嶄綔锛屼笉闇€瑕佸啀纰板懡浠よ銆?/p>
 
-<h2>痛点二：ProGuard/R8 规则永远写不全</h2>
+<h2>鐥涚偣浜岋細ProGuard/R8 瑙勫垯姘歌繙鍐欎笉鍏?/h2>
 
-<p>每次引入新依赖库，都要去查它的官方文档看需要什么 keep 规则。Gson 要 <code>@SerializedName</code>，Retrofit 要 <code>@Serializable</code>，Room 要 Entity 和 Dao……漏写一条，Release 包就 crash。</p>
+<p>姣忔寮曞叆鏂颁緷璧栧簱锛岄兘瑕佸幓鏌ュ畠鐨勫畼鏂规枃妗ｇ湅闇€瑕佷粈涔?keep 瑙勫垯銆侴son 瑕?<code>@SerializedName</code>锛孯etrofit 瑕?<code>@Serializable</code>锛孯oom 瑕?Entity 鍜?Dao&mdash;€︽紡鍐欎竴鏉★紝Release 鍖呭氨 crash銆?/p>
 
-<h3>一个实用的方法论</h3>
+<h3>涓€涓疄鐢ㄧ殑鏂规硶璁?/h3>
 
-<p>与其每次手动查，不如建立一个<strong>规则模板库</strong>。我整理了 20 多个常用库的推荐规则：</p>
+<p>涓庡叾姣忔鎵嬪姩鏌ワ紝涓嶅寤虹珛涓€涓?strong>瑙勫垯妯℃澘搴?/strong>銆傛垜鏁寸悊浜?20 澶氫釜甯哥敤搴撶殑鎺ㄨ崘瑙勫垯锛?/p>
 
 <div class="code-block">
     <div class="code-header">
@@ -244,48 +244,48 @@ java -jar bundletool-all-1.17.2.jar install-apks \
 -dontwarn androidx.room.paging.**</code>
 </div>
 
-<p>更进一步，可以扫描项目的 <code>build.gradle</code> 依赖列表，自动匹配已有模板并生成规则文件。这个思路的好处是：引入新库时，只要模板库里有对应规则，就不会遗漏。</p>
+<p>鏇磋繘涓€姝ワ紝鍙互鎵弿椤圭洰鐨?<code>build.gradle</code> 渚濊禆鍒楄〃锛岃嚜鍔ㄥ尮閰嶅凡鏈夋ā鏉垮苟鐢熸垚瑙勫垯鏂囦欢銆傝繖涓€濊矾鐨勫ソ澶勬槸锛氬紩鍏ユ柊搴撴椂锛屽彧瑕佹ā鏉垮簱閲屾湁瀵瑰簲瑙勫垯锛屽氨涓嶄細閬楁紡銆?/p>
 
-<h2>痛点三：发版前检查全靠人脑记忆</h2>
+<h2>鐥涚偣涓夛細鍙戠増鍓嶆鏌ュ叏闈犱汉鑴戣蹇?/h2>
 
-<p>你有没有经历过这些事：</p>
+<p>浣犳湁娌℃湁缁忓巻杩囪繖浜涗簨锛?/p>
 
 <ul>
-    <li>发版后才发现 <code>debuggable true</code> 没关</li>
-    <li>API Key 硬编码在代码里，Release 包一拆就看到</li>
-    <li><code>minifyEnabled</code> 没开，包体积大了一倍</li>
-    <li>签名用的还是 debug keystore</li>
+    <li>鍙戠増鍚庢墠鍙戠幇 <code>debuggable true</code> 娌″叧</li>
+    <li>API Key 纭紪鐮佸湪浠ｇ爜閲岋紝Release 鍖呬竴鎷嗗氨鐪嬪埌</li>
+    <li><code>minifyEnabled</code> 娌″紑锛屽寘浣撶Н澶т簡涓€鍊?/li>
+    <li>绛惧悕鐢ㄧ殑杩樻槸 debug keystore</li>
 </ul>
 
-<p>每次发版前，脑子里过一遍清单。但人总会忘记，特别是赶工期的时候。</p>
+<p>姣忔鍙戠増鍓嶏紝鑴戝瓙閲岃繃涓€閬嶆竻鍗曘€備絾浜烘€讳細蹇樿锛岀壒鍒槸璧跺伐鏈熺殑鏃跺€欍€?/p>
 
-<h3>解决方案：13 项自动化检查</h3>
+<h3>瑙ｅ喅鏂规锛?3 椤硅嚜鍔ㄥ寲妫€鏌?/h3>
 
-<p>我把常见的发版遗漏整理成了一个检查清单，用代码自动扫描：</p>
+<p>鎴戞妸甯歌鐨勫彂鐗堥仐婕忔暣鐞嗘垚浜嗕竴涓鏌ユ竻鍗曪紝鐢ㄤ唬鐮佽嚜鍔ㄦ壂鎻忥細</p>
 
 <table>
     <thead>
-        <tr><th>检查项</th><th>检测方式</th></tr>
+        <tr><th>妫€鏌ラ」</th><th>妫€娴嬫柟寮?/th></tr>
     </thead>
     <tbody>
-        <tr><td><code>debuggable</code> 是否为 false</td><td>解析 build.gradle 的 buildType 配置</td></tr>
-        <tr><td><code>minifyEnabled</code> 是否为 true</td><td>同上</td></tr>
-        <tr><td>硬编码 API Key</td><td>正则扫描源码中的 key/token/password 模式</td></tr>
-        <tr><td>签名配置是否完整</td><td>检查 signingConfigs 是否包含 release 配置</td></tr>
-        <tr><td>SDK 版本兼容性</td><td>对比 compileSdk / targetSdk 与当前推荐值</td></tr>
-        <tr><td>依赖库版本是否过旧</td><td>扫描 build.gradle 依赖，对比 Maven Central 最新版</td></tr>
-        <tr><td>资源冗余</td><td>检查未使用的 drawable / layout / string</td></tr>
-        <tr><td>测试依赖是否泄漏</td><td>确认 testImplementation 未出现在 release 依赖中</td></tr>
+        <tr><td><code>debuggable</code> 鏄惁涓?false</td><td>瑙ｆ瀽 build.gradle 鐨?buildType 閰嶇疆</td></tr>
+        <tr><td><code>minifyEnabled</code> 鏄惁涓?true</td><td>鍚屼笂</td></tr>
+        <tr><td>纭紪鐮?API Key</td><td>姝ｅ垯鎵弿婧愮爜涓殑 key/token/password 妯″紡</td></tr>
+        <tr><td>绛惧悕閰嶇疆鏄惁瀹屾暣</td><td>妫€鏌?signingConfigs 鏄惁鍖呭惈 release 閰嶇疆</td></tr>
+        <tr><td>SDK 鐗堟湰鍏煎鎬?/td><td>瀵规瘮 compileSdk / targetSdk 涓庡綋鍓嶆帹鑽愬€?/td></tr>
+        <tr><td>渚濊禆搴撶増鏈槸鍚﹁繃鏃?/td><td>鎵弿 build.gradle 渚濊禆锛屽姣?Maven Central 鏈€鏂扮増</td></tr>
+        <tr><td>璧勬簮鍐椾綑</td><td>妫€鏌ユ湭浣跨敤鐨?drawable / layout / string</td></tr>
+        <tr><td>娴嬭瘯渚濊禆鏄惁娉勬紡</td><td>纭 testImplementation 鏈嚭鐜板湪 release 渚濊禆涓?/td></tr>
     </tbody>
 </table>
 
-<p>关键点是<strong>把这些检查做成自动化的</strong>，而不是一个文档让人去勾选。每次构建 Release 包前自动运行，有问题直接阻断构建，比事后发现强太多。</p>
+<p>鍏抽敭鐐规槸<strong>鎶婅繖浜涙鏌ュ仛鎴愯嚜鍔ㄥ寲鐨?/strong>锛岃€屼笉鏄竴涓枃妗ｈ浜哄幓鍕鹃€夈€傛瘡娆℃瀯寤?Release 鍖呭墠鑷姩杩愯锛屾湁闂鐩存帴闃绘柇鏋勫缓锛屾瘮浜嬪悗鍙戠幇寮哄お澶氥€?/p>
 
-<h2>痛点四：多渠道打包配置繁琐</h2>
+<h2>鐥涚偣鍥涳細澶氭笭閬撴墦鍖呴厤缃箒鐞?/h2>
 
-<p>做国内市场的 Android 应用，经常需要多渠道打包。小米、华为、OPPO、vivo、应用宝……每个渠道可能有不同的配置。</p>
+<p>鍋氬浗鍐呭競鍦虹殑 Android 搴旂敤锛岀粡甯搁渶瑕佸娓犻亾鎵撳寘銆傚皬绫炽€佸崕涓恒€丱PPO銆乿ivo銆佸簲鐢ㄥ疂&mdash;€︽瘡涓笭閬撳彲鑳芥湁涓嶅悓鐨勯厤缃€?/p>
 
-<p>传统的做法是在 <code>build.gradle</code> 里写一堆 <code>productFlavors</code>：</p>
+<p>浼犵粺鐨勫仛娉曟槸鍦?<code>build.gradle</code> 閲屽啓涓€鍫?<code>productFlavors</code>锛?/p>
 
 <div class="code-block">
     <div class="code-header">
@@ -298,15 +298,15 @@ java -jar bundletool-all-1.17.2.jar install-apks \
     create(<span class="string">"xiaomi"</span>) { dimension = <span class="string">"channel"</span> }
     create(<span class="string">"huawei"</span>) { dimension = <span class="string">"channel"</span> }
     create(<span class="string">"oppo"</span>) { dimension = <span class="string">"channel"</span> }
-    <span class="comment">// ... 还有十几个</span>
+    <span class="comment">// ... 杩樻湁鍗佸嚑涓?/span>
 }</code>
 </div>
 
-<p>然后每次加新渠道都要改 build.gradle，提交代码，重新构建。</p>
+<p>鐒跺悗姣忔鍔犳柊娓犻亾閮借鏀?build.gradle锛屾彁浜や唬鐮侊紝閲嶆柊鏋勫缓銆?/p>
 
-<h3>更高效的方式</h3>
+<h3>鏇撮珮鏁堢殑鏂瑰紡</h3>
 
-<p>把渠道配置外置到 <code>channels.properties</code>，通过 Gradle 脚本动态读取：</p>
+<p>鎶婃笭閬撻厤缃缃埌 <code>channels.properties</code>锛岄€氳繃 Gradle 鑴氭湰鍔ㄦ€佽鍙栵細</p>
 
 <div class="code-block">
     <div class="code-header">
@@ -327,20 +327,20 @@ java -jar bundletool-all-1.17.2.jar install-apks \
 }</code>
 </div>
 
-<p>这样加渠道只需要改配置文件，不用动构建脚本。</p>
+<p>杩欐牱鍔犳笭閬撳彧闇€瑕佹敼閰嶇疆鏂囦欢锛屼笉鐢ㄥ姩鏋勫缓鑴氭湰銆?/p>
 
-<h2>痛点五：CI/CD 配置从零开始写</h2>
+<h2>鐥涚偣浜旓細CI/CD 閰嶇疆浠庨浂寮€濮嬪啓</h2>
 
-<p>每次新建项目都要写一遍 GitHub Actions 或 GitLab CI 的配置。格式容易写错，变量名容易拼错，签名配置经常出问题。</p>
+<p>姣忔鏂板缓椤圭洰閮借鍐欎竴閬?GitHub Actions 鎴?GitLab CI 鐨勯厤缃€傛牸寮忓鏄撳啓閿欙紝鍙橀噺鍚嶅鏄撴嫾閿欙紝绛惧悕閰嶇疆缁忓父鍑洪棶棰樸€?/p>
 
-<p>我的做法是做一个<strong>配置生成器</strong>，根据项目的实际配置（compileSdk 版本、JDK 版本、是否有 productFlavors、签名方式）自动生成 CI 配置：</p>
+<p>鎴戠殑鍋氭硶鏄仛涓€涓?strong>閰嶇疆鐢熸垚鍣?/strong>锛屾牴鎹」鐩殑瀹為檯閰嶇疆锛坈ompileSdk 鐗堟湰銆丣DK 鐗堟湰銆佹槸鍚︽湁 productFlavors銆佺鍚嶆柟寮忥級鑷姩鐢熸垚 CI 閰嶇疆锛?/p>
 
 <div class="code-block">
     <div class="code-header">
         <div class="code-dot" style="background:#ff5f57"></div>
         <div class="code-dot" style="background:#febc2e"></div>
         <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">.github/workflows/release.yml — auto-generated</span>
+        <span style="margin-left:12px; font-size:12px; color:#64748b;">.github/workflows/release.yml &mdash;auto-generated</span>
     </div>
     <code><span class="keyword">name</span>: Build and Release
 <span class="keyword">on</span>:
@@ -367,38 +367,38 @@ java -jar bundletool-all-1.17.2.jar install-apks \
           keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}</code>
 </div>
 
-<p>生成器会检测项目实际使用的 Gradle Wrapper 版本、JDK 版本、AGP 版本，确保生成的配置能直接跑。</p>
+<p>鐢熸垚鍣ㄤ細妫€娴嬮」鐩疄闄呬娇鐢ㄧ殑 Gradle Wrapper 鐗堟湰銆丣DK 鐗堟湰銆丄GP 鐗堟湰锛岀‘淇濈敓鎴愮殑閰嶇疆鑳界洿鎺ヨ窇銆?/p>
 
-<h2>整合：从散装工具到一体化工作流</h2>
+<h2>鏁村悎锛氫粠鏁ｈ宸ュ叿鍒颁竴浣撳寲宸ヤ綔娴?/h2>
 
-<p>上面这些问题，每一个都有独立的解决方案。但真正提升效率的，是把它们<strong>串联成一个完整的工作流</strong>：</p>
+<p>涓婇潰杩欎簺闂锛屾瘡涓€涓兘鏈夌嫭绔嬬殑瑙ｅ喅鏂规銆備絾鐪熸鎻愬崌鏁堢巼鐨勶紝鏄妸瀹冧滑<strong>涓茶仈鎴愪竴涓畬鏁寸殑宸ヤ綔娴?/strong>锛?/p>
 
 <ol>
-    <li><strong>项目初始化</strong> → 一键配置渠道、SDK、签名、混淆规则、CI/CD</li>
-    <li><strong>日常开发</strong> → 自动管理 Bundletool、依赖健康检查、构建性能分析</li>
-    <li><strong>发版前</strong> → 13 项自动检查，有问题直接阻断</li>
-    <li><strong>发版后</strong> → 包体积追踪、版本对比、资源冗余扫描</li>
+    <li><strong>椤圭洰鍒濆鍖?/strong> 鈫?涓€閿厤缃笭閬撱€丼DK銆佺鍚嶃€佹贩娣嗚鍒欍€丆I/CD</li>
+    <li><strong>鏃ュ父寮€鍙?/strong> 鈫?鑷姩绠＄悊 Bundletool銆佷緷璧栧仴搴锋鏌ャ€佹瀯寤烘€ц兘鍒嗘瀽</li>
+    <li><strong>鍙戠増鍓?/strong> 鈫?13 椤硅嚜鍔ㄦ鏌ワ紝鏈夐棶棰樼洿鎺ラ樆鏂?/li>
+    <li><strong>鍙戠増鍚?/strong> 鈫?鍖呬綋绉拷韪€佺増鏈姣斻€佽祫婧愬啑浣欐壂鎻?/li>
 </ol>
 
-<p>这就是我开发 <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank">ADB Pro</a> 插件的初衷——把散落在各处的命令行工具、Gradle 脚本、手动检查项，整合到 Android Studio 的一个工具窗口里。开发过程中最花时间的不是写 UI，而是处理各种边界情况：离线时 Bundletool 下载失败怎么降级、非标准模块名怎么动态检测、HTTP 连接泄漏怎么避免。</p>
+<p>杩欏氨鏄垜寮€鍙?<a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank">ADB Pro</a> 鎻掍欢鐨勫垵琛封€斺€旀妸鏁ｈ惤鍦ㄥ悇澶勭殑鍛戒护琛屽伐鍏枫€丟radle 鑴氭湰銆佹墜鍔ㄦ鏌ラ」锛屾暣鍚堝埌 Android Studio 鐨勪竴涓伐鍏风獥鍙ｉ噷銆傚紑鍙戣繃绋嬩腑鏈€鑺辨椂闂寸殑涓嶆槸鍐?UI锛岃€屾槸澶勭悊鍚勭杈圭晫鎯呭喌锛氱绾挎椂 Bundletool 涓嬭浇澶辫触鎬庝箞闄嶇骇銆侀潪鏍囧噯妯″潡鍚嶆€庝箞鍔ㄦ€佹娴嬨€丠TTP 杩炴帴娉勬紡鎬庝箞閬垮厤銆?/p>
 
-<p>如果你也在 Android 发版流程上有类似的痛点，可以在 JetBrains Marketplace 搜 "ADB Pro" 看看，有 30 天免费试用。当然，上面分享的思路和代码片段本身就可以直接用，不依赖任何特定工具。</p>
+<p>濡傛灉浣犱篃鍦?Android 鍙戠増娴佺▼涓婃湁绫讳技鐨勭棝鐐癸紝鍙互鍦?JetBrains Marketplace 鎼?"ADB Pro" 鐪嬬湅锛屾湁 30 澶╁厤璐硅瘯鐢ㄣ€傚綋鐒讹紝涓婇潰鍒嗕韩鐨勬€濊矾鍜屼唬鐮佺墖娈垫湰韬氨鍙互鐩存帴鐢紝涓嶄緷璧栦换浣曠壒瀹氬伐鍏枫€?/p>
 
-<h2>一些额外的心得</h2>
+<h2>涓€浜涢澶栫殑蹇冨緱</h2>
 
-<p><strong>关于 ProGuard 混淆字典：</strong>默认的 a-z 混淆太容易被反编译工具还原。使用 Unicode 形似字符（比如拉丁扩展、西里尔字母、希腊字母）作为混淆字典，能大幅增加逆向难度。我整理了 11 套混淆字典，放在了 <a href="https://codetroupe.github.io/dictionaries/">codetroupe.github.io/dictionaries</a> 上，可以直接下载使用。</p>
+<p><strong>鍏充簬 ProGuard 娣锋穯瀛楀吀锛?/strong>榛樿鐨?a-z 娣锋穯澶鏄撹鍙嶇紪璇戝伐鍏疯繕鍘熴€備娇鐢?Unicode 褰技瀛楃锛堟瘮濡傛媺涓佹墿灞曘€佽タ閲屽皵瀛楁瘝銆佸笇鑵婂瓧姣嶏級浣滀负娣锋穯瀛楀吀锛岃兘澶у箙澧炲姞閫嗗悜闅惧害銆傛垜鏁寸悊浜?11 濂楁贩娣嗗瓧鍏革紝鏀惧湪浜?<a href="https://codetroupe.github.io/dictionaries/">codetroupe.github.io/dictionaries</a> 涓婏紝鍙互鐩存帴涓嬭浇浣跨敤銆?/p>
 
-<p><strong>关于资源混淆：</strong>AabResGuard 可以对 AAB 中的资源名进行混淆，减小包体积的同时增加逆向难度。但它对 <code>whitelist</code> 的配置要求很严格，配置不当会导致资源引用失败。</p>
+<p><strong>鍏充簬璧勬簮娣锋穯锛?/strong>AabResGuard 鍙互瀵?AAB 涓殑璧勬簮鍚嶈繘琛屾贩娣嗭紝鍑忓皬鍖呬綋绉殑鍚屾椂澧炲姞閫嗗悜闅惧害銆備絾瀹冨 <code>whitelist</code> 鐨勯厤缃姹傚緢涓ユ牸锛岄厤缃笉褰撲細瀵艰嚧璧勬簮寮曠敤澶辫触銆?/p>
 
-<p><strong>关于构建性能：</strong>如果你的项目 clean build 超过 3 分钟，先检查 <code>org.gradle.parallel</code> 和 <code>org.gradle.caching</code> 是否开启。这两个配置项的投入产出比最高。</p>
+<p><strong>鍏充簬鏋勫缓鎬ц兘锛?/strong>濡傛灉浣犵殑椤圭洰 clean build 瓒呰繃 3 鍒嗛挓锛屽厛妫€鏌?<code>org.gradle.parallel</code> 鍜?<code>org.gradle.caching</code> 鏄惁寮€鍚€傝繖涓や釜閰嶇疆椤圭殑鎶曞叆浜у嚭姣旀渶楂樸€?/p>
 
 <hr>
 
-<p>希望这些经验对你有帮助。Android 发版不应该是一场赌博，而应该是一条可重复、可验证的流水线。</p>
+<p>甯屾湜杩欎簺缁忛獙瀵逛綘鏈夊府鍔┿€侫ndroid 鍙戠増涓嶅簲璇ユ槸涓€鍦鸿祵鍗氾紝鑰屽簲璇ユ槸涓€鏉″彲閲嶅銆佸彲楠岃瘉鐨勬祦姘寸嚎銆?/p>
 
 </article>
 
-<!-- ═══ CTA ═══ -->
+<!-- 鈺愨晲鈺?CTA 鈺愨晲鈺?-->
 <section class="cta-banner">
     <h2>Ready to Level Up Your Android Workflow?</h2>
     <p>Start your free 30-day trial. No credit card required. Full access to all features.</p>
@@ -407,4 +407,5 @@ java -jar bundletool-all-1.17.2.jar install-apks \
         <a href="../features/index.html" class="btn btn-secondary btn-lg">Explore Features</a>
     </div>
 </section>
+
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>Advanced Android Development Tools for JetBrains IDEs.</p></div><div class="footer-links"><div class="footer-col"><h4>Product</h4><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../pricing.html">Pricing</a><a href="../getting-started.html">Getting Started</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><div class="footer-col"><h4>Resources</h4><a href="../guides/index.html">Android Release Guides</a><a href="../dictionaries/index.html">ProGuard Dictionaries</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>Legal</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">Subscription Agreement</a><a href="../privacy-policy.html">Privacy Policy</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><script src="../assets/js/main.js"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
