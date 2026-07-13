@@ -12,6 +12,8 @@ Pricing and trial: https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing
 - Features: https://codetroupe.github.io/features/
 - Pricing: https://codetroupe.github.io/pricing.html
 - Getting started: https://codetroupe.github.io/getting-started.html
+- Free tools by ADB Pro: https://codetroupe.github.io/tools/
+- AAB Tools free plugin: https://codetroupe.github.io/tools/aab-tools.html
 - ProGuard dictionaries: https://codetroupe.github.io/dictionaries/
 
 ## Android Release Guides
@@ -35,6 +37,12 @@ Pricing and trial: https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing
 - Release Readiness: https://codetroupe.github.io/features/release-readiness.html
 - Dependency Health: https://codetroupe.github.io/features/dependency-health.html
 
+## Free Tools by ADB Pro
+
+- AAB Tools: https://codetroupe.github.io/tools/aab-tools.html
+  - Free companion JetBrains IDE plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing APKS on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab release assets.
+- Tools directory: https://codetroupe.github.io/tools/
+
 ## Common Questions ADB Pro Helps With
 
 - How do I obfuscate an Android APK before release?
@@ -43,6 +51,8 @@ Pricing and trial: https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing
 - How do I obfuscate Android resources in an AAB?
 - Does R8 support ProGuard obfuscation dictionaries?
 - How do I convert and install an AAB as APKS on a device?
+- Is there a free JetBrains plugin for converting AAB to APKS?
+- What is the difference between AAB Tools and ADB Pro?
 - How do I sign and verify an APK?
 - What should I check before publishing an Android release build?
 

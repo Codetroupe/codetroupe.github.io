@@ -1,0 +1,136 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs</title><meta name="description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><link rel="canonical" href="https://codetroupe.github.io/tools/aab-tools.html"><meta property="og:title" content="AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs"><meta property="og:description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/tools/aab-tools.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs"><meta name="twitter:description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AAB Tools","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","description":"AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files.","url":"https://codetroupe.github.io/tools/aab-tools.html","downloadUrl":"https://plugins.jetbrains.com/plugin/27766-aab-tools","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"codetroupe"},"featureList":["Convert Android App Bundles to APKS","Install APKS on Android devices","Manage bundletool.jar","Read Gradle signing configurations","Scan local AAB output folders","Scan GitHub and GitLab release assets"]}</script><script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('adbpro-theme');
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (_) {}
+    })();
+  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260713-tools"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html" class="active">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html" class="active">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><section class="feature-hero">
+    <div class="hero-content">
+        <div class="hero-badge">Free Companion Plugin by ADB Pro</div>
+        <h1>AAB Tools</h1>
+        <p>A free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing APKS on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files.</p>
+        <div class="hero-actions">
+            <a href="../features/index.html" class="btn btn-primary btn-lg" data-track="aab_tools_adbpro_click" data-track-label="hero">Explore ADB Pro</a>
+            <a href="https://plugins.jetbrains.com/plugin/27766-aab-tools" class="btn btn-secondary btn-lg" target="_blank" data-track="aab_tools_marketplace_click" data-track-label="hero">Get AAB Tools Free</a>
+        </div>
+    </div>
+</section>
+
+<section class="feature-section">
+    <h2>Free AAB to APKS Workflow Inside Your IDE</h2>
+    <p>Android App Bundles are publishing artifacts, not files that can be installed directly like APKs. For local testing, developers usually need bundletool, a signing configuration, an APKS output file, a connected device, and an install command that matches the device configuration. AAB Tools turns that command-line chain into a focused JetBrains IDE workflow.</p>
+    <p>The plugin is intentionally free and focused. It solves the common AAB conversion and installation loop for individual Android developers, QA testers, and small projects that do not need the full ADB Pro release workflow yet. When the workflow grows into signing verification, release checks, R8, resource obfuscation, CI/CD, and dependency health, ADB Pro is the main upgrade path.</p>
+
+    <div class="features-grid tool-capability-grid">
+        <div class="feature-card tool-capability-card">
+            <h3>Convert AAB to APKS</h3>
+            <p>Run bundletool <code>build-apks</code> from the IDE and generate installable APKS archives from selected Android App Bundles.</p>
+        </div>
+        <div class="feature-card tool-capability-card">
+            <h3>Install to Devices</h3>
+            <p>Select a connected Android device and install generated APKS files without leaving the JetBrains tool window.</p>
+        </div>
+        <div class="feature-card tool-capability-card">
+            <h3>Manage Bundletool</h3>
+            <p>Automatically detect, download, and cache bundletool.jar so the workflow does not depend on manual path setup.</p>
+        </div>
+        <div class="feature-card tool-capability-card">
+            <h3>Read Signing Configs</h3>
+            <p>Parse Gradle signing configurations when available, with manual keystore fallback for projects that need custom signing input.</p>
+        </div>
+        <div class="feature-card tool-capability-card">
+            <h3>Find AAB Files</h3>
+            <p>Scan common Gradle output folders and custom directories for local AAB files, sorted by modified time and build type.</p>
+        </div>
+        <div class="feature-card tool-capability-card">
+            <h3>Scan Remote Releases</h3>
+            <p>Connect GitHub or GitLab releases and find AAB assets published by CI workflows, including private repositories with tokens.</p>
+        </div>
+    </div>
+</section>
+
+<section class="feature-section">
+    <h2>How AAB Tools Works</h2>
+    <ol class="guide-steps">
+        <li>Build an Android App Bundle from Android Studio, IntelliJ IDEA, or Gradle.</li>
+        <li>Open the AAB Tools tool window and refresh the local AAB list.</li>
+        <li>Select a Gradle signing config or provide a manual keystore configuration.</li>
+        <li>Let the plugin manage bundletool or use the configured bundletool path.</li>
+        <li>Convert the selected AAB into an APKS archive.</li>
+        <li>Select the connected Android device and install the APKS output.</li>
+        <li>Use force install only for development cases where signature conflicts need to be replaced intentionally.</li>
+    </ol>
+</section>
+
+<section class="feature-section">
+    <h2>Where AAB Tools Fits in the ADB Pro Workflow</h2>
+    <p>AAB Tools is the free, focused companion plugin. ADB Pro is the primary paid product for the complete Android release workflow. The relationship is not competition; AAB Tools covers a single entry workflow, while ADB Pro handles the full release lifecycle.</p>
+    <table class="comparison-table">
+        <thead>
+            <tr><th>Workflow</th><th>AAB Tools Free</th><th>ADB Pro</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>AAB to APKS conversion</td><td>Yes.</td><td>Yes, integrated with broader release tooling.</td></tr>
+            <tr><td>APKS install to device</td><td>Yes.</td><td>Yes, with adjacent device and artifact workflows.</td></tr>
+            <tr><td>bundletool management</td><td>Yes.</td><td>Yes.</td></tr>
+            <tr><td>Gradle signing config</td><td>Yes.</td><td>Yes, plus dedicated signing tools and verification.</td></tr>
+            <tr><td>Remote release AAB scan</td><td>GitHub and GitLab release assets.</td><td>Part of a larger AAB and CI/CD workflow.</td></tr>
+            <tr><td>Bundle inspection</td><td>No dedicated inspector.</td><td>Yes, with bundle structure and size inspection.</td></tr>
+            <tr><td>Release readiness checks</td><td>No.</td><td>Yes, including minify, signing, secrets, SDK, and policy checks.</td></tr>
+            <tr><td>R8 and ProGuard support</td><td>No.</td><td>Yes, with R8 Assistant, rules, dictionaries, mapping analysis, and deobfuscation.</td></tr>
+            <tr><td>Resource obfuscation</td><td>No.</td><td>Yes, with Res Guard and whitelist management.</td></tr>
+            <tr><td>CI/CD generation</td><td>No.</td><td>Yes, for GitHub Actions, GitLab CI, and Jenkins.</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="feature-section">
+    <h2>When to Stay Free and When to Use ADB Pro</h2>
+    <table class="comparison-table">
+        <thead>
+            <tr><th>Situation</th><th>Recommended choice</th></tr>
+        </thead>
+        <tbody>
+            <tr><td>You only need to convert one AAB and install it on a local device.</td><td>Use AAB Tools Free.</td></tr>
+            <tr><td>You want a no-cost bundletool workflow in a JetBrains IDE.</td><td>Use AAB Tools Free.</td></tr>
+            <tr><td>You publish AAB files to GitHub or GitLab releases and want to install them quickly.</td><td>Start with AAB Tools Free.</td></tr>
+            <tr><td>You need signing verification, release checks, R8 rules, resource obfuscation, and CI/CD generation.</td><td>Use ADB Pro.</td></tr>
+            <tr><td>You ship Android apps repeatedly and want one integrated release engineering workspace.</td><td>Use ADB Pro.</td></tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="feature-section">
+    <h2>FAQ</h2>
+    <h3>Is AAB Tools free?</h3>
+    <p>Yes. AAB Tools is a free JetBrains Marketplace plugin. It is designed as a focused utility for AAB to APKS conversion and installation.</p>
+
+    <h3>Can I install an AAB directly on Android?</h3>
+    <p>No. Devices install APKs or split APKs, not raw AAB files. AAB Tools uses bundletool to generate an APKS archive and install the device-specific split APKs.</p>
+
+    <h3>Does AAB Tools download bundletool automatically?</h3>
+    <p>Yes. The plugin can automatically manage bundletool.jar so developers do not need to manually download and configure the path before using the tool.</p>
+
+    <h3>Can it read signingConfigs from Gradle?</h3>
+    <p>Yes. AAB Tools can parse Gradle signing configurations and also supports manual keystore fallback when the Gradle config is not available or not suitable.</p>
+
+    <h3>Does it support GitHub or GitLab release AAB files?</h3>
+    <p>Yes. The plugin includes remote release scanning for GitHub and GitLab repositories, including token-based access for private repositories.</p>
+
+    <h3>What is the difference between AAB Tools and ADB Pro?</h3>
+    <p>AAB Tools is free and focused on AAB conversion and installation. ADB Pro is a paid, full release workflow plugin that also includes release readiness, signing tools, R8 Assistant, resource obfuscation, CI/CD tools, dependency health, and build performance features.</p>
+</section>
+
+<section class="cta-banner">
+    <h2>Use the Free Tool, Keep ADB Pro as the Main Workflow</h2>
+    <p>Install AAB Tools when you need fast AAB to APKS conversion. Move to ADB Pro when your Android release process needs signing, checks, R8, resources, CI/CD, and build health in one IDE workspace.</p>
+    <div class="hero-actions">
+        <a href="../pricing.html" class="btn btn-primary btn-lg" data-track="aab_tools_pricing_click" data-track-label="footer">View ADB Pro Pricing</a>
+        <a href="https://plugins.jetbrains.com/plugin/27766-aab-tools" class="btn btn-secondary btn-lg" target="_blank" data-track="aab_tools_marketplace_click" data-track-label="footer">Get AAB Tools Free</a>
+    </div>
+</section>
+<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>Advanced Android Development Tools for JetBrains IDEs.</p></div><div class="footer-links"><div class="footer-col"><h4>Product</h4><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../pricing.html">Pricing</a><a href="../getting-started.html">Getting Started</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><div class="footer-col"><h4>Resources</h4><a href="../guides/index.html">Android Release Guides</a><a href="../dictionaries/index.html">ProGuard Dictionaries</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>Free Tools</h4><a href="../tools/index.html">Tools Directory</a><a href="../tools/aab-tools.html">AAB Tools</a><a href="../features/web-navigation.html">Android Resource Navigator</a></div><div class="footer-col"><h4>Legal</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">Subscription Agreement</a><a href="../privacy-policy.html">Privacy Policy</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><script src="../assets/js/main.js"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

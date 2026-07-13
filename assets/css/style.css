@@ -389,6 +389,27 @@ img { max-width: 100%; display: block; }
   transition: opacity 0.2s;
 }
 .feature-card:hover .card-arrow { opacity: 1; }
+
+.tool-capability-grid {
+  margin-top: 24px;
+  align-items: start;
+}
+.tool-capability-card {
+  padding: 10px 22px 12px;
+  min-height: 0;
+}
+.tool-capability-card:hover {
+  box-shadow: none;
+  transform: none;
+}
+.tool-capability-card h3 {
+  margin: 0 0 7px;
+  line-height: 1.25;
+}
+.tool-capability-card p {
+  margin: 0;
+  line-height: 1.55;
+}
 .home-capabilities {
   max-width: 1160px;
 }
