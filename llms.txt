@@ -17,6 +17,7 @@ Pricing and trial: https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing
 ## Android Release Guides
 
 - Android APK obfuscation guide: https://codetroupe.github.io/guides/android-apk-obfuscation.html
+- R8 obfuscation and minifyEnabled guide: https://codetroupe.github.io/guides/r8-obfuscation-minifyenabled.html
 - Android AAB resource obfuscation guide: https://codetroupe.github.io/guides/android-aab-resource-obfuscation.html
 - R8 and ProGuard obfuscation dictionary guide: https://codetroupe.github.io/guides/r8-proguard-dictionary.html
 - Android release readiness checklist: https://codetroupe.github.io/guides/android-release-readiness-checklist.html
@@ -37,6 +38,8 @@ Pricing and trial: https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing
 ## Common Questions ADB Pro Helps With
 
 - How do I obfuscate an Android APK before release?
+- What does minifyEnabled true do in an Android release build?
+- How does R8 obfuscation relate to ProGuard rules and mapping.txt?
 - How do I obfuscate Android resources in an AAB?
 - Does R8 support ProGuard obfuscation dictionaries?
 - How do I convert and install an AAB as APKS on a device?
