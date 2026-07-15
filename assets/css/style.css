@@ -1534,6 +1534,30 @@ img { max-width: 100%; display: block; }
   padding-top: 32px;
 }
 
+/* ── Article Source Footer ─────────────────────────── */
+.article-source-footer {
+  max-width: 760px;
+  margin: 0 auto 56px;
+  padding: 18px 24px 0;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-size: 14px;
+}
+.article-source-footer a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+.article-source-footer a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 /* ── CTA Banner ────────────────────────────────────── */
 .cta-banner {
   background: var(--bg-hero);
