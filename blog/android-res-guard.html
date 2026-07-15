@@ -128,402 +128,274 @@
         document.documentElement.setAttribute('data-theme', theme);
       } catch (_) {}
     })();
-  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260713-tools"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div>﻿<!-- 鈺愨晲鈺?Blog Hero 鈺愨晲鈺?-->
-<section class="blog-hero">
-    <h1>Android 璧勬簮娣锋穯鍏ㄦ敾鐣ワ細AabResGuard 鐧藉悕鍗曢厤缃笌 filterList 璇﹁В</h1>
+  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260713-tools"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><section class="blog-hero">
+    <h1>Android 资源混淆全攻略：AabResGuard 白名单配置与 filterList 详解</h1>
     <div class="blog-meta">
-        <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            2026-07-03
-        </span>
-        <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            codetroupe
-        </span>
-        <span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            12 min read
-        </span>
+        <span>2026-07-03</span>
+        <span>codetroupe</span>
+        <span>12 min read</span>
     </div>
 </section>
 
-<!-- 鈺愨晲鈺?Article Body 鈺愨晲鈺?-->
 <article class="article-body">
 
-<p>鎻愬埌 Android 娣锋穯锛屽ぇ閮ㄥ垎寮€鍙戣€呯涓€鍙嶅簲鏄?ProGuard 鎴?R8銆備絾浣犵煡閬撳悧锛烺8 鍙贩娣?<strong>Java/Kotlin 浠ｇ爜</strong>锛屽 <code>res/</code> 鐩綍涓嬬殑璧勬簮鏂囦欢鍚嶃€佸瓧绗︿覆閿悕瀹屽叏涓嶅仛澶勭悊銆?/p>
 
-<p>杩欐剰鍛崇潃浣犵殑 APK/AAB 閲岋紝鎵€鏈?drawable 鍚嶇О锛?code>ic_launcher_background</code>銆?code>bg_home_banner</code>锛夈€乴ayout 鍚嶇О銆乻tring 閿悕閮芥槸<strong>鏄庢枃鍙</strong>鐨勩€傞€嗗悜浜哄憳鍏夌湅璧勬簮鍚嶅氨鑳芥帹鏂嚭浣犵殑椤甸潰缁撴瀯鍜屼笟鍔￠€昏緫銆?/p>
+<p>提到 Android 混淆，大部分开发者第一反应是 ProGuard 或 R8。但你知道吗？R8 只混淆 <strong>Java/Kotlin 代码</strong>，对 <code>res/</code> 目录下的资源文件名、字符串键名完全不做处理。</p>
 
-<p><strong>ResGuard</strong> 灏辨槸鐢ㄦ潵瑙ｅ喅杩欎釜闂鐨勨€斺€斿畠涓撻棬瀵?Android App Bundle锛圓AB锛変腑鐨勮祫婧愯繘琛屾贩娣嗭紝鎶婂彲璇荤殑璧勬簮鏍囪瘑绗︽浛鎹㈡垚鐭悕绉帮紙濡?<code>a</code>銆?code>b</code>銆?code>c</code>锛夛紝鍚屾椂鍑忓皬璧勬簮琛ㄤ綋绉€?/p>
+<p>这意味着你的 APK/AAB 里，所有 drawable 名称（<code>ic_launcher_background</code>、<code>bg_home_banner</code>）、layout 名称、string 键名都是<strong>明文可读</strong>的。逆向人员光看资源名就能推断出你的页面结构和业务逻辑。</p>
 
-<p>涔嬪墠绀惧尯閲岀敤鐨勬槸瀛楄妭璺冲姩寮€婧愮殑 <a href="https://github.com/bytedance/AabResGuard" target="_blank">AabResGuard</a>锛屼絾璇ラ」鐩凡缁忓仠姝㈢淮鎶わ紝涓嶆敮鎸佹柊鐗?Gradle銆傛垜鍦ㄥ師鏈夊熀纭€涓婂仛浜嗛噸鏋勫拰鍗囩骇锛屾柊鐗堟湰锛堝寘鍚?<code>io.github.codetroupe.resguard</code>锛夊凡缁?strong>瀹屾暣鏀寔鍒?Gradle 9.0</strong>锛孉PI 鏇寸幇浠ｏ紝鍏煎鎬ф洿濂姐€?/p>
+<p><strong>ResGuard</strong> 就是用来解决这个问题的——它专门对 Android App Bundle（AAB）中的资源进行混淆，把可读的资源标识符替换成短名称（如 <code>a</code>、<code>b</code>、<code>c</code>），同时减小资源表体积。</p>
 
-<p>杩欑瘒鏂囩珷鎶婃垜瀹為檯椤圭洰涓娇鐢?ResGuard 鐨勯厤缃粡楠屾暣鐞嗗嚭鏉ワ紝鐗瑰埆鏄?strong>鐧藉悕鍗曟€庝箞閰?/strong>銆?strong>filterList 涓轰粈涔堝繀椤婚厤</strong>杩欎袱涓渶瀹规槗韪╁潙鐨勫湴鏂广€?/p>
+<p>之前社区里用的是字节跳动开源的 <a href="https://github.com/bytedance/AabResGuard" target="_blank" rel="noopener noreferrer">AabResGuard</a>，但该项目已经停止维护，不支持新版 Gradle。我在原有基础上做了重构和升级，新版本（包名 <code>io.github.codetroupe.resguard</code>）已经<strong>完整支持到 Gradle 9.0</strong>，API 更现代，兼容性更好。</p>
 
-<h2>涓€銆佸熀纭€鎺ュ叆</h2>
+<p>这篇文章把我实际项目中使用 ResGuard 的配置经验整理出来，特别是<strong>白名单怎么配</strong>、<strong>filterList 为什么必须配</strong>这两个最容易踩坑的地方。</p>
 
-<p>ResGuard 鐨勬帴鍏ユ柟寮忓拰鏅€?Gradle 鎻掍欢涓€鏍凤紝宸插畬鏁存敮鎸?Gradle 9.0 鍜?AGP 8.x銆備互 <code>build.gradle.kts</code> 涓轰緥锛岄厤缃唬鐮佸涓嬨€?/p>
+<h2>一、基础接入</h2>
 
-<p>浠?<a href="https://github.com/Codetroupe/codetroupe.github.io/releases/tag/v0.7.0" target="_blank">GitHub Releases</a> 涓嬭浇 JAR 鏂囦欢锛屾斁鍒伴」鐩殑鑷畾涔夌洰褰曚腑锛堝 <code>gradle/plugins/aabresguard/</code>锛夛紝鐒跺悗鍦?app 妯″潡鐨?<code>build.gradle.kts</code> 涓厤缃細</p>
+<p>ResGuard 的接入方式和普通 Gradle 插件一样，已完整支持 Gradle 9.0 和 AGP 8.x。以 <code>build.gradle.kts</code> 为例，配置代码如下。</p>
 
-<div class="code-block">
-    <div class="code-header">
-        <div class="code-dot" style="background:#ff5f57"></div>
-        <div class="code-dot" style="background:#febc2e"></div>
-        <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">build.gradle.kts &mdash;鍩虹鎺ュ叆</span>
-    </div>
-    <code><span class="keyword">import</span> io.github.codetroupe.resguard.plugin.extensions.AabResGuardExtension
+<p>从 <a href="https://github.com/Codetroupe/codetroupe.github.io/releases/tag/v0.7.0" target="_blank" rel="noopener noreferrer">GitHub Releases</a> 下载 JAR 文件，放到项目的自定义目录中（如 <code>gradle/plugins/aabresguard/</code>），然后在 app 模块的 <code>build.gradle.kts</code> 中配置：</p>
 
-<span class="keyword">buildscript</span> {
+<pre class="code-block"><code>import io.github.codetroupe.resguard.plugin.extensions.AabResGuardExtension
+
+buildscript {
     repositories {
         flatDir {
-            dirs(<span class="string">"../gradle/plugins/aabresguard"</span>)
+            dirs(&quot;../gradle/plugins/aabresguard&quot;)
         }
     }
     dependencies {
-        classpath(files(<span class="string">"../gradle/plugins/aabresguard/plugin-0.7.0-all.jar"</span>))
+        classpath(files(&quot;../gradle/plugins/aabresguard/plugin-0.7.0-all.jar&quot;))
     }
 }
 
-apply(plugin = <span class="string">"io.github.codetroupe.resguard"</span>)</code>
-</div>
+apply(plugin = &quot;io.github.codetroupe.resguard&quot;)</code></pre>
 
-<p>杩欓噷鐢ㄤ簡 <code>flatDir</code> 浠撳簱鏉ユ寚瀹?JAR 鎵€鍦ㄧ殑鐩綍锛屽悓鏃剁敤 <code>files()</code> 鐩存帴寮曠敤 JAR 鏂囦欢璺緞銆傝繖鏍峰仛鐨勫ソ澶勬槸涓嶄緷璧?Maven 浠撳簱锛岄€傚悎鏈湴绠＄悊鐨?Gradle 鎻掍欢銆侸AR 鏂囦欢鍙互鏀惧湪椤圭洰鐨勪换鎰忎綅缃紝鍙 <code>dirs()</code> 鍜?<code>files()</code> 鐨勭浉瀵硅矾寰勫搴旀纭嵆鍙€?/p>
+<p>这里用了 <code>flatDir</code> 仓库来指定 JAR 所在的目录，同时用 <code>files()</code> 直接引用 JAR 文件路径。这样做的好处是不依赖 Maven 仓库，适合本地管理的 Gradle 插件。JAR 文件可以放在项目的任意位置，只要 <code>dirs()</code> 和 <code>files()</code> 的相对路径对应正确即可。</p>
 
-<p>娉ㄦ剰锛歊esGuard 鍙 <strong>AAB 鏍煎紡</strong>鐢熸晥锛屼笉閫傜敤浜?APK銆傚鏋滀綘鐨勯」鐩繕鍦ㄧ敤 APK 鍙戝竷锛岄渶瑕佸厛鍒囨崲鍒?AAB锛圙oogle Play 宸茬粡寮哄埗瑕佹眰 AAB锛夈€?/p>
+<p>注意：ResGuard 只对 <strong>AAB 格式</strong>生效，不适用于 APK。如果你的项目还在用 APK 发布，需要先切换到 AAB（Google Play 已经强制要求 AAB）。</p>
 
-<h2>浜屻€佹牳蹇冮厤缃瑙?/h2>
+<h2>二、核心配置详解</h2>
 
-<p>涓嬮潰鏄畬鏁寸殑閰嶇疆绀轰緥锛屾垜鎸夊姛鑳藉垎鍧楄В閲婏細</p>
+<p>下面是完整的配置示例，我按功能分块解释：</p>
 
-<div class="code-block">
-    <div class="code-header">
-        <div class="code-dot" style="background:#ff5f57"></div>
-        <div class="code-dot" style="background:#febc2e"></div>
-        <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">build.gradle.kts &mdash;閰嶇疆姒傝</span>
-    </div>
-    <code>extensions.findByType(AabResGuardExtension::<span class="keyword">class</span>.java)?.apply {
-    enableObfuscate = <span class="keyword">true</span>
+<pre class="code-block"><code>extensions.findByType(AabResGuardExtension::class.java)?.apply {
+    enableObfuscate = true
 
     whiteList = setOf(
-        <span class="comment">// keep resource file</span>
-        <span class="comment">//ArchivePathEntry: pathPrefix="", path="/base/res/raw/firebase_common_keep.xml"</span>
-        <span class="comment">//@string/google_app_id,@string/gcm_defaultSenderId,...</span>
-        <span class="string">"*.R.string.google_app_id"</span>,
-        <span class="comment">// ... 璇﹁涓嬫枃</span>
+        // keep resource file
+        //ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_common_keep.xml&quot;
+        //@string/google_app_id,@string/gcm_defaultSenderId,...
+        &quot;*.R.string.google_app_id&quot;,
+        // ... 详见下文
     )
 
-    obfuscatedBundleFileName = <span class="string">"ADBProTestAPP-v${versionProperties["VERSION_NAME"].toString()}.aab"</span>
+    obfuscatedBundleFileName = &quot;ADBProTestAPP-v${versionProperties[&quot;VERSION_NAME&quot;].toString()}.aab&quot;
 
-    enableFilterFiles = <span class="keyword">true</span>
-    filterList = setOf(<span class="string">"META-INF/*"</span>, <span class="string">"BUNDLE-METADATA/*"</span>)
-}</code>
-</div>
+    enableFilterFiles = true
+    filterList = setOf(&quot;META-INF/*&quot;, &quot;BUNDLE-METADATA/*&quot;)
+}</code></pre>
 
 <h3>2.1 enableObfuscate</h3>
 
-<p><code>true</code> 寮€鍚祫婧愭贩娣嗭紝<code>false</code> 璺宠繃銆傞€氬父璁句负 <code>true</code>锛屽湪 debug 鏋勫缓涓彲浠ュ叧鎺変互鍔犲揩鏋勫缓閫熷害銆?/p>
+<p><code>true</code> 开启资源混淆，<code>false</code> 跳过。通常设为 <code>true</code>，在 debug 构建中可以关掉以加快构建速度。</p>
 
 <h3>2.2 obfuscatedBundleFileName</h3>
 
-<p>娣锋穯鍚庣殑 AAB 杈撳嚭鏂囦欢鍚嶃€傛敮鎸佸姩鎬佹嫾鎺ョ増鏈彿锛屾瘮濡?<code>MyApp-v1.3.0.aab</code>銆傝繖姣旈粯璁ょ殑 <code>app-obfuscated.aab</code> 鏇村埄浜?CI/CD 娴佹按绾夸腑鐨勪骇鐗╃鐞嗐€?/p>
+<p>混淆后的 AAB 输出文件名。支持动态拼接版本号，比如 <code>MyApp-v1.3.0.aab</code>。这比默认的 <code>app-obfuscated.aab</code> 更利于 CI/CD 流水线中的产物管理。</p>
 
-<h3>2.3 filterList锛堥噸鐐癸級</h3>
+<h3>2.3 filterList（重点）</h3>
 
-<div class="code-block">
-    <div class="code-header">
-        <div class="code-dot" style="background:#ff5f57"></div>
-        <div class="code-dot" style="background:#febc2e"></div>
-        <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">filterList 閰嶇疆</span>
-    </div>
-    <code>filterList = setOf(<span class="string">"META-INF/*"</span>, <span class="string">"BUNDLE-METADATA/*"</span>)</code>
-</div>
+<pre class="code-block"><code>filterList = setOf(&quot;META-INF/*&quot;, &quot;BUNDLE-METADATA/*&quot;)</code></pre>
 
-<p>杩欎釜閰嶇疆鐨勪綔鐢ㄦ槸<strong>灏嗗尮閰嶇殑鏂囦欢浠庤緭鍑虹殑 AAB 涓洿鎺ョЩ闄?/strong>锛屼笉鏄烦杩囨贩娣嗭紝鑰屾槸褰诲簳涓嶅寘鍚湪鏈€缁堢殑 AAB 鍖呴噷銆?/p>
+<p>这个配置的作用是<strong>将匹配的文件从输出的 AAB 中直接移除</strong>，不是跳过混淆，而是彻底不包含在最终的 AAB 包里。</p>
 
-<p><strong><code>META-INF/*</code></strong> &mdash;鍖呭惈鏃х殑绛惧悕鏂囦欢锛?code>*.SF</code>銆?code>*.RSA</code>銆?code>MANIFEST.MF</code>锛夈€侫abResGuard 鍦ㄦ贩娣嗚祫婧愬悗浼氶噸鏂板 AAB 绛惧悕锛屾棫鐨勭鍚嶆枃浠跺凡缁忓け鏁堛€傚鏋滀笉绉婚櫎锛屾畫鐣欑殑鏃х鍚嶄俊鎭彲鑳戒笌鏂扮鍚嶅啿绐侊紝瀵艰嚧 Google Play 鎷掔粷涓婁紶銆?/p>
+<p>**<code>META-INF/*</code>** — 包含旧的签名文件（<code>*.SF</code>、<code>*.RSA</code>、<code>MANIFEST.MF</code>）。AabResGuard 在混淆资源后会重新对 AAB 签名，旧的签名文件已经失效。如果不移除，残留的旧签名信息可能与新签名冲突，导致 Google Play 拒绝上传。</p>
 
-<p><strong><code>BUNDLE-METADATA/*</code></strong> &mdash;鍖呭惈鏋勫缓宸ュ叿鐨勫厓鏁版嵁锛屽 ProGuard/R8 鐨?mapping 鏂囦欢銆丏EX 鏂囦欢鍒楄〃绛夈€傛牴鎹?<a href="https://developer.android.com/guide/app-bundle/app-bundle-format" target="_blank">Android App Bundle 鏍煎紡瑙勮寖</a>锛岃繖涓洰褰曠殑鍐呭涓嶄細琚墦鍖呭埌鐢ㄦ埛璁惧鐨?APK 涓紝浠呬緵搴旂敤鍟嗗簵鍚庣澶勭悊銆傜Щ闄ゅ悗涓嶅奖鍝?Google Play 涓婁紶鍜屽鏍革紝浣嗕細澶卞幓 Play Console 鑷姩鍙嶆贩娣嗗穿婧冩棩蹇楃殑鑳藉姏锛堝彲浠ラ€氳繃鍗曠嫭涓婁紶 mapping 鏂囦欢鏉ユ浛浠ｏ級銆傚悓鏃朵篃鑳藉噺灏?AAB 鏂囦欢浣撶Н銆?/p>
+<p>**<code>BUNDLE-METADATA/*</code>** — 包含构建工具的元数据，如 ProGuard/R8 的 mapping 文件、DEX 文件列表等。根据 <a href="https://developer.android.com/guide/app-bundle/app-bundle-format" target="_blank" rel="noopener noreferrer">Android App Bundle 格式规范</a>，这个目录的内容不会被打包到用户设备的 APK 中，仅供应用商店后端处理。移除后不影响 Google Play 上传和审核，但会失去 Play Console 自动反混淆崩溃日志的能力（可以通过单独上传 mapping 文件来替代）。同时也能减小 AAB 文件体积。</p>
 
-<p><strong>涓嶅姞 filterList 浼氭€庢牱锛?/strong> AAB 鍖呬綋浼氭洿澶э紝涓旀棫鐨?<code>META-INF</code> 绛惧悕鏂囦欢鍙兘瀵艰嚧绛惧悕鍐茬獊銆傚缓璁缁堥厤缃€?/p>
+<p><strong>不加 filterList 会怎样？</strong> AAB 包体会更大，且旧的 <code>META-INF</code> 签名文件可能导致签名冲突。建议始终配置。</p>
 
-<h2>涓夈€佺櫧鍚嶅崟閰嶇疆锛堟牳蹇冿級</h2>
+<h2>三、白名单配置（核心）</h2>
 
-<p>鐧藉悕鍗曟槸 AabResGuard 閰嶇疆涓?strong>鏈€瀹规槗鍑洪棶棰?/strong>鐨勯儴鍒嗐€傚緢澶氱涓夋柟 SDK 鍦ㄨ繍琛屾椂閫氳繃瀛楃涓插悕绉板紩鐢ㄨ祫婧愶紝濡傛灉杩欎簺璧勬簮琚贩娣嗕簡锛孲DK 灏变細鎵句笉鍒拌祫婧愯€屽穿婧冩垨鍔熻兘寮傚父銆?/p>
+<p>白名单是 AabResGuard 配置中<strong>最容易出问题</strong>的部分。很多第三方 SDK 在运行时通过字符串名称引用资源，如果这些资源被混淆了，SDK 就会找不到资源而崩溃或功能异常。</p>
 
-<h3>3.1 Google / Firebase 绯诲垪</h3>
+<h3>3.1 Google / Firebase 系列</h3>
 
-<p>濡傛灉浣犵敤浜?Firebase Analytics銆丗irebase Crashlytics銆丟oogle Sign-In 绛?Google 鏈嶅姟锛屼互涓嬭祫婧?strong>蹇呴』</strong>鍔犲叆鐧藉悕鍗曪細</p>
+<p>如果你用了 Firebase Analytics、Firebase Crashlytics、Google Sign-In 等 Google 服务，以下资源<strong>必须</strong>加入白名单：</p>
 
-<div class="code-block">
-    <div class="code-header">
-        <div class="code-dot" style="background:#ff5f57"></div>
-        <div class="code-dot" style="background:#febc2e"></div>
-        <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">Firebase 鐧藉悕鍗?/span>
-    </div>
-    <code><span class="comment">// keep resource file</span>
-<span class="comment">//ArchivePathEntry: pathPrefix="", path="/base/res/raw/firebase_common_keep.xml"</span>
-<span class="comment">//@string/google_app_id,@string/gcm_defaultSenderId,@string/google_api_key,</span>
-<span class="comment">//@string/firebase_database_url,@string/ga_trackingId,</span>
-<span class="comment">//@string/google_storage_bucket,@string/project_id</span>
-<span class="string">"*.R.string.google_app_id"</span>,
-<span class="string">"*.R.string.gcm_defaultSenderId"</span>,
-<span class="string">"*.R.string.default_web_client_id"</span>,
-<span class="string">"*.R.string.ga_trackingId"</span>,
-<span class="string">"*.R.string.google_storage_bucket"</span>,
-<span class="string">"*.R.string.firebase_database_url"</span>,
-<span class="string">"*.R.string.google_crash_reporting_api_key"</span>,
-<span class="string">"*.R.string.project_id"</span>,
-<span class="string">"*.R.string.google_api_key"</span>,</code>
-</div>
+<pre class="code-block"><code>// keep resource file
+//ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_common_keep.xml&quot;
+//@string/google_app_id,@string/gcm_defaultSenderId,@string/google_api_key,
+//@string/firebase_database_url,@string/ga_trackingId,
+//@string/google_storage_bucket,@string/project_id
+&quot;*.R.string.google_app_id&quot;,
+&quot;*.R.string.gcm_defaultSenderId&quot;,
+&quot;*.R.string.default_web_client_id&quot;,
+&quot;*.R.string.ga_trackingId&quot;,
+&quot;*.R.string.google_storage_bucket&quot;,
+&quot;*.R.string.firebase_database_url&quot;,
+&quot;*.R.string.google_crash_reporting_api_key&quot;,
+&quot;*.R.string.project_id&quot;,
+&quot;*.R.string.google_api_key&quot;,</code></pre>
 
-<p>杩欎簺瀛楃涓茬敱 <code>google-services.json</code> 鑷姩鐢熸垚骞舵敞鍏ュ埌 <code>strings.xml</code> 涓€傛敞閲婇噷鐨?<code>ArchivePathEntry</code> 鏄?AabResGuard 鍦ㄦ壂鎻?AAB 鏃惰瘑鍒埌鐨勮祫婧愯矾寰勨€斺€?code>firebase_common_keep.xml</code> 灏辨槸 Firebase SDK 鑷甫鐨勭櫧鍚嶅崟鏂囦欢锛屽垪鍑轰簡瀹冮渶瑕佷繚鎸佸師濮嬪悕绉扮殑璧勬簮銆?/p>
+<p>这些字符串由 <code>google-services.json</code> 自动生成并注入到 <code>strings.xml</code> 中。注释里的 <code>ArchivePathEntry</code> 是 AabResGuard 在扫描 AAB 时识别到的资源路径——<code>firebase_common_keep.xml</code> 就是 Firebase SDK 自带的白名单文件，列出了它需要保持原始名称的资源。</p>
 
-<h3>3.2 Firebase Crashlytics 涓撶敤</h3>
+<h3>3.2 Firebase Crashlytics 专用</h3>
 
-<p>Crashlytics 鏈夊嚑涓澶栫殑瀛楃涓茶祫婧愰渶瑕佷繚鎸侊細</p>
+<p>Crashlytics 有几个额外的字符串资源需要保持：</p>
 
-<div class="code-block">
-    <div class="code-header">
-        <div class="code-dot" style="background:#ff5f57"></div>
-        <div class="code-dot" style="background:#febc2e"></div>
-        <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">Crashlytics 鐧藉悕鍗?/span>
-    </div>
-    <code><span class="comment">//ArchivePathEntry: pathPrefix="", path="/base/res/raw/firebase_crashlytics_keep.xml"</span>
-<span class="comment">//@string/com.google.firebase.crashlytics_*</span>
-<span class="string">"*.R.string.com.crashlytics.android.build_id"</span>,
-<span class="string">"*.R.string.com.google.firebase.crashlytics.mapping_file_id"</span>,
-<span class="string">"*.R.string.com.google.firebase.crashlytics.*"</span>,</code>
-</div>
+<pre class="code-block"><code>//ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_crashlytics_keep.xml&quot;
+//@string/com.google.firebase.crashlytics_*
+&quot;*.R.string.com.crashlytics.android.build_id&quot;,
+&quot;*.R.string.com.google.firebase.crashlytics.mapping_file_id&quot;,
+&quot;*.R.string.com.google.firebase.crashlytics.*&quot;,</code></pre>
 
-<p><code>mapping_file_id</code> 灏ゅ叾閲嶈&mdash;€擟rashlytics 鐢ㄥ畠鏉ュ叧鑱旀贩娣嗘槧灏勬枃浠讹紝濡傛灉琚贩娣嗭紝涓婁紶鍒?Firebase Console 鐨勫穿婧冨爢鏍堝氨鏃犳硶鍙嶆贩娣嗭紝浣犵湅鍒扮殑灏嗘槸涓€鍫?<code>a.b.c</code> 鑰屼笉鏄湡瀹炵殑绫诲悕銆傛洿澶氬叧浜?Crashlytics 鍙嶆贩娣嗙殑閰嶇疆锛屽弬鑰?<a href="https://firebase.google.com/docs/crashlytics/android/get-deobfuscated-reports" target="_blank">Firebase 瀹樻柟鏂囨。</a>銆?/p>
+<p><code>mapping_file_id</code> 尤其重要——Crashlytics 用它来关联混淆映射文件，如果被混淆，上传到 Firebase Console 的崩溃堆栈就无法反混淆，你看到的将是一堆 <code>a.b.c</code> 而不是真实的类名。更多关于 Crashlytics 反混淆的配置，参考 <a href="https://firebase.google.com/docs/crashlytics/android/get-deobfuscated-reports" target="_blank" rel="noopener noreferrer">Firebase 官方文档</a>。</p>
 
-<h3>3.3 骞垮憡 SDK锛堜互绌垮北鐢?Pangle 涓轰緥锛?/h3>
+<h3>3.3 广告 SDK（以穿山甲/Pangle 为例）</h3>
 
-<p>绌垮北鐢诧紙TikTok 骞垮憡骞冲彴锛夊湪杩愯鏃朵細澶ч噺寮曠敤璧勬簮锛岀櫧鍚嶅崟闇€瑕佽鐩栧涓祫婧愮被鍨嬶細</p>
+<p>穿山甲（TikTok 广告平台）在运行时会大量引用资源，白名单需要覆盖多个资源类型：</p>
 
-<div class="code-block">
-    <div class="code-header">
-        <div class="code-dot" style="background:#ff5f57"></div>
-        <div class="code-dot" style="background:#febc2e"></div>
-        <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">绌垮北鐢?(Pangle) 鐧藉悕鍗?/span>
-    </div>
-    <code><span class="comment">// 绌垮北鐢?(Pangle) 骞垮憡 SDK</span>
-<span class="string">"*.R.string.tt_*"</span>,
-<span class="string">"*.R.raw.tt_*"</span>,
-<span class="string">"*.R.drawable.tt_*"</span>,
-<span class="string">"*.R.mipmap.tt_*"</span>,
-<span class="string">"*.R.id.tt_*"</span>,
-<span class="string">"*.R.layout.tt_*"</span>,
-<span class="string">"*.R.menu.tt_*"</span>,
-<span class="string">"*.R.style.tt_*"</span>,
-<span class="string">"*.R.attr.tt_*"</span>,
-<span class="string">"*.R.dimen.tt_*"</span>,
-<span class="string">"*.R.color.tt_*"</span>,
-<span class="string">"*.R.anim.tt_*"</span>,
-<span class="string">"*.R.integer.tt_*"</span>,</code>
-</div>
+<pre class="code-block"><code>// 穿山甲 (Pangle) 广告 SDK
+&quot;*.R.string.tt_*&quot;,
+&quot;*.R.raw.tt_*&quot;,
+&quot;*.R.drawable.tt_*&quot;,
+&quot;*.R.mipmap.tt_*&quot;,
+&quot;*.R.id.tt_*&quot;,
+&quot;*.R.layout.tt_*&quot;,
+&quot;*.R.menu.tt_*&quot;,
+&quot;*.R.style.tt_*&quot;,
+&quot;*.R.attr.tt_*&quot;,
+&quot;*.R.dimen.tt_*&quot;,
+&quot;*.R.color.tt_*&quot;,
+&quot;*.R.anim.tt_*&quot;,
+&quot;*.R.integer.tt_*&quot;,</code></pre>
 
-<p>绌垮北鐢茬殑璧勬簮鍚嶉兘浠?<code>tt_</code> 寮€澶达紝鐢ㄩ€氶厤绗?<code>*</code> 涓€娆″尮閰嶆墍鏈夈€傜┛灞辩敳瀹樻柟鏂囨。鏄庣‘瑕佹眰锛?em>"璇蜂笉瑕佹贩娣嗙┛灞辩敳鐨勪换浣曡祫婧愶紝闃叉璧勬簮鎵句笉鍒拌€屽彂鐢熷穿婧?</em>锛屽苟涓?SDK 鍖呭唴鑷甫 <code>whiteList.txt</code> 鐧藉悕鍗曟枃浠讹紝姣忔鏇存柊 SDK 鍚庨兘闇€瑕侀噸鏂版牳瀵圭櫧鍚嶅崟鍐呭銆傝瑙?<a href="https://www.csjplatform.com/supportcenter/28659" target="_blank">绌垮北鐢?Android 鎺ュ叆鏂囨。</a>銆?/p>
+<p>穿山甲的资源名都以 <code>tt_</code> 开头，用通配符 <code>*</code> 一次匹配所有。穿山甲官方文档明确要求：*&quot;请不要混淆穿山甲的任何资源，防止资源找不到而发生崩溃&quot;*，并且 SDK 包内自带 <code>whiteList.txt</code> 白名单文件，每次更新 SDK 后都需要重新核对白名单内容。详见 <a href="https://www.csjplatform.com/supportcenter/28659" target="_blank" rel="noopener noreferrer">穿山甲 Android 接入文档</a>。</p>
 
-<h3>3.4 鍏朵粬鐑棬骞垮憡 SDK</h3>
+<h3>3.4 其他热门广告 SDK</h3>
 
-<p>濡傛灉浣犵敤浜嗗叾浠栧箍鍛婂钩鍙帮紝鍚屾牱闇€瑕佹妸瀵瑰簲鍓嶇紑鍔犲埌鐧藉悕鍗曢噷銆備互涓嬫槸鍚勫钩鍙扮殑瀹樻柟鎺ュ叆鏂囨。锛?/p>
+<p>如果你用了其他广告平台，同样需要把对应前缀加到白名单里。以下是各平台的官方接入文档：</p>
 
-<ul>
-    <li><strong>Google AdMob</strong> &mdash;<a href="https://developers.google.com/admob/android/quick-start" target="_blank">Android 鎺ュ叆鎸囧崡</a></li>
-    <li><strong>Meta Audience Network锛團acebook锛?/strong> &mdash;<a href="https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/android/get-started/" target="_blank">Android 鎺ュ叆鎸囧崡</a></li>
-    <li><strong>AppLovin MAX</strong> &mdash;<a href="https://support.applovin.com/en/max/android/overview/integration/" target="_blank">Android 鎺ュ叆鎸囧崡</a></li>
-    <li><strong>Unity Ads</strong> &mdash;<a href="https://docs.unity.com/en-us/grow/ads/android-sdk/install-sdk" target="_blank">Android SDK 鎺ュ叆</a></li>
-</ul>
+<ul><li><strong>Google AdMob</strong> — <a href="https://developers.google.com/admob/android/quick-start" target="_blank" rel="noopener noreferrer">Android 接入指南</a></li><li><strong>Meta Audience Network（Facebook）</strong> — <a href="https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/android/get-started/" target="_blank" rel="noopener noreferrer">Android 接入指南</a></li><li><strong>AppLovin MAX</strong> — <a href="https://support.applovin.com/en/max/android/overview/integration/" target="_blank" rel="noopener noreferrer">Android 接入指南</a></li><li><strong>Unity Ads</strong> — <a href="https://docs.unity.com/en-us/grow/ads/android-sdk/install-sdk" target="_blank" rel="noopener noreferrer">Android SDK 接入</a></li></ul>
 
-<p>杩欎簺 SDK 鍦ㄨ繍琛屾椂閮戒細閫氳繃鍙嶅皠銆乄ebView 鎴栧姩鎬佸姞杞芥柟寮忓紩鐢ㄨ祫婧愶紝璧勬簮鍚嶈娣锋穯鍚庝細瀵艰嚧骞垮憡鏃犳硶灞曠ず鐢氳嚦宕╂簝銆傚叿浣撻渶瑕佺櫧鍚嶅崟鐨勮祫婧愬墠缂€鍙互鍙傝€冨悇 SDK 鍖呭唴鐨?<code>consumerProguardFiles</code> 鎴栧畼鏂?ProGuard 閰嶇疆璇存槑銆?/p>
+<p>这些 SDK 在运行时都会通过反射、WebView 或动态加载方式引用资源，资源名被混淆后会导致广告无法展示甚至崩溃。具体需要白名单的资源前缀可以参考各 SDK 包内的 <code>consumerProguardFiles</code> 或官方 ProGuard 配置说明。</p>
 
-<h3>3.5 閫氱敤鐧藉悕鍗曞缓璁?/h3>
+<h3>3.5 通用白名单建议</h3>
 
-<p>闄や簡涓婇潰杩欎簺 SDK 鐗瑰畾鐨勶紝浠ヤ笅璧勬簮閫氬父涔熼渶瑕佸姞鍏ョ櫧鍚嶅崟锛?/p>
+<p>除了上面这些 SDK 特定的，以下资源通常也需要加入白名单：</p>
 
-<div class="code-block">
-    <div class="code-header">
-        <div class="code-dot" style="background:#ff5f57"></div>
-        <div class="code-dot" style="background:#febc2e"></div>
-        <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">閫氱敤鐧藉悕鍗?/span>
-    </div>
-    <code><span class="comment">// 鍚姩鍥炬爣锛堢郴缁熼€氳繃鍚嶇О寮曠敤锛?/span>
-<span class="string">"*.R.mipmap.ic_launcher"</span>,
-<span class="string">"*.R.mipmap.ic_launcher_round"</span>,
-<span class="string">"*.R.drawable.ic_launcher_background"</span>,
-<span class="string">"*.R.drawable.ic_launcher_foreground"</span>,
+<pre class="code-block"><code>// 启动图标（系统通过名称引用）
+&quot;*.R.mipmap.ic_launcher&quot;,
+&quot;*.R.mipmap.ic_launcher_round&quot;,
+&quot;*.R.drawable.ic_launcher_background&quot;,
+&quot;*.R.drawable.ic_launcher_foreground&quot;,
 
-<span class="comment">// 閫氱煡鍥炬爣锛堢郴缁熼€氱煡鏍忓紩鐢級</span>
-<span class="string">"*.R.drawable.ic_stat_*"</span>,
-<span class="string">"*.R.drawable.ic_notification*"</span>,
+// 通知图标（系统通知栏引用）
+&quot;*.R.drawable.ic_stat_*&quot;,
+&quot;*.R.drawable.ic_notification*&quot;,
 
-<span class="comment">// 缃戠粶閰嶇疆</span>
-<span class="string">"*.R.xml.network_security_config"</span>,
+// 网络配置
+&quot;*.R.xml.network_security_config&quot;,
 
-<span class="comment">// FileProvider paths锛堢郴缁熼€氳繃鍚嶇О鏌ユ壘锛?/span>
-<span class="string">"*.R.xml.file_paths"</span>,
-<span class="string">"*.R.xml.provider_paths"</span>,</code>
-</div>
+// FileProvider paths（系统通过名称查找）
+&quot;*.R.xml.file_paths&quot;,
+&quot;*.R.xml.provider_paths&quot;,</code></pre>
 
-<h3>3.6 鐧藉悕鍗曟帓鏌ユ柟娉?/h3>
+<h3>3.6 白名单排查方法</h3>
 
-<p>濡傛灉涓婄嚎鍚庡彂鐜版煇涓姛鑳藉紓甯镐絾涓嶇‘瀹氭槸鍝釜璧勬簮琚贩娣嗕簡锛屽彲浠ョ敤杩欎釜鏂规硶鎺掓煡锛?/p>
+<p>如果上线后发现某个功能异常但不确定是哪个资源被混淆了，可以用这个方法排查：</p>
 
-<ol>
-    <li>鐢?AabResGuard 杈撳嚭鐨?mapping 鏂囦欢锛屾壘鍒板穿婧冩棩蹇椾腑鎻愬埌鐨勬贩娣嗗悗鍚嶇О</li>
-    <li>鍙嶆煡 mapping 鎵惧埌鍘熷璧勬簮鍚?/li>
-    <li>鎶婂師濮嬭祫婧愬悕鍔犲叆鐧藉悕鍗?/li>
-    <li>閲嶆柊鏋勫缓楠岃瘉</li>
-</ol>
+<ol><li>用 AabResGuard 输出的 mapping 文件，找到崩溃日志中提到的混淆后名称</li><li>反查 mapping 找到原始资源名</li><li>把原始资源名加入白名单</li><li>重新构建验证</li></ol>
 
-<h2>鍥涖€佸畬鏁撮厤缃ā鏉?/h2>
+<h2>四、完整配置模板</h2>
 
-<p>鎶婁笂闈㈡墍鏈夊唴瀹规暣鍚堣捣鏉ワ紝杩欐槸涓€浠藉彲浠ョ洿鎺ュ鍒朵娇鐢ㄧ殑瀹屾暣妯℃澘锛?/p>
+<p>把上面所有内容整合起来，这是一份可以直接复制使用的完整模板：</p>
 
-<div class="code-block">
-    <div class="code-header">
-        <div class="code-dot" style="background:#ff5f57"></div>
-        <div class="code-dot" style="background:#febc2e"></div>
-        <div class="code-dot" style="background:#28c840"></div>
-        <span style="margin-left:12px; font-size:12px; color:#64748b;">build.gradle.kts &mdash;瀹屾暣閰嶇疆妯℃澘</span>
-    </div>
-    <code>extensions.findByType(AabResGuardExtension::<span class="keyword">class</span>.java)?.apply {
-    enableObfuscate = <span class="keyword">true</span>
+<pre class="code-block"><code>extensions.findByType(AabResGuardExtension::class.java)?.apply {
+    enableObfuscate = true
 
     whiteList = setOf(
-        <span class="comment">// keep resource file</span>
-        <span class="comment">//ArchivePathEntry: pathPrefix="", path="/base/res/raw/firebase_common_keep.xml"</span>
-        <span class="comment">//@string/google_app_id,@string/gcm_defaultSenderId,@string/google_api_key,</span>
-        <span class="comment">//@string/firebase_database_url,@string/ga_trackingId,</span>
-        <span class="comment">//@string/google_storage_bucket,@string/project_id</span>
-        <span class="string">"*.R.string.google_app_id"</span>,
-        <span class="string">"*.R.string.gcm_defaultSenderId"</span>,
-        <span class="string">"*.R.string.default_web_client_id"</span>,
-        <span class="string">"*.R.string.ga_trackingId"</span>,
-        <span class="string">"*.R.string.google_storage_bucket"</span>,
-        <span class="string">"*.R.string.firebase_database_url"</span>,
-        <span class="string">"*.R.string.google_crash_reporting_api_key"</span>,
-        <span class="string">"*.R.string.project_id"</span>,
-        <span class="string">"*.R.string.google_api_key"</span>,
+        // keep resource file
+        //ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_common_keep.xml&quot;
+        //@string/google_app_id,@string/gcm_defaultSenderId,@string/google_api_key,
+        //@string/firebase_database_url,@string/ga_trackingId,
+        //@string/google_storage_bucket,@string/project_id
+        &quot;*.R.string.google_app_id&quot;,
+        &quot;*.R.string.gcm_defaultSenderId&quot;,
+        &quot;*.R.string.default_web_client_id&quot;,
+        &quot;*.R.string.ga_trackingId&quot;,
+        &quot;*.R.string.google_storage_bucket&quot;,
+        &quot;*.R.string.firebase_database_url&quot;,
+        &quot;*.R.string.google_crash_reporting_api_key&quot;,
+        &quot;*.R.string.project_id&quot;,
+        &quot;*.R.string.google_api_key&quot;,
 
-        <span class="comment">//ArchivePathEntry: pathPrefix="", path="/base/res/raw/firebase_crashlytics_keep.xml"</span>
-        <span class="comment">//@string/com.google.firebase.crashlytics_*</span>
-        <span class="string">"*.R.string.com.crashlytics.android.build_id"</span>,
-        <span class="string">"*.R.string.com.google.firebase.crashlytics.mapping_file_id"</span>,
-        <span class="string">"*.R.string.com.google.firebase.crashlytics.*"</span>,
+        //ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_crashlytics_keep.xml&quot;
+        //@string/com.google.firebase.crashlytics_*
+        &quot;*.R.string.com.crashlytics.android.build_id&quot;,
+        &quot;*.R.string.com.google.firebase.crashlytics.mapping_file_id&quot;,
+        &quot;*.R.string.com.google.firebase.crashlytics.*&quot;,
 
-        <span class="comment">// pangle</span>
-        <span class="string">"*.R.string.tt_*"</span>,
-        <span class="string">"*.R.raw.tt_*"</span>,
-        <span class="string">"*.R.drawable.tt_*"</span>,
-        <span class="string">"*.R.mipmap.tt_*"</span>,
-        <span class="string">"*.R.id.tt_*"</span>,
-        <span class="string">"*.R.layout.tt_*"</span>,
-        <span class="string">"*.R.menu.tt_*"</span>,
-        <span class="string">"*.R.style.tt_*"</span>,
-        <span class="string">"*.R.attr.tt_*"</span>,
-        <span class="string">"*.R.dimen.tt_*"</span>,
-        <span class="string">"*.R.color.tt_*"</span>,
-        <span class="string">"*.R.anim.tt_*"</span>,
-        <span class="string">"*.R.integer.tt_*"</span>,
+        // pangle
+        &quot;*.R.string.tt_*&quot;,
+        &quot;*.R.raw.tt_*&quot;,
+        &quot;*.R.drawable.tt_*&quot;,
+        &quot;*.R.mipmap.tt_*&quot;,
+        &quot;*.R.id.tt_*&quot;,
+        &quot;*.R.layout.tt_*&quot;,
+        &quot;*.R.menu.tt_*&quot;,
+        &quot;*.R.style.tt_*&quot;,
+        &quot;*.R.attr.tt_*&quot;,
+        &quot;*.R.dimen.tt_*&quot;,
+        &quot;*.R.color.tt_*&quot;,
+        &quot;*.R.anim.tt_*&quot;,
+        &quot;*.R.integer.tt_*&quot;,
     )
 
-    obfuscatedBundleFileName = <span class="string">"ADBProTestAPP-v${versionProperties["VERSION_NAME"].toString()}.aab"</span>
+    obfuscatedBundleFileName = &quot;ADBProTestAPP-v${versionProperties[&quot;VERSION_NAME&quot;].toString()}.aab&quot;
 
-    enableFilterFiles = <span class="keyword">true</span>
-    filterList = setOf(<span class="string">"META-INF/*"</span>, <span class="string">"BUNDLE-METADATA/*"</span>)
-}</code>
-</div>
+    enableFilterFiles = true
+    filterList = setOf(&quot;META-INF/*&quot;, &quot;BUNDLE-METADATA/*&quot;)
+}</code></pre>
 
-<h2>浜斻€佹贩娣嗘晥鏋滃姣?/h2>
+<h2>五、混淆效果对比</h2>
 
-<p>浠ヤ竴涓腑绛夎妯＄殑 Android 椤圭洰涓轰緥锛?/p>
+<p>以一个中等规模的 Android 项目为例：</p>
 
-<table>
-    <thead>
-        <tr>
-            <th>鎸囨爣</th>
-            <th>娣锋穯鍓?/th>
-            <th>娣锋穯鍚?/th>
-            <th>鍙樺寲</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>AAB 澶у皬</td>
-            <td>32.4 MB</td>
-            <td>30.1 MB</td>
-            <td>-7.1%</td>
-        </tr>
-        <tr>
-            <td>璧勬簮琛ㄦ潯鐩?/td>
-            <td>2,847</td>
-            <td>2,847</td>
-            <td>涓嶅彉</td>
-        </tr>
-        <tr>
-            <td>璧勬簮鍚嶅钩鍧囬暱搴?/td>
-            <td>18.3 瀛楃</td>
-            <td>1.8 瀛楃</td>
-            <td>-90%</td>
-        </tr>
-        <tr>
-            <td>string 璧勬簮鎬诲ぇ灏?/td>
-            <td>412 KB</td>
-            <td>186 KB</td>
-            <td>-54.8%</td>
-        </tr>
-    </tbody>
-</table>
+<table><thead><tr><th>指标</th><th>混淆前</th><th>混淆后</th><th>变化</th></tr></thead><tbody><tr><td>AAB 大小</td><td>32.4 MB</td><td>30.1 MB</td><td>-7.1%</td></tr><tr><td>资源表条目</td><td>2,847</td><td>2,847</td><td>不变</td></tr><tr><td>资源名平均长度</td><td>18.3 字符</td><td>1.8 字符</td><td>-90%</td></tr><tr><td>string 资源总大小</td><td>412 KB</td><td>186 KB</td><td>-54.8%</td></tr></tbody></table>
 
-<p>璧勬簮鏉＄洰鏁颁笉鍙橈紙娣锋穯涓嶅垹闄よ祫婧愶級锛屼絾姣忎釜璧勬簮鍚嶄粠 <code>bg_home_page_banner_gradient</code> 杩欐牱鐨勯暱鍚嶇О鍙樻垚浜?<code>a</code>銆?code>b</code> 杩欐牱鐨勫崟瀛楃锛岃祫婧愯〃鐨勫瓧绗︿覆姹犲ぇ骞呯缉灏忋€?/p>
+<p>资源条目数不变（混淆不删除资源），但每个资源名从 <code>bg_home_page_banner_gradient</code> 这样的长名称变成了 <code>a</code>、<code>b</code> 这样的单字符，资源表的字符串池大幅缩小。</p>
 
-<h2>鍏€佸父瑙侀棶棰?/h2>
+<h2>六、常见问题</h2>
 
-<p><strong>Q锛氭贩娣嗗悗 Google Play 涓婁紶澶辫触锛?/strong><br>
-妫€鏌?filterList 鏄惁鍖呭惈浜?<code>META-INF/*</code>銆傛病鏈夌Щ闄ょ殑璇濓紝鏃х殑绛惧悕鏂囦欢浼氭畫鐣欏湪 AAB 涓紝涓庢柊绛惧悕鍐茬獊銆?/p>
+<p><strong>Q：混淆后 Google Play 上传失败？</strong> 检查 filterList 是否包含了 <code>META-INF/*</code>。没有移除的话，旧的签名文件会残留在 AAB 中，与新签名冲突。</p>
 
-<p><strong>Q锛欶irebase 鍒濆鍖栨姤閿?<code>String resource not found</code>锛?/strong><br>
-妫€鏌?Google/Firebase 鐨勭櫧鍚嶅崟鏄惁瀹屾暣銆傚彲浠ョ敤 <code>adb logcat | grep "google_app_id"</code> 楠岃瘉銆?/p>
+<p><strong>Q：Firebase 初始化报错 <code>String resource not found</code>？</strong> 检查 Google/Firebase 的白名单是否完整。可以用 <code>adb logcat | grep &quot;google_app_id&quot;</code> 验证。</p>
 
-<p><strong>Q锛氬箍鍛婁笉灞曠ず锛?/strong><br>
-澶ф鐜囨槸骞垮憡 SDK 鐨勮祫婧愯娣锋穯浜嗐€傜‘璁ゅ搴?SDK 鐨勭櫧鍚嶅崟鍓嶇紑锛堝绌垮北鐢茬殑 <code>tt_*</code>锛夈€?/p>
+<p><strong>Q：广告不展示？</strong> 大概率是广告 SDK 的资源被混淆了。确认对应 SDK 的白名单前缀（如穿山甲的 <code>tt_*</code>）。</p>
 
-<p><strong>Q锛欳rashlytics 鍫嗘爤鏃犳硶鍙嶆贩娣嗭紵</strong><br>
-妫€鏌?<code>mapping_file_id</code> 鏄惁鍦ㄧ櫧鍚嶅崟涓€傝繖涓祫婧愯娣锋穯鍚庯紝Crashlytics 鏃犳硶鍏宠仈姝ｇ‘鐨?mapping 鏂囦欢銆?/p>
+<p><strong>Q：Crashlytics 堆栈无法反混淆？</strong> 检查 <code>mapping_file_id</code> 是否在白名单中。这个资源被混淆后，Crashlytics 无法关联正确的 mapping 文件。</p>
 
-<p><strong>Q锛歞ebug 鏋勫缓涔熼渶瑕佹贩娣嗗悧锛?/strong><br>
-涓嶉渶瑕併€傚缓璁彧鍦?release buildType 涓惎鐢?AabResGuard锛屽彲浠ュ湪 <code>build.gradle.kts</code> 涓敤鏉′欢鍒ゆ柇鎺у埗銆?/p>
+<p><strong>Q：debug 构建也需要混淆吗？</strong> 不需要。建议只在 release buildType 中启用 AabResGuard，可以在 <code>build.gradle.kts</code> 中用条件判断控制。</p>
 
-<h2>涓冦€佸啓鍦ㄦ渶鍚?/h2>
+<h2>七、写在最后</h2>
 
-<p>璧勬簮娣锋穯鏄?Android 瀹夊叏闃叉姢涓鏄撹蹇界暐鐨勪竴鐜€傚ぇ澶氭暟寮€鍙戣€呭彧鍋氫簡 R8 浠ｇ爜娣锋穯锛屼絾璧勬簮鍚嶇殑鏆撮湶鍚屾牱浼氱粰閫嗗悜鍒嗘瀽鎻愪緵渚垮埄銆侫abResGuard 鐨勬帴鍏ユ垚鏈緢浣庯紝涓昏宸ヤ綔閲忓湪鐧藉悕鍗曠殑閰嶇疆涓娾€斺€旈厤濂戒竴娆★紝鍚庣画缁存姢鎴愭湰鍑犱箮涓洪浂銆?/p>
+<p>资源混淆是 Android 安全防护中容易被忽略的一环。大多数开发者只做了 R8 代码混淆，但资源名的暴露同样会给逆向分析提供便利。AabResGuard 的接入成本很低，主要工作量在白名单的配置上——配好一次，后续维护成本几乎为零。</p>
 
-<p>濡傛灉浣犺寰楁墜鍔ㄩ厤缃櫧鍚嶅崟姣旇緝绻佺悙锛屼篃鍙互璇曡瘯 IDE 鎻掍欢鏉ヨ緟鍔┿€傛垜鑷繁鍦ㄧ敤鐨?<a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank">ADB Pro</a> 鎻掍欢鍐呯疆浜?AabResGuard 鐨勯厤缃鐞嗗姛鑳斤紝鍙互鏍规嵁椤圭洰渚濊禆鑷姩璇嗗埆闇€瑕佺櫧鍚嶅崟鐨?SDK锛屼竴閿敓鎴愰厤缃苟娉ㄥ叆鍒?build.gradle.kts 涓€傛洿澶氬叧浜庤祫婧愭贩娣嗗拰 ProGuard 娣锋穯瀛楀吀鐨勫唴瀹癸紝涔熷彲浠ュ弬鑰?<a href="https://codetroupe.github.io/features/res-guard.html">ADB Pro 鏂囨。</a>銆?/p>
+<p>如果你觉得手动配置白名单比较繁琐，也可以试试 IDE 插件来辅助。我自己在用的 <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" rel="noopener noreferrer">ADB Pro</a> 插件内置了 AabResGuard 的配置管理功能，可以根据项目依赖自动识别需要白名单的 SDK，一键生成配置并注入到 build.gradle.kts 中。更多关于资源混淆和 ProGuard 混淆字典的内容，也可以参考 <a href="https://codetroupe.github.io/features/res-guard.html" target="_blank" rel="noopener noreferrer">ADB Pro 文档</a>。</p>
 
-<hr>
-
-<p>甯屾湜杩欑瘒閰嶇疆鎸囧崡瀵逛綘鏈夊府鍔┿€傚鏋滃湪浣跨敤 AabResGuard 鏃堕亣鍒颁簡鍏朵粬鍧戯紝娆㈣繋鍦ㄨ瘎璁哄尯鍒嗕韩銆?/p>
+<p>希望这篇配置指南对你有帮助。如果在使用 AabResGuard 时遇到了其他坑，欢迎在评论区分享。</p>
 
 </article>
 
-<!-- 鈺愨晲鈺?CTA 鈺愨晲鈺?-->
 <section class="cta-banner">
-    <h2>Ready to Level Up Your Android Workflow?</h2>
-    <p>Start your free 30-day trial. No credit card required. Full access to all features.</p>
+    <h2>Ship Android Releases with Fewer Manual Steps</h2>
+    <p>ADB Pro brings release checks, AAB handling, signing, R8 rules, and resource obfuscation into one JetBrains IDE workflow.</p>
     <div class="hero-actions">
-        <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank">Get ADB Pro Free</a>
-        <a href="../features/index.html" class="btn btn-secondary btn-lg">Explore Features</a>
+        <a href="../features/index.html" class="btn btn-primary btn-lg">Explore ADB Pro</a>
+        <a href="../pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
     </div>
 </section>
-
 <footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>Advanced Android Development Tools for JetBrains IDEs.</p></div><div class="footer-links"><div class="footer-col"><h4>Product</h4><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../pricing.html">Pricing</a><a href="../getting-started.html">Getting Started</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><div class="footer-col"><h4>Resources</h4><a href="../guides/index.html">Android Release Guides</a><a href="../dictionaries/index.html">ProGuard Dictionaries</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>Free Tools</h4><a href="../tools/index.html">Tools Directory</a><a href="../tools/aab-tools.html">AAB Tools</a><a href="../features/web-navigation.html">Android Resource Navigator</a></div><div class="footer-col"><h4>Legal</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">Subscription Agreement</a><a href="../privacy-policy.html">Privacy Policy</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><script src="../assets/js/main.js"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
