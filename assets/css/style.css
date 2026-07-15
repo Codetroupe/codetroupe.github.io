@@ -64,6 +64,7 @@ body {
   background: var(--bg-body);
   color: var(--text-primary);
   line-height: 1.7;
+  padding-top: 64px;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -78,14 +79,24 @@ img { max-width: 100%; display: block; }
 
 /* ── Navigation ────────────────────────────────────── */
 .site-nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   background: var(--bg-nav);
   border-bottom: 1px solid var(--border);
-  transition: background 0.3s, border-color 0.3s;
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.site-nav.is-scrolled {
+  background: color-mix(in srgb, var(--bg-nav) 94%, var(--bg-card));
+  border-bottom-color: color-mix(in srgb, var(--border) 70%, transparent);
+  box-shadow: 0 8px 28px rgba(15, 23, 42, 0.08);
+}
+[data-theme="dark"] .site-nav.is-scrolled {
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.34);
 }
 .nav-inner {
   max-width: 1200px;
@@ -182,9 +193,56 @@ img { max-width: 100%; display: block; }
   background: var(--accent-soft);
 }
 
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 90;
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-lg);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 0.2s, transform 0.2s, color 0.2s, border-color 0.2s, background 0.2s;
+}
+.back-to-top:hover {
+  color: var(--text-primary);
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateY(6px);
+}
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+.back-to-top.is-visible:hover {
+  transform: translateY(-2px);
+}
+.back-to-top:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--accent) 35%, transparent);
+  outline-offset: 3px;
+}
+
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-toggle { display: block; }
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+  }
 }
 
 /* ── Theme Toggle ──────────────────────────────────── */

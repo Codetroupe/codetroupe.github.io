@@ -49,6 +49,24 @@
   });
 
   /* ── Active nav link highlighting ─────────────── */
+  var siteNav = document.querySelector('.site-nav');
+  var backToTop = document.querySelector('.back-to-top');
+
+  function updateScrollUi() {
+    var y = window.scrollY || document.documentElement.scrollTop || 0;
+    if (siteNav) siteNav.classList.toggle('is-scrolled', y > 8);
+    if (backToTop) backToTop.classList.toggle('is-visible', y > 420);
+  }
+
+  updateScrollUi();
+  window.addEventListener('scroll', updateScrollUi, { passive: true });
+
+  if (backToTop) {
+    backToTop.addEventListener('click', function () {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  }
+
   var currentPath = window.location.pathname.replace(/\/$/, '') || '/';
   document.querySelectorAll('.nav-links a, .mobile-menu a').forEach(function (link) {
     var href = link.getAttribute('href');
