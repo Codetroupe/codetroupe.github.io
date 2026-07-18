@@ -1308,6 +1308,7 @@ img { max-width: 100%; display: block; }
   gap: 24px;
   max-width: 1220px;
   margin: 0 auto;
+  align-items: stretch;
 }
 .pricing-card {
   background: var(--bg-card);
@@ -1355,7 +1356,7 @@ img { max-width: 100%; display: block; }
 .pricing-features {
   list-style: none;
   text-align: left;
-  margin: 24px 0;
+  margin: 24px 0 0;
   font-size: 14px;
   flex: 1;
 }
@@ -1378,10 +1379,14 @@ img { max-width: 100%; display: block; }
   flex-shrink: 0;
   margin-top: 1px;
 }
+.pricing-card-action {
+  margin-top: auto;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
 .pricing-action {
   width: 100%;
   justify-content: center;
-  margin-top: auto;
   min-height: 42px;
 }
 
