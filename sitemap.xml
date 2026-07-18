@@ -136,12 +136,42 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://codetroupe.github.io/guides/android-app-obfuscation-methods.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://codetroupe.github.io/guides/android-app-signing-guide.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://codetroupe.github.io/guides/android-automated-builds-cicd.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codetroupe.github.io/guides/android-multi-store-release-checklist.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codetroupe.github.io/guides/android-multiple-apps-one-project.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://codetroupe.github.io/guides/android-release-readiness-checklist.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codetroupe.github.io/guides/android-release-signing-guide.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://codetroupe.github.io/guides/install-aab-on-android-device.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

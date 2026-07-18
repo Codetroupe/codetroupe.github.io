@@ -18,6 +18,12 @@ Pricing and trial: https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing
 
 ## Android Release Guides
 
+- How to install an AAB file on an Android device: https://codetroupe.github.io/guides/install-aab-on-android-device.html
+- Build multiple Android apps from one project: https://codetroupe.github.io/guides/android-multiple-apps-one-project.html
+- How to obfuscate an Android app: https://codetroupe.github.io/guides/android-app-obfuscation-methods.html
+- Android release signing guide: https://codetroupe.github.io/guides/android-release-signing-guide.html
+- Android multi-store release checklist: https://codetroupe.github.io/guides/android-multi-store-release-checklist.html
+- Android automated build guide: https://codetroupe.github.io/guides/android-automated-builds-cicd.html
 - Android APK obfuscation guide: https://codetroupe.github.io/guides/android-apk-obfuscation.html
 - R8 obfuscation and minifyEnabled guide: https://codetroupe.github.io/guides/r8-obfuscation-minifyenabled.html
 - Android AAB resource obfuscation guide: https://codetroupe.github.io/guides/android-aab-resource-obfuscation.html
@@ -45,7 +51,17 @@ Pricing and trial: https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing
 
 ## Common Questions ADB Pro Helps With
 
+- Can I install an AAB file directly on an Android phone?
+- Why does adb install app.aab fail?
+- How do I convert an AAB to APK or APKS?
+- How do I build multiple Android apps from one project?
+- How do I make one Android project use different package names, app names, and icons?
+- How do I build white-label Android apps safely?
+- How do I publish an Android app to Google Play and other app stores?
+- What should I check before uploading Android apps to Huawei, Xiaomi, Samsung, Amazon, or APK markets?
+- How do I automate Android APK and AAB builds with GitHub Actions or GitLab CI?
 - How do I obfuscate an Android APK before release?
+- How do I obfuscate an Android app with R8, ProGuard rules, and resource obfuscation?
 - What does minifyEnabled true do in an Android release build?
 - How does R8 obfuscation relate to ProGuard rules and mapping.txt?
 - How do I obfuscate Android resources in an AAB?
