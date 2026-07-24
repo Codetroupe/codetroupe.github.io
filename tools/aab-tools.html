@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs</title><meta name="description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><link rel="canonical" href="https://codetroupe.github.io/tools/aab-tools.html"><meta property="og:title" content="AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs"><meta property="og:description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/tools/aab-tools.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs"><meta name="twitter:description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AAB Tools","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","description":"AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files.","url":"https://codetroupe.github.io/tools/aab-tools.html","downloadUrl":"https://plugins.jetbrains.com/plugin/27766-aab-tools","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"codetroupe"},"featureList":["Convert Android App Bundles to APKS","Install APKS on Android devices","Manage bundletool.jar","Read Gradle signing configurations","Scan local AAB output folders","Scan GitHub and GitLab release assets"]}</script><script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs</title><meta name="description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on one or more selected devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><link rel="canonical" href="https://codetroupe.github.io/tools/aab-tools.html"><meta property="og:title" content="AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs"><meta property="og:description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on one or more selected devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/tools/aab-tools.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AAB Tools - Free AAB to APKS Plugin for JetBrains IDEs"><meta name="twitter:description" content="AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on one or more selected devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files."><script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"AAB Tools","applicationCategory":"DeveloperApplication","operatingSystem":"Windows, macOS, Linux","description":"AAB Tools is a free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing them on one or more selected devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files.","url":"https://codetroupe.github.io/tools/aab-tools.html","downloadUrl":"https://plugins.jetbrains.com/plugin/27766-aab-tools","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"codetroupe"},"featureList":["Convert Android App Bundles to APKS","Install APKS on Android devices","Install one AAB to multiple selected online devices with Universal APK mode","Manage bundletool.jar","Read Gradle signing configurations","Scan local AAB output folders","Scan GitHub and GitLab release assets"]}</script><script>
     (function () {
       try {
         var theme = localStorage.getItem('adbpro-theme');
@@ -12,7 +12,7 @@
     <div class="hero-content">
         <div class="hero-badge">Free Companion Plugin by ADB Pro</div>
         <h1>AAB Tools</h1>
-        <p>A free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing APKS on devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files.</p>
+        <p>A free companion plugin from the ADB Pro ecosystem for converting Android App Bundles to APKS, installing APKS on one or more selected devices, managing bundletool, reading Gradle signing configs, and scanning GitHub or GitLab releases for AAB files.</p>
         <div class="hero-actions">
             <a href="../features/index.html" class="btn btn-primary btn-lg" data-track="aab_tools_adbpro_click" data-track-label="hero">Explore ADB Pro</a>
             <a href="https://plugins.jetbrains.com/plugin/27766-aab-tools" class="btn btn-secondary btn-lg" target="_blank" data-track="aab_tools_marketplace_click" data-track-label="hero">Get AAB Tools Free</a>
@@ -23,6 +23,7 @@
 <section class="feature-section">
     <h2>Free AAB to APKS Workflow Inside Your IDE</h2>
     <p>Android App Bundles are publishing artifacts, not files that can be installed directly like APKs. For local testing, developers usually need bundletool, a signing configuration, an APKS output file, a connected device, and an install command that matches the device configuration. AAB Tools turns that command-line chain into a focused JetBrains IDE workflow.</p>
+    <p>When several devices are connected, AAB Tools can install one selected bundle to multiple chosen online devices. The batch workflow uses Universal APK mode so the same generated APK can be installed across different device configurations, while the single-device workflow remains available for split APKS testing.</p>
     <p>The plugin is intentionally free and focused. It solves the common AAB conversion and installation loop for individual Android developers, QA testers, and small projects that do not need the full ADB Pro release workflow yet. When the workflow grows into signing verification, release checks, R8, resource obfuscation, CI/CD, and dependency health, ADB Pro is the main upgrade path.</p>
 
     <div class="features-grid tool-capability-grid">
@@ -32,7 +33,7 @@
         </div>
         <div class="feature-card tool-capability-card">
             <h3>Install to Devices</h3>
-            <p>Select a connected Android device and install generated APKS files without leaving the JetBrains tool window.</p>
+            <p>Select one connected Android device for targeted split APKS installation, or choose multiple online devices for a Universal APK batch install.</p>
         </div>
         <div class="feature-card tool-capability-card">
             <h3>Manage Bundletool</h3>
@@ -61,7 +62,7 @@
         <li>Select a Gradle signing config or provide a manual keystore configuration.</li>
         <li>Let the plugin manage bundletool or use the configured bundletool path.</li>
         <li>Convert the selected AAB into an APKS archive.</li>
-        <li>Select the connected Android device and install the APKS output.</li>
+        <li>Select one connected device for targeted install, or select multiple online devices for Universal APK batch install.</li>
         <li>Use force install only for development cases where signature conflicts need to be replaced intentionally.</li>
     </ol>
 </section>
@@ -75,7 +76,7 @@
         </thead>
         <tbody>
             <tr><td>AAB to APKS conversion</td><td>Yes.</td><td>Yes, integrated with broader release tooling.</td></tr>
-            <tr><td>APKS install to device</td><td>Yes.</td><td>Yes, with adjacent device and artifact workflows.</td></tr>
+            <tr><td>APKS install to device</td><td>Yes, including selected multi-device batch install with Universal APK mode.</td><td>Yes, with adjacent device and artifact workflows.</td></tr>
             <tr><td>bundletool management</td><td>Yes.</td><td>Yes.</td></tr>
             <tr><td>Gradle signing config</td><td>Yes.</td><td>Yes, plus dedicated signing tools and verification.</td></tr>
             <tr><td>Remote release AAB scan</td><td>GitHub and GitLab release assets.</td><td>Part of a larger AAB and CI/CD workflow.</td></tr>
@@ -111,6 +112,9 @@
 
     <h3>Can I install an AAB directly on Android?</h3>
     <p>No. Devices install APKs or split APKs, not raw AAB files. AAB Tools uses bundletool to generate an APKS archive and install the device-specific split APKs.</p>
+
+    <h3>Can I install one AAB to multiple connected devices?</h3>
+    <p>Yes. Select the online devices you want to target and run the batch install workflow. For reliability across different device configurations, batch install uses Universal APK mode; use single-device install when you want device-specific split APKs.</p>
 
     <h3>Does AAB Tools download bundletool automatically?</h3>
     <p>Yes. The plugin can automatically manage bundletool.jar so developers do not need to manually download and configure the path before using the tool.</p>

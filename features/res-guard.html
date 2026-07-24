@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Resource Obfuscation - ADB Pro</title><meta name="description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, and configure whitelists - all from your JetBrains IDE."><link rel="canonical" href="https://codetroupe.github.io/features/res-guard.html"><meta property="og:title" content="Resource Obfuscation - ADB Pro"><meta property="og:description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, and configure whitelists - all from your JetBrains IDE."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/features/res-guard.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Resource Obfuscation - ADB Pro"><meta name="twitter:description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, and configure whitelists - all from your JetBrains IDE."><script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Resource Obfuscation - ADB Pro</title><meta name="description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, configure whitelists, and manage Gradle plugin JARs from your JetBrains IDE."><link rel="canonical" href="https://codetroupe.github.io/features/res-guard.html"><meta property="og:title" content="Resource Obfuscation - ADB Pro"><meta property="og:description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, configure whitelists, and manage Gradle plugin JARs from your JetBrains IDE."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/features/res-guard.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Resource Obfuscation - ADB Pro"><meta name="twitter:description" content="Obfuscate Android app resources with AabResGuard. Reduce APK size, protect resource names, configure whitelists, and manage Gradle plugin JARs from your JetBrains IDE."><script>
     (function () {
       try {
         var theme = localStorage.getItem('adbpro-theme');
@@ -29,7 +29,7 @@
 
     <h2>Introduction</h2>
     <p>Resource Obfuscation (Res Guard) integrates AabResGuard directly into your IDE workflow. AabResGuard is a tool that obfuscates Android resource names in AAB/APK files, replacing readable resource identifiers (like <code>ic_launcher_background</code> or <code>strings_app_name</code>) with short, meaningless names. This reduces APK size by removing redundant string data in the resource table and adds a layer of protection against reverse engineering.</p>
-    <p>ADB Pro manages the entire AabResGuard lifecycle: downloading and managing the AabResGuard JAR, configuring whitelist rules and filter options, injecting the Gradle plugin configuration into your <code>build.gradle.kts</code>, and executing the obfuscation task. Everything is controlled from a single tab with three sub-sections: JAR Management, Configuration, and Execution.</p>
+    <p>ADB Pro manages the entire AabResGuard lifecycle: downloading and managing the AabResGuard JAR, copying the selected JAR into the Android project's Gradle plugin directory when needed, configuring whitelist rules and filter options, injecting the Gradle plugin configuration into your <code>build.gradle.kts</code>, and executing the obfuscation task. Everything is controlled from a single tab with three sub-sections: JAR Management, Configuration, and Execution.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
@@ -49,6 +49,9 @@
 
     <h3>JAR Management</h3>
     <p>Res Guard automatically downloads and manages the AabResGuard JAR file. The JAR Management tab shows the current version, download status, and file location. If the JAR is missing or outdated, a single click downloads the latest version. The JAR path is persisted as an application-level setting, so it's shared across all projects.</p>
+
+    <h3>Project Gradle Plugin Copy</h3>
+    <p>When a project needs the AabResGuard plugin JAR inside the repository, Res Guard can copy the selected JAR to <code>gradle/plugins/aabresguard/</code> under the Android project root. It then updates matching <code>build.gradle</code> or <code>build.gradle.kts</code> references to the copied JAR path. Older JARs are kept in place instead of being deleted, so teams can roll back quickly if a plugin upgrade causes build issues.</p>
 
     <h3>Visual Configuration</h3>
     <p>The Configuration tab provides a visual editor for AabResGuard settings. Configure whitelist rules organized by resource type (raw, drawable, mipmap, string, xml), enable or disable file and string filtering toggles, and set up SDK-specific whitelist entries. The configuration is written as a Gradle configuration block that AabResGuard reads during the build process.</p>
@@ -160,6 +163,7 @@
     <ol>
         <li>Open the ADB Pro side panel and click the <strong>"Res Guard"</strong> tab.</li>
         <li>In the <strong>JAR Management</strong> tab, ensure the AabResGuard JAR is downloaded.</li>
+        <li>If the project should own the plugin binary, copy the selected JAR into <code>gradle/plugins/aabresguard/</code> and update the Gradle reference from the IDE.</li>
         <li>In the <strong>Configuration</strong> tab, review and customize whitelist rules for your project.</li>
         <li>Enable or disable file and string filtering as needed.</li>
         <li>Click <strong>"Apply Configuration"</strong> to inject the Gradle plugin config into your build file.</li>
@@ -172,7 +176,7 @@
     <h2>Verification</h2>
     <p>After running AabResGuard, confirm everything works correctly:</p>
     <ul>
-        <li>Gradle sync succeeds after AabResGuard plugin injection.</li>
+        <li>Gradle sync succeeds after AabResGuard plugin injection or after updating the local Gradle plugin JAR path.</li>
         <li>The obfuscated AAB/APK has smaller resource table size than the original.</li>
         <li>Launcher icons and notification icons are not obfuscated (whitelist working).</li>
         <li>Third-party SDK resources (Firebase, ads) function correctly at runtime.</li>

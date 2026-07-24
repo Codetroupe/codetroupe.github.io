@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>AAB Tools - ADB Pro</title><meta name="description" content="Convert, sign, and install Android App Bundles with one click. Remote repo scanning, signing config management, and more."><link rel="canonical" href="https://codetroupe.github.io/features/aab-tools.html"><meta property="og:title" content="AAB Tools - ADB Pro"><meta property="og:description" content="Convert, sign, and install Android App Bundles with one click. Remote repo scanning, signing config management, and more."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/features/aab-tools.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AAB Tools - ADB Pro"><meta name="twitter:description" content="Convert, sign, and install Android App Bundles with one click. Remote repo scanning, signing config management, and more."><script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>AAB Tools - ADB Pro</title><meta name="description" content="Convert, sign, and install Android App Bundles with one click. Remote repo scanning, Universal APK batch installs, signing config management, and more."><link rel="canonical" href="https://codetroupe.github.io/features/aab-tools.html"><meta property="og:title" content="AAB Tools - ADB Pro"><meta property="og:description" content="Convert, sign, and install Android App Bundles with one click. Remote repo scanning, Universal APK batch installs, signing config management, and more."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/features/aab-tools.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="AAB Tools - ADB Pro"><meta name="twitter:description" content="Convert, sign, and install Android App Bundles with one click. Remote repo scanning, Universal APK batch installs, signing config management, and more."><script>
     (function () {
       try {
         var theme = localStorage.getItem('adbpro-theme');
@@ -16,7 +16,7 @@
             Core Module
         </div>
         <h1>AAB Tools</h1>
-        <p>The most comprehensive Android App Bundle toolkit inside your IDE. Convert, sign, install, and manage bundles &mdash;all from one panel.</p>
+        <p>The most comprehensive Android App Bundle toolkit inside your IDE. Convert, sign, install to one device, batch install to selected devices, and manage bundles &mdash;all from one panel.</p>
     </div>
 </section>
 
@@ -30,6 +30,7 @@
     <h2>Introduction</h2>
     <p>AAB Tools is the flagship module of ADB Pro, providing a fully integrated workflow for converting, signing, and installing Android App Bundles (<code>.aab</code> files) directly from your JetBrains IDE. At its core, it wraps Google's <code>bundletool</code> with a visual UI that handles binary management, device detection, and signing configuration automatically.</p>
     <p>When you build an Android app for release, Gradle produces an <code>.aab</code> file rather than a directly installable APK. To test that bundle on a physical device or emulator, you need to convert it to a device-specific <code>.apks</code> archive, sign it with a valid keystore, and push it via ADB. AAB Tools consolidates all of these steps into a single panel, eliminating context-switching between the IDE, terminal, and file manager.</p>
+    <p>For device labs, AAB Tools can also install one selected AAB to multiple online devices in sequence. Batch installs use Universal APK mode for the conversion so every selected device receives the same broadly compatible APK, while targeted single-device installs can still use device-specific split APKs for closer Play-style testing.</p>
     <p>For QA teams and release managers, AAB Tools also supports scanning remote repositories (GitHub, GitLab) for release-candidate bundles, enabling a download-convert-install pipeline without ever leaving the IDE.</p>
 
     <div class="feature-card" style="margin: 28px 0;">
@@ -62,7 +63,10 @@
     <p>ADB Pro automatically detects <code>.aab</code> files produced by your Gradle builds and converts them to <code>.apks</code> archives using bundletool. The bundletool binary is downloaded, version-checked, and managed automatically by the plugin &mdash; no manual installation required. Conversion supports multiple modes including universal APKs for testing, device-specific splits for accurate installs, and standalone APKs for legacy device compatibility.</p>
 
     <h3>One-Click Install</h3>
-    <p>Once an AAB has been converted to APKS, ADB Pro handles installation to any connected device or emulator in a single click. The plugin manages ADB path discovery, device enumeration, and installation status reporting. Multi-device installs are supported, letting you push the same bundle to several targets sequentially without repeating the conversion step.</p>
+    <p>Once an AAB has been converted to APKS, ADB Pro handles installation to any connected device or emulator in a single click. The plugin manages ADB path discovery, device enumeration, and installation status reporting. Multi-device installs are supported with a selectable device table, letting you push the same bundle to several chosen online targets sequentially without repeating the conversion step.</p>
+
+    <h3>Universal APK Batch Install</h3>
+    <p>When installing one AAB to multiple devices, ADB Pro uses Universal APK conversion for that batch operation. This avoids the common failure where split APKs generated for one phone do not match another phone's ABI, density, or locale. If you need a device-specific split package, use the targeted single-device workflow and auto-fill conversion options from that device.</p>
 
     <h3>Signing Configuration</h3>
     <p>AAB Tools parses signing configurations directly from your <code>build.gradle</code> or <code>build.gradle.kts</code> files, populating keystore paths and key aliases automatically. Manage multiple keystores and key aliases through a favorites system for instant switching. All passwords are stored securely via IntelliJ's PasswordSafe API &mdash; credentials are never written to plain-text config files or shell history.</p>
@@ -108,8 +112,8 @@
         <span class="comment"># 2. ADB Pro auto-detects the .aab output</span><br>
         <span class="comment"># 3. Click "Convert" in the AAB Tools panel</span><br>
         <span class="comment">#    - bundletool generates a signed .apks archive</span><br>
-        <span class="comment"># 4. Select target device from the device dropdown</span><br>
-        <span class="comment"># 5. Click "Install" - app is pushed via ADB</span>
+        <span class="comment"># 4. Select a target device, or choose multiple batch devices</span><br>
+        <span class="comment"># 5. Click targeted install for split APKS, or batch install for Universal APK</span>
     </div>
 
     <hr class="feature-divider" style="margin: 32px 0;">
@@ -119,6 +123,7 @@
     <ul>
         <li>Check that the <code>.apks</code> file appears in the output directory alongside the original <code>.aab</code> after conversion.</li>
         <li>After installation, verify the app launches on the target device or emulator and displays the expected version name and version code.</li>
+        <li>For batch installs, review each selected device row and confirm the per-device result reports a successful install.</li>
         <li>Run <code>apksigner verify --verbose --print-certs app.apks</code> to confirm that the signing certificate matches the keystore you selected.</li>
         <li>Use <code>adb shell pm list packages | grep &lt;your.package&gt;</code> to confirm the correct package name is installed on the device.</li>
         <li>If using remote repository scanning, verify the downloaded AAB's SHA-256 checksum matches the one listed in the release notes.</li>

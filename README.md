@@ -17,13 +17,13 @@ ADB Pro is a paid JetBrains Marketplace plugin that consolidates 13 Android deve
 | Module | Description |
 |---|---|
 | **Quick Setup** | One-click project wizard with channels, SDKs, signing, R8 rules, and CI/CD generation |
-| **AAB Tools** | Convert, sign, and install Android App Bundles; auto-manages Bundletool |
+| **AAB Tools** | Convert, sign, and install Android App Bundles to one target or selected devices; auto-manages Bundletool |
 | **R8 Assistant** | ProGuard/R8 rule recommendation with 20+ library templates, reflection scanning |
-| **Resource Obfuscation** | AabResGuard integration with 11 obfuscation dictionaries |
+| **Resource Obfuscation** | AabResGuard integration with whitelists, Gradle plugin JAR management, and obfuscation dictionaries |
 | **Signing Tools** | APK signing (v1/v2/v3), zipalign, keystore management |
 | **Build Tools** | Gradle automation, variant management, batch builds |
 | **Bundle Inspector** | Deep AAB/APK size analysis with trend charts |
-| **Release Readiness** | 13-point pre-release checklist |
+| **Release Readiness** | Automated pre-release checklist with signing, minification, SDK, security, and compatibility checks |
 | **Lint Tools** | Android Lint with parsed issue visualization |
 | **Dependency Health** | Conflict detection, deprecation warnings, version catalog management |
 | **CI/CD Tools** | Pipeline config generation for GitHub Actions, GitLab CI, Gitee Go |

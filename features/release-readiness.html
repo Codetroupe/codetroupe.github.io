@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Release Readiness - ADB Pro</title><meta name="description" content="13-point pre-release checklist covering debuggable flags, minifyEnabled, API key exposure, SDK compliance, signing config, and more."><link rel="canonical" href="https://codetroupe.github.io/features/release-readiness.html"><meta property="og:title" content="Release Readiness - ADB Pro"><meta property="og:description" content="13-point pre-release checklist covering debuggable flags, minifyEnabled, API key exposure, SDK compliance, signing config, and more."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/features/release-readiness.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Release Readiness - ADB Pro"><meta name="twitter:description" content="13-point pre-release checklist covering debuggable flags, minifyEnabled, API key exposure, SDK compliance, signing config, and more."><script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Release Readiness - ADB Pro</title><meta name="description" content="Automated Android pre-release checklist covering debuggable flags, minifyEnabled, API key exposure, SDK compliance, signing config, 16 KB page-size compatibility, and more."><link rel="canonical" href="https://codetroupe.github.io/features/release-readiness.html"><meta property="og:title" content="Release Readiness - ADB Pro"><meta property="og:description" content="Automated Android pre-release checklist covering debuggable flags, minifyEnabled, API key exposure, SDK compliance, signing config, 16 KB page-size compatibility, and more."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/features/release-readiness.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Release Readiness - ADB Pro"><meta name="twitter:description" content="Automated Android pre-release checklist covering debuggable flags, minifyEnabled, API key exposure, SDK compliance, signing config, 16 KB page-size compatibility, and more."><script>
     (function () {
       try {
         var theme = localStorage.getItem('adbpro-theme');
@@ -16,7 +16,7 @@
             Pro Feature
         </div>
         <h1>Release Readiness</h1>
-        <p>A comprehensive 13-point pre-release checklist that catches misconfigurations, security issues, and policy violations before your app reaches the Play Store.</p>
+        <p>A comprehensive pre-release checklist that catches misconfigurations, security issues, compatibility risks, and policy violations before your app reaches the Play Store.</p>
     </div>
 </section>
 
@@ -28,8 +28,8 @@
     </figure>
 
     <h2>Introduction</h2>
-    <p>Release Readiness is a 13-point automated pre-release checklist that verifies your app is ready for production deployment. Each check inspects your project configuration, manifest, build outputs, and dependencies to produce a clear pass/fail result with actionable details.</p>
-    <p>Instead of relying on manual checklists that get skipped under deadline pressure, Release Readiness runs all 13 checks in a single pass and presents a consolidated report. It catches the misconfigurations, security issues, and policy violations that commonly slip through before a release reaches the Play Store.</p>
+    <p>Release Readiness is an automated pre-release checklist that verifies your app is ready for production deployment. Each check inspects your project configuration, manifest, build outputs, signing identity, bundle metadata, and dependencies to produce a clear pass/fail/warning result with actionable details.</p>
+    <p>Instead of relying on manual checklists that get skipped under deadline pressure, Release Readiness runs the checks in a single pass and presents a consolidated report. It catches the misconfigurations, security issues, compatibility risks, and policy violations that commonly slip through before a release reaches the Play Store.</p>
 
     <hr class="feature-divider" style="margin: 32px 0;">
 
@@ -46,7 +46,7 @@
     <hr class="feature-divider" style="margin: 32px 0;">
 
     <h2>Features</h2>
-    <p>Release Readiness runs 13 automated checks, each targeting a specific aspect of release configuration:</p>
+    <p>Release Readiness runs automated checks, each targeting a specific aspect of release configuration:</p>
 
     <h3>1. Debuggable Flag Check</h3>
     <p>Verifies that <code>android:debuggable</code> is set to <code>false</code> in the release build. Also scans for <code>BuildConfig.DEBUG</code> usage that may inadvertently enable debug behavior in production.</p>
@@ -67,7 +67,7 @@
     <p>Verifies that ProGuard/R8 rules files exist and are properly referenced. Flags missing <code>-keep</code> rules for reflection-heavy libraries and overly broad wildcard rules.</p>
 
     <h3>7. Version Code and Name</h3>
-    <p>Checks that <code>versionCode</code> is incremented compared to the last known release and that <code>versionName</code> follows semantic versioning conventions.</p>
+    <p>Reviews <code>versionCode</code> and <code>versionName</code> consistency. Local scan history is treated as a warning-level signal because a same versionCode can be valid before upload; the real blocking baseline is the versionCode already accepted by the target app store.</p>
 
     <h3>8. Target SDK Version</h3>
     <p>Goes beyond basic SDK compliance by checking runtime permission behavior changes, background execution limits, and platform-level requirements introduced in recent Android versions.</p>
@@ -87,6 +87,15 @@
     <h3>13. Dependency Audit</h3>
     <p>Scans the dependency tree for known vulnerabilities using public CVE databases. Flags outdated dependencies with available security patches, snapshot versions, and conflicting transitive dependencies.</p>
 
+    <h3>16 KB Native Library Page Size</h3>
+    <p>Checks native libraries for Android 15+ 16 KB page-size compatibility risks. This helps teams catch native dependency packaging issues before testing on newer devices where incompatible native libraries can fail to load.</p>
+
+    <h3>Remote AAB Release Candidate Checks</h3>
+    <p>Release Readiness can run against local build outputs or remote AAB artifacts downloaded from configured repositories. Remote repository cache metadata is treated as the artifact source, not as the build type, so a production remote AAB is still evaluated as a release candidate when its manifest and metadata match release expectations.</p>
+
+    <h3>Documentation Links for Each Check</h3>
+    <p>Each check can expose a documentation link next to the result status. This makes warnings and failures easier to explain during release review because developers can jump from a finding to the official or project-specific guidance behind that check.</p>
+
     <h3>Check Status Types</h3>
     <p>Each check produces one of five status levels: <span class="badge badge-green">PASS</span> for checks that passed cleanly, <span class="badge badge-blue">INFO</span> for informational notes that require no action, <span class="badge badge-amber">WARNING</span> for items that are not blocking but should be reviewed (e.g., permissions that are declared but never requested at runtime), <span class="badge badge-red">FAIL</span> for critical issues that must be resolved before release, and <span class="badge badge-gray">SKIP</span> for checks that could not be evaluated (e.g., no test source set found, or no Git history available). The overall readiness score counts only PASS checks, making it easy to see at a glance whether your build is ready to ship.</p>
 
@@ -101,20 +110,21 @@
             <span style="margin-left:12px; font-size:12px; color:#64748b;">Release Readiness &mdash;scan results</span>
         </div>
         <span class="keyword">Release Readiness Report</span> &mdash;app-release v2.4.1<br>
-        <span class="keyword">Score:</span> 11 / 13 passed<br><br>
+        <span class="keyword">Score:</span> 14 / 16 passed<br><br>
         <span style="color:#4ade80;">[PASS]</span> Debuggable flag is false<br>
         <span style="color:#4ade80;">[PASS]</span> minifyEnabled is true<br>
         <span style="color:#4ade80;">[PASS]</span> No hardcoded API keys detected<br>
         <span style="color:#4ade80;">[PASS]</span> targetSdkVersion 35 meets Play requirement<br>
         <span style="color:#4ade80;">[PASS]</span> Signed with release keystore (v2 + v3)<br>
         <span style="color:#4ade80;">[PASS]</span> ProGuard rules present and referenced<br>
-        <span style="color:#4ade80;">[PASS]</span> versionCode incremented (24100 &gt; 24000)<br>
+        <span style="color:#fbbf24;">[WARNING]</span> versionCode matches the last local scan; confirm store upload history<br>
         <span style="color:#4ade80;">[PASS]</span> Target SDK behavioral changes handled<br>
         <span style="color:#f87171;">[FAIL]</span> <span style="color:#f87171;">3 permissions lack runtime request code</span><br>
         <span style="color:#4ade80;">[PASS]</span> Unit tests present and passing (342 tests)<br>
         <span style="color:#4ade80;">[PASS]</span> Resource shrinking enabled<br>
         <span style="color:#f87171;">[FAIL]</span> <span style="color:#f87171;">android:exported missing on 2 activities (Android 12+)</span><br>
-        <span style="color:#4ade80;">[PASS]</span> No known CVEs in dependency tree
+        <span style="color:#4ade80;">[PASS]</span> No known CVEs in dependency tree<br>
+        <span style="color:#4ade80;">[PASS]</span> Native libraries are compatible with 16 KB page-size devices
     </div>
 
     <hr class="feature-divider" style="margin: 32px 0;">
@@ -122,16 +132,16 @@
     <h2>Getting Started</h2>
     <p>Run the Release Readiness check from any of these entry points:</p>
     <ul>
-        <li><strong>Tools &gt; ADB Pro &gt; Run Release Readiness Check</strong> &mdash;runs the full 13-point checklist</li>
+        <li><strong>Tools &gt; ADB Pro &gt; Run Release Readiness Check</strong> &mdash;runs the full release checklist</li>
         <li><strong>ADB Pro side panel</strong> &mdash;click the "Release Readiness" tab and press "Run Check"</li>
         <li><strong>Post-build hook</strong> &mdash;optionally configure the check to run automatically after every release build</li>
     </ul>
     <p>Interpreting results:</p>
     <ol>
-        <li>Review the overall score at the top of the report (e.g., 11 / 13 passed).</li>
-        <li>Each item shows a green <strong>[PASS]</strong> or red <strong>[FAIL]</strong> indicator with a description.</li>
+        <li>Review the overall score at the top of the report (for example, passed checks, warnings, and failures).</li>
+        <li>Each item shows a status indicator such as <strong>[PASS]</strong>, <strong>[WARNING]</strong>, or <strong>[FAIL]</strong> with a description.</li>
         <li>Click on any failed item to navigate directly to the source location in your editor.</li>
-        <li>Each failed item includes a description of the issue, the affected file or configuration, and a suggested fix.</li>
+        <li>Each failed or warning item includes a description of the issue, the affected file or configuration, a suggested fix, and a documentation link when guidance is available.</li>
     </ol>
     <p>Additional configuration is available at <strong>Settings &gt; Tools &gt; ADB Pro &gt; Release Readiness</strong>, where you can:</p>
     <ul>
@@ -147,7 +157,7 @@
     <h2>Verification</h2>
     <p>After running the Release Readiness check, confirm that your project is truly release-ready:</p>
     <ul>
-        <li>All 13 items should show green checkmarks &mdash;a score of 13 / 13 means your app is ready for the Play Store.</li>
+        <li>Critical items should show green checkmarks, and warning items should be reviewed before upload.</li>
         <li>Any red <strong>[FAIL]</strong> items include specific remediation steps. Apply the suggested fixes and re-run the check.</li>
         <li>After fixing failures, run a release build and install the APK on a device to verify behavior matches the report.</li>
         <li>Re-run the check after any build configuration change to catch regressions before they ship.</li>
