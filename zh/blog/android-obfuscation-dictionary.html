@@ -1,0 +1,206 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Android 混淆字典完全指南：R8 时代还能用吗？11 套字典实测对比 - ADB Pro</title><meta name="description" content="开启 ProGuard/R8 混淆后，你的类名、方法名、字段名会被重命名为 a、b、c 这样的短名称。但这套默认命名方案有两个问题：一是太规律，逆向工具一眼就能识别这是混淆后的代码；二是所有项目的混淆结果都长一样，没有任何个性化。"><link rel="canonical" href="https://codetroupe.github.io/zh/blog/android-obfuscation-dictionary.html"><link rel="alternate" hreflang="zh-CN" href="https://codetroupe.github.io/zh/blog/android-obfuscation-dictionary.html"><link rel="alternate" hreflang="x-default" href="https://codetroupe.github.io/zh/blog/android-obfuscation-dictionary.html"><meta property="og:title" content="Android 混淆字典完全指南：R8 时代还能用吗？11 套字典实测对比 - ADB Pro"><meta property="og:description" content="开启 ProGuard/R8 混淆后，你的类名、方法名、字段名会被重命名为 a、b、c 这样的短名称。但这套默认命名方案有两个问题：一是太规律，逆向工具一眼就能识别这是混淆后的代码；二是所有项目的混淆结果都长一样，没有任何个性化。"><meta property="og:type" content="article"><meta property="og:url" content="https://codetroupe.github.io/zh/blog/android-obfuscation-dictionary.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Android 混淆字典完全指南：R8 时代还能用吗？11 套字典实测对比 - ADB Pro"><meta name="twitter:description" content="开启 ProGuard/R8 混淆后，你的类名、方法名、字段名会被重命名为 a、b、c 这样的短名称。但这套默认命名方案有两个问题：一是太规律，逆向工具一眼就能识别这是混淆后的代码；二是所有项目的混淆结果都长一样，没有任何个性化。"><style>
+  .blog-hero { padding: 56px 24px 36px; text-align: center; border-bottom: 1px solid var(--border); background: var(--bg-primary); }
+  .blog-hero h1 { max-width: 980px; margin: 0 auto 14px; font-size: clamp(28px, 4vw, 44px); line-height: 1.18; color: var(--text-primary); overflow-wrap: anywhere; }
+  .blog-meta { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; max-width: 760px; margin: 0 auto; color: var(--text-muted); font-size: 14px; }
+  .article-body { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+  .article-body h2 { font-size: 24px; font-weight: 700; margin: 48px 0 16px; color: var(--text-primary); }
+  .article-body h3 { font-size: 19px; font-weight: 700; margin: 32px 0 12px; color: var(--text-primary); }
+  .article-body p { font-size: 16px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
+  .article-body ul, .article-body ol { color: var(--text-secondary); margin: 0 0 18px 24px; line-height: 1.75; }
+  .article-body li { margin-bottom: 8px; }
+  .article-body strong { color: var(--text-primary); font-weight: 600; }
+  @media (max-width: 640px) {
+    .blog-hero { padding: 40px 18px 28px; }
+    .blog-hero h1 { font-size: 28px; }
+  }
+</style><script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('adbpro-theme');
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (_) {}
+    })();
+  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">首页</a><a href="../features/index.html">功能</a><a href="../guides/index.html">指南</a><a href="../tools/index.html">工具</a><a href="../getting-started.html">开始使用</a><a href="../pricing.html">价格</a><a href="../dictionaries/index.html">字典</a><a href="../blog/index.html" class="active">博客</a><a href="../feedback.html">反馈</a></div><div class="nav-actions"><a href="../../index.html" class="btn btn-outline btn-sm" data-language-switch data-language-target="en">English</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">获取 ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">首页</a><a href="../features/index.html">功能</a><a href="../guides/index.html">指南</a><a href="../tools/index.html">工具</a><a href="../getting-started.html">开始使用</a><a href="../pricing.html">价格</a><a href="../dictionaries/index.html">字典</a><a href="../blog/index.html" class="active">博客</a><a href="../feedback.html">反馈</a><a href="../../index.html" data-language-switch data-language-target="en">English</a></div><section class="blog-hero"><h1>Android 混淆字典完全指南：R8 时代还能用吗？11 套字典实测对比</h1><div class="blog-meta"><span>2026-07-04</span><span>codetroupe</span><span>10 min read</span></div></section><article class="article-body"><p>开启 ProGuard/R8 混淆后，你的类名、方法名、字段名会被重命名为 <code>a</code>、<code>b</code>、<code>c</code> 这样的短名称。但这套默认命名方案有两个问题：一是太规律，逆向工具一眼就能识别这是混淆后的代码；二是所有项目的混淆结果都长一样，没有任何个性化。</p>
+
+<p><strong>混淆字典</strong>（Obfuscation Dictionary）就是用来解决这个问题的——你可以指定一组自定义字符来替代默认的 <code>a-z</code>，让混淆后的名称变成视觉上难以辨认的 Unicode 字符、Java 关键字、甚至跨编码乱码。</p>
+
+<p>但有一个很多人忽略的问题：<strong>从 AGP 3.4 起，Android 默认的混淆器已经从 ProGuard 切换到了 R8。那 <code>-obfuscationdictionary</code> 这个 ProGuard 时代的配置，R8 还支持吗？</strong></p>
+
+<p>这篇文章会从 R8 兼容性、字典配置方法、11 套字典策略对比、验证流程这几个角度，把混淆字典这件事讲透。</p>
+
+<h2>一、R8 还支持混淆字典吗？</h2>
+
+<p>先给结论：<strong>支持。</strong></p>
+
+<p>R8 在设计上兼容 ProGuard 的规则文件（<code>proguard-rules.pro</code>），包括混淆字典相关的三个配置项。R8 源码中有专门的 <code>DictionaryReader</code> 类（位于 <code>com.android.tools.r8.naming</code> 包），负责解析字典文件并应用到命名流程中。</p>
+
+<p>在 R8 Full Mode（AGP 8.0+ 默认开启）的不兼容特性列表中，列出的不支持项主要是 <code>-whyareyoukeeping</code>、枚举合并、类合并、参数移除等优化相关功能。混淆字典属于<strong>命名</strong>（naming）阶段，不在不兼容列表内。</p>
+
+<p>简单说：ProGuard 时代的混淆字典配置，在 R8 下可以原样使用，不需要做任何改动。</p>
+
+<h2>二、三个字典配置项</h2>
+
+<p>ProGuard/R8 提供了三个独立的字典配置，分别控制不同层级的命名：</p>
+
+<pre class="code-block"><code># 字段名 + 方法名混淆字典
+-obfuscationdictionary proguard-dic-homoglyph.txt
+
+# 类名混淆字典
+-classobfuscationdictionary proguard-dic-homoglyph.txt
+
+# 包名混淆字典
+-packageobfuscationdictionary proguard-dic-homoglyph.txt</code></pre>
+
+<p>三个配置可以指向同一个字典文件，也可以分别使用不同的字典。</p>
+
+<p><strong>字典文件格式</strong>：纯文本，每行一个词。以 <code>#</code> 开头的行为注释，会被忽略。空白行和重复项也会被自动过滤。字典中的字符必须是合法的 Java 标识符起始字符（通过 <code>Character.isJavaIdentifierStart()</code> 校验），否则 R8 会跳过该条目。</p>
+
+<p><strong>字典耗尽机制</strong>：如果字典中的字符用完了（比如字典只有 10 个字符，但项目有 100 个类需要命名），R8 会用字典字符做组合（类似 <code>aa</code>、<code>ab</code>、<code>ac</code>...）。如果组合也耗尽了，会回退到默认的 <code>a-z</code> 命名。所以字典的字符数量直接决定了混淆效果的覆盖范围。</p>
+
+<h2>三、字典策略对比</h2>
+
+<p>我整理了 11 套混淆字典，按策略分为四类。下面是完整对比：</p>
+
+<h3>3.1 形似字符类（Homoglyph）</h3>
+
+<p>核心思路是用不同 Unicode 区段中<strong>视觉上相似</strong>的字符来替代 ASCII 字母。比如希腊字母的 <code>α</code>（U+03B1）和拉丁字母 <code>a</code> 在很多字体中几乎一样，西里尔字母的 <code>а</code>（U+0430）也是。</p>
+
+<p>逆向人员用 jadx 打开后看到的方法名可能是 <code>аbс</code>——看起来像 <code>abc</code>，但实际是三个来自不同语系的字符。搜索、复制粘贴、代码分析工具全部失效。</p>
+
+<table><thead><tr><th>字典</th><th>字符数</th><th>3 字符组合数</th><th>说明</th></tr></thead><tbody><tr><td><strong>Homoglyph</strong></td><td>255</td><td>16,581,375</td><td>跨语系视觉形似字符，覆盖面最广</td></tr><tr><td><strong>Minimal Confusable</strong></td><td>52</td><td>140,608</td><td>每个 ASCII 字母取一个最佳替代，轻量方案</td></tr></tbody></table>
+
+<p><code>Homoglyph</code> 是我最常用的，字符集适中，组合空间大，反编译后的视觉混淆效果最好。<code>Minimal Confusable</code> 适合不想太激进的场景，只做最小替换。</p>
+
+<h3>3.2 特定语系类</h3>
+
+<p>使用某个完整语系的字符集。逆向人员即使知道用了哪个语系，面对满屏不认识的字符也很难手动分析。</p>
+
+<table><thead><tr><th>字典</th><th>字符数</th><th>3 字符组合数</th><th>说明</th></tr></thead><tbody><tr><td><strong>Greek</strong></td><td>122</td><td>1,815,848</td><td>希腊字母及扩展形式</td></tr><tr><td><strong>Cyrillic</strong></td><td>296</td><td>25,934,336</td><td>西里尔字母（俄语等使用）</td></tr><tr><td><strong>Latin Extended</strong></td><td>494</td><td>120,553,784</td><td>拉丁扩展，含变音符号、IPA</td></tr><tr><td><strong>Hebrew + Arabic</strong></td><td>423</td><td>75,686,967</td><td>希伯来语 + 阿拉伯语，含从右到左书写方向</td></tr><tr><td><strong>East Asian</strong></td><td>246</td><td>14,886,936</td><td>CJK 部首、片假名、平假名</td></tr><tr><td><strong>Indigenous Scripts</strong></td><td>1,146</td><td>1,505,060,136</td><td>切罗基、格鲁吉亚、亚美尼亚、泰语、老挝语等</td></tr></tbody></table>
+
+<p><code>Hebrew + Arabic</code> 有个额外效果：这些语系是从右到左书写的，在部分 IDE 和反编译工具中会导致光标移动和文本选择异常，进一步增加逆向难度。</p>
+
+<p><code>Indigenous Scripts</code> 的字符数最多（1,146），3 字符组合超过 15 亿，适用于超大项目。</p>
+
+<h3>3.3 编码干扰类</h3>
+
+<table><thead><tr><th>字典</th><th>字符数</th><th>3 字符组合数</th><th>说明</th></tr></thead><tbody><tr><td><strong>Encoding Chaos</strong></td><td>575</td><td>190,109,375</td><td>UTF-8 字节在 GBK/Big5/Shift-JIS 下解码为完全不同的字符</td></tr></tbody></table>
+
+<p>这套字典的思路比较独特：选取的字符在 UTF-8 编码下是合法的，但如果逆向人员的工具或终端用 GBK、Big5、Shift-JIS 等编码打开，会看到完全不同的乱码。这在中文开发环境中尤其有效，因为很多工具的默认编码不是 UTF-8。</p>
+
+<h3>3.4 全量合并类</h3>
+
+<table><thead><tr><th>字典</th><th>字符数</th><th>3 字符组合数</th><th>说明</th></tr></thead><tbody><tr><td><strong>Ultimate</strong></td><td>3,056</td><td>28,540,399,616</td><td>所有语系合并，最大字符集</td></tr></tbody></table>
+
+<p>如果不确定选哪个，直接用 <code>Ultimate</code>。3,056 个字符，3 字符组合超过 285 亿，覆盖任何规模的项目。</p>
+
+<h2>四、实际配置</h2>
+
+<p>在 Android 项目中使用混淆字典只需要两步。</p>
+
+<h3>4.1 放置字典文件</h3>
+
+<p>把下载的字典文件（<code>.txt</code>）放到项目根目录或 <code>proguard-rules.pro</code> 同级目录下：</p>
+
+<pre class="code-block"><code>app/
+├── proguard-rules.pro
+├── proguard-dic-homoglyph.txt   ← 字典文件
+└── build.gradle.kts</code></pre>
+
+<h3>4.2 在 ProGuard 规则中引用</h3>
+
+<p>在 <code>proguard-rules.pro</code> 中添加：</p>
+
+<pre class="code-block"><code># 混淆字典配置（R8 兼容）
+-obfuscationdictionary proguard-dic-homoglyph.txt
+-classobfuscationdictionary proguard-dic-homoglyph.txt
+-packageobfuscationdictionary proguard-dic-homoglyph.txt</code></pre>
+
+<p>这三行就够了。R8 在构建时会自动读取字典文件并应用到命名流程。</p>
+
+<h3>4.3 推荐的字典组合</h3>
+
+<p>根据项目需求选择：</p>
+
+<ul><li><strong>通用推荐</strong>：<code>Homoglyph</code> — 视觉混淆效果最好，字符集大小适中</li><li><strong>最大混淆</strong>：<code>Ultimate</code> — 3,056 字符，适合大型项目</li><li><strong>轻量方案</strong>：<code>Minimal Confusable</code> — 52 字符，对 APK 体积影响最小</li><li><strong>编码干扰</strong>：<code>Encoding Chaos</code> — 适合面向中文用户的应用，利用 GBK 编码差异</li></ul>
+
+<p>这 11 套字典都可以在 <a href="https://codetroupe.github.io/dictionaries/" target="_blank" rel="noopener noreferrer">codetroupe.github.io/dictionaries</a> 免费下载，所有字符都经过 <code>Character.isJavaIdentifierStart()</code> 校验，可以直接使用。</p>
+
+<h2>五、验证字典是否生效</h2>
+
+<p>配置完字典后，需要验证它是否真的生效了。三个步骤：</p>
+
+<h3>5.1 检查 mapping.txt</h3>
+
+<p>构建完成后，查看 <code>app/build/outputs/mapping/release/mapping.txt</code>。如果字典生效，你会看到类似这样的映射：</p>
+
+<pre class="code-block"><code>com.example.MyClass -&gt; αβγ.αβ:
+    void myMethod() -&gt; αα(αβγ)</code></pre>
+
+<p>如果还是 <code>a.b.c</code> 这种默认命名，说明字典没有被正确加载，检查文件路径是否正确。</p>
+
+<h3>5.2 反编译验证</h3>
+
+<p>用 jadx 打开混淆后的 APK/AAB，直接看类名和方法名。好的字典会让反编译结果变成这样：</p>
+
+<pre class="code-block"><code>// 使用 Homoglyph 字典后的效果
+public class αβγ {
+    public static void аbс(аβγ var0) {
+        // 方法名看起来像 abc 但实际是希腊+西里尔字符
+    }
+}</code></pre>
+
+<p>对比默认混淆：</p>
+
+<pre class="code-block"><code>// 默认混淆效果
+public class a {
+    public static void a(a var0) {
+        // 规律的 a, b, c 命名
+    }
+}</code></pre>
+
+<h3>5.3 字典耗尽检查</h3>
+
+<p>如果项目很大（数千个类），检查 <code>mapping.txt</code> 的尾部，看是否出现了回退到默认 <code>a-z</code> 命名的情况。如果出现了，说明字典的字符组合空间不够，需要换用字符数更多的字典（比如从 <code>Minimal Confusable</code> 换到 <code>Homoglyph</code> 或 <code>Ultimate</code>）。</p>
+
+<h2>六、对 APK 体积的影响</h2>
+
+<p>使用 Unicode 字符替代 ASCII 会增加 DEX 文件中的字符串池大小，因为 UTF-8 编码下一个中文字符占 3 字节，而 ASCII 字符只占 1 字节。</p>
+
+<p>但实际影响很小。以一个中等规模项目为例：</p>
+
+<table><thead><tr><th>方案</th><th>DEX 字符串池增量</th><th>占 APK 比例</th></tr></thead><tbody><tr><td>默认 a-z</td><td>基准</td><td>-</td></tr><tr><td>Homoglyph（255 字符）</td><td>+2~4 KB</td><td>&lt; 0.1%</td></tr><tr><td>Ultimate（3,056 字符）</td><td>+8~15 KB</td><td>&lt; 0.2%</td></tr><tr><td>Encoding Chaos（575 字符）</td><td>+4~8 KB</td><td>&lt; 0.1%</td></tr></tbody></table>
+
+<p>对于现代 Android 应用（通常 20-50 MB），这点增量完全可以忽略。R8 的 <code>minifyEnabled</code> 本身就会做大量优化来缩减 DEX 体积，字典带来的几 KB 增量不构成问题。</p>
+
+<h2>七、混淆字典的局限性</h2>
+
+<p>需要诚实说明的一点：<strong>混淆字典不会从根本上提升代码安全性。</strong></p>
+
+<p>Guardsquare（ProGuard 的开发商）在官方文档中也提到，混淆字典&quot;hardly improves the obfuscation&quot;——它只是增加反编译后代码的<strong>可读性难度</strong>，而不是阻止反编译本身。有经验的逆向工程师仍然可以通过以下方式绕过：</p>
+
+<ul><li>查看 <code>mapping.txt</code>（如果你没有保护好这个文件）</li><li>用 JADX 的&quot;Deobfuscate&quot;功能自动还原</li><li>通过字符串常量、API 调用模式等上下文信息推断功能</li></ul>
+
+<p>混淆字典的真正价值在于<strong>提高逆向的时间成本</strong>。对于大部分脚本小子和初级逆向人员来说，满屏的 Unicode 形似字符足以让他们放弃。而对于专业逆向人员，你需要配合 R8 Full Mode 的激进优化、字符串加密、反调试等手段来构建多层防护。</p>
+
+<h2>八、常见问题</h2>
+
+<p><strong>Q：R8 Full Mode 下字典配置会失效吗？</strong> 不会。Full Mode 的不兼容列表中没有字典相关选项。R8 Full Mode + 混淆字典的组合在 AGP 8.x 下可以正常工作。</p>
+
+<p><strong>Q：字典文件的路径怎么写？</strong> 相对于 <code>proguard-rules.pro</code> 文件的路径。如果字典文件和规则文件在同一目录，直接写文件名即可。</p>
+
+<p><strong>Q：三个字典配置必须用同一个文件吗？</strong> 不必须。你可以给类名用一个字典，给方法名用另一个。但通常用同一个就够了。</p>
+
+<p><strong>Q：字典字符会不会导致编译错误？</strong> 不会。只要字符通过了 <code>Character.isJavaIdentifierStart()</code> 校验（上面提供的 11 套字典都已校验），就不会有编译问题。</p>
+
+<p><strong>Q：混淆字典和 <code>-dontobfuscate</code> 冲突吗？</strong> 冲突。<code>-dontobfuscate</code> 会禁用整个混淆步骤，字典配置自然也不会生效。确保你的 release 构建没有设置 <code>-dontobfuscate</code>。</p>
+
+<p><strong>Q：debug 构建也会应用字典吗？</strong> 取决于你的 ProGuard 配置是否在 debug buildType 中启用。通常 debug 不启用混淆，所以字典也不会生效。</p>
+
+<h2>九、写在最后</h2>
+
+<p>混淆字典是一个成本低、效果直观的混淆增强手段。三行配置、一个文本文件，就能让反编译结果从一目了然变成满屏天书。虽然它不能替代专业的代码保护方案，但作为混淆链路上的一层加固，性价比很高。</p>
+
+<p>如果你用的是 JetBrains IDE，<a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" rel="noopener noreferrer">ADB Pro</a> 插件的 R8 Assistant 内置了字典管理功能，可以直接在 IDE 中预览、下载和应用这 11 套字典，不需要手动管理文件。更多关于混淆字典和 R8 配置的内容，也可以参考 <a href="https://codetroupe.github.io/dictionaries/" target="_blank" rel="noopener noreferrer">ADB Pro 文档</a>。</p></article><footer class="article-source-footer"><span>本文已同步发布到掘金</span><a href="https://juejin.cn/post/7658107153196023823" target="_blank" rel="noopener noreferrer">在掘金阅读原文</a></footer><section class="cta-banner"><h2>用更少的手动步骤完成 Android 发布</h2><p>ADB Pro 将发布检查、AAB 处理、签名、R8 规则和资源混淆整合到 JetBrains IDE 工作流中。</p><div class="hero-actions"><a href="../features/index.html" class="btn btn-primary btn-lg">查看 ADB Pro 功能</a><a href="../pricing.html" class="btn btn-secondary btn-lg">查看价格</a></div></section><footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>面向 JetBrains IDE 的 Android 发版与构建工具。</p></div><div class="footer-links"><div class="footer-col"><h4>产品</h4><a href="../features/index.html">功能</a><a href="../guides/index.html">指南</a><a href="../pricing.html">价格</a><a href="../getting-started.html">开始使用</a><a href="../blog/index.html">博客</a><a href="../feedback.html">反馈</a></div><div class="footer-col"><h4>资源</h4><a href="../guides/index.html">Android 发版指南</a><a href="../dictionaries/index.html">ProGuard 字典</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>免费工具</h4><a href="../tools/index.html">工具目录</a><a href="../tools/aab-tools.html">AAB Tools</a><a href="../../features/web-navigation.html">Android 资源导航</a></div><div class="footer-col"><h4>法律</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">订阅协议</a><a href="../../privacy-policy.html">隐私政策</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store 条款</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg></button><script src="../../assets/js/main.js?v=20260719-pricing-cta"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

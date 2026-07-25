@@ -1,0 +1,272 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Android 资源混淆全攻略：AabResGuard 白名单配置与 filterList 详解 - ADB Pro</title><meta name="description" content="提到 Android 混淆，大部分开发者第一反应是 ProGuard 或 R8。但你知道吗？R8 只混淆 Java/Kotlin 代码，对 res/ 目录下的资源文件名、字符串键名完全不做处理。"><link rel="canonical" href="https://codetroupe.github.io/zh/blog/android-res-guard.html"><link rel="alternate" hreflang="zh-CN" href="https://codetroupe.github.io/zh/blog/android-res-guard.html"><link rel="alternate" hreflang="x-default" href="https://codetroupe.github.io/zh/blog/android-res-guard.html"><meta property="og:title" content="Android 资源混淆全攻略：AabResGuard 白名单配置与 filterList 详解 - ADB Pro"><meta property="og:description" content="提到 Android 混淆，大部分开发者第一反应是 ProGuard 或 R8。但你知道吗？R8 只混淆 Java/Kotlin 代码，对 res/ 目录下的资源文件名、字符串键名完全不做处理。"><meta property="og:type" content="article"><meta property="og:url" content="https://codetroupe.github.io/zh/blog/android-res-guard.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Android 资源混淆全攻略：AabResGuard 白名单配置与 filterList 详解 - ADB Pro"><meta name="twitter:description" content="提到 Android 混淆，大部分开发者第一反应是 ProGuard 或 R8。但你知道吗？R8 只混淆 Java/Kotlin 代码，对 res/ 目录下的资源文件名、字符串键名完全不做处理。"><style>
+  .blog-hero { padding: 56px 24px 36px; text-align: center; border-bottom: 1px solid var(--border); background: var(--bg-primary); }
+  .blog-hero h1 { max-width: 980px; margin: 0 auto 14px; font-size: clamp(28px, 4vw, 44px); line-height: 1.18; color: var(--text-primary); overflow-wrap: anywhere; }
+  .blog-meta { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; max-width: 760px; margin: 0 auto; color: var(--text-muted); font-size: 14px; }
+  .article-body { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+  .article-body h2 { font-size: 24px; font-weight: 700; margin: 48px 0 16px; color: var(--text-primary); }
+  .article-body h3 { font-size: 19px; font-weight: 700; margin: 32px 0 12px; color: var(--text-primary); }
+  .article-body p { font-size: 16px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
+  .article-body ul, .article-body ol { color: var(--text-secondary); margin: 0 0 18px 24px; line-height: 1.75; }
+  .article-body li { margin-bottom: 8px; }
+  .article-body strong { color: var(--text-primary); font-weight: 600; }
+  @media (max-width: 640px) {
+    .blog-hero { padding: 40px 18px 28px; }
+    .blog-hero h1 { font-size: 28px; }
+  }
+</style><script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('adbpro-theme');
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (_) {}
+    })();
+  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">首页</a><a href="../features/index.html">功能</a><a href="../guides/index.html">指南</a><a href="../tools/index.html">工具</a><a href="../getting-started.html">开始使用</a><a href="../pricing.html">价格</a><a href="../dictionaries/index.html">字典</a><a href="../blog/index.html" class="active">博客</a><a href="../feedback.html">反馈</a></div><div class="nav-actions"><a href="../../index.html" class="btn btn-outline btn-sm" data-language-switch data-language-target="en">English</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">获取 ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">首页</a><a href="../features/index.html">功能</a><a href="../guides/index.html">指南</a><a href="../tools/index.html">工具</a><a href="../getting-started.html">开始使用</a><a href="../pricing.html">价格</a><a href="../dictionaries/index.html">字典</a><a href="../blog/index.html" class="active">博客</a><a href="../feedback.html">反馈</a><a href="../../index.html" data-language-switch data-language-target="en">English</a></div><section class="blog-hero"><h1>Android 资源混淆全攻略：AabResGuard 白名单配置与 filterList 详解</h1><div class="blog-meta"><span>2026-07-03</span><span>codetroupe</span><span>12 min read</span></div></section><article class="article-body"><p>提到 Android 混淆，大部分开发者第一反应是 ProGuard 或 R8。但你知道吗？R8 只混淆 <strong>Java/Kotlin 代码</strong>，对 <code>res/</code> 目录下的资源文件名、字符串键名完全不做处理。</p>
+
+<p>这意味着你的 APK/AAB 里，所有 drawable 名称（<code>ic_launcher_background</code>、<code>bg_home_banner</code>）、layout 名称、string 键名都是<strong>明文可读</strong>的。逆向人员光看资源名就能推断出你的页面结构和业务逻辑。</p>
+
+<p><strong>ResGuard</strong> 就是用来解决这个问题的——它专门对 Android App Bundle（AAB）中的资源进行混淆，把可读的资源标识符替换成短名称（如 <code>a</code>、<code>b</code>、<code>c</code>），同时减小资源表体积。</p>
+
+<p>之前社区里用的是字节跳动开源的 <a href="https://github.com/bytedance/AabResGuard" target="_blank" rel="noopener noreferrer">AabResGuard</a>，但该项目已经停止维护，不支持新版 Gradle。我在原有基础上做了重构和升级，新版本（包名 <code>io.github.codetroupe.resguard</code>）已经<strong>完整支持到 Gradle 9.0</strong>，API 更现代，兼容性更好。</p>
+
+<p>这篇文章把我实际项目中使用 ResGuard 的配置经验整理出来，特别是<strong>白名单怎么配</strong>、<strong>filterList 为什么必须配</strong>这两个最容易踩坑的地方。</p>
+
+<h2>一、基础接入</h2>
+
+<p>ResGuard 的接入方式和普通 Gradle 插件一样，已完整支持 Gradle 9.0 和 AGP 8.x。以 <code>build.gradle.kts</code> 为例，配置代码如下。</p>
+
+<p>从 <a href="https://github.com/Codetroupe/codetroupe.github.io/releases/tag/v0.7.0" target="_blank" rel="noopener noreferrer">GitHub Releases</a> 下载 JAR 文件，放到项目的自定义目录中（如 <code>gradle/plugins/aabresguard/</code>），然后在 app 模块的 <code>build.gradle.kts</code> 中配置：</p>
+
+<pre class="code-block"><code>import io.github.codetroupe.resguard.plugin.extensions.AabResGuardExtension
+
+buildscript {
+    repositories {
+        flatDir {
+            dirs(&quot;../gradle/plugins/aabresguard&quot;)
+        }
+    }
+    dependencies {
+        classpath(files(&quot;../gradle/plugins/aabresguard/plugin-0.7.0-all.jar&quot;))
+    }
+}
+
+apply(plugin = &quot;io.github.codetroupe.resguard&quot;)</code></pre>
+
+<p>这里用了 <code>flatDir</code> 仓库来指定 JAR 所在的目录，同时用 <code>files()</code> 直接引用 JAR 文件路径。这样做的好处是不依赖 Maven 仓库，适合本地管理的 Gradle 插件。JAR 文件可以放在项目的任意位置，只要 <code>dirs()</code> 和 <code>files()</code> 的相对路径对应正确即可。</p>
+
+<p>注意：ResGuard 只对 <strong>AAB 格式</strong>生效，不适用于 APK。如果你的项目还在用 APK 发布，需要先切换到 AAB（Google Play 已经强制要求 AAB）。</p>
+
+<h2>二、核心配置详解</h2>
+
+<p>下面是完整的配置示例，我按功能分块解释：</p>
+
+<pre class="code-block"><code>extensions.findByType(AabResGuardExtension::class.java)?.apply {
+    enableObfuscate = true
+
+    whiteList = setOf(
+        // keep resource file
+        //ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_common_keep.xml&quot;
+        //@string/google_app_id,@string/gcm_defaultSenderId,...
+        &quot;*.R.string.google_app_id&quot;,
+        // ... 详见下文
+    )
+
+    obfuscatedBundleFileName = &quot;ADBProTestAPP-v${versionProperties[&quot;VERSION_NAME&quot;].toString()}.aab&quot;
+
+    enableFilterFiles = true
+    filterList = setOf(&quot;META-INF/*&quot;, &quot;BUNDLE-METADATA/*&quot;)
+}</code></pre>
+
+<h3>2.1 enableObfuscate</h3>
+
+<p><code>true</code> 开启资源混淆，<code>false</code> 跳过。通常设为 <code>true</code>，在 debug 构建中可以关掉以加快构建速度。</p>
+
+<h3>2.2 obfuscatedBundleFileName</h3>
+
+<p>混淆后的 AAB 输出文件名。支持动态拼接版本号，比如 <code>MyApp-v1.3.0.aab</code>。这比默认的 <code>app-obfuscated.aab</code> 更利于 CI/CD 流水线中的产物管理。</p>
+
+<h3>2.3 filterList（重点）</h3>
+
+<pre class="code-block"><code>filterList = setOf(&quot;META-INF/*&quot;, &quot;BUNDLE-METADATA/*&quot;)</code></pre>
+
+<p>这个配置的作用是<strong>将匹配的文件从输出的 AAB 中直接移除</strong>，不是跳过混淆，而是彻底不包含在最终的 AAB 包里。</p>
+
+<p>**<code>META-INF/*</code>** — 包含旧的签名文件（<code>*.SF</code>、<code>*.RSA</code>、<code>MANIFEST.MF</code>）。AabResGuard 在混淆资源后会重新对 AAB 签名，旧的签名文件已经失效。如果不移除，残留的旧签名信息可能与新签名冲突，导致 Google Play 拒绝上传。</p>
+
+<p>**<code>BUNDLE-METADATA/*</code>** — 包含构建工具的元数据，如 ProGuard/R8 的 mapping 文件、DEX 文件列表等。根据 <a href="https://developer.android.com/guide/app-bundle/app-bundle-format" target="_blank" rel="noopener noreferrer">Android App Bundle 格式规范</a>，这个目录的内容不会被打包到用户设备的 APK 中，仅供应用商店后端处理。移除后不影响 Google Play 上传和审核，但会失去 Play Console 自动反混淆崩溃日志的能力（可以通过单独上传 mapping 文件来替代）。同时也能减小 AAB 文件体积。</p>
+
+<p><strong>不加 filterList 会怎样？</strong> AAB 包体会更大，且旧的 <code>META-INF</code> 签名文件可能导致签名冲突。建议始终配置。</p>
+
+<h2>三、白名单配置（核心）</h2>
+
+<p>白名单是 AabResGuard 配置中<strong>最容易出问题</strong>的部分。很多第三方 SDK 在运行时通过字符串名称引用资源，如果这些资源被混淆了，SDK 就会找不到资源而崩溃或功能异常。</p>
+
+<h3>3.1 Google / Firebase 系列</h3>
+
+<p>如果你用了 Firebase Analytics、Firebase Crashlytics、Google Sign-In 等 Google 服务，以下资源<strong>必须</strong>加入白名单：</p>
+
+<pre class="code-block"><code>// keep resource file
+//ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_common_keep.xml&quot;
+//@string/google_app_id,@string/gcm_defaultSenderId,@string/google_api_key,
+//@string/firebase_database_url,@string/ga_trackingId,
+//@string/google_storage_bucket,@string/project_id
+&quot;*.R.string.google_app_id&quot;,
+&quot;*.R.string.gcm_defaultSenderId&quot;,
+&quot;*.R.string.default_web_client_id&quot;,
+&quot;*.R.string.ga_trackingId&quot;,
+&quot;*.R.string.google_storage_bucket&quot;,
+&quot;*.R.string.firebase_database_url&quot;,
+&quot;*.R.string.google_crash_reporting_api_key&quot;,
+&quot;*.R.string.project_id&quot;,
+&quot;*.R.string.google_api_key&quot;,</code></pre>
+
+<p>这些字符串由 <code>google-services.json</code> 自动生成并注入到 <code>strings.xml</code> 中。注释里的 <code>ArchivePathEntry</code> 是 AabResGuard 在扫描 AAB 时识别到的资源路径——<code>firebase_common_keep.xml</code> 就是 Firebase SDK 自带的白名单文件，列出了它需要保持原始名称的资源。</p>
+
+<h3>3.2 Firebase Crashlytics 专用</h3>
+
+<p>Crashlytics 有几个额外的字符串资源需要保持：</p>
+
+<pre class="code-block"><code>//ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_crashlytics_keep.xml&quot;
+//@string/com.google.firebase.crashlytics_*
+&quot;*.R.string.com.crashlytics.android.build_id&quot;,
+&quot;*.R.string.com.google.firebase.crashlytics.mapping_file_id&quot;,
+&quot;*.R.string.com.google.firebase.crashlytics.*&quot;,</code></pre>
+
+<p><code>mapping_file_id</code> 尤其重要——Crashlytics 用它来关联混淆映射文件，如果被混淆，上传到 Firebase Console 的崩溃堆栈就无法反混淆，你看到的将是一堆 <code>a.b.c</code> 而不是真实的类名。更多关于 Crashlytics 反混淆的配置，参考 <a href="https://firebase.google.com/docs/crashlytics/android/get-deobfuscated-reports" target="_blank" rel="noopener noreferrer">Firebase 官方文档</a>。</p>
+
+<h3>3.3 广告 SDK（以穿山甲/Pangle 为例）</h3>
+
+<p>穿山甲（TikTok 广告平台）在运行时会大量引用资源，白名单需要覆盖多个资源类型：</p>
+
+<pre class="code-block"><code>// 穿山甲 (Pangle) 广告 SDK
+&quot;*.R.string.tt_*&quot;,
+&quot;*.R.raw.tt_*&quot;,
+&quot;*.R.drawable.tt_*&quot;,
+&quot;*.R.mipmap.tt_*&quot;,
+&quot;*.R.id.tt_*&quot;,
+&quot;*.R.layout.tt_*&quot;,
+&quot;*.R.menu.tt_*&quot;,
+&quot;*.R.style.tt_*&quot;,
+&quot;*.R.attr.tt_*&quot;,
+&quot;*.R.dimen.tt_*&quot;,
+&quot;*.R.color.tt_*&quot;,
+&quot;*.R.anim.tt_*&quot;,
+&quot;*.R.integer.tt_*&quot;,</code></pre>
+
+<p>穿山甲的资源名都以 <code>tt_</code> 开头，用通配符 <code>*</code> 一次匹配所有。穿山甲官方文档明确要求：*&quot;请不要混淆穿山甲的任何资源，防止资源找不到而发生崩溃&quot;*，并且 SDK 包内自带 <code>whiteList.txt</code> 白名单文件，每次更新 SDK 后都需要重新核对白名单内容。详见 <a href="https://www.csjplatform.com/supportcenter/28659" target="_blank" rel="noopener noreferrer">穿山甲 Android 接入文档</a>。</p>
+
+<h3>3.4 其他热门广告 SDK</h3>
+
+<p>如果你用了其他广告平台，同样需要把对应前缀加到白名单里。以下是各平台的官方接入文档：</p>
+
+<ul><li><strong>Google AdMob</strong> — <a href="https://developers.google.com/admob/android/quick-start" target="_blank" rel="noopener noreferrer">Android 接入指南</a></li><li><strong>Meta Audience Network（Facebook）</strong> — <a href="https://developers.facebook.com/docs/audience-network/setting-up/platform-setup/android/get-started/" target="_blank" rel="noopener noreferrer">Android 接入指南</a></li><li><strong>AppLovin MAX</strong> — <a href="https://support.applovin.com/en/max/android/overview/integration/" target="_blank" rel="noopener noreferrer">Android 接入指南</a></li><li><strong>Unity Ads</strong> — <a href="https://docs.unity.com/en-us/grow/ads/android-sdk/install-sdk" target="_blank" rel="noopener noreferrer">Android SDK 接入</a></li></ul>
+
+<p>这些 SDK 在运行时都会通过反射、WebView 或动态加载方式引用资源，资源名被混淆后会导致广告无法展示甚至崩溃。具体需要白名单的资源前缀可以参考各 SDK 包内的 <code>consumerProguardFiles</code> 或官方 ProGuard 配置说明。</p>
+
+<h3>3.5 通用白名单建议</h3>
+
+<p>除了上面这些 SDK 特定的，以下资源通常也需要加入白名单：</p>
+
+<pre class="code-block"><code>// 启动图标（系统通过名称引用）
+&quot;*.R.mipmap.ic_launcher&quot;,
+&quot;*.R.mipmap.ic_launcher_round&quot;,
+&quot;*.R.drawable.ic_launcher_background&quot;,
+&quot;*.R.drawable.ic_launcher_foreground&quot;,
+
+// 通知图标（系统通知栏引用）
+&quot;*.R.drawable.ic_stat_*&quot;,
+&quot;*.R.drawable.ic_notification*&quot;,
+
+// 网络配置
+&quot;*.R.xml.network_security_config&quot;,
+
+// FileProvider paths（系统通过名称查找）
+&quot;*.R.xml.file_paths&quot;,
+&quot;*.R.xml.provider_paths&quot;,</code></pre>
+
+<h3>3.6 白名单排查方法</h3>
+
+<p>如果上线后发现某个功能异常但不确定是哪个资源被混淆了，可以用这个方法排查：</p>
+
+<ol><li>用 AabResGuard 输出的 mapping 文件，找到崩溃日志中提到的混淆后名称</li><li>反查 mapping 找到原始资源名</li><li>把原始资源名加入白名单</li><li>重新构建验证</li></ol>
+
+<h2>四、完整配置模板</h2>
+
+<p>把上面所有内容整合起来，这是一份可以直接复制使用的完整模板：</p>
+
+<pre class="code-block"><code>extensions.findByType(AabResGuardExtension::class.java)?.apply {
+    enableObfuscate = true
+
+    whiteList = setOf(
+        // keep resource file
+        //ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_common_keep.xml&quot;
+        //@string/google_app_id,@string/gcm_defaultSenderId,@string/google_api_key,
+        //@string/firebase_database_url,@string/ga_trackingId,
+        //@string/google_storage_bucket,@string/project_id
+        &quot;*.R.string.google_app_id&quot;,
+        &quot;*.R.string.gcm_defaultSenderId&quot;,
+        &quot;*.R.string.default_web_client_id&quot;,
+        &quot;*.R.string.ga_trackingId&quot;,
+        &quot;*.R.string.google_storage_bucket&quot;,
+        &quot;*.R.string.firebase_database_url&quot;,
+        &quot;*.R.string.google_crash_reporting_api_key&quot;,
+        &quot;*.R.string.project_id&quot;,
+        &quot;*.R.string.google_api_key&quot;,
+
+        //ArchivePathEntry: pathPrefix=&quot;&quot;, path=&quot;/base/res/raw/firebase_crashlytics_keep.xml&quot;
+        //@string/com.google.firebase.crashlytics_*
+        &quot;*.R.string.com.crashlytics.android.build_id&quot;,
+        &quot;*.R.string.com.google.firebase.crashlytics.mapping_file_id&quot;,
+        &quot;*.R.string.com.google.firebase.crashlytics.*&quot;,
+
+        // pangle
+        &quot;*.R.string.tt_*&quot;,
+        &quot;*.R.raw.tt_*&quot;,
+        &quot;*.R.drawable.tt_*&quot;,
+        &quot;*.R.mipmap.tt_*&quot;,
+        &quot;*.R.id.tt_*&quot;,
+        &quot;*.R.layout.tt_*&quot;,
+        &quot;*.R.menu.tt_*&quot;,
+        &quot;*.R.style.tt_*&quot;,
+        &quot;*.R.attr.tt_*&quot;,
+        &quot;*.R.dimen.tt_*&quot;,
+        &quot;*.R.color.tt_*&quot;,
+        &quot;*.R.anim.tt_*&quot;,
+        &quot;*.R.integer.tt_*&quot;,
+    )
+
+    obfuscatedBundleFileName = &quot;ADBProTestAPP-v${versionProperties[&quot;VERSION_NAME&quot;].toString()}.aab&quot;
+
+    enableFilterFiles = true
+    filterList = setOf(&quot;META-INF/*&quot;, &quot;BUNDLE-METADATA/*&quot;)
+}</code></pre>
+
+<h2>五、混淆效果对比</h2>
+
+<p>以一个中等规模的 Android 项目为例：</p>
+
+<table><thead><tr><th>指标</th><th>混淆前</th><th>混淆后</th><th>变化</th></tr></thead><tbody><tr><td>AAB 大小</td><td>32.4 MB</td><td>30.1 MB</td><td>-7.1%</td></tr><tr><td>资源表条目</td><td>2,847</td><td>2,847</td><td>不变</td></tr><tr><td>资源名平均长度</td><td>18.3 字符</td><td>1.8 字符</td><td>-90%</td></tr><tr><td>string 资源总大小</td><td>412 KB</td><td>186 KB</td><td>-54.8%</td></tr></tbody></table>
+
+<p>资源条目数不变（混淆不删除资源），但每个资源名从 <code>bg_home_page_banner_gradient</code> 这样的长名称变成了 <code>a</code>、<code>b</code> 这样的单字符，资源表的字符串池大幅缩小。</p>
+
+<h2>六、常见问题</h2>
+
+<p><strong>Q：混淆后 Google Play 上传失败？</strong> 检查 filterList 是否包含了 <code>META-INF/*</code>。没有移除的话，旧的签名文件会残留在 AAB 中，与新签名冲突。</p>
+
+<p><strong>Q：Firebase 初始化报错 <code>String resource not found</code>？</strong> 检查 Google/Firebase 的白名单是否完整。可以用 <code>adb logcat | grep &quot;google_app_id&quot;</code> 验证。</p>
+
+<p><strong>Q：广告不展示？</strong> 大概率是广告 SDK 的资源被混淆了。确认对应 SDK 的白名单前缀（如穿山甲的 <code>tt_*</code>）。</p>
+
+<p><strong>Q：Crashlytics 堆栈无法反混淆？</strong> 检查 <code>mapping_file_id</code> 是否在白名单中。这个资源被混淆后，Crashlytics 无法关联正确的 mapping 文件。</p>
+
+<p><strong>Q：debug 构建也需要混淆吗？</strong> 不需要。建议只在 release buildType 中启用 AabResGuard，可以在 <code>build.gradle.kts</code> 中用条件判断控制。</p>
+
+<h2>七、写在最后</h2>
+
+<p>资源混淆是 Android 安全防护中容易被忽略的一环。大多数开发者只做了 R8 代码混淆，但资源名的暴露同样会给逆向分析提供便利。AabResGuard 的接入成本很低，主要工作量在白名单的配置上——配好一次，后续维护成本几乎为零。</p>
+
+<p>如果你觉得手动配置白名单比较繁琐，也可以试试 IDE 插件来辅助。我自己在用的 <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" rel="noopener noreferrer">ADB Pro</a> 插件内置了 AabResGuard 的配置管理功能，可以根据项目依赖自动识别需要白名单的 SDK，一键生成配置并注入到 build.gradle.kts 中。更多关于资源混淆和 ProGuard 混淆字典的内容，也可以参考 <a href="https://codetroupe.github.io/features/res-guard.html" target="_blank" rel="noopener noreferrer">ADB Pro 文档</a>。</p>
+
+<p>希望这篇配置指南对你有帮助。如果在使用 AabResGuard 时遇到了其他坑，欢迎在评论区分享。</p></article><footer class="article-source-footer"><span>本文已同步发布到掘金</span><a href="https://juejin.cn/post/7658132119806853160" target="_blank" rel="noopener noreferrer">在掘金阅读原文</a></footer><section class="cta-banner"><h2>用更少的手动步骤完成 Android 发布</h2><p>ADB Pro 将发布检查、AAB 处理、签名、R8 规则和资源混淆整合到 JetBrains IDE 工作流中。</p><div class="hero-actions"><a href="../features/index.html" class="btn btn-primary btn-lg">查看 ADB Pro 功能</a><a href="../pricing.html" class="btn btn-secondary btn-lg">查看价格</a></div></section><footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>面向 JetBrains IDE 的 Android 发版与构建工具。</p></div><div class="footer-links"><div class="footer-col"><h4>产品</h4><a href="../features/index.html">功能</a><a href="../guides/index.html">指南</a><a href="../pricing.html">价格</a><a href="../getting-started.html">开始使用</a><a href="../blog/index.html">博客</a><a href="../feedback.html">反馈</a></div><div class="footer-col"><h4>资源</h4><a href="../guides/index.html">Android 发版指南</a><a href="../dictionaries/index.html">ProGuard 字典</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>免费工具</h4><a href="../tools/index.html">工具目录</a><a href="../tools/aab-tools.html">AAB Tools</a><a href="../../features/web-navigation.html">Android 资源导航</a></div><div class="footer-col"><h4>法律</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">订阅协议</a><a href="../../privacy-policy.html">隐私政策</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store 条款</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg></button><script src="../../assets/js/main.js?v=20260719-pricing-cta"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

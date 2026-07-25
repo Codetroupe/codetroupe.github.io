@@ -62,7 +62,8 @@ assets/                     # Static assets
 
 - Astro static site generation
 - Shared layout, SEO, navigation, and footer components
-- Editable page bodies stored in `site/src/content-pages/`
+- Editable standard page bodies stored in `site/src/content-pages/`
+- Blog article bodies stored as Markdown in `site/public/blog-md/`
 - Custom CSS with dark/light theme support
 - Google Fonts: Inter + JetBrains Mono
 - Feather-style inline SVG icons

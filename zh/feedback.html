@@ -1,0 +1,103 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>反馈 - ADB Pro</title><meta name="description" content="向 ADB Pro 提交问题反馈、功能建议或使用问题。"><link rel="canonical" href="https://codetroupe.github.io/zh/feedback.html"><link rel="alternate" hreflang="en" href="https://codetroupe.github.io/feedback.html"><link rel="alternate" hreflang="zh-CN" href="https://codetroupe.github.io/zh/feedback.html"><link rel="alternate" hreflang="x-default" href="https://codetroupe.github.io/feedback.html"><meta property="og:title" content="反馈 - ADB Pro"><meta property="og:description" content="向 ADB Pro 提交问题反馈、功能建议或使用问题。"><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/zh/feedback.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="反馈 - ADB Pro"><meta name="twitter:description" content="向 ADB Pro 提交问题反馈、功能建议或使用问题。"><style>
+  .feedback-container { max-width: 640px; margin: 0 auto; padding: 0 24px; }
+  .feedback-form { background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow); }
+  .form-group { margin-bottom: 20px; }
+  .form-group label { display: block; font-weight: 600; font-size: 14px; color: var(--text-primary); margin-bottom: 6px; }
+  .form-group .form-hint { display: block; font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+  .form-group select, .form-group textarea, .form-group input[type="email"] { width: 100%; padding: 10px 14px; font-family: var(--font-sans); font-size: 14px; color: var(--text-primary); background: var(--bg-body); border: 1px solid var(--border); border-radius: 8px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+  .form-group select:focus, .form-group textarea:focus, .form-group input[type="email"]:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .form-group textarea { min-height: 140px; resize: vertical; line-height: 1.6; }
+  .form-group select:disabled, .form-group textarea:disabled { opacity: 0.5; cursor: not-allowed; }
+  .form-actions { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
+  .form-actions .btn { cursor: pointer; border: none; font-family: var(--font-sans); }
+  .form-status { margin-top: 20px; padding: 14px 18px; border-radius: 8px; font-size: 14px; display: none; }
+  .form-status.success { display: block; background: var(--success-soft); color: #065f46; border: 1px solid var(--success); }
+  .form-status.error { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
+  [data-theme="dark"] .form-status.success { color: #6ee7b7; }
+  [data-theme="dark"] .form-status.error { background: rgba(248,113,113,0.1); color: #fca5a5; }
+  .required { color: #ef4444; margin-left: 2px; }
+</style><script>
+    (function () {
+      try {
+        var theme = localStorage.getItem('adbpro-theme');
+        if (!theme) {
+          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        }
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (_) {}
+    })();
+  </script><script>(function(){const currentLanguage = "zh-CN";
+const switchHref = "../feedback.html";
+
+      (function () {
+        var LANGUAGE_KEY = 'adbpro-language-choice';
+
+        function getChoice() {
+          try {
+            return localStorage.getItem(LANGUAGE_KEY);
+          } catch (_) {
+            return null;
+          }
+        }
+
+        function systemPrefersChinese() {
+          var languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+          return languages.some(function (language) {
+            return /^zh\b/i.test(language);
+          });
+        }
+
+        function shouldUseChinese() {
+          var choice = getChoice();
+          if (choice === 'zh-CN') return true;
+          if (choice === 'en') return false;
+          return systemPrefersChinese();
+        }
+
+        var targetLanguage = shouldUseChinese() ? 'zh-CN' : 'en';
+        if (targetLanguage === currentLanguage) return;
+
+        var targetUrl = new URL(switchHref, window.location.href);
+        if (targetUrl.pathname === window.location.pathname) return;
+        if (!targetUrl.search && window.location.search) targetUrl.search = window.location.search;
+        if (!targetUrl.hash && window.location.hash) targetUrl.hash = window.location.hash;
+        window.location.replace(targetUrl.href);
+      })();
+    })();</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="index.html">首页</a><a href="features/index.html">功能</a><a href="guides/index.html">指南</a><a href="tools/index.html">工具</a><a href="getting-started.html">开始使用</a><a href="pricing.html">价格</a><a href="dictionaries/index.html">字典</a><a href="blog/index.html">博客</a><a href="feedback.html" class="active">反馈</a></div><div class="nav-actions"><a href="../feedback.html" class="btn btn-outline btn-sm" data-language-switch data-language-target="en">English</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">获取 ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="index.html">首页</a><a href="features/index.html">功能</a><a href="guides/index.html">指南</a><a href="tools/index.html">工具</a><a href="getting-started.html">开始使用</a><a href="pricing.html">价格</a><a href="dictionaries/index.html">字典</a><a href="blog/index.html">博客</a><a href="feedback.html" class="active">反馈</a><a href="../feedback.html" data-language-switch data-language-target="en">English</a></div><section class="hero"><div class="hero-content"><div class="hero-badge">欢迎反馈</div><h1>提交 <span>反馈</span></h1><p class="hero-sub">报告问题、提出功能建议，或者告诉我哪个 Android 发版流程最需要优化。</p></div></section><section class="section"><div class="feedback-container"><div class="feedback-form" id="feedbackForm"><div class="form-group"><label for="feature">功能<span class="required">*</span></label><select id="feature" required><option value="">选择功能</option><option value="AAB Tools">AAB Tools</option><option value="Signing Tools">Signing Tools</option><option value="Build Tools">Build Tools</option><option value="Bundle Inspector">Bundle Inspector</option><option value="Release Readiness">Release Readiness</option><option value="R8 Assistant">R8 Assistant</option><option value="Res Guard">Res Guard</option><option value="General">通用 / 其他</option></select></div><div class="form-group"><label for="type">反馈类型<span class="required">*</span></label><select id="type" required><option value="Bug Report">问题反馈</option><option value="Feature Request">功能建议</option><option value="Suggestion">改进建议</option><option value="Question">使用问题</option></select></div><div class="form-group"><label for="content">描述<span class="required">*</span></label><textarea id="content" placeholder="请尽量描述你遇到的问题、期望的功能或使用场景..." disabled></textarea><span class="form-hint">先选择功能后再填写描述。</span></div><div class="form-group"><label for="email">邮箱 <span style="font-weight:400; color:var(--text-muted);">(可选)</span></label><input type="email" id="email" placeholder="your@email.com"><span class="form-hint">仅用于需要跟进时联系你。</span></div><div class="form-actions"><button class="btn btn-primary" id="submitBtn" onclick="submitFeedback()">提交反馈</button><span id="submitStatus" style="font-size:13px; color:var(--text-muted);"></span></div><div class="form-status" id="formStatus"></div></div></div></section><script>
+    const GITHUB_REPO = 'Codetroupe/codetroupe.github.io';
+    document.getElementById('feature').addEventListener('change', onFeatureChange);
+    function onFeatureChange() {
+      var textarea = document.getElementById('content');
+      var hint = textarea.parentElement.querySelector('.form-hint');
+      if (document.getElementById('feature').value) {
+        textarea.disabled = false;
+        textarea.placeholder = '请尽量描述你遇到的问题、期望的功能或使用场景...';
+        if (hint) hint.style.display = 'none';
+      } else {
+        textarea.disabled = true;
+        textarea.placeholder = '请先选择功能...';
+        if (hint) hint.style.display = '';
+      }
+    }
+    function submitFeedback() {
+      var feature = document.getElementById('feature').value;
+      var type = document.getElementById('type').value;
+      var content = document.getElementById('content').value.trim();
+      var email = document.getElementById('email').value.trim();
+      if (!feature) return showStatus('error', '请选择功能。');
+      if (!content || content.length < 10) return showStatus('error', '请填写更完整的描述。');
+      var title = '[' + type + '] ' + feature + ' - ' + content.substring(0, 60);
+      var body = '## Feature\\n' + feature + '\\n\\n## Feedback Type\\n' + type + '\\n\\n## Description\\n' + content + '\\n\\n';
+      if (email) body += '## Contact Email\\n' + email + '\\n\\n';
+      body += '---\\n*Submitted via ADB Pro Feedback*';
+      var url = 'https://github.com/' + GITHUB_REPO + '/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body) + '&labels=feedback';
+      window.open(url, '_blank');
+      showStatus('success', '已打开 GitHub Issue 页面，请确认内容后点击 Submit new issue 完成提交。');
+    }
+    function showStatus(type, message) {
+      var el = document.getElementById('formStatus');
+      el.className = 'form-status ' + type;
+      el.innerHTML = message;
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+  </script><footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="index.html" class="nav-brand" style="font-size:16px;"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>面向 JetBrains IDE 的 Android 发版与构建工具。</p></div><div class="footer-links"><div class="footer-col"><h4>产品</h4><a href="features/index.html">功能</a><a href="guides/index.html">指南</a><a href="pricing.html">价格</a><a href="getting-started.html">开始使用</a><a href="blog/index.html">博客</a><a href="feedback.html">反馈</a></div><div class="footer-col"><h4>资源</h4><a href="guides/index.html">Android 发版指南</a><a href="dictionaries/index.html">ProGuard 字典</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>免费工具</h4><a href="tools/index.html">工具目录</a><a href="tools/aab-tools.html">AAB Tools</a><a href="../features/web-navigation.html">Android 资源导航</a></div><div class="footer-col"><h4>法律</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">订阅协议</a><a href="../privacy-policy.html">隐私政策</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store 条款</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg></button><script src="../assets/js/main.js?v=20260719-pricing-cta"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

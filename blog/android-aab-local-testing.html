@@ -1,124 +1,19 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Android AAB Local Testing Guide with bundletool and APKS - ADB Pro</title><meta name="description" content="A practical Android AAB local testing guide covering bundletool, APKS generation, signing configuration, device installs, and common release testing errors."><link rel="canonical" href="https://codetroupe.github.io/blog/android-aab-local-testing.html"><meta property="og:title" content="Android AAB Local Testing Guide with bundletool and APKS - ADB Pro"><meta property="og:description" content="A practical Android AAB local testing guide covering bundletool, APKS generation, signing configuration, device installs, and common release testing errors."><meta property="og:type" content="article"><meta property="og:url" content="https://codetroupe.github.io/blog/android-aab-local-testing.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Android AAB Local Testing Guide with bundletool and APKS - ADB Pro"><meta name="twitter:description" content="A practical Android AAB local testing guide covering bundletool, APKS generation, signing configuration, device installs, and common release testing errors."><style>
-        .blog-hero {
-            background: var(--bg-hero);
-            padding: 60px 24px 48px;
-            text-align: center;
-        }
-        .blog-hero h1 {
-            font-size: clamp(26px, 4vw, 38px);
-            font-weight: 800;
-            color: #ffffff;
-            max-width: 720px;
-            margin: 0 auto 16px;
-            line-height: 1.3;
-        }
-        .blog-meta {
-            font-size: 14px;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .blog-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .article-body {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 48px 24px 80px;
-        }
-        .article-body h2 {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 48px 0 16px;
-            color: var(--text-primary);
-        }
-        .article-body h2:first-child {
-            margin-top: 0;
-        }
-        .article-body h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 32px 0 12px;
-            color: var(--text-primary);
-        }
-        .article-body p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            line-height: 1.8;
-        }
-        .article-body ul, .article-body ol {
-            margin: 0 0 16px 24px;
-            color: var(--text-secondary);
-        }
-        .article-body li {
-            font-size: 15px;
-            margin-bottom: 8px;
-            line-height: 1.7;
-        }
-        .article-body table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-            margin: 16px 0 24px;
-        }
-        .article-body th, .article-body td {
-            padding: 10px 14px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-        .article-body th {
-            background: var(--bg-elevated);
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-        }
-        .article-body .code-block {
-            margin: 16px 0 24px;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        .article-body .code-block code {
-            display: block;
-            white-space: pre;
-            overflow-x: auto;
-        }
-        .article-body blockquote {
-            border-left: 3px solid var(--accent);
-            padding: 12px 20px;
-            margin: 16px 0 24px;
-            background: var(--bg-elevated);
-            border-radius: 0 8px 8px 0;
-        }
-        .article-body blockquote p {
-            margin-bottom: 0;
-            color: var(--text-secondary);
-        }
-        .article-body hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 48px 0;
-        }
-        .article-body a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-        .article-body a:hover {
-            color: var(--accent-hover);
-        }
-        .article-body strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-    </style><script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Chinese Blog Article - Chinese Blog - ADB Pro</title><meta name="description" content="This article is maintained in Chinese because it was originally published on Juejin."><link rel="canonical" href="https://codetroupe.github.io/zh/blog/android-aab-local-testing.html"><meta property="og:title" content="Chinese Blog Article - Chinese Blog - ADB Pro"><meta property="og:description" content="This article is maintained in Chinese because it was originally published on Juejin."><meta property="og:type" content="article"><meta property="og:url" content="https://codetroupe.github.io/zh/blog/android-aab-local-testing.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Chinese Blog Article - Chinese Blog - ADB Pro"><meta name="twitter:description" content="This article is maintained in Chinese because it was originally published on Juejin."><style>
+  .blog-hero { padding: 56px 24px 36px; text-align: center; border-bottom: 1px solid var(--border); background: var(--bg-primary); }
+  .blog-hero h1 { max-width: 980px; margin: 0 auto 14px; font-size: clamp(28px, 4vw, 44px); line-height: 1.18; color: var(--text-primary); overflow-wrap: anywhere; }
+  .blog-meta { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; max-width: 760px; margin: 0 auto; color: var(--text-muted); font-size: 14px; }
+  .article-body { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+  .article-body h2 { font-size: 24px; font-weight: 700; margin: 48px 0 16px; color: var(--text-primary); }
+  .article-body h3 { font-size: 19px; font-weight: 700; margin: 32px 0 12px; color: var(--text-primary); }
+  .article-body p { font-size: 16px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
+  .article-body ul, .article-body ol { color: var(--text-secondary); margin: 0 0 18px 24px; line-height: 1.75; }
+  .article-body li { margin-bottom: 8px; }
+  .article-body strong { color: var(--text-primary); font-weight: 600; }
+  @media (max-width: 640px) {
+    .blog-hero { padding: 40px 18px 28px; }
+    .blog-hero h1 { font-size: 28px; }
+  }
+</style><meta name="robots" content="noindex,follow"><meta http-equiv="refresh" content="0; url=../zh/blog/android-aab-local-testing.html"><script>window.location.replace('../zh/blog/android-aab-local-testing.html');</script><script>
     (function () {
       try {
         var theme = localStorage.getItem('adbpro-theme');
@@ -128,397 +23,41 @@
         document.documentElement.setAttribute('data-theme', theme);
       } catch (_) {}
     })();
-  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><section class="blog-hero">
-    <h1>Android AAB 本地测试完整指南：为什么不能直接安装？bundletool、APKS、签名和常见坑</h1>
-    <div class="blog-meta">
-        <span>2026-07-15</span>
-        <span>codetroupe</span>
-        <span>10 min read</span>
-    </div>
-</section>
-
-<article class="article-body">
-
-<p>现在做 Android 发版，AAB 已经是绕不开的格式。Google Play 推荐甚至强制使用 Android App Bundle，很多团队的 CI 产物也从 <code>apk</code> 变成了 <code>aab</code>。</p>
-
-<p>但 AAB 有一个很容易让人困惑的地方：<strong>它不是一个可以直接安装到手机上的文件</strong>。</p>
-
-<p>你双击不行，<code>adb install app-release.aab</code> 不行，拖进模拟器也不行。真正能安装到设备上的，仍然是 APK，或者一组 split APK。而 AAB 的作用，是作为“发布包”，交给 Google Play 或 bundletool 根据设备配置生成对应的 APK 组合。</p>
-
-<p>这篇文章把 AAB 本地测试这条链路完整梳理一下：</p>
-
-<ul><li>AAB 和 APK / APKS 到底是什么关系</li><li>为什么 AAB 不能直接安装</li><li>如何用 bundletool 把 AAB 转成 APKS</li><li>签名配置为什么经常出问题</li><li>多设备、签名冲突、版本降级这些坑怎么排查</li><li>如何把这套流程做成更稳定的工具化流程</li></ul>
-
-<p>本文主要面向日常 Android 开发和发版测试，不讨论 Google Play 后台动态分发的全部细节。</p>
-
-<h2>一、AAB、APK、APKS 分别是什么</h2>
-
-<p>先把几个概念说清楚。</p>
-
-<h3>APK</h3>
-
-<p>APK 是 Android 设备可以直接安装的应用包。</p>
-
-<p>传统流程里，我们构建出来的是：</p>
-
-<pre class="code-block"><code>app-release.apk</code></pre>
-
-<p>然后直接：</p>
-
-<pre class="code-block"><code>adb install app-release.apk</code></pre>
-
-<p>设备拿到这个 APK，就能完成安装。</p>
-
-<h3>AAB</h3>
-
-<p>AAB，全称 Android App Bundle，是发布格式，不是安装格式。</p>
-
-<p>它里面包含：</p>
-
-<ul><li>base module</li><li>dynamic feature module</li><li>resources</li><li>manifest</li><li>dex</li><li>native libraries</li><li>metadata</li></ul>
-
-<p>AAB 本身更像一个“原材料包”。Google Play 会根据用户设备的 ABI、屏幕密度、语言、SDK 版本等信息，从 AAB 中生成适合该设备的一组 APK。</p>
-
-<p>所以你不能直接：</p>
-
-<pre class="code-block"><code>adb install app-release.aab</code></pre>
-
-<p>因为设备并不知道怎么从 AAB 中拆出自己需要的 split APK。</p>
-
-<h3>APKS</h3>
-
-<p>APKS 是 bundletool 生成的归档文件，本质上是一个 zip，里面包含一组 APK 和元数据。</p>
-
-<p>常见生成方式：</p>
-
-<pre class="code-block"><code>java -jar bundletool.jar build-apks \
-  --bundle=app-release.aab \
-  --output=app-release.apks</code></pre>
-
-<p>然后安装：</p>
-
-<pre class="code-block"><code>java -jar bundletool.jar install-apks \
-  --apks=app-release.apks</code></pre>
-
-<p>可以理解为：</p>
-
-<pre class="code-block"><code>AAB  --bundletool--&gt;  APKS  --bundletool install--&gt;  device</code></pre>
-
-<h2>二、为什么 AAB 不能直接安装</h2>
-
-<p>核心原因是：<strong>AAB 不对应某一台具体设备。</strong></p>
-
-<p>一个 Android 设备安装应用时，需要的是明确的 APK 文件。而 AAB 里可能包含多套资源和代码：</p>
-
-<ul><li><code>arm64-v8a</code></li><li><code>armeabi-v7a</code></li><li><code>x86_64</code></li><li><code>hdpi</code></li><li><code>xxhdpi</code></li><li><code>zh</code></li><li><code>en</code></li><li>dynamic feature modules</li></ul>
-
-<p>Google Play 分发时，会根据设备信息选择最小集合。例如一台 arm64、中文、xxhdpi 的设备，可能只需要其中一部分 split APK。</p>
-
-<p>这也是 AAB 的价值：减少用户下载体积。</p>
-
-<p>但本地测试时，就必须有人来扮演 Google Play 的角色，这个角色就是 bundletool。</p>
-
-<h2>三、最基本的 bundletool 流程</h2>
-
-<p>假设你已经有一个 release AAB：</p>
-
-<pre class="code-block"><code>app/build/outputs/bundle/release/app-release.aab</code></pre>
-
-<p>最基础的转换命令是：</p>
-
-<pre class="code-block"><code>java -jar bundletool-all.jar build-apks \
-  --bundle=app/build/outputs/bundle/release/app-release.aab \
-  --output=app-release.apks</code></pre>
-
-<p>如果只是 debug 测试，这样可能能跑。但 release-like 测试通常还需要签名。</p>
-
-<p>完整一点的命令：</p>
-
-<pre class="code-block"><code>java -jar bundletool-all.jar build-apks \
-  --bundle=app-release.aab \
-  --output=app-release.apks \
-  --ks=release.jks \
-  --ks-key-alias=release \
-  --ks-pass=pass:your_store_password \
-  --key-pass=pass:your_key_password</code></pre>
-
-<p>安装：</p>
-
-<pre class="code-block"><code>java -jar bundletool-all.jar install-apks \
-  --apks=app-release.apks</code></pre>
-
-<p>如果连接了多台设备，需要指定设备：</p>
-
-<pre class="code-block"><code>java -jar bundletool-all.jar install-apks \
-  --apks=app-release.apks \
-  --device-id=emulator-5554</code></pre>
-
-<p>看起来不复杂，但实际项目里会遇到很多细节问题。</p>
-
-<h2>四、签名为什么经常出问题</h2>
-
-<p>AAB 转 APKS 时，签名非常关键。</p>
-
-<p>如果你没有传 keystore，或者签名和设备上已有应用不一致，就很容易出现这些问题：</p>
-
-<pre class="code-block"><code>INSTALL_FAILED_UPDATE_INCOMPATIBLE
-INSTALL_PARSE_FAILED_NO_CERTIFICATES
-INSTALL_FAILED_VERSION_DOWNGRADE</code></pre>
-
-<h3>1. 签名和旧版本不一致</h3>
-
-<p>最常见的是设备上已经装了一个旧版本，它使用的是另一套签名。</p>
-
-<p>例如：</p>
-
-<ul><li>旧版本：debug keystore</li><li>新版本：release keystore</li></ul>
-
-<p>这时直接安装会失败：</p>
-
-<pre class="code-block"><code>INSTALL_FAILED_UPDATE_INCOMPATIBLE</code></pre>
-
-<p>解决方式：</p>
-
-<pre class="code-block"><code>adb uninstall your.package.name</code></pre>
-
-<p>或者确认当前测试包和旧包使用同一套签名。</p>
-
-<p>如果只是开发机测试，可以先卸载旧包。但如果是升级兼容性测试，就不能卸载，必须保证签名一致。</p>
-
-<h3>2. release-like 测试不要偷懒用 debug 签名</h3>
-
-<p>很多问题只会在 release 签名、release buildType、R8 开启后出现。</p>
-
-<p>如果你用 debug 签名测试 AAB，可能会漏掉：</p>
-
-<ul><li>keystore 配置错误</li><li>release manifest 差异</li><li>minifyEnabled 后的运行时问题</li><li>第三方 SDK 的 release-only 行为</li><li>Google Play App Signing 相关差异</li></ul>
-
-<p>本地测试不一定每次都用正式生产 keystore，但至少要明确当前测试目的：</p>
-
-<table><thead><tr><th>测试目标</th><th>推荐签名</th></tr></thead><tbody><tr><td>快速功能验证</td><td>debug 或测试 keystore</td></tr><tr><td>发版前验收</td><td>release-like keystore</td></tr><tr><td>升级兼容性测试</td><td>必须和线上版本签名一致</td></tr><tr><td>商店提审前验证</td><td>尽量贴近真实 release 配置</td></tr></tbody></table>
-
-<h3>3. 不要把密码长期写在脚本里</h3>
-
-<p>bundletool 命令支持：</p>
-
-<pre class="code-block"><code>--ks-pass=pass:xxx
---key-pass=pass:xxx</code></pre>
-
-<p>这很方便，但也很危险。脚本一旦提交到仓库，密码就泄漏了。</p>
-
-<p>更稳妥的方式：</p>
-
-<ul><li>从环境变量读取</li><li>使用本机安全存储</li><li>CI 中使用 secret</li><li>IDE 插件中使用 PasswordSafe</li><li>本地临时输入，不落盘</li></ul>
-
-<h2>五、APKS 有几种生成模式</h2>
-
-<p>bundletool 的 <code>build-apks</code> 支持不同模式。</p>
-
-<h3>universal</h3>
-
-<p>生成一个通用 APK，适合快速测试：</p>
-
-<pre class="code-block"><code>java -jar bundletool-all.jar build-apks \
-  --bundle=app-release.aab \
-  --output=app-universal.apks \
-  --mode=universal</code></pre>
-
-<p>优点是简单，生成的 APKS 里通常包含一个 universal APK。</p>
-
-<p>缺点是不能完全模拟 Google Play 的 split 分发结果，包体也更大。</p>
-
-<h3>connected-device</h3>
-
-<p>根据当前连接设备生成适配该设备的 APK：</p>
-
-<pre class="code-block"><code>java -jar bundletool-all.jar build-apks \
-  --bundle=app-release.aab \
-  --output=app-device.apks \
-  --connected-device</code></pre>
-
-<p>这种更贴近真实安装结果，但依赖当前连接设备。</p>
-
-<h3>device-spec</h3>
-
-<p>先导出设备配置：</p>
-
-<pre class="code-block"><code>java -jar bundletool-all.jar get-device-spec \
-  --output=device-spec.json</code></pre>
-
-<p>再根据设备配置生成：</p>
-
-<pre class="code-block"><code>java -jar bundletool-all.jar build-apks \
-  --bundle=app-release.aab \
-  --output=app-device.apks \
-  --device-spec=device-spec.json</code></pre>
-
-<p>适合 CI 或固定设备矩阵测试。</p>
-
-<h2>六、常见错误排查</h2>
-
-<h3>1. 找不到设备</h3>
-
-<p>先看：</p>
-
-<pre class="code-block"><code>adb devices</code></pre>
-
-<p>如果设备状态是：</p>
-
-<pre class="code-block"><code>unauthorized</code></pre>
-
-<p>说明手机上还没有授权 USB 调试。</p>
-
-<p>如果有多台设备：</p>
-
-<pre class="code-block"><code>emulator-5554 device
-R5CNxxxxxx device</code></pre>
-
-<p>安装时就要指定：</p>
-
-<pre class="code-block"><code>--device-id=R5CNxxxxxx</code></pre>
-
-<p>否则 bundletool 可能不知道安装到哪台设备。</p>
-
-<h3>2. 版本号降级</h3>
-
-<p>错误：</p>
-
-<pre class="code-block"><code>INSTALL_FAILED_VERSION_DOWNGRADE</code></pre>
-
-<p>说明设备上已有版本的 <code>versionCode</code> 更高。</p>
-
-<p>解决方式：</p>
-
-<ul><li>卸载旧版本</li><li>提高当前包的 <code>versionCode</code></li><li>如果只是调试，可以用 <code>adb install -d</code>，但 bundletool 流程里不建议长期依赖这个</li></ul>
-
-<p>发版测试最好不要绕过版本号，因为真实用户升级也会受这个规则约束。</p>
-
-<h3>3. split APK 不完整</h3>
-
-<p>如果你手动从 APKS 中解压 APK，然后自己 <code>adb install-multiple</code>，很容易漏掉某个 split。</p>
-
-<p>APKS 里通常不是一个 APK，而是一组 APK：</p>
-
-<pre class="code-block"><code>base-master.apk
-base-arm64_v8a.apk
-base-xxhdpi.apk
-base-zh.apk</code></pre>
-
-<p>少装一个，可能就会：</p>
-
-<ul><li>启动崩溃</li><li>资源找不到</li><li>native so 缺失</li><li>动态功能模块异常</li></ul>
-
-<p>所以一般建议使用：</p>
-
-<pre class="code-block"><code>bundletool install-apks</code></pre>
-
-<p>而不是自己拆 APKS 手动安装。</p>
-
-<h3>4. bundletool 版本过旧</h3>
-
-<p>Android Gradle Plugin、App Bundle 格式、Play Feature Delivery 都会变化。</p>
-
-<p>如果 bundletool 版本太旧，可能出现奇怪的解析错误。</p>
-
-<p>建议：</p>
-
-<ul><li>固定团队使用的 bundletool 版本</li><li>CI 和本地保持一致</li><li>定期升级但不要每个人随意升级</li><li>出现无法解析 AAB 时先检查 bundletool 版本</li></ul>
-
-<h3>5. R8 后才出现运行时崩溃</h3>
-
-<p>AAB 本地安装流程本身没问题，但 release build 打开了：</p>
-
-<pre class="code-block"><code>isMinifyEnabled = true
-isShrinkResources = true</code></pre>
-
-<p>这时可能出现：</p>
-
-<ul><li>反射找不到类</li><li>Gson/Moshi 序列化字段异常</li><li>Retrofit 接口注解丢失</li><li>Hilt/Dagger 生成类被裁剪</li><li>WebView JS Bridge 方法被混淆</li><li>Firebase / Ads SDK 资源或 metadata 异常</li></ul>
-
-<p>所以 AAB 本地测试不应该只看“能不能安装”，还要跑关键业务路径。</p>
-
-<p>建议至少验证：</p>
-
-<ul><li>启动</li><li>登录</li><li>网络请求</li><li>JSON 解析</li><li>支付/订阅</li><li>推送</li><li>Deep Link</li><li>崩溃上报</li><li>统计埋点</li><li>WebView 或动态加载逻辑</li></ul>
-
-<h2>七、CI 产物怎么接入本地测试</h2>
-
-<p>很多团队现在不是本地构建 AAB，而是 CI 构建后上传到：</p>
-
-<ul><li>GitHub Releases</li><li>GitLab Releases</li><li>Jenkins artifacts</li><li>私有制品库</li></ul>
-
-<p>这时测试人员通常要：</p>
-
-<ol><li>打开浏览器</li><li>找到对应 release</li><li>下载 <code>.aab</code></li><li>找 bundletool</li><li>配签名</li><li>转 APKS</li><li>安装到设备</li></ol>
-
-<p>这条链路很长，也很容易拿错包。</p>
-
-<p>更好的方式是让 CI 产物具备清晰命名：</p>
-
-<pre class="code-block"><code>myapp-googleplay-release-v1.8.0-180.aab
-myapp-samsung-release-v1.8.0-180.aab
-myapp-internal-staging-v1.8.0-180.aab</code></pre>
-
-<p>并保留必要信息：</p>
-
-<ul><li>versionName</li><li>versionCode</li><li>buildType</li><li>flavor/channel</li><li>commit sha</li><li>mapping.txt</li><li>changelog</li></ul>
-
-<p>如果工具能直接扫描远程 release assets，就可以少很多人工下载和复制路径的步骤。</p>
-
-<h2>八、一个更稳定的本地 AAB 测试流程</h2>
-
-<p>我现在比较推荐这样的流程：</p>
-
-<ol><li>CI 或本地生成 AAB</li><li>确认 AAB 文件名包含版本、渠道、构建类型</li><li>选择和测试目的匹配的签名配置</li><li>用固定版本 bundletool 转成 APKS</li><li>指定设备安装</li><li>跑关键业务路径</li><li>保存安装日志和失败原因</li><li>如果是 release 验收，同步保存 mapping.txt</li></ol>
-
-<p>对应到工具层面，最好把这些东西都显式化：</p>
-
-<ul><li>当前选择的是哪个 AAB</li><li>使用的是哪个 signing config</li><li>bundletool 路径和版本</li><li>输出的 APKS 在哪里</li><li>安装到哪台设备</li><li>命令执行日志是什么</li><li>失败时的原始错误是什么</li></ul>
-
-<p>这样排查问题时，不会只剩一句“安装失败了”。</p>
-
-<h2>九、我最后怎么处理这条链路</h2>
-
-<p>最开始我也是手写命令，后来发现每个项目、每台设备、每个 keystore 都会让这套流程变复杂。</p>
-
-<p>所以我把这条链路拆成几个固定模块：</p>
-
-<ul><li>AAB 文件扫描</li><li>bundletool 自动管理</li><li>Gradle signingConfigs 读取</li><li>APKS 转换</li><li>设备选择</li><li>安装日志</li><li>GitHub / GitLab release assets 扫描</li></ul>
-
-<p>如果只需要这条轻量链路，我把它做成了一个免费的 JetBrains 插件：<strong>AAB Tools</strong>。它主要解决 AAB 转 APKS 和安装到设备这件事。</p>
-
-<p>如果还需要更完整的发版流程，比如：</p>
-
-<ul><li>Release Readiness 检查</li><li>Signing Tools</li><li>Bundle Inspector</li><li>R8 / ProGuard 规则</li><li>资源混淆</li><li>CI/CD 生成</li><li>依赖健康检查</li></ul>
-
-<p>那就更适合放到完整的 ADB Pro 工作流里。</p>
-
-<p>这里不展开产品细节，重点还是这篇文章的结论：<strong>AAB 本地测试不是一个 adb install 命令能解决的问题，它本质上是一条“构建产物 + bundletool + 签名 + 设备配置 + 运行时验证”的链路。</strong></p>
-
-<p>把这条链路标准化之后，AAB 测试会稳定很多，发版前也少很多临时排查。</p>
-
-<h2>十、总结</h2>
-
-<p>AAB 本地测试最容易踩坑的地方，不在命令本身，而在命令背后的上下文：</p>
-
-<ul><li>AAB 不是安装包，不能直接 <code>adb install</code></li><li>APKS 是 bundletool 根据 AAB 生成的安装归档</li><li>签名必须和测试目标匹配</li><li>多设备时要明确 device-id</li><li>universal 模式方便，但不等于真实 split 分发</li><li>release-like 测试必须关注 R8、资源、SDK、业务路径</li><li>CI 产物要和版本、渠道、mapping 文件绑定</li></ul>
-
-<p>如果你现在还在手动敲 bundletool 命令，建议至少把命令、签名、设备选择和日志记录标准化。等这条链路稳定之后，再去做更完整的发版自动化，会轻松很多。</p>
-
-</article>
-
-<footer class="article-source-footer">
-    <span>本文已同步发布到掘金</span>
-    <a href="https://juejin.cn/post/7662376768221052937" target="_blank" rel="noopener noreferrer">在掘金阅读本文</a>
-</footer>
-
-
-<section class="cta-banner">
-    <h2>Ship Android Releases with Fewer Manual Steps</h2>
-    <p>ADB Pro brings release checks, AAB handling, signing, R8 rules, and resource obfuscation into one JetBrains IDE workflow.</p>
-    <div class="hero-actions">
-        <a href="../features/index.html" class="btn btn-primary btn-lg">Explore ADB Pro</a>
-        <a href="../pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
-    </div>
-</section>
-<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>Advanced Android Development Tools for JetBrains IDEs.</p></div><div class="footer-links"><div class="footer-col"><h4>Product</h4><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../pricing.html">Pricing</a><a href="../getting-started.html">Getting Started</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><div class="footer-col"><h4>Resources</h4><a href="../guides/index.html">Android Release Guides</a><a href="../dictionaries/index.html">ProGuard Dictionaries</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>Free Tools</h4><a href="../tools/index.html">Tools Directory</a><a href="../tools/aab-tools.html">AAB Tools</a><a href="../features/web-navigation.html">Android Resource Navigator</a></div><div class="footer-col"><h4>Legal</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">Subscription Agreement</a><a href="../privacy-policy.html">Privacy Policy</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg></button><script src="../assets/js/main.js?v=20260719-pricing-cta"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
+  </script><script>(function(){const currentLanguage = "en";
+const switchHref = "../zh/blog/android-aab-local-testing.html";
+
+      (function () {
+        var LANGUAGE_KEY = 'adbpro-language-choice';
+
+        function getChoice() {
+          try {
+            return localStorage.getItem(LANGUAGE_KEY);
+          } catch (_) {
+            return null;
+          }
+        }
+
+        function systemPrefersChinese() {
+          var languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+          return languages.some(function (language) {
+            return /^zh\b/i.test(language);
+          });
+        }
+
+        function shouldUseChinese() {
+          var choice = getChoice();
+          if (choice === 'zh-CN') return true;
+          if (choice === 'en') return false;
+          return systemPrefersChinese();
+        }
+
+        var targetLanguage = shouldUseChinese() ? 'zh-CN' : 'en';
+        if (targetLanguage === currentLanguage) return;
+
+        var targetUrl = new URL(switchHref, window.location.href);
+        if (targetUrl.pathname === window.location.pathname) return;
+        if (!targetUrl.search && window.location.search) targetUrl.search = window.location.search;
+        if (!targetUrl.hash && window.location.hash) targetUrl.hash = window.location.hash;
+        window.location.replace(targetUrl.href);
+      })();
+    })();</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><a href="../zh/blog/android-aab-local-testing.html" class="btn btn-outline btn-sm" data-language-switch data-language-target="zh-CN">中文</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a><a href="../zh/blog/android-aab-local-testing.html" data-language-switch data-language-target="zh-CN">中文</a></div><section class="feature-hero"><div class="hero-content"><h1>This Article Is Available in Chinese</h1><p>The current blog article was originally published on Juejin, so it now lives under the Chinese blog section.</p><div class="hero-actions"><a href="../zh/blog/android-aab-local-testing.html" class="btn btn-primary btn-lg">Open Chinese Article</a><a href="index.html" class="btn btn-secondary btn-lg">Back to English Blog</a></div></div></section><footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>Advanced Android Development Tools for JetBrains IDEs.</p></div><div class="footer-links"><div class="footer-col"><h4>Product</h4><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../pricing.html">Pricing</a><a href="../getting-started.html">Getting Started</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><div class="footer-col"><h4>Resources</h4><a href="../guides/index.html">Android Release Guides</a><a href="../dictionaries/index.html">ProGuard Dictionaries</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>Free Tools</h4><a href="../tools/index.html">Tools Directory</a><a href="../tools/aab-tools.html">AAB Tools</a><a href="../features/web-navigation.html">Android Resource Navigator</a></div><div class="footer-col"><h4>Legal</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">Subscription Agreement</a><a href="../privacy-policy.html">Privacy Policy</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg></button><script src="../assets/js/main.js?v=20260719-pricing-cta"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

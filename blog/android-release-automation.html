@@ -1,124 +1,19 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Android Release Automation for APK and AAB Builds - ADB Pro</title><meta name="description" content="A practical guide to Android release automation covering bundletool, ProGuard rules, release checks, multi-channel builds, and CI/CD setup."><link rel="canonical" href="https://codetroupe.github.io/blog/android-release-automation.html"><meta property="og:title" content="Android Release Automation for APK and AAB Builds - ADB Pro"><meta property="og:description" content="A practical guide to Android release automation covering bundletool, ProGuard rules, release checks, multi-channel builds, and CI/CD setup."><meta property="og:type" content="article"><meta property="og:url" content="https://codetroupe.github.io/blog/android-release-automation.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Android Release Automation for APK and AAB Builds - ADB Pro"><meta name="twitter:description" content="A practical guide to Android release automation covering bundletool, ProGuard rules, release checks, multi-channel builds, and CI/CD setup."><style>
-        .blog-hero {
-            background: var(--bg-hero);
-            padding: 60px 24px 48px;
-            text-align: center;
-        }
-        .blog-hero h1 {
-            font-size: clamp(26px, 4vw, 38px);
-            font-weight: 800;
-            color: #ffffff;
-            max-width: 720px;
-            margin: 0 auto 16px;
-            line-height: 1.3;
-        }
-        .blog-meta {
-            font-size: 14px;
-            color: #64748b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .blog-meta span {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-        }
-        .article-body {
-            max-width: 760px;
-            margin: 0 auto;
-            padding: 48px 24px 80px;
-        }
-        .article-body h2 {
-            font-size: 24px;
-            font-weight: 700;
-            margin: 48px 0 16px;
-            color: var(--text-primary);
-        }
-        .article-body h2:first-child {
-            margin-top: 0;
-        }
-        .article-body h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin: 32px 0 12px;
-            color: var(--text-primary);
-        }
-        .article-body p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-            line-height: 1.8;
-        }
-        .article-body ul, .article-body ol {
-            margin: 0 0 16px 24px;
-            color: var(--text-secondary);
-        }
-        .article-body li {
-            font-size: 15px;
-            margin-bottom: 8px;
-            line-height: 1.7;
-        }
-        .article-body table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-            margin: 16px 0 24px;
-        }
-        .article-body th, .article-body td {
-            padding: 10px 14px;
-            text-align: left;
-            border-bottom: 1px solid var(--border);
-        }
-        .article-body th {
-            background: var(--bg-elevated);
-            font-weight: 600;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-        }
-        .article-body .code-block {
-            margin: 16px 0 24px;
-            font-size: 13px;
-            line-height: 1.6;
-        }
-        .article-body .code-block code {
-            display: block;
-            white-space: pre;
-            overflow-x: auto;
-        }
-        .article-body blockquote {
-            border-left: 3px solid var(--accent);
-            padding: 12px 20px;
-            margin: 16px 0 24px;
-            background: var(--bg-elevated);
-            border-radius: 0 8px 8px 0;
-        }
-        .article-body blockquote p {
-            margin-bottom: 0;
-            color: var(--text-secondary);
-        }
-        .article-body hr {
-            border: none;
-            border-top: 1px solid var(--border);
-            margin: 48px 0;
-        }
-        .article-body a {
-            color: var(--accent);
-            text-decoration: underline;
-            text-underline-offset: 2px;
-        }
-        .article-body a:hover {
-            color: var(--accent-hover);
-        }
-        .article-body strong {
-            color: var(--text-primary);
-            font-weight: 600;
-        }
-    </style><script>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>Chinese Blog Article - Chinese Blog - ADB Pro</title><meta name="description" content="This article is maintained in Chinese because it was originally published on Juejin."><link rel="canonical" href="https://codetroupe.github.io/zh/blog/android-release-automation.html"><meta property="og:title" content="Chinese Blog Article - Chinese Blog - ADB Pro"><meta property="og:description" content="This article is maintained in Chinese because it was originally published on Juejin."><meta property="og:type" content="article"><meta property="og:url" content="https://codetroupe.github.io/zh/blog/android-release-automation.html"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Chinese Blog Article - Chinese Blog - ADB Pro"><meta name="twitter:description" content="This article is maintained in Chinese because it was originally published on Juejin."><style>
+  .blog-hero { padding: 56px 24px 36px; text-align: center; border-bottom: 1px solid var(--border); background: var(--bg-primary); }
+  .blog-hero h1 { max-width: 980px; margin: 0 auto 14px; font-size: clamp(28px, 4vw, 44px); line-height: 1.18; color: var(--text-primary); overflow-wrap: anywhere; }
+  .blog-meta { display: flex; justify-content: center; align-items: center; gap: 12px; flex-wrap: wrap; max-width: 760px; margin: 0 auto; color: var(--text-muted); font-size: 14px; }
+  .article-body { max-width: 760px; margin: 0 auto; padding: 48px 24px 80px; }
+  .article-body h2 { font-size: 24px; font-weight: 700; margin: 48px 0 16px; color: var(--text-primary); }
+  .article-body h3 { font-size: 19px; font-weight: 700; margin: 32px 0 12px; color: var(--text-primary); }
+  .article-body p { font-size: 16px; color: var(--text-secondary); margin-bottom: 16px; line-height: 1.8; }
+  .article-body ul, .article-body ol { color: var(--text-secondary); margin: 0 0 18px 24px; line-height: 1.75; }
+  .article-body li { margin-bottom: 8px; }
+  .article-body strong { color: var(--text-primary); font-weight: 600; }
+  @media (max-width: 640px) {
+    .blog-hero { padding: 40px 18px 28px; }
+    .blog-hero h1 { font-size: 28px; }
+  }
+</style><meta name="robots" content="noindex,follow"><meta http-equiv="refresh" content="0; url=../zh/blog/android-release-automation.html"><script>window.location.replace('../zh/blog/android-release-automation.html');</script><script>
     (function () {
       try {
         var theme = localStorage.getItem('adbpro-theme');
@@ -128,207 +23,41 @@
         document.documentElement.setAttribute('data-theme', theme);
       } catch (_) {}
     })();
-  </script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><section class="blog-hero">
-    <h1>Android 发版踩坑实录：从手动打包到全流程自动化</h1>
-    <div class="blog-meta">
-        <span>2026-07-03</span>
-        <span>codetroupe</span>
-        <span>10 min read</span>
-    </div>
-</section>
+  </script><script>(function(){const currentLanguage = "en";
+const switchHref = "../zh/blog/android-release-automation.html";
 
-<article class="article-body">
+      (function () {
+        var LANGUAGE_KEY = 'adbpro-language-choice';
 
-<p>作为一个做了多年 Android 的开发者，每次发版都像一场小型战役。Bundletool 版本不对、签名配置丢失、ProGuard 规则漏写、发布前忘了关 debug 开关……这些问题反复出现，每次都要花时间排查。</p>
-
-<p>这篇文章把我在实际项目中遇到的发版痛点，以及逐步搭建自动化流程的思路分享出来。如果你也在为 Android 发版流程头疼，希望能给你一些参考。</p>
-
-<h2>痛点一：Bundletool 管理是个无底洞</h2>
-
-<p>Google Play 强制要求 AAB 格式后，<code>bundletool</code> 成了必备工具。但它的使用体验是这样的：</p>
-
-<pre class="code-block"><code># 1. 手动下载 bundletool jar（版本号经常更新）
-# 2. 把 AAB 转成 APKS
-java -jar bundletool-all-1.17.2.jar build-apks \
-  --bundle=app-release.aab \
-  --output=app-release.apks \
-  --ks=release-key.jks \
-  --ks-key-alias=myalias \
-  --ks-pass=pass:xxxxx
-
-# 3. 安装到设备
-java -jar bundletool-all-1.17.2.jar install-apks \
-  --apks=app-release.apks \
-  --device-id=XXXXXX</code></pre>
-
-<p>三条命令，每次都手敲。版本号变了要重新下载 jar，密钥密码要明文写在命令行（安全问题），多设备时还要指定 device-id。</p>
-
-<h3>我的解决思路</h3>
-
-<p>把 Bundletool 的版本管理和下载自动化：检测到本地没有 bundletool 或版本过低时，自动从 GitHub Releases 下载最新版。把密钥信息从项目配置中读取，而不是命令行参数。</p>
-
-<p>核心逻辑其实不复杂，就是一个带自动更新的下载器 + 命令封装：</p>
-
-<pre class="code-block"><code>// 检测本地 bundletool 版本，低于最新版则自动下载
-fun ensureBundletool(): File {
-    val local = getLocalBundletool()
-    val latest = fetchLatestVersion() // 从 GitHub API 获取
-    if (local == null || compareVersions(local.version, latest) &lt; 0) {
-        downloadBundletool(latest)
-    }
-    return getLocalBundletool()!!.jar
-}</code></pre>
-
-<p>把这个封装好后，&quot;选 AAB → 选设备 → 一键安装&quot;就变成了一个 UI 操作，不需要再碰命令行。</p>
-
-<h2>痛点二：ProGuard/R8 规则永远写不全</h2>
-
-<p>每次引入新依赖库，都要去查它的官方文档看需要什么 keep 规则。Gson 要 <code>@SerializedName</code>，Retrofit 要 <code>@Serializable</code>，Room 要 Entity 和 Dao……漏写一条，Release 包就 crash。</p>
-
-<h3>一个实用的方法论</h3>
-
-<p>与其每次手动查，不如建立一个<strong>规则模板库</strong>。我整理了 20 多个常用库的推荐规则：</p>
-
-<pre class="code-block"><code># Retrofit + OkHttp
--dontwarn okhttp3.**
--dontwarn retrofit2.**
--keep class retrofit2.** { *; }
--keepattributes Signature
--keepattributes Exceptions
-
-# Gson
--keepattributes Signature
--keepattributes *Annotation*
--keep class com.google.gson.** { *; }
--keep class * implements com.google.gson.TypeAdapterFactory
--keep class * implements com.google.gson.JsonSerializer
--keep class * implements com.google.gson.JsonDeserializer
-
-# Room
--keep class * extends androidx.room.RoomDatabase
--keep @androidx.room.Entity class *
--dontwarn androidx.room.paging.**</code></pre>
-
-<p>更进一步，可以扫描项目的 <code>build.gradle</code> 依赖列表，自动匹配已有模板并生成规则文件。这个思路的好处是：引入新库时，只要模板库里有对应规则，就不会遗漏。</p>
-
-<h2>痛点三：发版前检查全靠人脑记忆</h2>
-
-<p>你有没有经历过这些事：</p>
-
-<ul><li>发版后才发现 <code>debuggable true</code> 没关</li><li>API Key 硬编码在代码里，Release 包一拆就看到</li><li><code>minifyEnabled</code> 没开，包体积大了一倍</li><li>签名用的还是 debug keystore</li></ul>
-
-<p>每次发版前，脑子里过一遍清单。但人总会忘记，特别是赶工期的时候。</p>
-
-<h3>解决方案：13 项自动化检查</h3>
-
-<p>我把常见的发版遗漏整理成了一个检查清单，用代码自动扫描：</p>
-
-<table><thead><tr><th>检查项</th><th>检测方式</th></tr></thead><tbody><tr><td><code>debuggable</code> 是否为 false</td><td>解析 build.gradle 的 buildType 配置</td></tr><tr><td><code>minifyEnabled</code> 是否为 true</td><td>同上</td></tr><tr><td>硬编码 API Key</td><td>正则扫描源码中的 key/token/password 模式</td></tr><tr><td>签名配置是否完整</td><td>检查 signingConfigs 是否包含 release 配置</td></tr><tr><td>SDK 版本兼容性</td><td>对比 compileSdk / targetSdk 与当前推荐值</td></tr><tr><td>依赖库版本是否过旧</td><td>扫描 build.gradle 依赖，对比 Maven Central 最新版</td></tr><tr><td>资源冗余</td><td>检查未使用的 drawable / layout / string</td></tr><tr><td>测试依赖是否泄漏</td><td>确认 testImplementation 未出现在 release 依赖中</td></tr></tbody></table>
-
-<p>关键点是<strong>把这些检查做成自动化的</strong>，而不是一个文档让人去勾选。每次构建 Release 包前自动运行，有问题直接阻断构建，比事后发现强太多。</p>
-
-<h2>痛点四：多渠道打包配置繁琐</h2>
-
-<p>做国内市场的 Android 应用，经常需要多渠道打包。小米、华为、OPPO、vivo、应用宝……每个渠道可能有不同的配置。</p>
-
-<p>传统的做法是在 <code>build.gradle</code> 里写一堆 <code>productFlavors</code>：</p>
-
-<pre class="code-block"><code>productFlavors {
-    create(&quot;xiaomi&quot;) { dimension = &quot;channel&quot; }
-    create(&quot;huawei&quot;) { dimension = &quot;channel&quot; }
-    create(&quot;oppo&quot;) { dimension = &quot;channel&quot; }
-    // ... 还有十几个
-}</code></pre>
-
-<p>然后每次加新渠道都要改 build.gradle，提交代码，重新构建。</p>
-
-<h3>更高效的方式</h3>
-
-<p>把渠道配置外置到 <code>version.properties</code> 或 <code>local.properties</code>，通过 Gradle 脚本动态读取：</p>
-
-<pre class="code-block"><code>// build.gradle.kts
-val channelsFile = file(&quot;channels.properties&quot;)
-if (channelsFile.exists()) {
-    val props = Properties().apply { load(channelsFile.inputStream()) }
-    props.stringPropertyNames().forEach { channel -&gt;
-        productFlavors.create(channel) {
-            dimension = &quot;channel&quot;
-            manifestPlaceholders[&quot;CHANNEL&quot;] = channel
+        function getChoice() {
+          try {
+            return localStorage.getItem(LANGUAGE_KEY);
+          } catch (_) {
+            return null;
+          }
         }
-    }
-}</code></pre>
 
-<p>这样加渠道只需要改配置文件，不用动构建脚本。</p>
+        function systemPrefersChinese() {
+          var languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
+          return languages.some(function (language) {
+            return /^zh\b/i.test(language);
+          });
+        }
 
-<h2>痛点五：CI/CD 配置从零开始写</h2>
+        function shouldUseChinese() {
+          var choice = getChoice();
+          if (choice === 'zh-CN') return true;
+          if (choice === 'en') return false;
+          return systemPrefersChinese();
+        }
 
-<p>每次新建项目都要写一遍 GitHub Actions 或 GitLab CI 的配置。格式容易写错，变量名容易拼错，签名配置经常出问题。</p>
+        var targetLanguage = shouldUseChinese() ? 'zh-CN' : 'en';
+        if (targetLanguage === currentLanguage) return;
 
-<p>我的做法是做一个<strong>配置生成器</strong>，根据项目的实际配置（compileSdk 版本、JDK 版本、是否有 productFlavors、签名方式）自动生成 CI 配置：</p>
-
-<pre class="code-block"><code># 自动生成的 GitHub Actions 配置示例
-name: Build and Release
-on:
-  push:
-    tags: ['v*']
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-      - name: Build AAB
-        run: ./gradlew bundleRelease
-      - name: Sign
-        uses: r0adkll/sign-android-release@v1
-        with:
-          releaseDirectory: app/build/outputs/bundle/release
-          signingKeyBase64: ${{ secrets.SIGNING_KEY }}
-          alias: ${{ secrets.ALIAS }}
-          keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}</code></pre>
-
-<p>生成器会检测项目实际使用的 Gradle Wrapper 版本、JDK 版本、AGP 版本，确保生成的配置能直接跑。</p>
-
-<h2>整合：从散装工具到一体化工作流</h2>
-
-<p>上面这些问题，每一个都有独立的解决方案。但真正提升效率的，是把它们<strong>串联成一个完整的工作流</strong>：</p>
-
-<ol><li><strong>项目初始化</strong> → 一键配置渠道、SDK、签名、混淆规则、CI/CD</li><li><strong>日常开发</strong> → 自动管理 Bundletool、依赖健康检查、构建性能分析</li><li><strong>发版前</strong> → 13 项自动检查，有问题直接阻断</li><li><strong>发版后</strong> → 包体积追踪、版本对比、资源冗余扫描</li></ol>
-
-<p>这就是我开发 ADB Pro 插件的初衷——把散落在各处的命令行工具、Gradle 脚本、手动检查项，整合到 Android Studio 的一个工具窗口里。开发过程中最花时间的不是写 UI，而是处理各种边界情况：离线时 Bundletool 下载失败怎么降级、非标准模块名怎么动态检测、HTTP 连接泄漏怎么避免。</p>
-
-<p>如果你也在 Android 发版流程上有类似的痛点，可以在 JetBrains Marketplace 搜 &quot;ADB Pro&quot; 看看，有 30 天免费试用。当然，上面分享的思路和代码片段本身就可以直接用，不依赖任何特定工具。</p>
-
-<h2>一些额外的心得</h2>
-
-<p><strong>关于 ProGuard 混淆字典：</strong> 默认的 a-z 混淆太容易被反编译工具还原。使用 Unicode 形似字符（比如拉丁扩展、西里尔字母、希腊字母）作为混淆字典，能大幅增加逆向难度。我整理了 11 套混淆字典，放在了 <a href="https://codetroupe.github.io/dictionaries/" target="_blank" rel="noopener noreferrer">codetroupe.github.io/dictionaries</a> 上，可以直接下载使用。</p>
-
-<p><strong>关于资源混淆：</strong> AabResGuard 可以对 AAB 中的资源名进行混淆，减小包体积的同时增加逆向难度。但它对 <code>whitelist</code> 的配置要求很严格，配置不当会导致资源引用失败。</p>
-
-<p><strong>关于构建性能：</strong> 如果你的项目 clean build 超过 3 分钟，先检查 <code>org.gradle.parallel</code> 和 <code>org.gradle.caching</code> 是否开启。这两个配置项的投入产出比最高。</p>
-
-<hr>
-
-<p>希望这些经验对你有帮助。Android 发版不应该是一场赌博，而应该是一条可重复、可验证的流水线。</p>
-
-</article>
-
-<footer class="article-source-footer">
-    <span>本文已同步发布到掘金</span>
-    <a href="https://juejin.cn/post/7657337985915584531" target="_blank" rel="noopener noreferrer">在掘金阅读本文</a>
-</footer>
-
-
-<section class="cta-banner">
-    <h2>Ship Android Releases with Fewer Manual Steps</h2>
-    <p>ADB Pro brings release checks, AAB handling, signing, R8 rules, and resource obfuscation into one JetBrains IDE workflow.</p>
-    <div class="hero-actions">
-        <a href="../features/index.html" class="btn btn-primary btn-lg">Explore ADB Pro</a>
-        <a href="../pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
-    </div>
-</section>
-<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>Advanced Android Development Tools for JetBrains IDEs.</p></div><div class="footer-links"><div class="footer-col"><h4>Product</h4><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../pricing.html">Pricing</a><a href="../getting-started.html">Getting Started</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><div class="footer-col"><h4>Resources</h4><a href="../guides/index.html">Android Release Guides</a><a href="../dictionaries/index.html">ProGuard Dictionaries</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>Free Tools</h4><a href="../tools/index.html">Tools Directory</a><a href="../tools/aab-tools.html">AAB Tools</a><a href="../features/web-navigation.html">Android Resource Navigator</a></div><div class="footer-col"><h4>Legal</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">Subscription Agreement</a><a href="../privacy-policy.html">Privacy Policy</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg></button><script src="../assets/js/main.js?v=20260719-pricing-cta"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
+        var targetUrl = new URL(switchHref, window.location.href);
+        if (targetUrl.pathname === window.location.pathname) return;
+        if (!targetUrl.search && window.location.search) targetUrl.search = window.location.search;
+        if (!targetUrl.hash && window.location.hash) targetUrl.hash = window.location.hash;
+        window.location.replace(targetUrl.href);
+      })();
+    })();</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="../index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a></div><div class="nav-actions"><a href="../zh/blog/android-release-automation.html" class="btn btn-outline btn-sm" data-language-switch data-language-target="zh-CN">中文</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="../index.html">Home</a><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../tools/index.html">Tools</a><a href="../getting-started.html">Getting Started</a><a href="../pricing.html">Pricing</a><a href="../dictionaries/index.html">Dictionaries</a><a href="../blog/index.html" class="active">Blog</a><a href="../feedback.html">Feedback</a><a href="../zh/blog/android-release-automation.html" data-language-switch data-language-target="zh-CN">中文</a></div><section class="feature-hero"><div class="hero-content"><h1>This Article Is Available in Chinese</h1><p>The current blog article was originally published on Juejin, so it now lives under the Chinese blog section.</p><div class="hero-actions"><a href="../zh/blog/android-release-automation.html" class="btn btn-primary btn-lg">Open Chinese Article</a><a href="index.html" class="btn btn-secondary btn-lg">Back to English Blog</a></div></div></section><footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="../index.html" class="nav-brand" style="font-size:16px;"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>Advanced Android Development Tools for JetBrains IDEs.</p></div><div class="footer-links"><div class="footer-col"><h4>Product</h4><a href="../features/index.html">Features</a><a href="../guides/index.html">Guides</a><a href="../pricing.html">Pricing</a><a href="../getting-started.html">Getting Started</a><a href="../blog/index.html">Blog</a><a href="../feedback.html">Feedback</a></div><div class="footer-col"><h4>Resources</h4><a href="../guides/index.html">Android Release Guides</a><a href="../dictionaries/index.html">ProGuard Dictionaries</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>Free Tools</h4><a href="../tools/index.html">Tools Directory</a><a href="../tools/aab-tools.html">AAB Tools</a><a href="../features/web-navigation.html">Android Resource Navigator</a></div><div class="footer-col"><h4>Legal</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">Subscription Agreement</a><a href="../privacy-policy.html">Privacy Policy</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.</div></footer><button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg></button><script src="../assets/js/main.js?v=20260719-pricing-cta"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>

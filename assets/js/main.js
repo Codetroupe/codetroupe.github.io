@@ -40,6 +40,21 @@
     if (menu) menu.classList.toggle('open');
   };
 
+  /* Language preference */
+  var LANGUAGE_KEY = 'adbpro-language-choice';
+
+  document.addEventListener('click', function (e) {
+    var languageLink = e.target.closest('[data-language-switch]');
+    if (!languageLink) return;
+
+    var targetLanguage = languageLink.getAttribute('data-language-target');
+    if (!targetLanguage) return;
+
+    try {
+      localStorage.setItem(LANGUAGE_KEY, targetLanguage);
+    } catch (_) {}
+  });
+
   // Close mobile menu when clicking a link
   document.addEventListener('click', function (e) {
     if (e.target.closest('#mobile-menu a')) {
