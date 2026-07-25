@@ -2,10 +2,10 @@
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fcodetroupe.github.io)](https://codetroupe.github.io/)
 [![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/32100?label=JetBrains%20Marketplace)](https://plugins.jetbrains.com/plugin/32100-adb-pro)
-[![GitHub release](https://img.shields.io/github/v/release/Codetroupe/adbpro?label=GitHub%20release)](https://github.com/Codetroupe/adbpro/releases)
-[![Release downloads](https://img.shields.io/github/downloads/Codetroupe/adbpro/total?label=Release%20downloads)](https://github.com/Codetroupe/adbpro/releases)
-[![Latest release downloads](https://img.shields.io/github/downloads/Codetroupe/adbpro/latest/total?label=Latest%20downloads)](https://github.com/Codetroupe/adbpro/releases/latest)
 [![GitHub Pages](https://img.shields.io/badge/hosting-GitHub%20Pages-222)](https://pages.github.com/)
+[![AabResGuard v0.8.3 downloads](https://img.shields.io/github/downloads/Codetroupe/codetroupe.github.io/v0.8.3/total?label=AabResGuard%20v0.8.3)](https://github.com/Codetroupe/codetroupe.github.io/releases/tag/v0.8.3)
+[![AabResGuard plugin JAR](https://img.shields.io/github/downloads/Codetroupe/codetroupe.github.io/v0.8.3/plugin-0.8.3-all.jar?label=plugin%20jar)](https://github.com/Codetroupe/codetroupe.github.io/releases/tag/v0.8.3)
+[![AabResGuard CLI JAR](https://img.shields.io/github/downloads/Codetroupe/codetroupe.github.io/v0.8.3/AabResGuard-0.8.3.jar?label=cli%20jar)](https://github.com/Codetroupe/codetroupe.github.io/releases/tag/v0.8.3)
 
 This is the GitHub Pages website for [ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro), a JetBrains IDE plugin for Android release engineering, AAB testing, APK signing, R8 / ProGuard workflows, resource obfuscation, build automation, and pre-release checks.
 
@@ -13,7 +13,6 @@ This is the GitHub Pages website for [ADB Pro](https://plugins.jetbrains.com/plu
 
 - Website: [https://codetroupe.github.io/](https://codetroupe.github.io/)
 - JetBrains Marketplace: [ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro)
-- GitHub Releases: [ADB Pro releases](https://github.com/Codetroupe/adbpro/releases)
 - Pricing: [ADB Pro pricing](https://codetroupe.github.io/pricing.html)
 - Chinese site: [Chinese website](https://codetroupe.github.io/zh/)
 
@@ -56,6 +55,7 @@ The website is built for both traditional search engines and AI-assisted discove
 
 - [ADB Pro on JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32100-adb-pro)
 - [ADB Pro pricing on JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing)
+- [AabResGuard v0.8.3 release](https://github.com/Codetroupe/codetroupe.github.io/releases/tag/v0.8.3)
 - [Free ProGuard dictionaries](https://codetroupe.github.io/dictionaries/)
 - [Android AAB local testing guide](https://codetroupe.github.io/guides/install-aab-on-android-device.html)
 
