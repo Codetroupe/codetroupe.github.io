@@ -1,97 +1,66 @@
-# ADB Pro — Official Website
+# ADB Pro Official Website
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fcodetroupe.github.io)](https://codetroupe.github.io/)
-[![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/32100?label=ADB%20Pro)](https://plugins.jetbrains.com/plugin/32100-adb-pro)
-[![License](https://img.shields.io/badge/license-proprietary-blue)](https://codetroupe.github.io/subscription-agreement.html)
+[![JetBrains Plugin](https://img.shields.io/jetbrains/plugin/v/32100?label=JetBrains%20Marketplace)](https://plugins.jetbrains.com/plugin/32100-adb-pro)
+[![GitHub release](https://img.shields.io/github/v/release/Codetroupe/adbpro?label=GitHub%20release)](https://github.com/Codetroupe/adbpro/releases)
+[![Release downloads](https://img.shields.io/github/downloads/Codetroupe/adbpro/total?label=Release%20downloads)](https://github.com/Codetroupe/adbpro/releases)
+[![Latest release downloads](https://img.shields.io/github/downloads/Codetroupe/adbpro/latest/total?label=Latest%20downloads)](https://github.com/Codetroupe/adbpro/releases/latest)
+[![GitHub Pages](https://img.shields.io/badge/hosting-GitHub%20Pages-222)](https://pages.github.com/)
 
-The official marketing and documentation site for [ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro) — an all-in-one Android build, sign & release toolkit for Android Studio and IntelliJ IDEA.
+This is the GitHub Pages website for [ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro), a JetBrains IDE plugin for Android release engineering, AAB testing, APK signing, R8 / ProGuard workflows, resource obfuscation, build automation, and pre-release checks.
 
-## Live Site
+## Live Website
 
-**https://codetroupe.github.io/**
+- Website: [https://codetroupe.github.io/](https://codetroupe.github.io/)
+- JetBrains Marketplace: [ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro)
+- GitHub Releases: [ADB Pro releases](https://github.com/Codetroupe/adbpro/releases)
+- Pricing: [ADB Pro pricing](https://codetroupe.github.io/pricing.html)
+- Chinese site: [Chinese website](https://codetroupe.github.io/zh/)
 
-## What is ADB Pro?
+## What the Website Covers
 
-ADB Pro is a paid JetBrains Marketplace plugin that consolidates 13 Android development modules into a single tool window:
+ADB Pro helps Android developers move from manual release steps to a repeatable workflow inside Android Studio and IntelliJ IDEA. This website introduces the product, documents common Android release problems, and provides searchable resources for developers evaluating Android build and publishing tools.
 
-| Module | Description |
-|---|---|
-| **Quick Setup** | One-click project wizard with channels, SDKs, signing, R8 rules, and CI/CD generation |
-| **AAB Tools** | Convert, sign, and install Android App Bundles to one target or selected devices; auto-manages Bundletool |
-| **R8 Assistant** | ProGuard/R8 rule recommendation with 20+ library templates, reflection scanning |
-| **Resource Obfuscation** | AabResGuard integration with whitelists, Gradle plugin JAR management, and obfuscation dictionaries |
-| **Signing Tools** | APK signing (v1/v2/v3), zipalign, keystore management |
-| **Build Tools** | Gradle automation, variant management, batch builds |
-| **Bundle Inspector** | Deep AAB/APK size analysis with trend charts |
-| **Release Readiness** | Automated pre-release checklist with signing, minification, SDK, security, and compatibility checks |
-| **Lint Tools** | Android Lint with parsed issue visualization |
-| **Dependency Health** | Conflict detection, deprecation warnings, version catalog management |
-| **CI/CD Tools** | Pipeline config generation for GitHub Actions, GitLab CI, Gitee Go |
-| **Build Performance** | Build profiling and Gradle health checks |
-| **Device Manager** | ADB auto-discovery and connection monitoring |
+Core topics include:
 
-## Site Structure
+- Android App Bundle testing: convert AAB to APKS, install to devices, and use bundletool safely.
+- APK and AAB signing: keystore handling, zipalign, apksigner, signing schemes, and release validation.
+- R8 and ProGuard: minifyEnabled, keep rules, mapping files, obfuscation dictionaries, and stack trace recovery.
+- Resource obfuscation: AabResGuard workflows, whitelist management, and Gradle plugin JAR handling.
+- Release readiness: checks for debuggable builds, targetSdk, versionCode, secrets, cleartext traffic, dependency risk, and 16 KB page-size compatibility.
+- Build automation: Gradle build tasks, CI/CD generation, build performance, and multi-store release preparation.
 
-```
-index.html                  # Landing page with hero, feature grid, and CTA
-getting-started.html        # Installation and first-use guide
-pricing.html                # Pricing plans and free trial info
-feedback.html               # User feedback form (supports URL params for pre-filling)
-privacy-policy.html         # Website privacy policy
-plugin-privacy-policy.html  # Plugin privacy policy (for JetBrains Marketplace)
-subscription-agreement.html # Subscription terms
+## Site Sections
 
-features/                   # Individual feature pages (13 modules)
-  index.html                # Feature overview
-  quick-setup.html
-  aab-tools.html
-  ...
+- [Features](https://codetroupe.github.io/features/) - ADB Pro feature overview and individual module pages.
+- [Guides](https://codetroupe.github.io/guides/) - Android release, signing, AAB, R8, and resource obfuscation guides.
+- [Tools](https://codetroupe.github.io/tools/) - free companion tools and Android release resources.
+- [Dictionaries](https://codetroupe.github.io/dictionaries/) - free ProGuard and R8 obfuscation dictionaries.
+- [Blog](https://codetroupe.github.io/blog/) - practical Android release workflow articles.
+- [Feedback](https://codetroupe.github.io/feedback.html) - issue reports, feature requests, and product suggestions.
 
-dictionaries/               # Free ProGuard obfuscation dictionaries
-  index.html                # Dictionary overview and download
-  proguard-dic-*.txt        # 11 dictionary files
+## Languages
 
-assets/                     # Static assets
-  css/style.css
-  js/main.js
-  logo.png
-  favicon.ico
-```
+The site supports English and Simplified Chinese:
 
-## Tech Stack
+- English is the default language.
+- Chinese pages are available under `/zh/`.
+- Visitors can switch language from the site navigation.
+- Search engines receive canonical and `hreflang` metadata for both languages.
 
-- Astro static site generation
-- Shared layout, SEO, navigation, and footer components
-- Editable standard page bodies stored in `site/src/content-pages/`
-- Blog article bodies stored as Markdown in `site/public/blog-md/`
-- Custom CSS with dark/light theme support
-- Google Fonts: Inter + JetBrains Mono
-- Feather-style inline SVG icons
-- Deployed via GitHub Pages
+## SEO and Discovery
 
-## Deployment
+The website is built for both traditional search engines and AI-assisted discovery. Pages include descriptive titles, canonical URLs, Open Graph metadata, structured content, sitemap generation, and topic-focused guides around Android package release workflows such as AAB installation, APK signing, R8 obfuscation, ProGuard dictionaries, and Android release readiness.
 
-The source site lives in `site/`. Build it with:
+## Useful Links
 
-```bash
-cd site
-npm install
-npm run build
-```
-
-The build writes the generated static output to `web/`. The `deploy-web.yml` workflow builds `site/` first, then deploys the generated `web/` directory.
-
-For long-term changes, edit `site/src` or `site/public` and rebuild. The `web/` directory is generated output.
-
-## Links
-
-- [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32100-adb-pro)
-- [Free ProGuard Dictionaries](https://codetroupe.github.io/dictionaries/)
+- [ADB Pro on JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32100-adb-pro)
+- [ADB Pro pricing on JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing)
+- [Free ProGuard dictionaries](https://codetroupe.github.io/dictionaries/)
+- [Android AAB local testing guide](https://codetroupe.github.io/guides/install-aab-on-android-device.html)
 
 ## License
 
-The website content is proprietary. The ProGuard dictionaries in `dictionaries/` are freely available for use.
+Website content is proprietary. The public ProGuard dictionary files are provided as free resources for Android developers.
 
----
-
-&copy; 2026 codetroupe
+Copyright 2026 codetroupe.
