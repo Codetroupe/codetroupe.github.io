@@ -10,11 +10,13 @@
   .form-group select:disabled, .form-group textarea:disabled { opacity: 0.5; cursor: not-allowed; }
   .form-actions { display: flex; align-items: center; gap: 16px; margin-top: 24px; }
   .form-actions .btn { cursor: pointer; border: none; font-family: var(--font-sans); }
+  .form-actions .btn:disabled { opacity: 0.5; cursor: not-allowed; transform: none !important; }
   .form-status { margin-top: 20px; padding: 14px 18px; border-radius: 8px; font-size: 14px; display: none; }
   .form-status.success { display: block; background: var(--success-soft); color: #065f46; border: 1px solid var(--success); }
   .form-status.error { display: block; background: #fee2e2; color: #991b1b; border: 1px solid #f87171; }
   [data-theme="dark"] .form-status.success { color: #6ee7b7; }
   [data-theme="dark"] .form-status.error { background: rgba(248,113,113,0.1); color: #fca5a5; }
+  .form-status a { color: inherit; font-weight: 600; text-decoration: underline; }
   .required { color: #ef4444; margin-left: 2px; }
 </style><script>
     (function () {
@@ -63,9 +65,68 @@ const switchHref = "../feedback.html";
         if (!targetUrl.hash && window.location.hash) targetUrl.hash = window.location.hash;
         window.location.replace(targetUrl.href);
       })();
-    })();</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="index.html">首页</a><a href="features/index.html">功能</a><a href="guides/index.html">指南</a><a href="tools/index.html">工具</a><a href="getting-started.html">开始使用</a><a href="pricing.html">价格</a><a href="dictionaries/index.html">字典</a><a href="blog/index.html">博客</a><a href="feedback.html" class="active">反馈</a></div><div class="nav-actions"><a href="../feedback.html" class="btn btn-outline btn-sm" data-language-switch data-language-target="en">English</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">获取 ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="index.html">首页</a><a href="features/index.html">功能</a><a href="guides/index.html">指南</a><a href="tools/index.html">工具</a><a href="getting-started.html">开始使用</a><a href="pricing.html">价格</a><a href="dictionaries/index.html">字典</a><a href="blog/index.html">博客</a><a href="feedback.html" class="active">反馈</a><a href="../feedback.html" data-language-switch data-language-target="en">English</a></div><section class="hero"><div class="hero-content"><div class="hero-badge">欢迎反馈</div><h1>提交 <span>反馈</span></h1><p class="hero-sub">报告问题、提出功能建议，或者告诉我哪个 Android 发版流程最需要优化。</p></div></section><section class="section"><div class="feedback-container"><div class="feedback-form" id="feedbackForm"><div class="form-group"><label for="feature">功能<span class="required">*</span></label><select id="feature" required><option value="">选择功能</option><option value="AAB Tools">AAB Tools</option><option value="Signing Tools">Signing Tools</option><option value="Build Tools">Build Tools</option><option value="Bundle Inspector">Bundle Inspector</option><option value="Release Readiness">Release Readiness</option><option value="R8 Assistant">R8 Assistant</option><option value="Res Guard">Res Guard</option><option value="General">通用 / 其他</option></select></div><div class="form-group"><label for="type">反馈类型<span class="required">*</span></label><select id="type" required><option value="Bug Report">问题反馈</option><option value="Feature Request">功能建议</option><option value="Suggestion">改进建议</option><option value="Question">使用问题</option></select></div><div class="form-group"><label for="content">描述<span class="required">*</span></label><textarea id="content" placeholder="请尽量描述你遇到的问题、期望的功能或使用场景..." disabled></textarea><span class="form-hint">先选择功能后再填写描述。</span></div><div class="form-group"><label for="email">邮箱 <span style="font-weight:400; color:var(--text-muted);">(可选)</span></label><input type="email" id="email" placeholder="your@email.com"><span class="form-hint">仅用于需要跟进时联系你。</span></div><div class="form-actions"><button class="btn btn-primary" id="submitBtn" onclick="submitFeedback()">提交反馈</button><span id="submitStatus" style="font-size:13px; color:var(--text-muted);"></span></div><div class="form-status" id="formStatus"></div></div></div></section><script>
+    })();</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="../assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="../assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="index.html" class="nav-brand"><img src="../assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="index.html">首页</a><a href="features/index.html">功能</a><a href="guides/index.html">指南</a><a href="tools/index.html">工具</a><a href="getting-started.html">开始使用</a><a href="pricing.html">价格</a><a href="dictionaries/index.html">字典</a><a href="blog/index.html">博客</a><a href="feedback.html" class="active">反馈</a></div><div class="nav-actions"><a href="../feedback.html" class="btn btn-outline btn-sm" data-language-switch data-language-target="en">English</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="切换主题"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">获取 ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="菜单"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="index.html">首页</a><a href="features/index.html">功能</a><a href="guides/index.html">指南</a><a href="tools/index.html">工具</a><a href="getting-started.html">开始使用</a><a href="pricing.html">价格</a><a href="dictionaries/index.html">字典</a><a href="blog/index.html">博客</a><a href="feedback.html" class="active">反馈</a><a href="../feedback.html" data-language-switch data-language-target="en">English</a></div><section class="hero"><div class="hero-content"><div class="hero-badge">欢迎反馈</div><h1>提交 <span>反馈</span></h1><p class="hero-sub">报告问题、提出功能建议，或告诉我们哪个 Android 发布流程最需要优化。</p></div></section><section class="section"><div class="feedback-container"><div class="feedback-form" id="feedbackForm"><div class="form-group"><label for="feature">功能<span class="required">*</span></label><select id="feature" required><option value="">选择一个功能</option><option value="AAB Tools">AAB Tools</option><option value="Signing Tools">Signing Tools</option><option value="Build Tools">Build Tools</option><option value="Bundle Inspector">Bundle Inspector</option><option value="Release Readiness">Release Readiness</option><option value="Lint Tools">Lint Tools</option><option value="Dependency Health">Dependency Health</option><option value="R8 Assistant">R8 Assistant</option><option value="Res Guard">Res Guard</option><option value="CI/CD Tools">CI/CD Tools</option><option value="Build Perf">Build Perf</option><option value="Quick Setup">Quick Setup</option><option value="General">通用 / 其他</option></select></div><div class="form-group"><label for="type">反馈类型<span class="required">*</span></label><select id="type" required><option value="Bug Report">问题反馈</option><option value="Feature Request">功能建议</option><option value="Suggestion">改进建议</option><option value="Question">使用问题</option></select></div><div class="form-group"><label for="content">描述<span class="required">*</span></label><textarea id="content" placeholder="请尽量描述你遇到的问题、期望的功能或使用场景..." disabled></textarea><span class="form-hint">先选择功能后再填写描述。</span></div><div class="form-group"><label for="email">邮箱 <span style="font-weight:400; color:var(--text-muted);">(可选)</span></label><input type="email" id="email" placeholder="your@email.com"><span class="form-hint">仅用于需要跟进或通知问题修复时联系你。</span></div><div class="form-actions"><button class="btn btn-primary" id="submitBtn" onclick="submitFeedback()">提交反馈</button><span id="submitStatus" style="font-size:13px; color:var(--text-muted);"></span></div><div class="form-status" id="formStatus"></div></div></div></section><script>
     const GITHUB_REPO = 'Codetroupe/codetroupe.github.io';
+
+    const FEATURE_SLUGS = {
+      'aab-tools': 'AAB Tools',
+      'signing-tools': 'Signing Tools',
+      'build-tools': 'Build Tools',
+      'bundle-inspector': 'Bundle Inspector',
+      'release-readiness': 'Release Readiness',
+      'lint-tools': 'Lint Tools',
+      'dependency-health': 'Dependency Health',
+      'r8-assistant': 'R8 Assistant',
+      'res-guard': 'Res Guard',
+      'cicd-tools': 'CI/CD Tools',
+      'build-perf': 'Build Perf',
+      'quick-setup': 'Quick Setup'
+    };
+
+    (function() {
+      var params = new URLSearchParams(window.location.search);
+      var featureParam = params.get('feature');
+
+      if (featureParam) {
+        var select = document.getElementById('feature');
+        var matched = false;
+        for (var i = 0; i < select.options.length; i++) {
+          if (select.options[i].value === featureParam) {
+            select.selectedIndex = i;
+            matched = true;
+            break;
+          }
+        }
+        if (!matched && FEATURE_SLUGS[featureParam]) {
+          select.value = FEATURE_SLUGS[featureParam];
+          matched = true;
+        }
+        if (matched) onFeatureChange();
+      }
+
+      var typeParam = params.get('type');
+      if (typeParam) {
+        var typeSelect = document.getElementById('type');
+        for (var j = 0; j < typeSelect.options.length; j++) {
+          if (typeSelect.options[j].value === typeParam) {
+            typeSelect.selectedIndex = j;
+            break;
+          }
+        }
+      }
+
+      var descParam = params.get('description');
+      if (descParam) {
+        var textarea = document.getElementById('content');
+        textarea.value = descParam;
+        textarea.disabled = false;
+        var hint = textarea.parentElement.querySelector('.form-hint');
+        if (hint) hint.style.display = 'none';
+      }
+    })();
+
     document.getElementById('feature').addEventListener('change', onFeatureChange);
+
     function onFeatureChange() {
       var textarea = document.getElementById('content');
       var hint = textarea.parentElement.querySelector('.form-hint');
@@ -79,21 +140,45 @@ const switchHref = "../feedback.html";
         if (hint) hint.style.display = '';
       }
     }
+
     function submitFeedback() {
       var feature = document.getElementById('feature').value;
       var type = document.getElementById('type').value;
       var content = document.getElementById('content').value.trim();
       var email = document.getElementById('email').value.trim();
+
       if (!feature) return showStatus('error', '请选择功能。');
-      if (!content || content.length < 10) return showStatus('error', '请填写更完整的描述。');
-      var title = '[' + type + '] ' + feature + ' - ' + content.substring(0, 60);
-      var body = '## Feature\\n' + feature + '\\n\\n## Feedback Type\\n' + type + '\\n\\n## Description\\n' + content + '\\n\\n';
-      if (email) body += '## Contact Email\\n' + email + '\\n\\n';
-      body += '---\\n*Submitted via ADB Pro Feedback*';
-      var url = 'https://github.com/' + GITHUB_REPO + '/issues/new?title=' + encodeURIComponent(title) + '&body=' + encodeURIComponent(body) + '&labels=feedback';
+      if (!content) return showStatus('error', '请填写描述。');
+      if (content.length < 10) return showStatus('error', '描述太短，请补充更多细节。');
+      if (email && !/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(email)) return showStatus('error', '请输入有效的邮箱地址。');
+
+      var title = '[' + type + '] ' + feature + ' - ' + content.substring(0, 60) + (content.length > 60 ? '...' : '');
+      var body = '## Feature\\n' + feature + '\\n\\n';
+      body += '## Feedback Type\\n' + type + '\\n\\n';
+      body += '## Description\\n' + content + '\\n\\n';
+      if (email) {
+        body += '## Contact Email\\n' + email + '\\n_(for fix notification only)_\\n\\n';
+      }
+      body += '---\\n*Submitted via [ADB Pro Feedback](https://codetroupe.github.io/zh/feedback.html)*';
+
+      var url = 'https://github.com/' + GITHUB_REPO + '/issues/new'
+        + '?title=' + encodeURIComponent(title)
+        + '&body=' + encodeURIComponent(body)
+        + '&labels=feedback';
+
       window.open(url, '_blank');
-      showStatus('success', '已打开 GitHub Issue 页面，请确认内容后点击 Submit new issue 完成提交。');
+      showStatus('success', '已打开 GitHub Issue 页面，请确认内容后点击 <strong>"Submit new issue"</strong> 完成提交。');
+
+      document.getElementById('feature').value = '';
+      document.getElementById('type').selectedIndex = 0;
+      document.getElementById('content').value = '';
+      document.getElementById('content').disabled = true;
+      document.getElementById('content').placeholder = '请先选择功能...';
+      document.getElementById('email').value = '';
+      var hint = document.getElementById('content').parentElement.querySelector('.form-hint');
+      if (hint) hint.style.display = '';
     }
+
     function showStatus(type, message) {
       var el = document.getElementById('formStatus');
       el.className = 'form-status ' + type;
