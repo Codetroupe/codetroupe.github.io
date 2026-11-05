@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /googleplayapi/
+Sitemap: https://codetroupe.github.io/googleplayapi/sitemap.xml

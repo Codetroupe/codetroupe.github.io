@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "publisherRepository": "Codetroupe/pluginWeb",
+  "sites": {
+    "adbpro": {
+      "basePath": "/",
+      "sourceRepository": "Codetroupe/adbpro",
+      "sourceCommit": "602cd8969635b69f5958ceeb4c399a3e44f8a2d7",
+      "sourceTreeSha256": "4087363c7eb9b541465cdb578388f15dc19c78c7ac4eef72d95b092b52882519",
+      "outputTreeSha256": "4d9b3379a9ddf87d68854d58d93553e600c2e06e97eca391f5df9e4106894a96"
+    },
+    "googleplayapi": {
+      "basePath": "/googleplayapi/",
+      "sourceRepository": "Codetroupe/googleplayapi",
+      "sourceCommit": "ed515c581aea80be7f8b7caf2146cac546356b54",
+      "sourceTreeSha256": "828949e6c4995f61e59ced1f46ffc0518b749d97ab323e4ac4b24e2e0ab61765",
+      "outputTreeSha256": "c9ae1ebefe18112b6bc005df9bad903763009ac5f3b0066e3906c2e6fe7b90f4"
+    }
+  }
+}
