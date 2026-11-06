@@ -126,7 +126,7 @@ app/
 - **轻量方案**：`Minimal Confusable` — 52 字符，对 APK 体积影响最小
 - **编码干扰**：`Encoding Chaos` — 适合面向中文用户的应用，利用 GBK 编码差异
 
-这 11 套字典都可以在 [codetroupe.github.io/dictionaries](https://codetroupe.github.io/dictionaries/) 免费下载，所有字符都经过 `Character.isJavaIdentifierStart()` 校验，可以直接使用。
+这 11 套字典都可以在 [codetroupe.github.io/dictionaries](https://codetroupe.github.io/adbpro/dictionaries/) 免费下载，所有字符都经过 `Character.isJavaIdentifierStart()` 校验，可以直接使用。
 
 ## 五、验证字典是否生效
 
@@ -222,4 +222,4 @@ Guardsquare（ProGuard 的开发商）在官方文档中也提到，混淆字典
 
 混淆字典是一个成本低、效果直观的混淆增强手段。三行配置、一个文本文件，就能让反编译结果从一目了然变成满屏天书。虽然它不能替代专业的代码保护方案，但作为混淆链路上的一层加固，性价比很高。
 
-如果你用的是 JetBrains IDE，[ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro) 插件的 R8 Assistant 内置了字典管理功能，可以直接在 IDE 中预览、下载和应用这 11 套字典，不需要手动管理文件。更多关于混淆字典和 R8 配置的内容，也可以参考 [ADB Pro 文档](https://codetroupe.github.io/dictionaries/)。
+如果你用的是 JetBrains IDE，[ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro) 插件的 R8 Assistant 内置了字典管理功能，可以直接在 IDE 中预览、下载和应用这 11 套字典，不需要手动管理文件。更多关于混淆字典和 R8 配置的内容，也可以参考 [ADB Pro 文档](https://codetroupe.github.io/adbpro/dictionaries/)。

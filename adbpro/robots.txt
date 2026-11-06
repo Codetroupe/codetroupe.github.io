@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /adbpro/feedback.html
+Disallow: /adbpro/zh/feedback.html
+
+Sitemap: https://codetroupe.github.io/adbpro/sitemap.xml

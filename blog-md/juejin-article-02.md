@@ -276,6 +276,6 @@ extensions.findByType(AabResGuardExtension::class.java)?.apply {
 
 资源混淆是 Android 安全防护中容易被忽略的一环。大多数开发者只做了 R8 代码混淆，但资源名的暴露同样会给逆向分析提供便利。AabResGuard 的接入成本很低，主要工作量在白名单的配置上——配好一次，后续维护成本几乎为零。
 
-如果你觉得手动配置白名单比较繁琐，也可以试试 IDE 插件来辅助。我自己在用的 [ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro) 插件内置了 AabResGuard 的配置管理功能，可以根据项目依赖自动识别需要白名单的 SDK，一键生成配置并注入到 build.gradle.kts 中。更多关于资源混淆和 ProGuard 混淆字典的内容，也可以参考 [ADB Pro 文档](https://codetroupe.github.io/features/res-guard.html)。
+如果你觉得手动配置白名单比较繁琐，也可以试试 IDE 插件来辅助。我自己在用的 [ADB Pro](https://plugins.jetbrains.com/plugin/32100-adb-pro) 插件内置了 AabResGuard 的配置管理功能，可以根据项目依赖自动识别需要白名单的 SDK，一键生成配置并注入到 build.gradle.kts 中。更多关于资源混淆和 ProGuard 混淆字典的内容，也可以参考 [ADB Pro 文档](https://codetroupe.github.io/adbpro/features/res-guard.html)。
 
 希望这篇配置指南对你有帮助。如果在使用 AabResGuard 时遇到了其他坑，欢迎在评论区分享。

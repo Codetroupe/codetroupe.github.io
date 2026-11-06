@@ -193,7 +193,7 @@ jobs:
 
 ## 一些额外的心得
 
-**关于 ProGuard 混淆字典：** 默认的 a-z 混淆太容易被反编译工具还原。使用 Unicode 形似字符（比如拉丁扩展、西里尔字母、希腊字母）作为混淆字典，能大幅增加逆向难度。我整理了 11 套混淆字典，放在了 [codetroupe.github.io/dictionaries](https://codetroupe.github.io/dictionaries/) 上，可以直接下载使用。
+**关于 ProGuard 混淆字典：** 默认的 a-z 混淆太容易被反编译工具还原。使用 Unicode 形似字符（比如拉丁扩展、西里尔字母、希腊字母）作为混淆字典，能大幅增加逆向难度。我整理了 11 套混淆字典，放在了 [codetroupe.github.io/dictionaries](https://codetroupe.github.io/adbpro/dictionaries/) 上，可以直接下载使用。
 
 **关于资源混淆：** AabResGuard 可以对 AAB 中的资源名进行混淆，减小包体积的同时增加逆向难度。但它对 `whitelist` 的配置要求很严格，配置不当会导致资源引用失败。
 

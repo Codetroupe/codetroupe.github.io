@@ -1,287 +1,32 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="color-scheme" content="light dark"><title>ADB Pro - Advanced Android Development Tools for JetBrains IDEs</title><meta name="description" content="Professional-grade tools for Android app bundle management, build optimization, code quality, and release workflows. Available for IntelliJ IDEA and Android Studio."><link rel="canonical" href="https://codetroupe.github.io/"><link rel="alternate" hreflang="en" href="https://codetroupe.github.io/"><link rel="alternate" hreflang="zh-CN" href="https://codetroupe.github.io/zh/"><link rel="alternate" hreflang="x-default" href="https://codetroupe.github.io/"><meta property="og:title" content="ADB Pro - Advanced Android Development Tools for JetBrains IDEs"><meta property="og:description" content="Professional-grade tools for Android app bundle management, build optimization, code quality, and release workflows. Available for IntelliJ IDEA and Android Studio."><meta property="og:type" content="website"><meta property="og:url" content="https://codetroupe.github.io/"><meta property="og:image" content="https://codetroupe.github.io/assets/logo.png"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="ADB Pro - Advanced Android Development Tools for JetBrains IDEs"><meta name="twitter:description" content="Professional-grade tools for Android app bundle management, build optimization, code quality, and release workflows. Available for IntelliJ IDEA and Android Studio."><script>
-    (function () {
-      try {
-        var theme = localStorage.getItem('adbpro-theme');
-        if (!theme) {
-          theme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-        }
-        document.documentElement.setAttribute('data-theme', theme);
-      } catch (_) {}
-    })();
-  </script><script>(function(){const currentLanguage = "en";
-const switchHref = "zh/index.html";
-
-      (function () {
-        var LANGUAGE_KEY = 'adbpro-language-choice';
-
-        function getChoice() {
-          try {
-            return localStorage.getItem(LANGUAGE_KEY);
-          } catch (_) {
-            return null;
-          }
-        }
-
-        function systemPrefersChinese() {
-          var languages = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || ''];
-          return languages.some(function (language) {
-            return /^zh\b/i.test(language);
-          });
-        }
-
-        function shouldUseChinese() {
-          var choice = getChoice();
-          if (choice === 'zh-CN') return true;
-          if (choice === 'en') return false;
-          return systemPrefersChinese();
-        }
-
-        var targetLanguage = shouldUseChinese() ? 'zh-CN' : 'en';
-        if (targetLanguage === currentLanguage) return;
-
-        var targetUrl = new URL(switchHref, window.location.href);
-        if (targetUrl.pathname === window.location.pathname) return;
-        if (!targetUrl.search && window.location.search) targetUrl.search = window.location.search;
-        if (!targetUrl.hash && window.location.hash) targetUrl.hash = window.location.hash;
-        window.location.replace(targetUrl.href);
-      })();
-    })();</script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><link rel="stylesheet" href="assets/css/style.css?v=20260719-pricing-cta"><link rel="icon" type="image/x-icon" href="assets/favicon.ico"></head><body><nav class="site-nav"><div class="nav-inner"><a href="index.html" class="nav-brand"><img src="assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="32" height="32">ADB Pro</a><div class="nav-links"><a href="index.html" class="active">Home</a><a href="features/index.html">Features</a><a href="guides/index.html">Guides</a><a href="tools/index.html">Tools</a><a href="getting-started.html">Getting Started</a><a href="pricing.html">Pricing</a><a href="dictionaries/index.html">Dictionaries</a><a href="blog/index.html">Blog</a><a href="feedback.html">Feedback</a></div><div class="nav-actions"><a href="zh/index.html" class="btn btn-outline btn-sm" data-language-switch data-language-target="zh-CN">中文</a><button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"><svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg><svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg></button><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-sm" target="_blank" data-track="marketplace_outbound_click" data-track-label="header-get-adb-pro">Get ADB Pro</a></div><button class="nav-toggle" onclick="toggleMobileMenu()" aria-label="Menu"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></button></div></nav><div class="mobile-menu" id="mobile-menu"><a href="index.html" class="active">Home</a><a href="features/index.html">Features</a><a href="guides/index.html">Guides</a><a href="tools/index.html">Tools</a><a href="getting-started.html">Getting Started</a><a href="pricing.html">Pricing</a><a href="dictionaries/index.html">Dictionaries</a><a href="blog/index.html">Blog</a><a href="feedback.html">Feedback</a><a href="zh/index.html" data-language-switch data-language-target="zh-CN">中文</a></div><!-- Hero -->
-<section class="hero">
-    <div class="hero-content">
-        <div class="hero-badge">Latest Marketplace version: v1.3.10</div>
-        <h1>Your Android Dev Workflow, <span>Supercharged</span></h1>
-        <p class="hero-sub">Professional-grade tools for Android App Bundle management, build optimization, code obfuscation, and release workflows &mdash; all inside your JetBrains IDE.</p>
-        <div class="hero-actions">
-            <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank" data-track="marketplace_outbound_click" data-track-label="home-hero-install">
-                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Install from Marketplace
-            </a>
-            <a href="features/index.html" class="btn btn-secondary btn-lg">Explore Features</a>
-        </div>
-    </div>
-</section>
-<section class="product-showcase">
-    <div class="product-showcase-inner">
-        <div class="product-showcase-copy">
-            <h2>The Same Structure You Use in the IDE</h2>
-            <p>ADB Pro organizes Android release work around the plugin menu itself: Start, Build / Package, Release, Diagnose, Optimize, CI/CD, Setup, Web, and Logs.</p>
-            <div class="product-showcase-list">
-                <div><span></span><p>Dashboard overview for project health, quick actions, and recent activity.</p></div>
-                <div><span></span><p>Feature groups match the JetBrains tool window, so docs and product navigation stay aligned.</p></div>
-                <div><span></span><p>Click any screenshot to inspect the full 1920 x 1000 interface.</p></div>
-            </div>
-        </div>
-        <figure class="product-shot">
-            <img src="assets/screenshots/adb-pro-dashboard.png" alt="ADB Pro dashboard inside a JetBrains IDE showing project overview, quick actions, health summary, recent activity, and product menu categories" loading="eager" width="1920" height="1000">
-            <figcaption>ADB Pro keeps build, package, release, diagnose, optimize, CI/CD, setup, web, and logs workflows in one JetBrains IDE tool window.</figcaption>
-        </figure>
-    </div>
-</section>
-
-<!-- Stats -->
-<div class="section" style="padding-top:0; padding-bottom:0;">
-    <div class="stats-grid">
-        <div>
-            <div class="stat-value">13</div>
-            <div class="stat-label">Feature Modules</div>
-        </div>
-        <div>
-            <div class="stat-value">20+</div>
-            <div class="stat-label">R8/ProGuard Templates</div>
-        </div>
-        <div>
-            <div class="stat-value">13</div>
-            <div class="stat-label">Release Checkpoints</div>
-        </div>
-        <div>
-            <div class="stat-value">11</div>
-            <div class="stat-label">Obfuscation Dictionaries</div>
-        </div>
-    </div>
-</div>
-
-<!-- Core Features Overview -->
-<section class="section home-capabilities" id="features">
-    <div class="section-header">
-        <h2>Release Android Apps Without Leaving the IDE</h2>
-        <p>ADB Pro brings setup, packaging, signing, release checks, obfuscation, and CI/CD into one JetBrains tool window.</p>
-    </div>
-    <div class="home-capabilities-grid">
-        <a href="features/quick-setup.html" class="feature-card home-capability-primary">
-            <div>
-                <div class="feature-card-icon icon-green">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                </div>
-                <div class="badge badge-green">Best starting point</div>
-                <h3>Quick Setup</h3>
-                <p>Scan an Android project, choose SDK, channel, R8, Res Guard, CI/CD, and build performance options, then apply the Gradle changes in one pass.</p>
-            </div>
-            <div class="home-capability-points">
-                <span>Project scan</span>
-                <span>Gradle preview</span>
-                <span>Safe undo</span>
-            </div>
-            <div class="card-arrow">Start with Quick Setup &rarr;</div>
-        </a>
-        <div class="home-capability-list">
-            <a href="features/build-tools.html" class="feature-card home-capability-card">
-                <div class="feature-card-icon icon-green">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
-                </div>
-                <h3>Build / Package</h3>
-                <p>Build APKs and AABs, manage variants, inspect bundles, and locate artifacts fast.</p>
-            </a>
-            <a href="features/release-readiness.html" class="feature-card home-capability-card">
-                <div class="feature-card-icon icon-blue">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-                </div>
-                <h3>Release Checks</h3>
-                <p>Validate signing, minification, SDK settings, permissions, debug flags, and API key risks.</p>
-            </a>
-            <a href="features/r8-assistant.html" class="feature-card home-capability-card">
-                <div class="feature-card-icon icon-purple">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-                </div>
-                <h3>R8 Assistant</h3>
-                <p>Generate keep rules, scan reflection risks, analyze mappings, and deobfuscate stack traces.</p>
-            </a>
-            <a href="features/res-guard.html" class="feature-card home-capability-card">
-                <div class="feature-card-icon icon-amber">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg>
-                </div>
-                <h3>Res Guard</h3>
-                <p>Configure AabResGuard, whitelist resources, inject Gradle config, and run obfuscation.</p>
-            </a>
-            <a href="features/cicd-tools.html" class="feature-card home-capability-card">
-                <div class="feature-card-icon icon-green">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
-                </div>
-                <h3>CI/CD Tools</h3>
-                <p>Generate GitHub Actions, GitLab CI, and Jenkins pipelines from project settings.</p>
-            </a>
-            <a href="features/index.html" class="feature-card home-capability-card home-capability-more">
-                <h3>Explore All Features</h3>
-                <p>Open the interactive feature map with real screenshots for every ADB Pro menu item.</p>
-                <div class="card-arrow">View feature map &rarr;</div>
-            </a>
-        </div>
-    </div>
-</section>
-<!-- Android Release Guides -->
-<section class="section" style="background: var(--bg-elevated); max-width: 100%; padding-left: 0; padding-right: 0;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-        <div class="section-header">
-            <h2>Practical Android Release Guides</h2>
-            <p>Plain-English answers for APK obfuscation, AAB resource protection, signing, release checks, and install workflows.</p>
-        </div>
-        <div class="features-grid">
-            <a href="guides/android-apk-obfuscation.html" class="feature-card guide-card" data-track="guide_entry_click" data-track-label="home-apk-obfuscation">
-                <div class="badge">Obfuscation</div>
-                <h3>How to obfuscate an Android APK before release</h3>
-                <p>Understand what R8/ProGuard protects, how release builds are configured, and where ADB Pro can reduce manual setup.</p>
-                <div class="card-arrow">Read guide &rarr;</div>
-            </a>
-            <a href="guides/android-aab-resource-obfuscation.html" class="feature-card guide-card" data-track="guide_entry_click" data-track-label="home-aab-resource-obfuscation">
-                <div class="badge">AAB Resources</div>
-                <h3>How to protect Android resources in an AAB</h3>
-                <p>Learn where resource names leak context and how Res Guard helps rename resources while preserving safe whitelists.</p>
-                <div class="card-arrow">Read guide &rarr;</div>
-            </a>
-            <a href="guides/android-release-readiness-checklist.html" class="feature-card guide-card" data-track="guide_entry_click" data-track-label="home-release-checklist">
-                <div class="badge">Release</div>
-                <h3>Android release readiness checklist</h3>
-                <p>Review debug flags, signing, API keys, SDK compliance, build variants, and install validation before shipping.</p>
-                <div class="card-arrow">Read guide &rarr;</div>
-            </a>
-        </div>
-    </div>
-</section>
-
-<!-- How It Works -->
-<section class="section" style="background: var(--bg-elevated); max-width: 100%; padding-left: 0; padding-right: 0;">
-    <div style="max-width: 1200px; margin: 0 auto; padding: 0 24px;">
-        <div class="section-header">
-            <h2>Up and Running in Minutes</h2>
-            <p>No complex setup. Install, configure, and start optimizing your Android build pipeline today.</p>
-        </div>
-        <div class="steps" style="max-width: 640px; margin: 0 auto;">
-            <div class="step">
-                <div class="step-number"></div>
-                <div class="step-content">
-                    <h3>Install from Marketplace</h3>
-                    <p>Search "ADB Pro" in your JetBrains IDE's plugin marketplace. Install and restart &mdash;that's it.</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number"></div>
-                <div class="step-content">
-                    <h3>Open Your Android Project</h3>
-                    <p>Open any Android project in IntelliJ IDEA or Android Studio. ADB Pro auto-detects your project structure and Gradle configuration.</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number"></div>
-                <div class="step-content">
-                    <h3>One-Click Quick Setup</h3>
-                    <p>Open the Quick Setup tab, scan your project, select channels, SDKs, obfuscation, and CI/CD &mdash;then apply everything with one click. Undo is always available.</p>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-number"></div>
-                <div class="step-content">
-                    <h3>Ship with Confidence</h3>
-                    <p>Run the release readiness checklist, optimize your ProGuard rules, and deploy to production knowing your app is properly configured.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Code Preview -->
-<section class="section">
-    <div class="section-header">
-        <h2>One-Click Project Setup</h2>
-        <p>Quick Setup scans your project, selects what you need, and writes all Gradle configuration in one step &mdash;no manual file editing.</p>
-    </div>
-    <div class="code-block">
-        <div class="code-header">
-            <div class="code-dot" style="background:#ff5f57"></div>
-            <div class="code-dot" style="background:#febc2e"></div>
-            <div class="code-dot" style="background:#28c840"></div>
-            <span style="margin-left:12px; font-size:12px; color:#64748b;">build.gradle.kts &mdash;generated by Quick Setup</span>
-        </div>
-        <span class="comment">// Applied by Quick Setup &mdash;channels, SDKs, R8, and ResGuard</span><br><br>
-        <span class="keyword">android</span> {<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;flavorDimensions += <span class="string">"channel"</span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;productFlavors {<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create(<span class="string">"google"</span>) { dimension = <span class="string">"channel"</span> }<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;create(<span class="string">"huawei"</span>) { dimension = <span class="string">"channel"</span> }<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;buildTypes {<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;release {<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isMinifyEnabled = <span class="keyword">true</span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isShrinkResources = <span class="keyword">true</span><br>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;}<br>
-        }<br><br>
-        <span class="keyword">dependencies</span> {<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;implementation(platform(<span class="string">"com.google.firebase:firebase-bom:33.7.0"</span>))<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;implementation(<span class="string">"com.google.firebase:firebase-analytics"</span>)<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;implementation(<span class="string">"com.google.firebase:firebase-crashlytics"</span>)<br>
-        &nbsp;&nbsp;&nbsp;&nbsp;implementation(<span class="string">"com.squareup.retrofit2:retrofit:2.11.0"</span>)<br>
-        }
-    </div>
-</section>
-
-<!-- CTA -->
-<section class="cta-banner">
-    <h2>Ready to Level Up Your Android Workflow?</h2>
-    <p>Start your free 30-day trial. No credit card required. Full access to all features.</p>
-    <div class="hero-actions">
-        <a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" class="btn btn-primary btn-lg" target="_blank" data-track="marketplace_outbound_click" data-track-label="home-bottom-get-adb-pro">Get ADB Pro Free</a>
-        <a href="pricing.html" class="btn btn-secondary btn-lg">View Pricing</a>
-    </div>
-</section>
-
-
-<footer class="site-footer"><div class="footer-inner"><div class="footer-brand"><a href="index.html" class="nav-brand" style="font-size:16px;"><img src="assets/logo.png" alt="ADB Pro" class="nav-brand-logo" width="28" height="28">ADB Pro</a><p>Advanced Android Development Tools for JetBrains IDEs.</p></div><div class="footer-links"><div class="footer-col"><h4>Product</h4><a href="features/index.html">Features</a><a href="guides/index.html">Guides</a><a href="pricing.html">Pricing</a><a href="getting-started.html">Getting Started</a><a href="blog/index.html">Blog</a><a href="feedback.html">Feedback</a></div><div class="footer-col"><h4>Resources</h4><a href="guides/index.html">Android Release Guides</a><a href="dictionaries/index.html">ProGuard Dictionaries</a><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-marketplace">JetBrains Marketplace</a></div><div class="footer-col"><h4>Free Tools</h4><a href="tools/index.html">Tools Directory</a><a href="tools/aab-tools.html">AAB Tools</a><a href="features/web-navigation.html">Android Resource Navigator</a></div><div class="footer-col"><h4>Legal</h4><a href="https://plugins.jetbrains.com/plugin/32100-adb-pro/pricing" target="_blank" data-track="marketplace_outbound_click" data-track-label="footer-subscription-agreement">Subscription Agreement</a><a href="privacy-policy.html">Privacy Policy</a><a href="https://www.jetbrains.com/legal/docs/store/terms/" target="_blank">JetBrains Store Terms</a></div></div></div><div class="footer-bottom">&copy; 2026 codetroupe. All rights reserved.&nbsp;&middot;&nbsp;<a href="https://codetroupe.goatcounter.com/" target="_blank" style="color:inherit;text-decoration:none;opacity:0.6;">Stats</a></div></footer><button class="back-to-top" type="button" aria-label="Back to top" title="Back to top"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"></path></svg></button><script src="assets/js/main.js?v=20260719-pricing-cta"></script><script data-goatcounter="https://codetroupe.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>Practical plugins. Better Android workflows. | Codetroupe Plugins</title><meta name="description" content="Independent plugins for Android Studio and IntelliJ IDEA. Explore ADB Pro, AAB Tools, and GooglePlay API by Codetroupe."><link rel="canonical" href="https://codetroupe.github.io/"><link rel="icon" type="image/svg+xml" href="/assets/portal/brand-mark.svg"><meta property="og:type" content="website"><meta property="og:site_name" content="Codetroupe Plugins"><meta property="og:title" content="Practical plugins. Better Android workflows. | Codetroupe Plugins"><meta property="og:description" content="Independent plugins for Android Studio and IntelliJ IDEA. Explore ADB Pro, AAB Tools, and GooglePlay API by Codetroupe."><meta property="og:url" content="https://codetroupe.github.io/"><script>
+  (() => {
+    const key = 'codetroupe-portal-theme';
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const valid = (value) => ['light', 'dark', 'system'].includes(value) ? value : 'system';
+    let preference = 'system';
+    try { preference = valid(localStorage.getItem(key)); } catch {}
+    function apply(value) {
+      preference = valid(value);
+      const resolved = preference === 'system' ? (media.matches ? 'dark' : 'light') : preference;
+      document.documentElement.dataset.theme = resolved;
+      document.documentElement.dataset.themePreference = preference;
+      document.documentElement.style.colorScheme = resolved;
+      document.querySelectorAll('[data-theme-select]').forEach((select) => { select.value = preference; });
+    }
+    apply(preference);
+    media.addEventListener('change', () => { if (preference === 'system') apply('system'); });
+    window.addEventListener('storage', (event) => {
+      if (event.key === key || event.key === null) apply(event.key === null ? 'system' : event.newValue);
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      apply(preference);
+      document.querySelectorAll('[data-theme-select]').forEach((select) => {
+        select.disabled = false;
+        select.addEventListener('change', () => {
+          apply(select.value);
+          try { localStorage.setItem(key, preference); } catch {}
+        });
+      });
+    }, { once: true });
+  })();
+</script><link rel="stylesheet" href="/_astro/BaseLayout.5wDUJ5aT.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Codetroupe Plugins home"><img src="/assets/portal/brand-mark.svg" width="38" height="38" alt=""><span><strong>Codetroupe</strong> Plugins</span></a><button class="menu-toggle button secondary" type="button" aria-expanded="false" aria-controls="site-navigation" hidden data-menu-toggle>Menu <span aria-hidden="true">☰</span></button><nav id="site-navigation" class="navigation" aria-label="Main navigation"><a href="/#plugins">Plugins</a><a href="/#guides">Guides</a><a href="/support/">Support</a><label class="theme-control"><span>Theme</span><select data-theme-select aria-label="Theme" disabled><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label><a class="button primary marketplace-link" href="https://plugins.jetbrains.com/vendor/4624269c-50f9-4161-a140-4112356bc5bd">Marketplace <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"></path></svg></a></nav></div></header><main id="main" tabindex="-1"><section class="hero container" aria-labelledby="hero-title"><div class="hero-copy"><p class="eyebrow">Independent plugins for JetBrains IDEs</p><h1 id="hero-title">Practical plugins.<br><span>Better Android workflows.</span></h1><p class="hero-summary">Focused tools for Android Studio and IntelliJ IDEA.</p><div class="hero-actions"><a class="button primary" href="#plugins">Explore plugins <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a><a class="button secondary" href="https://plugins.jetbrains.com/vendor/4624269c-50f9-4161-a140-4112356bc5bd">View on Marketplace <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"></path></svg></a></div></div><div class="hero-art" aria-hidden="true"><span class="bracket left">‹</span><div class="workflow-stack"><div><span>▷</span>Build &amp; release</div><div><span>◇</span>Bundle tools</div><div><span>‹/›</span>API components</div></div><span class="bracket right">›</span></div></section><section id="plugins" class="container section" aria-labelledby="plugins-title"><div class="section-heading"><div><p class="section-kicker">The plugin collection</p><h2 id="plugins-title">Explore our plugins</h2></div><form class="search" role="search" data-search-form hidden><label class="sr-only" for="plugin-search">Search plugins</label><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></svg><input id="plugin-search" type="search" placeholder="Search plugins" autocomplete="off"><button type="button" data-reset hidden aria-label="Clear plugin search">Clear</button></form></div><p class="sr-only" role="status" aria-live="polite" data-result-status></p><div class="product-grid"><article class="product-card" data-product data-search="adb pro build, inspect, sign, and release android apps from your ide. build &amp; release paid adb android devices signing release build apk"><div class="product-heading"><div class="product-icon"><img src="/assets/portal/adbpro.png" alt="" width="72" height="72" loading="lazy"></div><div class="product-title"><h3>ADB Pro</h3><span class="badge">Paid</span></div></div><p class="product-description">Build, inspect, sign, and release Android apps from your IDE.</p><p class="product-category"><span aria-hidden="true">▷</span>Build &amp; release</p><div class="product-actions"><a class="button primary" href="/adbpro/">Explore plugin<svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a><a class="button secondary" href="https://plugins.jetbrains.com/plugin/32100">Marketplace<svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"></path></svg></a></div></article><article class="product-card" data-product data-search="aab tools convert aab to apks and install on connected android devices. bundle tools free android app bundle bundletool aab apks install devices"><div class="product-heading"><div class="product-icon"><img src="/assets/portal/aab-tools.svg" alt="" width="72" height="72" loading="lazy"></div><div class="product-title"><h3>AAB Tools</h3><span class="badge free">Free</span></div></div><p class="product-description">Convert AAB to APKS and install on connected Android devices.</p><p class="product-category"><span aria-hidden="true">◇</span>Bundle tools</p><div class="product-actions"><a class="button primary" href="/adbpro/tools/aab-tools.html">Explore tool<svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a><a class="button secondary" href="https://plugins.jetbrains.com/plugin/27766-aab-tools">Get plugin<svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"></path></svg></a></div></article><article class="product-card" data-product data-search="googleplay api generate kotlin and java components for google play and firebase. api integration in preparation google play firebase kotlin java code generation updates reviews billing"><div class="product-heading"><div class="product-icon"><img src="/assets/portal/googleplayapi.svg" alt="" width="72" height="72" loading="lazy"></div><div class="product-title"><h3>GooglePlay API</h3><span class="badge preparing">In preparation</span></div></div><p class="product-description">Generate Kotlin and Java components for Google Play and Firebase.</p><p class="product-category"><span aria-hidden="true">‹/›</span>API integration</p><div class="product-actions"><a class="button primary" href="/googleplayapi/">Explore integrations<svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a><a class="button secondary" href="/googleplayapi/guides/getting-started/">Read guide<svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a></div></article></div><div class="empty-state" data-empty hidden><h3>No matching plugins</h3><p>Try a product name or a task such as “build”, “bundle”, or “Firebase”.</p><button class="button secondary" type="button" data-empty-reset>Show all plugins</button></div></section><section id="guides" class="container section guides-section" aria-labelledby="guides-title"><div class="section-heading"><div><p class="section-kicker">From a task to a working result</p><h2 id="guides-title">Start with a practical guide</h2></div></div><div class="guide-grid"><a class="guide-card" href="/adbpro/guides/install-aab-on-android-device.html"><svg width="26" height="30" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 2h10l6 6v18H4zM14 2v7h6M8 14h8M8 18h8M8 22h5"></path></svg><div><span class="guide-product">ADB Pro · AAB Tools</span><h3>Test an Android App Bundle</h3><p>Convert, sign, and install an AAB on a real device.</p></div><svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a><a class="guide-card" href="/adbpro/guides/android-release-readiness-checklist.html"><svg width="26" height="30" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 2h10l6 6v18H4zM14 2v7h6M8 14h8M8 18h8M8 22h5"></path></svg><div><span class="guide-product">ADB Pro</span><h3>Prepare an Android release</h3><p>Check release artifacts, signing, and build configuration.</p></div><svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a><a class="guide-card" href="/googleplayapi/guides/getting-started/"><svg width="26" height="30" viewBox="0 0 24 28" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 2h10l6 6v18H4zM14 2v7h6M8 14h8M8 18h8M8 22h5"></path></svg><div><span class="guide-product">GooglePlay API</span><h3>Integrate Google Play APIs</h3><p>Start with reusable components in your Android project.</p></div><svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a></div></section><section class="container support-strip"><div><h2>A question about a plugin?</h2><p>Find the right documentation, product support, or licensing information.</p></div><a class="button secondary" href="/support/">Get support <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"></path></svg></a></section><script type="module">var e=document.querySelector(`[data-search-form]`),t=document.querySelector(`#plugin-search`),n=[...document.querySelectorAll(`[data-product]`)],r=document.querySelector(`[data-empty]`),i=document.querySelector(`[data-reset]`),a=document.querySelector(`[data-result-status]`);if(e&&t&&r&&i&&a){e.hidden=!1,e.addEventListener(`submit`,e=>e.preventDefault());let o=()=>{let e=t.value.toLowerCase().trim().split(/\s+/).filter(Boolean),o=0;n.forEach(t=>{let n=e.every(e=>t.dataset.search?.includes(e));t.hidden=!n,n&&o++}),r.hidden=o>0,i.hidden=t.value.length===0,a.textContent=`${o} ${o===1?`plugin`:`plugins`} found`},s=()=>{t.value=``,o(),t.focus()};t.addEventListener(`input`,o),i.addEventListener(`click`,s),document.querySelector(`[data-empty-reset]`)?.addEventListener(`click`,s)}</script></main><footer class="site-footer container"><a class="brand footer-brand" href="/"><img src="/assets/portal/brand-mark.svg" width="30" height="30" alt=""><span><strong>Codetroupe</strong> Plugins</span></a><nav aria-label="Footer"><a href="/support/">Support</a><a href="/legal/privacy/">Privacy</a><a href="https://plugins.jetbrains.com/vendor/4624269c-50f9-4161-a140-4112356bc5bd">JetBrains Marketplace <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"></path></svg></a></nav><p>Independent tools. Built for your workflow.</p><p class="trademark-note">Independent developer. JetBrains and Android are trademarks of their respective owners.</p></footer><script type="module">var e=document.querySelector(`[data-menu-toggle]`),t=document.querySelector(`#site-navigation`);if(e&&t){e.hidden=!1,t.dataset.enhanced=`true`;let n=(n=!1)=>{e.setAttribute(`aria-expanded`,`false`),t.classList.remove(`open`),n&&e.focus()};e.addEventListener(`click`,()=>{let n=e.getAttribute(`aria-expanded`)!==`true`;e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`open`,n)}),t.querySelectorAll(`a`).forEach(e=>e.addEventListener(`click`,()=>n())),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&t.classList.contains(`open`)&&n(!0)}),document.addEventListener(`click`,r=>{!t.contains(r.target)&&!e.contains(r.target)&&n()}),window.matchMedia(`(min-width: 960px)`).addEventListener(`change`,()=>n())}</script></body></html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>Page not found | Codetroupe Plugins</title><meta name="description" content="Independent plugins for Android Studio and IntelliJ IDEA. Explore ADB Pro, AAB Tools, and GooglePlay API by Codetroupe."><meta name="robots" content="noindex"><link rel="canonical" href="https://codetroupe.github.io/404/"><link rel="icon" type="image/svg+xml" href="/assets/portal/brand-mark.svg"><meta property="og:type" content="website"><meta property="og:site_name" content="Codetroupe Plugins"><meta property="og:title" content="Page not found | Codetroupe Plugins"><meta property="og:description" content="Independent plugins for Android Studio and IntelliJ IDEA. Explore ADB Pro, AAB Tools, and GooglePlay API by Codetroupe."><meta property="og:url" content="https://codetroupe.github.io/404/"><script>
+  (() => {
+    const key = 'codetroupe-portal-theme';
+    const media = window.matchMedia('(prefers-color-scheme: dark)');
+    const valid = (value) => ['light', 'dark', 'system'].includes(value) ? value : 'system';
+    let preference = 'system';
+    try { preference = valid(localStorage.getItem(key)); } catch {}
+    function apply(value) {
+      preference = valid(value);
+      const resolved = preference === 'system' ? (media.matches ? 'dark' : 'light') : preference;
+      document.documentElement.dataset.theme = resolved;
+      document.documentElement.dataset.themePreference = preference;
+      document.documentElement.style.colorScheme = resolved;
+      document.querySelectorAll('[data-theme-select]').forEach((select) => { select.value = preference; });
+    }
+    apply(preference);
+    media.addEventListener('change', () => { if (preference === 'system') apply('system'); });
+    window.addEventListener('storage', (event) => {
+      if (event.key === key || event.key === null) apply(event.key === null ? 'system' : event.newValue);
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+      apply(preference);
+      document.querySelectorAll('[data-theme-select]').forEach((select) => {
+        select.disabled = false;
+        select.addEventListener('change', () => {
+          apply(select.value);
+          try { localStorage.setItem(key, preference); } catch {}
+        });
+      });
+    }, { once: true });
+  })();
+</script><link rel="stylesheet" href="/_astro/BaseLayout.5wDUJ5aT.css"></head><body><a class="skip-link" href="#main">Skip to content</a><header class="site-header"><div class="container header-inner"><a class="brand" href="/" aria-label="Codetroupe Plugins home"><img src="/assets/portal/brand-mark.svg" width="38" height="38" alt=""><span><strong>Codetroupe</strong> Plugins</span></a><button class="menu-toggle button secondary" type="button" aria-expanded="false" aria-controls="site-navigation" hidden data-menu-toggle>Menu <span aria-hidden="true">☰</span></button><nav id="site-navigation" class="navigation" aria-label="Main navigation"><a href="/#plugins">Plugins</a><a href="/#guides">Guides</a><a href="/support/">Support</a><label class="theme-control"><span>Theme</span><select data-theme-select aria-label="Theme" disabled><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select></label><a class="button primary marketplace-link" href="https://plugins.jetbrains.com/vendor/4624269c-50f9-4161-a140-4112356bc5bd">Marketplace <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"></path></svg></a></nav></div></header><main id="main" tabindex="-1"><section class="container not-found"><p class="eyebrow">404 · Page not found</p><h1>Let’s get you back<br>to your workflow.</h1><p class="hero-summary">This address may have moved. Explore the plugins or open a product website.</p><div class="hero-actions"><a class="button primary" href="/">Explore all plugins</a><a class="button secondary" href="/adbpro/">ADB Pro</a><a class="button secondary" href="/googleplayapi/">GooglePlay API</a></div><p><a href="/support/">Need help finding something?</a></p></section></main><footer class="site-footer container"><a class="brand footer-brand" href="/"><img src="/assets/portal/brand-mark.svg" width="30" height="30" alt=""><span><strong>Codetroupe</strong> Plugins</span></a><nav aria-label="Footer"><a href="/support/">Support</a><a href="/legal/privacy/">Privacy</a><a href="https://plugins.jetbrains.com/vendor/4624269c-50f9-4161-a140-4112356bc5bd">JetBrains Marketplace <svg class="arrow" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 18 18 6M6 6h12v12"></path></svg></a></nav><p>Independent tools. Built for your workflow.</p><p class="trademark-note">Independent developer. JetBrains and Android are trademarks of their respective owners.</p></footer><script type="module">var e=document.querySelector(`[data-menu-toggle]`),t=document.querySelector(`#site-navigation`);if(e&&t){e.hidden=!1,t.dataset.enhanced=`true`;let n=(n=!1)=>{e.setAttribute(`aria-expanded`,`false`),t.classList.remove(`open`),n&&e.focus()};e.addEventListener(`click`,()=>{let n=e.getAttribute(`aria-expanded`)!==`true`;e.setAttribute(`aria-expanded`,String(n)),t.classList.toggle(`open`,n)}),t.querySelectorAll(`a`).forEach(e=>e.addEventListener(`click`,()=>n())),document.addEventListener(`keydown`,e=>{e.key===`Escape`&&t.classList.contains(`open`)&&n(!0)}),document.addEventListener(`click`,r=>{!t.contains(r.target)&&!e.contains(r.target)&&n()}),window.matchMedia(`(min-width: 960px)`).addEventListener(`change`,()=>n())}</script></body></html>

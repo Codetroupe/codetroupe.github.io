@@ -3,18 +3,634 @@
   "publisherRepository": "Codetroupe/pluginWeb",
   "sites": {
     "adbpro": {
-      "basePath": "/",
+      "basePath": "/adbpro/",
       "sourceRepository": "Codetroupe/adbpro",
-      "sourceCommit": "602cd8969635b69f5958ceeb4c399a3e44f8a2d7",
-      "sourceTreeSha256": "4087363c7eb9b541465cdb578388f15dc19c78c7ac4eef72d95b092b52882519",
-      "outputTreeSha256": "4d9b3379a9ddf87d68854d58d93553e600c2e06e97eca391f5df9e4106894a96"
+      "sourceCommit": "41944c294aa298298b03f4fe15e5dee46cdff113",
+      "sourceTreeSha256": "d92a6b37893bb24e02bf35adbc8e36e16ed42efdef5cd30cf447009a62cf14e2",
+      "outputTreeSha256": "55bf9ae83cf25068c32de136529c44557931ab433541b75f2de6c638580b8041"
     },
     "googleplayapi": {
       "basePath": "/googleplayapi/",
       "sourceRepository": "Codetroupe/googleplayapi",
-      "sourceCommit": "ed515c581aea80be7f8b7caf2146cac546356b54",
-      "sourceTreeSha256": "828949e6c4995f61e59ced1f46ffc0518b749d97ab323e4ac4b24e2e0ab61765",
-      "outputTreeSha256": "c9ae1ebefe18112b6bc005df9bad903763009ac5f3b0066e3906c2e6fe7b90f4"
+      "sourceCommit": "04e4cf507485d3c4803ec8434cff788c50fb9b43",
+      "sourceTreeSha256": "0973145f2f60648f306d29ba26054472392b7c1ae9081e19d2afbfb2090d18c3",
+      "outputTreeSha256": "6cfb3eefbf0fa39fe107373effacc686ea05e202b477a38aaefa9a5c17e8c4d0"
+    },
+    "portal": {
+      "basePath": "/",
+      "sourceRepository": "Codetroupe/pluginWeb",
+      "sourceCommit": "68bbce5cb05c5a012d5eb537d571e20c1afd6f98",
+      "sourceTreeSha256": "c06b42300ab8037a66d7f5b484814f9e4e85f4deaad8ea521731b8f9e8e42e00",
+      "outputTreeSha256": "f750bd05c2f4dcac0be5cfba7845a630874c1b99241c88340727647abffcda44"
+    }
+  },
+  "compatibility": {
+    "schemaVersion": 1,
+    "migration": "portal-v1",
+    "owner": "adbpro",
+    "baselineCommit": "36e4a9a08706f8657b84bbc8a35be8ffd2e51734",
+    "baselineManifestSha256": "3ae0771048cb2d55a7982b7247b685986853daead697a22f8013f1e4729ad544",
+    "entries": {
+      "assets/css/style.css": {
+        "kind": "resource",
+        "source": "assets/css/style.css",
+        "sha256": "4ecfa7de46ddc9033d12fcdd6661195ada9ae49611401f290ca537cbf88caeb6"
+      },
+      "assets/favicon.ico": {
+        "kind": "resource",
+        "source": "assets/favicon.ico",
+        "sha256": "abd5ad6a38cb42e51194fc34aa2eaf394c6f4a78c7aace8c668edca832d9b49c"
+      },
+      "assets/js/main.js": {
+        "kind": "resource",
+        "source": "assets/js/main.js",
+        "sha256": "2e304713393d958ffc95331fd02a00d453551ac6c66658004631acb9a5933191"
+      },
+      "assets/logo.png": {
+        "kind": "resource",
+        "source": "assets/logo.png",
+        "sha256": "c5e4f2b0aa04e24ac27e90a4940a35d8dad5c1716930ca000c48b0e3d134a538"
+      },
+      "assets/screenshots/adb-pro-aab-tools.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-aab-tools.png",
+        "sha256": "b3b44e1b00ff90f6c2c96f4c8b26e423ea13312cf922a05aa42839bf246f68a9"
+      },
+      "assets/screenshots/adb-pro-build-performance.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-build-performance.png",
+        "sha256": "b44ae324de25fdbe9960652dd431776d17c232e32e0a48ca7112b5498078a750"
+      },
+      "assets/screenshots/adb-pro-build-tools.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-build-tools.png",
+        "sha256": "7704073a26346247b7d1938613883d00d7644ca2527929a9b356815d01f7e513"
+      },
+      "assets/screenshots/adb-pro-bundle-inspector.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-bundle-inspector.png",
+        "sha256": "8b1ca7044de7af13b6db7296a5572a86d1082067c3251375a854317273a55565"
+      },
+      "assets/screenshots/adb-pro-cicd-tools.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-cicd-tools.png",
+        "sha256": "9a607667db6ab66542e4c063b24139498ac820dcc78f97ab3fb2d28f68a2fb0a"
+      },
+      "assets/screenshots/adb-pro-dashboard.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-dashboard.png",
+        "sha256": "e0b468c7a69d9ea22b93f675acb1e5988480b5db2776d61895319bbf00030088"
+      },
+      "assets/screenshots/adb-pro-dependency-health.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-dependency-health.png",
+        "sha256": "93c970fff5706836a1d8a74f856bf1371aeaac5b0993973addd8de5627c0fc4d"
+      },
+      "assets/screenshots/adb-pro-lint-tools.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-lint-tools.png",
+        "sha256": "fc893b8b42dabd904175052ac688de236a4d12fdb8e8f2f655b5a45b464d4a1f"
+      },
+      "assets/screenshots/adb-pro-logs.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-logs.png",
+        "sha256": "7d01756776fd6b19ec09cd8b246a4ebedf7404811d9039cc128762154a1dce95"
+      },
+      "assets/screenshots/adb-pro-quick-setup.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-quick-setup.png",
+        "sha256": "af06184a45a73736fdd50d4df2debe730f467ba328c424224ae7f01287c8fa8b"
+      },
+      "assets/screenshots/adb-pro-r8-assistant.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-r8-assistant.png",
+        "sha256": "0e973bcd4618fa5a087eed35b9de4a85c4e6433f779b14bd676eb506586edb75"
+      },
+      "assets/screenshots/adb-pro-release-readiness.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-release-readiness.png",
+        "sha256": "a5b5f0cddb5b3a38b38d1c27bd03466102c166abff0844fae462341947b23124"
+      },
+      "assets/screenshots/adb-pro-resource-obfuscation.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-resource-obfuscation.png",
+        "sha256": "ec670689a2ea9660ffc0565ad792da6a9f36bc64d18949b5bbf42287f0d75145"
+      },
+      "assets/screenshots/adb-pro-signing-tools.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-signing-tools.png",
+        "sha256": "5a7c05cfca5b0ae4bfc892642b3e6924acc2fb64304d62e9a05fc10c19bcd760"
+      },
+      "assets/screenshots/adb-pro-web-navigation.png": {
+        "kind": "resource",
+        "source": "assets/screenshots/adb-pro-web-navigation.png",
+        "sha256": "2dae19f5629258807f953e5a3d27d58a6dfa5aac99147f0e05e39e2549cf4440"
+      },
+      "blog-md/juejin-article-01.md": {
+        "kind": "resource",
+        "source": "blog-md/juejin-article-01.md",
+        "sha256": "9fb13961f5dfee5e07ea35fc77126d5797945723bf3605336e92ce354e6c3f02"
+      },
+      "blog-md/juejin-article-02.md": {
+        "kind": "resource",
+        "source": "blog-md/juejin-article-02.md",
+        "sha256": "aa42048daa9f49d4f800df2be79162aa8b3a8d52cbf5c759bc04b1f67527096b"
+      },
+      "blog-md/juejin-article-03.md": {
+        "kind": "resource",
+        "source": "blog-md/juejin-article-03.md",
+        "sha256": "0c18ae3ffa794959b7dab5b7d711d4917a5fb6988ac57b4e451192ace49a6cd7"
+      },
+      "blog-md/juejin-article-04.md": {
+        "kind": "resource",
+        "source": "blog-md/juejin-article-04.md",
+        "sha256": "b7b0bcfde049e16b8b1eaf11ddb894699da1c893f5d86b232dbd706d44e3b8d9"
+      },
+      "blog-md/reddit-android-release-workflow.md": {
+        "kind": "resource",
+        "source": "blog-md/reddit-android-release-workflow.md",
+        "sha256": "3cc43c0f80903afd1ff1be369e12171fd90846a51b9ff6c91e2357ebdca3b2ca"
+      },
+      "blog/android-aab-local-testing.html": {
+        "kind": "redirect",
+        "source": "zh/blog/android-aab-local-testing.html",
+        "target": "/adbpro/zh/blog/android-aab-local-testing.html"
+      },
+      "blog/android-obfuscation-dictionary.html": {
+        "kind": "redirect",
+        "source": "zh/blog/android-obfuscation-dictionary.html",
+        "target": "/adbpro/zh/blog/android-obfuscation-dictionary.html"
+      },
+      "blog/android-release-automation.html": {
+        "kind": "redirect",
+        "source": "zh/blog/android-release-automation.html",
+        "target": "/adbpro/zh/blog/android-release-automation.html"
+      },
+      "blog/android-release-workflow.html": {
+        "kind": "redirect",
+        "source": "blog/android-release-workflow.html",
+        "target": "/adbpro/blog/android-release-workflow.html"
+      },
+      "blog/android-res-guard.html": {
+        "kind": "redirect",
+        "source": "zh/blog/android-res-guard.html",
+        "target": "/adbpro/zh/blog/android-res-guard.html"
+      },
+      "blog/index.html": {
+        "kind": "redirect",
+        "source": "blog/index.html",
+        "target": "/adbpro/blog/"
+      },
+      "dictionaries/index.html": {
+        "kind": "redirect",
+        "source": "dictionaries/index.html",
+        "target": "/adbpro/dictionaries/"
+      },
+      "dictionaries/proguard-dic-cyrillic.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-cyrillic.txt",
+        "sha256": "029f2e082cf3195c867602a12c24e7cbc85ac54a56bcd76344430ae88a66d2d8"
+      },
+      "dictionaries/proguard-dic-east-asian.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-east-asian.txt",
+        "sha256": "8e6e5b4ad2e4a86005f4758088bb70c2dc78aef188abd68cb8a4110f355fa7a5"
+      },
+      "dictionaries/proguard-dic-encoding-chaos.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-encoding-chaos.txt",
+        "sha256": "df96116f92c748f4f6a68d678854bb8a6da36b2c9016e09fe45747bd00158820"
+      },
+      "dictionaries/proguard-dic-greek.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-greek.txt",
+        "sha256": "6175a0f93151c1290d47e2ee11689686c35b60da8568f170c5b98fcc5f86c084"
+      },
+      "dictionaries/proguard-dic-hebrew-arabic.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-hebrew-arabic.txt",
+        "sha256": "89788a7b67a1f0c5d04ef8e15ac8ebb7b5bf336bfe785c63853cf453a2a4d6aa"
+      },
+      "dictionaries/proguard-dic-homoglyph.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-homoglyph.txt",
+        "sha256": "6af956c6c0e3a7011413c0387bf92674f2f112e608964f1c1fe3f36ad7fa4697"
+      },
+      "dictionaries/proguard-dic-indigenous.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-indigenous.txt",
+        "sha256": "5cd765e28db3393bd3303de14a0421da7b80a4005116c08e4bb9136e2bc349f9"
+      },
+      "dictionaries/proguard-dic-latin-extended.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-latin-extended.txt",
+        "sha256": "96b2be0d32c9f224f75159cba68b23b35783f841f1150659049f249d358ace78"
+      },
+      "dictionaries/proguard-dic-minimal-confusable.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-minimal-confusable.txt",
+        "sha256": "73e9881a1981172a17464c00b95b8c40dbb26e9fbf7789ae0c6879493a6f398c"
+      },
+      "dictionaries/proguard-dic-modifier-tone.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-modifier-tone.txt",
+        "sha256": "2d6fadfcfa89217df601bed0f0be26c5a9c82eacf09c8fc6535371f423ad2e76"
+      },
+      "dictionaries/proguard-dic-ultimate.txt": {
+        "kind": "resource",
+        "source": "dictionaries/proguard-dic-ultimate.txt",
+        "sha256": "4845691dedbe4d5176e82f00edebaddca39add6de440051a5721d43bf804b606"
+      },
+      "features/aab-tools.html": {
+        "kind": "redirect",
+        "source": "features/aab-tools.html",
+        "target": "/adbpro/features/aab-tools.html"
+      },
+      "features/build-perf.html": {
+        "kind": "redirect",
+        "source": "features/build-perf.html",
+        "target": "/adbpro/features/build-perf.html"
+      },
+      "features/build-tools.html": {
+        "kind": "redirect",
+        "source": "features/build-tools.html",
+        "target": "/adbpro/features/build-tools.html"
+      },
+      "features/bundle-inspector.html": {
+        "kind": "redirect",
+        "source": "features/bundle-inspector.html",
+        "target": "/adbpro/features/bundle-inspector.html"
+      },
+      "features/cicd-tools.html": {
+        "kind": "redirect",
+        "source": "features/cicd-tools.html",
+        "target": "/adbpro/features/cicd-tools.html"
+      },
+      "features/dependency-health.html": {
+        "kind": "redirect",
+        "source": "features/dependency-health.html",
+        "target": "/adbpro/features/dependency-health.html"
+      },
+      "features/device-manager.html": {
+        "kind": "redirect",
+        "source": "features/device-manager.html",
+        "target": "/adbpro/features/device-manager.html"
+      },
+      "features/index.html": {
+        "kind": "redirect",
+        "source": "features/index.html",
+        "target": "/adbpro/features/"
+      },
+      "features/lint-tools.html": {
+        "kind": "redirect",
+        "source": "features/lint-tools.html",
+        "target": "/adbpro/features/lint-tools.html"
+      },
+      "features/quick-setup.html": {
+        "kind": "redirect",
+        "source": "features/quick-setup.html",
+        "target": "/adbpro/features/quick-setup.html"
+      },
+      "features/r8-assistant.html": {
+        "kind": "redirect",
+        "source": "features/r8-assistant.html",
+        "target": "/adbpro/features/r8-assistant.html"
+      },
+      "features/release-readiness.html": {
+        "kind": "redirect",
+        "source": "features/release-readiness.html",
+        "target": "/adbpro/features/release-readiness.html"
+      },
+      "features/res-guard.html": {
+        "kind": "redirect",
+        "source": "features/res-guard.html",
+        "target": "/adbpro/features/res-guard.html"
+      },
+      "features/signing-tools.html": {
+        "kind": "redirect",
+        "source": "features/signing-tools.html",
+        "target": "/adbpro/features/signing-tools.html"
+      },
+      "features/web-navigation.html": {
+        "kind": "redirect",
+        "source": "features/web-navigation.html",
+        "target": "/adbpro/features/web-navigation.html"
+      },
+      "feedback.html": {
+        "kind": "redirect",
+        "source": "feedback.html",
+        "target": "/adbpro/feedback.html"
+      },
+      "getting-started.html": {
+        "kind": "redirect",
+        "source": "getting-started.html",
+        "target": "/adbpro/getting-started.html"
+      },
+      "guides/aab-to-apks-install-guide.html": {
+        "kind": "redirect",
+        "source": "guides/aab-to-apks-install-guide.html",
+        "target": "/adbpro/guides/aab-to-apks-install-guide.html"
+      },
+      "guides/android-aab-resource-obfuscation.html": {
+        "kind": "redirect",
+        "source": "guides/android-aab-resource-obfuscation.html",
+        "target": "/adbpro/guides/android-aab-resource-obfuscation.html"
+      },
+      "guides/android-apk-obfuscation.html": {
+        "kind": "redirect",
+        "source": "guides/android-apk-obfuscation.html",
+        "target": "/adbpro/guides/android-apk-obfuscation.html"
+      },
+      "guides/android-app-obfuscation-methods.html": {
+        "kind": "redirect",
+        "source": "guides/android-app-obfuscation-methods.html",
+        "target": "/adbpro/guides/android-app-obfuscation-methods.html"
+      },
+      "guides/android-app-signing-guide.html": {
+        "kind": "redirect",
+        "source": "guides/android-app-signing-guide.html",
+        "target": "/adbpro/guides/android-app-signing-guide.html"
+      },
+      "guides/android-automated-builds-cicd.html": {
+        "kind": "redirect",
+        "source": "guides/android-automated-builds-cicd.html",
+        "target": "/adbpro/guides/android-automated-builds-cicd.html"
+      },
+      "guides/android-multi-store-release-checklist.html": {
+        "kind": "redirect",
+        "source": "guides/android-multi-store-release-checklist.html",
+        "target": "/adbpro/guides/android-multi-store-release-checklist.html"
+      },
+      "guides/android-multiple-apps-one-project.html": {
+        "kind": "redirect",
+        "source": "guides/android-multiple-apps-one-project.html",
+        "target": "/adbpro/guides/android-multiple-apps-one-project.html"
+      },
+      "guides/android-release-readiness-checklist.html": {
+        "kind": "redirect",
+        "source": "guides/android-release-readiness-checklist.html",
+        "target": "/adbpro/guides/android-release-readiness-checklist.html"
+      },
+      "guides/android-release-signing-guide.html": {
+        "kind": "redirect",
+        "source": "guides/android-release-signing-guide.html",
+        "target": "/adbpro/guides/android-release-signing-guide.html"
+      },
+      "guides/index.html": {
+        "kind": "redirect",
+        "source": "guides/index.html",
+        "target": "/adbpro/guides/"
+      },
+      "guides/install-aab-on-android-device.html": {
+        "kind": "redirect",
+        "source": "guides/install-aab-on-android-device.html",
+        "target": "/adbpro/guides/install-aab-on-android-device.html"
+      },
+      "guides/r8-obfuscation-minifyenabled.html": {
+        "kind": "redirect",
+        "source": "guides/r8-obfuscation-minifyenabled.html",
+        "target": "/adbpro/guides/r8-obfuscation-minifyenabled.html"
+      },
+      "guides/r8-proguard-dictionary.html": {
+        "kind": "redirect",
+        "source": "guides/r8-proguard-dictionary.html",
+        "target": "/adbpro/guides/r8-proguard-dictionary.html"
+      },
+      "plugin-privacy-policy.html": {
+        "kind": "redirect",
+        "source": "plugin-privacy-policy.html",
+        "target": "/adbpro/plugin-privacy-policy.html"
+      },
+      "pricing.html": {
+        "kind": "redirect",
+        "source": "pricing.html",
+        "target": "/adbpro/pricing.html"
+      },
+      "privacy-policy.html": {
+        "kind": "redirect",
+        "source": "privacy-policy.html",
+        "target": "/adbpro/privacy-policy.html"
+      },
+      "subscription-agreement.html": {
+        "kind": "redirect",
+        "source": "subscription-agreement.html",
+        "target": "/adbpro/subscription-agreement.html"
+      },
+      "tools/aab-tools.html": {
+        "kind": "redirect",
+        "source": "tools/aab-tools.html",
+        "target": "/adbpro/tools/aab-tools.html"
+      },
+      "tools/index.html": {
+        "kind": "redirect",
+        "source": "tools/index.html",
+        "target": "/adbpro/tools/"
+      },
+      "zh/blog/android-aab-local-testing.html": {
+        "kind": "redirect",
+        "source": "zh/blog/android-aab-local-testing.html",
+        "target": "/adbpro/zh/blog/android-aab-local-testing.html"
+      },
+      "zh/blog/android-obfuscation-dictionary.html": {
+        "kind": "redirect",
+        "source": "zh/blog/android-obfuscation-dictionary.html",
+        "target": "/adbpro/zh/blog/android-obfuscation-dictionary.html"
+      },
+      "zh/blog/android-release-automation.html": {
+        "kind": "redirect",
+        "source": "zh/blog/android-release-automation.html",
+        "target": "/adbpro/zh/blog/android-release-automation.html"
+      },
+      "zh/blog/android-res-guard.html": {
+        "kind": "redirect",
+        "source": "zh/blog/android-res-guard.html",
+        "target": "/adbpro/zh/blog/android-res-guard.html"
+      },
+      "zh/blog/index.html": {
+        "kind": "redirect",
+        "source": "zh/blog/index.html",
+        "target": "/adbpro/zh/blog/"
+      },
+      "zh/dictionaries/index.html": {
+        "kind": "redirect",
+        "source": "zh/dictionaries/index.html",
+        "target": "/adbpro/zh/dictionaries/"
+      },
+      "zh/features/aab-tools.html": {
+        "kind": "redirect",
+        "source": "zh/features/aab-tools.html",
+        "target": "/adbpro/zh/features/aab-tools.html"
+      },
+      "zh/features/build-perf.html": {
+        "kind": "redirect",
+        "source": "zh/features/build-perf.html",
+        "target": "/adbpro/zh/features/build-perf.html"
+      },
+      "zh/features/build-tools.html": {
+        "kind": "redirect",
+        "source": "zh/features/build-tools.html",
+        "target": "/adbpro/zh/features/build-tools.html"
+      },
+      "zh/features/bundle-inspector.html": {
+        "kind": "redirect",
+        "source": "zh/features/bundle-inspector.html",
+        "target": "/adbpro/zh/features/bundle-inspector.html"
+      },
+      "zh/features/cicd-tools.html": {
+        "kind": "redirect",
+        "source": "zh/features/cicd-tools.html",
+        "target": "/adbpro/zh/features/cicd-tools.html"
+      },
+      "zh/features/dependency-health.html": {
+        "kind": "redirect",
+        "source": "zh/features/dependency-health.html",
+        "target": "/adbpro/zh/features/dependency-health.html"
+      },
+      "zh/features/device-manager.html": {
+        "kind": "redirect",
+        "source": "zh/features/device-manager.html",
+        "target": "/adbpro/zh/features/device-manager.html"
+      },
+      "zh/features/index.html": {
+        "kind": "redirect",
+        "source": "zh/features/index.html",
+        "target": "/adbpro/zh/features/"
+      },
+      "zh/features/lint-tools.html": {
+        "kind": "redirect",
+        "source": "zh/features/lint-tools.html",
+        "target": "/adbpro/zh/features/lint-tools.html"
+      },
+      "zh/features/quick-setup.html": {
+        "kind": "redirect",
+        "source": "zh/features/quick-setup.html",
+        "target": "/adbpro/zh/features/quick-setup.html"
+      },
+      "zh/features/r8-assistant.html": {
+        "kind": "redirect",
+        "source": "zh/features/r8-assistant.html",
+        "target": "/adbpro/zh/features/r8-assistant.html"
+      },
+      "zh/features/release-readiness.html": {
+        "kind": "redirect",
+        "source": "zh/features/release-readiness.html",
+        "target": "/adbpro/zh/features/release-readiness.html"
+      },
+      "zh/features/res-guard.html": {
+        "kind": "redirect",
+        "source": "zh/features/res-guard.html",
+        "target": "/adbpro/zh/features/res-guard.html"
+      },
+      "zh/features/signing-tools.html": {
+        "kind": "redirect",
+        "source": "zh/features/signing-tools.html",
+        "target": "/adbpro/zh/features/signing-tools.html"
+      },
+      "zh/features/web-navigation.html": {
+        "kind": "redirect",
+        "source": "zh/features/web-navigation.html",
+        "target": "/adbpro/zh/features/web-navigation.html"
+      },
+      "zh/feedback.html": {
+        "kind": "redirect",
+        "source": "zh/feedback.html",
+        "target": "/adbpro/zh/feedback.html"
+      },
+      "zh/getting-started.html": {
+        "kind": "redirect",
+        "source": "zh/getting-started.html",
+        "target": "/adbpro/zh/getting-started.html"
+      },
+      "zh/guides/aab-to-apks-install-guide.html": {
+        "kind": "redirect",
+        "source": "zh/guides/aab-to-apks-install-guide.html",
+        "target": "/adbpro/zh/guides/aab-to-apks-install-guide.html"
+      },
+      "zh/guides/android-aab-resource-obfuscation.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-aab-resource-obfuscation.html",
+        "target": "/adbpro/zh/guides/android-aab-resource-obfuscation.html"
+      },
+      "zh/guides/android-apk-obfuscation.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-apk-obfuscation.html",
+        "target": "/adbpro/zh/guides/android-apk-obfuscation.html"
+      },
+      "zh/guides/android-app-obfuscation-methods.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-app-obfuscation-methods.html",
+        "target": "/adbpro/zh/guides/android-app-obfuscation-methods.html"
+      },
+      "zh/guides/android-app-signing-guide.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-app-signing-guide.html",
+        "target": "/adbpro/zh/guides/android-app-signing-guide.html"
+      },
+      "zh/guides/android-automated-builds-cicd.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-automated-builds-cicd.html",
+        "target": "/adbpro/zh/guides/android-automated-builds-cicd.html"
+      },
+      "zh/guides/android-multi-store-release-checklist.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-multi-store-release-checklist.html",
+        "target": "/adbpro/zh/guides/android-multi-store-release-checklist.html"
+      },
+      "zh/guides/android-multiple-apps-one-project.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-multiple-apps-one-project.html",
+        "target": "/adbpro/zh/guides/android-multiple-apps-one-project.html"
+      },
+      "zh/guides/android-release-readiness-checklist.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-release-readiness-checklist.html",
+        "target": "/adbpro/zh/guides/android-release-readiness-checklist.html"
+      },
+      "zh/guides/android-release-signing-guide.html": {
+        "kind": "redirect",
+        "source": "zh/guides/android-release-signing-guide.html",
+        "target": "/adbpro/zh/guides/android-release-signing-guide.html"
+      },
+      "zh/guides/index.html": {
+        "kind": "redirect",
+        "source": "zh/guides/index.html",
+        "target": "/adbpro/zh/guides/"
+      },
+      "zh/guides/install-aab-on-android-device.html": {
+        "kind": "redirect",
+        "source": "zh/guides/install-aab-on-android-device.html",
+        "target": "/adbpro/zh/guides/install-aab-on-android-device.html"
+      },
+      "zh/guides/r8-obfuscation-minifyenabled.html": {
+        "kind": "redirect",
+        "source": "zh/guides/r8-obfuscation-minifyenabled.html",
+        "target": "/adbpro/zh/guides/r8-obfuscation-minifyenabled.html"
+      },
+      "zh/guides/r8-proguard-dictionary.html": {
+        "kind": "redirect",
+        "source": "zh/guides/r8-proguard-dictionary.html",
+        "target": "/adbpro/zh/guides/r8-proguard-dictionary.html"
+      },
+      "zh/index.html": {
+        "kind": "redirect",
+        "source": "zh/index.html",
+        "target": "/adbpro/zh/"
+      },
+      "zh/pricing.html": {
+        "kind": "redirect",
+        "source": "zh/pricing.html",
+        "target": "/adbpro/zh/pricing.html"
+      },
+      "zh/tools/aab-tools.html": {
+        "kind": "redirect",
+        "source": "zh/tools/aab-tools.html",
+        "target": "/adbpro/zh/tools/aab-tools.html"
+      },
+      "zh/tools/index.html": {
+        "kind": "redirect",
+        "source": "zh/tools/index.html",
+        "target": "/adbpro/zh/tools/"
+      }
     }
   }
 }
