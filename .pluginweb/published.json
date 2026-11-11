@@ -5,21 +5,21 @@
     "adbpro": {
       "basePath": "/adbpro/",
       "sourceRepository": "Codetroupe/adbpro",
-      "sourceCommit": "530539913cbcef9b2e14d3a2806f93f770db1043",
-      "sourceTreeSha256": "fa3022cfb7f65b217fe98fe374a8267aa3c4f70414c4a93b762d78043589c93d",
+      "sourceCommit": "320f3e68aecd390cc6ca82ff9e90b08aad2a9b8c",
+      "sourceTreeSha256": "473fea42dfe222e0ec617aa9c0f4e6276840371577c3ff69a44750eb97613013",
       "outputTreeSha256": "2ed91131f86adb6529f000dca5226e3c38127e8d18625a7173f0be432cd11d98"
     },
     "googleplayapi": {
       "basePath": "/googleplayapi/",
       "sourceRepository": "Codetroupe/googleplayapi",
-      "sourceCommit": "04e4cf507485d3c4803ec8434cff788c50fb9b43",
-      "sourceTreeSha256": "0973145f2f60648f306d29ba26054472392b7c1ae9081e19d2afbfb2090d18c3",
-      "outputTreeSha256": "6cfb3eefbf0fa39fe107373effacc686ea05e202b477a38aaefa9a5c17e8c4d0"
+      "sourceCommit": "91a651fe89f806d235f663ec405dcd36df22c5cb",
+      "sourceTreeSha256": "ddcff4ea8f0038cfef40c337ec70afa217d19cc8d23944ccdc24bdc0ca46a1c6",
+      "outputTreeSha256": "d3c0a2e735222c2599c06affb5012d0a71b7eb72dcefd3e8e4a2ea28916113a8"
     },
     "portal": {
       "basePath": "/",
       "sourceRepository": "Codetroupe/pluginWeb",
-      "sourceCommit": "15007ce289a1f246aabcb259993457b84fcaecb2",
+      "sourceCommit": "b18c63c99cdd01915946150c627d068a88c958c8",
       "sourceTreeSha256": "1af93fc11c18bb642e08fc999584dea3af5ced4c59ec8ac06917bd0b0bb5db95",
       "outputTreeSha256": "66aba28edaf17a28b172c238a781fc4f38fba07a417b557a12c8afa05b6cc358"
     }
